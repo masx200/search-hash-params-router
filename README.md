@@ -1,6 +1,10 @@
 # search-hash-params-router
+
+
 使用 location.search 和 location.hash中查询参数的前端路由器
 
+
+为路由器添加查询参数模式。基于历史记录模式。使用查询参数匹配而不是动态路由匹配。
 
 Add query parameter mode for routers. Based on history mode. Use query parameter matching instead of dynamic route matching.
 
