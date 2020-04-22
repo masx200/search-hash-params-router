@@ -10,6 +10,10 @@ Add query parameter mode for routers. Based on history mode. Use query parameter
 
 ### What problem does this feature solve?
 
+
+使用查询参数模式不需要服务器设置路由回退。
+
+
 The use of query parameter mode does not require the server to set up route fallback.
 
 If you don't want a very ugly hash, we can use the history mode of routing, which makes full use of the history.pushState API to complete the URL jump without reloading the page.
