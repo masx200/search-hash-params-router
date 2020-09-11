@@ -30,7 +30,7 @@ const changelistener = () => {
   console.log("search params", searchparams);
 */
 
-listercallbacks.forEach(call=>call({search:searchparams,hash:hashparams}))
+listercallbacks.forEach(async call=>call({search:searchparams,hash:hashparams}))
 };
 
 window.addEventListener("popstate", changelistener);
