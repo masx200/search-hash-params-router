@@ -1,8 +1,13 @@
 function gethashparams() {
-  return location.hash&& Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
+  return (
+    location.hash &&
+    Object.fromEntries(new URLSearchParams(location.hash.slice(1)))
+  );
 }
 function getsearchparams() {
-  return location.search&& Object.fromEntries(new URL(location.href).searchParams);
+  return (
+    location.search && Object.fromEntries(new URL(location.href).searchParams)
+  );
 }
 function setsearchparams(opt) {
   let url = new URL(location.href);
@@ -21,38 +26,36 @@ function sethashparams(opt) {
 
   window.dispatchEvent(new Event("hashchange"));
 }
-export{sethashparams,setsearchparams,getsearchparams,gethashparams}
+export { sethashparams, setsearchparams, getsearchparams, gethashparams };
 
 const changelistener = () => {
   let hashparams = gethashparams();
   let searchparams = getsearchparams();
- /* console.log("hash params", hashparams);
+  /* console.log("hash params", hashparams);
   console.log("search params", searchparams);
 */
 
-listercallbacks.forEach(async call=>call({search:searchparams,hash:hashparams}))
+  listercallbacks.forEach(async (call) =>
+    call({ search: searchparams, hash: hashparams })
+  );
 };
 
 window.addEventListener("popstate", changelistener);
 
 window.addEventListener("hashchange", changelistener);
 
-const listercallbacks=new Set()
+const listercallbacks = new Set();
 
 /*
 
 type Callback=(params:{search:Record<string,string>,hash:Record<string,string>})=>void
 
 */
-function watchparams(callback){
-
-listercallbacks.add(callback)
-
+function watchparams(callback) {
+  listercallbacks.add(callback);
 }
 
-function unwatchparams(callback){
-
-listercallbacks.delete(callback)
-
+function unwatchparams(callback) {
+  listercallbacks.delete(callback);
 }
-export{watchparams,unwatchparams}
+export { watchparams, unwatchparams };

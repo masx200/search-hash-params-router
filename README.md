@@ -1,7 +1,6 @@
 # search-hash-params-router
 
-
-使用 location.search 和 location.hash中查询参数的前端路由器
+使用 location.search 和 location.hash 中查询参数的前端路由器
 
 不需要"Path-to-RegExp"了
 
@@ -11,9 +10,7 @@ Add query parameter mode for routers. Based on history mode. Use query parameter
 
 ### What problem does this feature solve?
 
-
 使用查询参数模式不需要服务器设置路由回退。
-
 
 The use of query parameter mode does not require the server to set up route fallback.
 
@@ -59,7 +56,7 @@ window.addEventListener("hashchange", changelistener);
 
 function assign(opt) {
   let params = getsearchparams();
-  setsearchparams(Object.assign(params,opt));
+  setsearchparams(Object.assign(params, opt));
 }
 
 function replace(opt) {
@@ -77,10 +74,15 @@ The query parameters can be obtained from location.search or location.hash.
 
 ```js
 function gethashparams() {
-  return location.hash&& Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
+  return (
+    location.hash &&
+    Object.fromEntries(new URLSearchParams(location.hash.slice(1)))
+  );
 }
 function getsearchparams() {
-  return location.search&& Object.fromEntries(new URL(location.href).searchParams);
+  return (
+    location.search && Object.fromEntries(new URL(location.href).searchParams)
+  );
 }
 ```
 
@@ -139,13 +141,12 @@ gethashparams()
 The route matching method example is as follows:
 
 ```js
-
 const routes = [
   {
     component: Home,
 
     filter({ hash, search }) {
-      return hash ==='' &&search===''
+      return hash === "" && search === "";
     },
   },
   {
