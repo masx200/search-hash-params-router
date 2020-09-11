@@ -22,3 +22,27 @@ function sethashparams(opt) {
   window.dispatchEvent(new Event("hashchange"));
 }
 export{sethashparams,setsearchparams,getsearchparams,gethashparams}
+
+const changelistener = () => {
+  let hashparams = gethashparams();
+  let searchparams = getsearchparams();
+  console.log("hash params", hashparams);
+  console.log("search params", searchparams);
+};
+
+window.addEventListener("popstate", changelistener);
+
+window.addEventListener("hashchange", changelistener);
+
+const listercallbacks=new Set()
+function watchparams(callback){
+
+listercallbacks.add(callback)
+
+}
+
+function unwatchparams(callback){
+
+listercallbacks.delete(callback)
+
+}
