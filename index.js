@@ -26,8 +26,11 @@ export{sethashparams,setsearchparams,getsearchparams,gethashparams}
 const changelistener = () => {
   let hashparams = gethashparams();
   let searchparams = getsearchparams();
-  console.log("hash params", hashparams);
+ /* console.log("hash params", hashparams);
   console.log("search params", searchparams);
+*/
+
+listercallbacks.forEach(call=>call({search:searchparams,hash:hashparams}))
 };
 
 window.addEventListener("popstate", changelistener);
@@ -35,6 +38,12 @@ window.addEventListener("popstate", changelistener);
 window.addEventListener("hashchange", changelistener);
 
 const listercallbacks=new Set()
+
+/*
+
+type Callback=(params:{search:Record<string,string>,hash:Record<string,string>})=>void
+
+*/
 function watchparams(callback){
 
 listercallbacks.add(callback)
@@ -46,3 +55,4 @@ function unwatchparams(callback){
 listercallbacks.delete(callback)
 
 }
+export{watchparams,unwatchparams}
