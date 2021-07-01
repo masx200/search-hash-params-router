@@ -1,5 +1,8 @@
-import { setsearchparams } from "./setsearchparams.ts";
-import { getsearchparams } from "./getsearchparams.ts";
+//@ts-ignore
+
+import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
+
+import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
 import { replacesearchparams } from "./replacesearchparams.ts";
 export function createSearchRouter() {
     const listercallbacks = new Set();

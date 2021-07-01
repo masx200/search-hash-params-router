@@ -47,9 +47,10 @@ function c(e) {
 function a() {
     var e = new Set;
     return window.addEventListener("hashchange", (function() {
-        o(), e.forEach((function(e) {
+        var n = o();
+        e.forEach((function(e) {
             return Promise.resolve().then((function() {
-                return e(searchparams);
+                return e(n);
             }));
         }));
     })), {

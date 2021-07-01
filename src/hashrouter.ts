@@ -1,5 +1,6 @@
-import { sethashparams } from "./sethashparams.ts";
-import { gethashparams } from "./gethashparams.ts";
+//@ts-ignore
+import { sethashparams } from "./sethashparams.ts"; //@ts-ignore
+import { gethashparams } from "./gethashparams.ts"; //@ts-ignore
 import { replacehashparams } from "./replacehashparams.ts";
 export function createHashRouter() {
     const listercallbacks = new Set();
@@ -13,7 +14,7 @@ export function createHashRouter() {
     const changelistener = () => {
         let hashparams = gethashparams();
         listercallbacks.forEach((call) =>
-            Promise.resolve().then(() => call(searchparams))
+            Promise.resolve().then(() => call(hashparams))
         );
     };
 

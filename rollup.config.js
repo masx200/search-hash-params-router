@@ -4,6 +4,8 @@ import commonjs from "@rollup/plugin-commonjs";
 
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
+
+import ftc from "rollup-plugin-fork-ts-checker";
 export default {
     input: "src/index.ts", // 打包入口
     output: {
@@ -12,6 +14,7 @@ export default {
         format: "esm", // umd是兼容amd/cjs/iife的通用打包格式，适合浏览器
     },
     plugins: [
+        ftc(),
         // 打包插件
         resolve(), // 查找和打包node_modules中的第三方模块
         commonjs(), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
@@ -21,6 +24,10 @@ export default {
             babelHelpers: "bundled",
             presets: ["@babel/preset-typescript", "@babel/preset-env"],
         }),
-        terser({ module: true, output: { comments: false, beautify: true } }),
+        terser({
+            module: true,
+            mangle: true,
+            output: { comments: false, beautify: true },
+        }),
     ],
 };
