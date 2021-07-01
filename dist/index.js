@@ -1,103 +1,104 @@
-function sethashparams(opt) {
-    const oldhash = location.href;
-    let url = new URL(location.href);
-
-    url.hash = String(new URLSearchParams({ ...opt }));
-
-    if (oldhash === url.hash) {
-        return;
+function e(e, n) {
+    var t = Object.keys(e);
+    if (Object.getOwnPropertySymbols) {
+        var r = Object.getOwnPropertySymbols(e);
+        n && (r = r.filter((function(n) {
+            return Object.getOwnPropertyDescriptor(e, n).enumerable;
+        }))), t.push.apply(t, r);
     }
-    history.pushState(null, null, url.href);
-
-    window.dispatchEvent(new Event("hashchange"));
+    return t;
 }
 
-function gethashparams() {
-    return (
-        (location.hash &&
-            Object.fromEntries(new URLSearchParams(location.hash.slice(1)))) ||
-        {}
-    );
-}
-
-function replacehashparams(opt) {
-    sethashparams(opt(gethashparams()));
-}
-
-function createHashRouter() {
-    const listercallbacks = new Set();
-    function watchparams(callback) {
-        listercallbacks.add(callback);
+function n(n) {
+    for (var r = 1; r < arguments.length; r++) {
+        var o = null != arguments[r] ? arguments[r] : {};
+        r % 2 ? e(Object(o), !0).forEach((function(e) {
+            t(n, e, o[e]);
+        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(n, Object.getOwnPropertyDescriptors(o)) : e(Object(o)).forEach((function(e) {
+            Object.defineProperty(n, e, Object.getOwnPropertyDescriptor(o, e));
+        }));
     }
-
-    function unwatchparams(callback) {
-        listercallbacks.delete(callback);
-    }
-    const changelistener = () => {
-        let hashparams = gethashparams();
-
-        listercallbacks.forEach(async (call) => call(hashparams));
-    };
-
-    window.addEventListener("hashchange", changelistener);
-    return {
-        watch: watchparams,
-        unwatch: unwatchparams,
-        set: sethashparams,
-        get: gethashparams,
-        transform: replacehashparams,
-    };
+    return n;
 }
 
-function setsearchparams(opt) {
-    const oldsearch = location.search;
-    let url = new URL(location.href);
-
-    url.search = String(new URLSearchParams({ ...opt }));
-
-    if (oldsearch === url.search) {
-        return;
-    }
-    history.pushState(null, null, url.href);
-
-    window.dispatchEvent(new Event("popstate"));
+function t(e, n, t) {
+    return n in e ? Object.defineProperty(e, n, {
+        value: t,
+        enumerable: !0,
+        configurable: !0,
+        writable: !0
+    }) : e[n] = t, e;
 }
 
-function getsearchparams() {
-    return (
-        (location.search &&
-            Object.fromEntries(new URL(location.href).searchParams)) ||
-        {}
-    );
+function r(e) {
+    var t = location.href, r = new URL(location.href);
+    r.hash = String(new URLSearchParams(n({}, e))), t !== r.hash && (history.pushState(null, null, r.href), 
+    window.dispatchEvent(new Event("hashchange")));
 }
 
-function replacesearchparams(opt) {
-    setsearchparams(opt(getsearchparams()));
+function o() {
+    return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function createSearchRouter() {
-    const listercallbacks = new Set();
-    function watchparams(callback) {
-        listercallbacks.add(callback);
-    }
+function c(e) {
+    r(e(o()));
+}
 
-    function unwatchparams(callback) {
-        listercallbacks.delete(callback);
-    }
-    const changelistener = () => {
-        let searchparams = getsearchparams();
-
-        listercallbacks.forEach(async (call) => call(searchparams));
-    };
-
-    window.addEventListener("popstate", changelistener);
-    return {
-        watch: watchparams,
-        unwatch: unwatchparams,
-        set: setsearchparams,
-        get: getsearchparams,
-        transform: replacesearchparams,
+function a() {
+    var e = new Set;
+    return window.addEventListener("hashchange", (function() {
+        o(), e.forEach((function(e) {
+            return Promise.resolve().then((function() {
+                return e(searchparams);
+            }));
+        }));
+    })), {
+        watch: function(n) {
+            e.add(n);
+        },
+        unwatch: function(n) {
+            e.delete(n);
+        },
+        set: r,
+        get: o,
+        transform: c
     };
 }
 
-export { createHashRouter, createSearchRouter };
+function i(e) {
+    var t = location.search, r = new URL(location.href);
+    r.search = String(new URLSearchParams(n({}, e))), t !== r.search && (history.pushState(null, null, r.href), 
+    window.dispatchEvent(new Event("popstate")));
+}
+
+function u() {
+    return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
+}
+
+function s(e) {
+    i(e(u()));
+}
+
+function h() {
+    var e = new Set;
+    return window.addEventListener("popstate", (function() {
+        var n = u();
+        e.forEach((function(e) {
+            return Promise.resolve().then((function() {
+                return e(n);
+            }));
+        }));
+    })), {
+        watch: function(n) {
+            e.add(n);
+        },
+        unwatch: function(n) {
+            e.delete(n);
+        },
+        set: i,
+        get: u,
+        transform: s
+    };
+}
+
+export { a as createHashRouter, h as createSearchRouter };

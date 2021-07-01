@@ -13,7 +13,9 @@ export function createSearchRouter() {
     const changelistener = () => {
         let searchparams = getsearchparams();
 
-        listercallbacks.forEach(async (call) => call(searchparams));
+        listercallbacks.forEach((call) =>
+            Promise.resolve().then(() => call(searchparams))
+        );
     };
 
     window.addEventListener("popstate", changelistener);

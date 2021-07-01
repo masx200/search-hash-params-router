@@ -12,8 +12,9 @@ export function createHashRouter() {
     }
     const changelistener = () => {
         let hashparams = gethashparams();
-
-        listercallbacks.forEach(async (call) => call(hashparams));
+        listercallbacks.forEach((call) =>
+            Promise.resolve().then(() => call(searchparams))
+        );
     };
 
     window.addEventListener("hashchange", changelistener);

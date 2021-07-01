@@ -3,6 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
 import babel from "@rollup/plugin-babel";
+import { terser } from "rollup-plugin-terser";
 export default {
     input: "src/index.ts", // 打包入口
     output: {
@@ -14,6 +15,12 @@ export default {
         // 打包插件
         resolve(), // 查找和打包node_modules中的第三方模块
         commonjs(), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
-        babel({ presets: ["@babel/preset-typescript", "@babel/preset-env"] }),
+        babel({
+            extensions: [".js", ".ts"],
+
+            babelHelpers: "bundled",
+            presets: ["@babel/preset-typescript", "@babel/preset-env"],
+        }),
+        terser({ module: true, output: { comments: false, beautify: true } }),
     ],
 };
