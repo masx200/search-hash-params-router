@@ -1,5 +1,5 @@
 //@ts-ignore
-import { createHashRouter } from "./hashrouter.ts"; //@ts-ignore
-import { createSearchRouter } from "./searchrouter.ts";
+import { createHashRouter } from "./createhashrouter.ts"; //@ts-ignore
+import { createSearchRouter } from "./createsearchrouter.ts";
 
 export { createHashRouter, createSearchRouter };
