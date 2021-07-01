@@ -1,5 +1,5 @@
 export function sethashparams(opt: Record<string, string>) {
-    const oldhash = location.href;
+    const oldhash = location.hash;
     let url = new URL(location.href);
 
     url.hash = String(new URLSearchParams({ ...opt }));
