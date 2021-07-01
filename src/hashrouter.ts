@@ -1,6 +1,6 @@
-import { sethashparams } from "./sethashparams";
-import { gethashparams } from "./gethashparams";
-import { replacehashparams } from "./replacehashparams";
+import { sethashparams } from "./sethashparams.ts";
+import { gethashparams } from "./gethashparams.ts";
+import { replacehashparams } from "./replacehashparams.ts";
 export function createHashRouter() {
     const listercallbacks = new Set();
     function watchparams(callback) {

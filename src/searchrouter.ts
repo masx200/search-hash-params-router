@@ -1,6 +1,6 @@
-import { setsearchparams } from "./setsearchparams";
-import { getsearchparams } from "./getsearchparams";
-import { replacesearchparams } from "./replacesearchparams";
+import { setsearchparams } from "./setsearchparams.ts";
+import { getsearchparams } from "./getsearchparams.ts";
+import { replacesearchparams } from "./replacesearchparams.ts";
 export function createSearchRouter() {
     const listercallbacks = new Set();
     function watchparams(callback) {
