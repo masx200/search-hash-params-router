@@ -1,18 +1,23 @@
 {
-  "name": "@masx200/search-hash-params-router",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/masx200/search-hash-params-router.git"
-  },
-  "author": "masx200 <masx200@qq.com>",
-  "license": "MIT",
-  "description": "",
-  "bugs": {
-    "url": "https://github.com/masx200/search-hash-params-router/issues"
-  },
-  "homepage": "https://github.com/masx200/search-hash-params-router#readme",
-  "scripts": {},
-  "keywords": []
+    "name": "@masx200/search-hash-params-router",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/masx200/search-hash-params-router.git"
+    },
+    "author": "masx200 <masx200@qq.com>",
+    "license": "MIT",
+    "description": "",
+    "bugs": {
+        "url": "https://github.com/masx200/search-hash-params-router/issues"
+    },
+    "homepage": "https://github.com/masx200/search-hash-params-router#readme",
+    "scripts": {
+        "format": "prettier --write *.js *.json *.md"
+    },
+    "keywords": [],
+    "dependencies": {
+        "prettier": "^2.3.2"
+    }
 }

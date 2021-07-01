@@ -44,10 +44,10 @@ https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ```js
 const changelistener = () => {
-  let hashparams = gethashparams();
-  let searchparams = getsearchparams();
-  console.log("hash params", hashparams);
-  console.log("search params", searchparams);
+    let hashparams = gethashparams();
+    let searchparams = getsearchparams();
+    console.log("hash params", hashparams);
+    console.log("search params", searchparams);
 };
 
 window.addEventListener("popstate", changelistener);
@@ -55,12 +55,12 @@ window.addEventListener("popstate", changelistener);
 window.addEventListener("hashchange", changelistener);
 
 function assign(opt) {
-  let params = getsearchparams();
-  setsearchparams(Object.assign(params, opt));
+    let params = getsearchparams();
+    setsearchparams(Object.assign(params, opt));
 }
 
 function replace(opt) {
-  setsearchparams(opt);
+    setsearchparams(opt);
 }
 
 replace({ qqq: 1 });
@@ -74,15 +74,16 @@ The query parameters can be obtained from location.search or location.hash.
 
 ```js
 function gethashparams() {
-  return (
-    location.hash &&
-    Object.fromEntries(new URLSearchParams(location.hash.slice(1)))
-  );
+    return (
+        location.hash &&
+        Object.fromEntries(new URLSearchParams(location.hash.slice(1)))
+    );
 }
 function getsearchparams() {
-  return (
-    location.search && Object.fromEntries(new URL(location.href).searchParams)
-  );
+    return (
+        location.search &&
+        Object.fromEntries(new URL(location.href).searchParams)
+    );
 }
 ```
 
@@ -90,21 +91,21 @@ The query parameters can be modified in the following ways.
 
 ```js
 function setsearchparams(opt) {
-  let url = new URL(location.href);
+    let url = new URL(location.href);
 
-  url.search = String(new URLSearchParams({ ...opt }));
-  history.pushState(null, null, url.href);
+    url.search = String(new URLSearchParams({ ...opt }));
+    history.pushState(null, null, url.href);
 
-  window.dispatchEvent(new Event("popstate"));
+    window.dispatchEvent(new Event("popstate"));
 }
 
 function sethashparams(opt) {
-  let url = new URL(location.href);
+    let url = new URL(location.href);
 
-  url.hash = String(new URLSearchParams({ ...opt }));
-  history.pushState(null, null, url.href);
+    url.hash = String(new URLSearchParams({ ...opt }));
+    history.pushState(null, null, url.href);
 
-  window.dispatchEvent(new Event("hashchange"));
+    window.dispatchEvent(new Event("hashchange"));
 }
 ```
 
@@ -142,38 +143,38 @@ The route matching method example is as follows:
 
 ```js
 const routes = [
-  {
-    component: Home,
+    {
+        component: Home,
 
-    filter({ hash, search }) {
-      return hash === "" && search === "";
+        filter({ hash, search }) {
+            return hash === "" && search === "";
+        },
     },
-  },
-  {
-    component: Foo,
+    {
+        component: Foo,
 
-    filter({ hash, search }) {
-      return search.foo === "foo1";
+        filter({ hash, search }) {
+            return search.foo === "foo1";
+        },
     },
-  },
-  {
-    component: Bar,
+    {
+        component: Bar,
 
-    filter({ hash, search }) {
-      return hash.bar === "bar1";
+        filter({ hash, search }) {
+            return hash.bar === "bar1";
+        },
     },
-  },
 
-  {
-    component: NotFound,
+    {
+        component: NotFound,
 
-    filter() {
-      return true;
+        filter() {
+            return true;
+        },
     },
-  },
 ];
 
 const router = new ParamsRouter({
-  routes,
+    routes,
 });
 ```
