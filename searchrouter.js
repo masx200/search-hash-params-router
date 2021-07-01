@@ -22,6 +22,6 @@ export function createSearchRouter() {
         unwatch: unwatchparams,
         set: setsearchparams,
         get: getsearchparams,
-        replace: replacesearchparams,
+        transform: replacesearchparams,
     };
 }

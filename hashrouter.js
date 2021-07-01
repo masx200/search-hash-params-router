@@ -22,6 +22,6 @@ export function createHashRouter() {
         unwatch: unwatchparams,
         set: sethashparams,
         get: gethashparams,
-        replace: replacehashparams,
+        transform: replacehashparams,
     };
 }
