@@ -1,4 +1,6 @@
-export function setsearchparams(opt) {
+export function setsearchparams(
+    opt: Record<string, string | number | boolean>
+) {
     const oldsearch = location.search;
     let url = new URL(location.href);
 

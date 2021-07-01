@@ -1,4 +1,4 @@
-export function sethashparams(opt) {
+export function sethashparams(opt: Record<string, string | number | boolean>) {
     const oldhash = location.href;
     let url = new URL(location.href);
 
