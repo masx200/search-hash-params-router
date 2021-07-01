@@ -31,7 +31,7 @@ function n(e, t, n) {
 }
 
 function r(e) {
-    var n = location.href, r = new URL(location.href);
+    var n = location.hash, r = new URL(location.href);
     r.hash = String(new URLSearchParams(t({}, e))), n !== r.hash && (history.pushState({}, "", r.href), 
     window.dispatchEvent(new Event("hashchange")));
 }
