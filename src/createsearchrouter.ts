@@ -5,12 +5,12 @@ import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
 import { replacesearchparams } from "./replacesearchparams.ts";
 export function createSearchRouter() {
-    const listercallbacks = new Set();
-    function watchparams(callback) {
+    const listercallbacks = new Set<(p: Record<string, string>) => void>();
+    function watchparams(callback: (p: Record<string, string>) => void) {
         listercallbacks.add(callback);
     }
 
-    function unwatchparams(callback) {
+    function unwatchparams(callback: (p: Record<string, string>) => void) {
         listercallbacks.delete(callback);
     }
     const changelistener = () => {

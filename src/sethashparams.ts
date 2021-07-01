@@ -1,4 +1,4 @@
-export function sethashparams(opt: Record<string, string | number | boolean>) {
+export function sethashparams(opt: Record<string, string>) {
     const oldhash = location.href;
     let url = new URL(location.href);
 
@@ -7,7 +7,7 @@ export function sethashparams(opt: Record<string, string | number | boolean>) {
     if (oldhash === url.hash) {
         return;
     }
-    history.pushState(null, null, url.href);
+    history.pushState({}, "", url.href);
 
     window.dispatchEvent(new Event("hashchange"));
 }

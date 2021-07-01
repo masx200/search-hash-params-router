@@ -1,38 +1,38 @@
-function e(e, n) {
-    var t = Object.keys(e);
+function e(e, t) {
+    var n = Object.keys(e);
     if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
-        n && (r = r.filter((function(n) {
-            return Object.getOwnPropertyDescriptor(e, n).enumerable;
-        }))), t.push.apply(t, r);
-    }
-    return t;
-}
-
-function n(n) {
-    for (var r = 1; r < arguments.length; r++) {
-        var o = null != arguments[r] ? arguments[r] : {};
-        r % 2 ? e(Object(o), !0).forEach((function(e) {
-            t(n, e, o[e]);
-        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(n, Object.getOwnPropertyDescriptors(o)) : e(Object(o)).forEach((function(e) {
-            Object.defineProperty(n, e, Object.getOwnPropertyDescriptor(o, e));
-        }));
+        t && (r = r.filter((function(t) {
+            return Object.getOwnPropertyDescriptor(e, t).enumerable;
+        }))), n.push.apply(n, r);
     }
     return n;
 }
 
-function t(e, n, t) {
-    return n in e ? Object.defineProperty(e, n, {
-        value: t,
+function t(t) {
+    for (var r = 1; r < arguments.length; r++) {
+        var o = null != arguments[r] ? arguments[r] : {};
+        r % 2 ? e(Object(o), !0).forEach((function(e) {
+            n(t, e, o[e]);
+        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(o)) : e(Object(o)).forEach((function(e) {
+            Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(o, e));
+        }));
+    }
+    return t;
+}
+
+function n(e, t, n) {
+    return t in e ? Object.defineProperty(e, t, {
+        value: n,
         enumerable: !0,
         configurable: !0,
         writable: !0
-    }) : e[n] = t, e;
+    }) : e[t] = n, e;
 }
 
 function r(e) {
-    var t = location.href, r = new URL(location.href);
-    r.hash = String(new URLSearchParams(n({}, e))), t !== r.hash && (history.pushState(null, null, r.href), 
+    var n = location.href, r = new URL(location.href);
+    r.hash = String(new URLSearchParams(t({}, e))), n !== r.hash && (history.pushState({}, "", r.href), 
     window.dispatchEvent(new Event("hashchange")));
 }
 
@@ -47,18 +47,18 @@ function c(e) {
 function a() {
     var e = new Set;
     return window.addEventListener("hashchange", (function() {
-        var n = o();
+        var t = o();
         e.forEach((function(e) {
             return Promise.resolve().then((function() {
-                return e(n);
+                return e(t);
             }));
         }));
     })), {
-        watch: function(n) {
-            e.add(n);
+        watch: function(t) {
+            e.add(t);
         },
-        unwatch: function(n) {
-            e.delete(n);
+        unwatch: function(t) {
+            e.delete(t);
         },
         set: r,
         get: o,
@@ -67,39 +67,39 @@ function a() {
 }
 
 function i(e) {
-    var t = location.search, r = new URL(location.href);
-    r.search = String(new URLSearchParams(n({}, e))), t !== r.search && (history.pushState(null, null, r.href), 
+    var n = location.search, r = new URL(location.href);
+    r.search = String(new URLSearchParams(t({}, e))), n !== r.search && (history.pushState({}, "", r.href), 
     window.dispatchEvent(new Event("popstate")));
 }
 
-function u() {
+function s() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function s(e) {
-    i(e(u()));
+function h(e) {
+    i(e(s()));
 }
 
-function h() {
+function u() {
     var e = new Set;
     return window.addEventListener("popstate", (function() {
-        var n = u();
+        var t = s();
         e.forEach((function(e) {
             return Promise.resolve().then((function() {
-                return e(n);
+                return e(t);
             }));
         }));
     })), {
-        watch: function(n) {
-            e.add(n);
+        watch: function(t) {
+            e.add(t);
         },
-        unwatch: function(n) {
-            e.delete(n);
+        unwatch: function(t) {
+            e.delete(t);
         },
         set: i,
-        get: u,
-        transform: s
+        get: s,
+        transform: h
     };
 }
 
-export { a as createHashRouter, h as createSearchRouter };
+export { a as createHashRouter, u as createSearchRouter };

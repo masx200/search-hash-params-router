@@ -1,6 +1,4 @@
-export function setsearchparams(
-    opt: Record<string, string | number | boolean>
-) {
+export function setsearchparams(opt: Record<string, string>) {
     const oldsearch = location.search;
     let url = new URL(location.href);
 
@@ -9,7 +7,7 @@ export function setsearchparams(
     if (oldsearch === url.search) {
         return;
     }
-    history.pushState(null, null, url.href);
+    history.pushState({}, "", url.href);
 
     window.dispatchEvent(new Event("popstate"));
 }
