@@ -19,6 +19,16 @@ export default {
         resolve(), // 查找和打包node_modules中的第三方模块
         commonjs(), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
         babel({
+            plugins: [
+                [
+                    "babel-plugin-htm",
+                    {
+                        pragma: "createElement",
+                        tag: "html",
+                        useBuiltIns: true,
+                    },
+                ],
+            ],
             extensions: [".js", ".ts"],
 
             babelHelpers: "bundled",
