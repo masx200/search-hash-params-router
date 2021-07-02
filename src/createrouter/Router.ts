@@ -1,17 +1,28 @@
-export interface Router {
-    watch: (callback: (p: Record<string, string>) => void) => void;
-    unwatch: (callback: (p: Record<string, string>) => void) => void;
-    set: (opt: Record<string, string>) => void;
-    get: () => {
-        [k: string]: string;
+import { EventEmitterTarget } from "@masx200/event-emitter-target";
+
+export type Router = EventEmitterTarget &
+    Array<any> & {
+        on: (
+            event: "params",
+            callback: (p: Record<string, string>) => void
+        ) => void;
+        off: (
+            event: "params",
+            callback: (p: Record<string, string>) => void
+        ) => void;
+        set: (opt: Record<string, string>) => void;
+        get: () => {
+            [k: string]: string;
+        };
+        transform: (
+            opt: (old: Record<string, string>) => Record<string, string>
+        ) => void;
+        [Symbol.toStringTag]: string;
+        href(
+            opt:
+                | Record<string, string>
+                | ((old: Record<string, string>) => Record<string, string>)
+        ): string;
+        entries: typeof Array.prototype.entries;
+        [Symbol.iterator]: typeof Array.prototype.values;
     };
-    transform: (
-        opt: (old: Record<string, string>) => Record<string, string>
-    ) => void;
-    [Symbol.toStringTag]: string;
-    href(
-        opt:
-            | Record<string, string>
-            | ((old: Record<string, string>) => Record<string, string>)
-    ): string;
-}

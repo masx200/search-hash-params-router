@@ -5,6 +5,7 @@ specifiers:
   '@babel/plugin-transform-react-jsx': ^7.14.5
   '@babel/preset-env': ^7.14.7
   '@babel/preset-typescript': ^7.14.5
+  '@masx200/event-emitter-target': ^1.1.7
   '@rollup/plugin-babel': ^5.3.0
   '@rollup/plugin-commonjs': ^19.0.0
   '@rollup/plugin-node-resolve': ^13.0.0
@@ -15,6 +16,9 @@ specifiers:
   rollup-plugin-terser: ^7.0.2
   tslib: ^2.3.0
   typescript: ^4.3.5
+
+dependencies:
+  '@masx200/event-emitter-target': 1.1.7
 
 devDependencies:
   '@babel/core': 7.14.6
@@ -1197,6 +1201,10 @@ packages:
       '@babel/helper-validator-identifier': 7.14.5
       to-fast-properties: 2.0.0
     dev: true
+
+  /@masx200/event-emitter-target/1.1.7:
+    resolution: {integrity: sha512-7MPOvpJxXOaX5QMRFn+oTrVg/vvff2fyOSAzGxHOf/sIZBnSLdaupJJPn2him/hkAzFmiCPK58uMP7f6iRLiIA==}
+    dev: false
 
   /@rollup/plugin-babel/5.3.0_@babel+core@7.14.6+rollup@2.52.6:
     resolution: {integrity: sha512-9uIC8HZOnVLrLHxayq/PTzw+uS25E14KPUBh5ktF+18Mjo5yK0ToMMx6epY0uEgkjwJw0aBW4x2horYXh8juWw==}

@@ -5,39 +5,39 @@ import { transformhashparams } from "./transformhashparams.ts";
 import { Router } from "../Router";
 //@ts-ignore
 import { gethashhref } from "./gethashhref.ts";
+import EventEmitterTargetClass from "@masx200/event-emitter-target";
 export function createHashRouter(): Router {
     const eventname = "hashchange";
-    const listercallbacks = new Set<(p: Record<string, string>) => void>();
-    function watchparams(callback: (p: Record<string, string>) => void) {
-        listercallbacks.add(callback);
-        if (listercallbacks.size > 0) {
-            window.addEventListener(eventname, changelistener);
-        }
-    }
+    const emitter = EventEmitterTargetClass();
 
-    function unwatchparams(callback: (p: Record<string, string>) => void) {
-        listercallbacks.delete(callback);
-        if (listercallbacks.size === 0) {
-            window.removeEventListener(eventname, changelistener);
-        }
-    }
+    const arrayproto = Array.prototype;
     const changelistener = () => {
-        let hashparams = gethashparams();
-        listercallbacks.forEach((call) =>
-            Promise.resolve().then(() => call(hashparams))
-        );
+        const hashparams = gethashparams();
+        instance.emit("params", hashparams);
     };
 
     window.addEventListener(eventname, changelistener);
 
     const router = {
         href: gethashhref,
-        watch: watchparams,
-        unwatch: unwatchparams,
+
         set: sethashparams,
         get: gethashparams,
         transform: transformhashparams,
         [Symbol.toStringTag]: "HashRouter",
     };
-    return router;
+    const instance: Router = (() => {
+        const ins = {};
+        const objarr = [emitter, arrayproto, router];
+
+        objarr.forEach((obj) => {
+            Reflect.ownKeys(obj).forEach((key) => {
+                Reflect.set(ins, key, Reflect.get(obj, key));
+            });
+        });
+
+        return ins as Router;
+    })();
+
+    return instance as Router;
 }
