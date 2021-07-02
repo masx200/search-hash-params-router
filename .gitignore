@@ -107,3 +107,5 @@ typings/
 types/*.js
 types/*/*.js
 types/*/*.jsx
+types/*/*/*.js
+types/*/*/*.jsx
