@@ -99,29 +99,29 @@ function f() {
 }
 
 function s({router: e, forwardRef: t, createElement: n}) {
-    return t((({to: t, onClick: r, children: o, target: a, ...i}, c) => {
-        const h = {
-            ...i,
-            ref: c,
-            href: e.href(t),
-            onClick: n => {
+    return t((({component: t = "a", to: r, onClick: o, children: a, target: i, ...c}, h) => {
+        const f = {
+            ...c,
+            ref: h,
+            href: e.href(r),
+            onClick: t => {
                 try {
-                    r && r(n);
+                    o && o(t);
                 } catch (e) {
-                    throw n.preventDefault(), e;
+                    throw t.preventDefault(), e;
                 }
-                n.defaultPrevented || 0 !== n.button || a && "_self" !== a || function(e) {
+                t.defaultPrevented || 0 !== t.button || i && "_self" !== i || function(e) {
                     return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
-                }(n) || (n.preventDefault(), function(e, t) {
+                }(t) || (t.preventDefault(), function(e, t) {
                     if (!t) throw new TypeError(t);
                     if ("function" == typeof t) return void e.transform(t);
                     if ("object" == typeof t) return void e.set(t);
                     throw new TypeError(t);
-                }(e, t));
+                }(e, r));
             },
-            target: a
+            target: i
         };
-        return n("a", h, o);
+        return n(t, f, a);
     }));
 }
 
