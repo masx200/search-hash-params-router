@@ -22,7 +22,17 @@ export default {
             extensions: [".js", ".ts"],
 
             babelHelpers: "bundled",
-            presets: ["@babel/preset-typescript", "@babel/preset-env"],
+            presets: ["@babel/preset-typescript",  [
+            "@babel/preset-env",
+            {
+                targets: [
+                    "last 1 edge version",
+                    "last 1 safari version",
+                    "last 1 chrome version",
+                    "last 1 firefox version",
+                ],
+            },
+        ],],
         }),
         terser({
             module: true,
