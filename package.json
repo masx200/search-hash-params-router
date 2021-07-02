@@ -1,6 +1,6 @@
 {
     "name": "@masx200/search-hash-params-router",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "module": "dist/index.js",
     "types": "types/index.d.ts",
     "main": "dist/index.js",
@@ -17,7 +17,7 @@
     "homepage": "https://github.com/masx200/search-hash-params-router#readme",
     "scripts": {
         "build": "tsc &&rollup -c rollup.config.js",
-        "format": "prettier --write *.js */*.ts *.json *.md  */*/*.ts "
+        "format": "prettier --write *.js */*.ts *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx"
     },
     "keywords": [],
     "devDependencies": {

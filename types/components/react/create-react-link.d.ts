@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Router } from "../createrouter/Router";
+import { Router } from "../../createrouter/Router";
 export declare function createReactLink({ router, forwardRef, createElement, }: {
     router: Router;
     forwardRef: typeof import("react").forwardRef;

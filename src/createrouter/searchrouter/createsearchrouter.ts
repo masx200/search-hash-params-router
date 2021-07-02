@@ -3,7 +3,7 @@
 import { getsearchhref } from "./getsearchhref.ts";
 //@ts-ignore
 import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
-import { Router } from "./Router";
+import { Router } from "../Router";
 //@ts-ignore
 import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 import { transformsearchparams } from "./transformsearchparams.ts";

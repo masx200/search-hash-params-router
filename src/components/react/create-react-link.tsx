@@ -1,4 +1,4 @@
-import { Router } from "../createrouter/Router";
+import { Router } from "../../createrouter/Router";
 export function createReactLink({
     router,
     forwardRef,

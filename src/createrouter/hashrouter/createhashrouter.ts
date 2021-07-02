@@ -2,7 +2,7 @@
 import { sethashparams } from "./sethashparams.ts"; //@ts-ignore
 import { gethashparams } from "./gethashparams.ts"; //@ts-ignore
 import { transformhashparams } from "./transformhashparams.ts";
-import { Router } from "./Router";
+import { Router } from "../Router";
 //@ts-ignore
 import { gethashhref } from "./gethashhref.ts";
 export function createHashRouter(): Router {

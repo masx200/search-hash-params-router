@@ -1,3 +1,3 @@
-import { createHashRouter } from "./createhashrouter.ts";
-import { createSearchRouter } from "./createsearchrouter.ts";
+import { createHashRouter } from "./hashrouter/createhashrouter.ts";
+import { createSearchRouter } from "./searchrouter/createsearchrouter.ts";
 export { createHashRouter, createSearchRouter };
