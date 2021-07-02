@@ -13,6 +13,9 @@ export function createReactLink({
             | Record<string, string>
             | ((old: Record<string, string>) => Record<string, string>)
     ) {
+        if (!to) {
+            throw new TypeError(to);
+        }
         if ("function" === typeof to) {
             router.transform(to);
             return;
@@ -21,7 +24,7 @@ export function createReactLink({
             router.set(to);
             return;
         }
-        throw new TypeError(typeof to);
+        throw new TypeError(to);
     }
     console.log(router, forwardRef, createElement);
     return forwardRef<
@@ -34,7 +37,7 @@ export function createReactLink({
                 | ((old: Record<string, string>) => Record<string, string>);
         }
     >(({ to, onClick, children, target, ...rest }, forwardedRef) => {
-        const href: string = "";
+        const href: string = router.href(to);
         const newclick = (event: import("react").MouseEvent) => {
             try {
                 if (onClick) {

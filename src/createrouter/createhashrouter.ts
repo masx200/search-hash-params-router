@@ -3,6 +3,8 @@ import { sethashparams } from "./sethashparams.ts"; //@ts-ignore
 import { gethashparams } from "./gethashparams.ts"; //@ts-ignore
 import { transformhashparams } from "./transformhashparams.ts";
 import { Router } from "./Router";
+//@ts-ignore
+import { gethashhref } from "./gethashhref.ts";
 export function createHashRouter(): Router {
     const eventname = "hashchange";
     const listercallbacks = new Set<(p: Record<string, string>) => void>();
@@ -27,7 +29,9 @@ export function createHashRouter(): Router {
     };
 
     window.addEventListener(eventname, changelistener);
-    return {
+
+    const router = {
+        href: gethashhref,
         watch: watchparams,
         unwatch: unwatchparams,
         set: sethashparams,
@@ -35,4 +39,5 @@ export function createHashRouter(): Router {
         transform: transformhashparams,
         [Symbol.toStringTag]: "HashRouter",
     };
+    return router;
 }

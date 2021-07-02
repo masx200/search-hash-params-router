@@ -1,10 +1,13 @@
 //@ts-ignore
 
-import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
-
+import { getsearchhref } from "./getsearchhref.ts";
+//@ts-ignore
 import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
-import { transformsearchparams } from "./transformsearchparams.ts";
 import { Router } from "./Router";
+//@ts-ignore
+import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
+import { transformsearchparams } from "./transformsearchparams.ts";
+
 export function createSearchRouter(): Router {
     const eventname = "popstate";
     const listercallbacks = new Set<(p: Record<string, string>) => void>();
@@ -30,7 +33,8 @@ export function createSearchRouter(): Router {
     };
 
     window.addEventListener(eventname, changelistener);
-    return {
+    const router = {
+        href: getsearchhref,
         watch: watchparams,
         unwatch: unwatchparams,
         set: setsearchparams,
@@ -38,4 +42,5 @@ export function createSearchRouter(): Router {
         transform: transformsearchparams,
         [Symbol.toStringTag]: "SearchRouter",
     };
+    return router;
 }

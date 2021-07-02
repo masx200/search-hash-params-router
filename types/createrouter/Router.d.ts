@@ -7,4 +7,5 @@ export interface Router {
     };
     transform: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
+    href(opt: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)): string;
 }
