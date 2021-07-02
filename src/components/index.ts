@@ -1,5 +1,5 @@
 //@ts-ignore
-export * from "./create-react-link.ts";
+export * from "./create-react-link.tsx";
 //@ts-ignore
 export * from "./create-react-view.ts";
 //@ts-ignore

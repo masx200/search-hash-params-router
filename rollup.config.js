@@ -21,15 +21,15 @@ export default {
         babel({
             plugins: [
                 [
-                    "babel-plugin-htm",
+                    "@babel/plugin-transform-react-jsx",
                     {
                         pragma: "createElement",
-                        tag: "html",
+                        pragmaFrag: "Fragment",
                         useBuiltIns: true,
                     },
                 ],
             ],
-            extensions: [".js", ".ts"],
+            extensions: [".js", ".ts", ".tsx"],
 
             babelHelpers: "bundled",
             presets: [
@@ -48,6 +48,13 @@ export default {
             ],
         }),
         terser({
+            compress: {
+                toplevel: true,
+                unused: true,
+                drop_console: true,
+                drop_debugger: true,
+                pure_funcs: ["console.log"],
+            },
             module: true,
             mangle: true,
             output: { comments: false, beautify: true },
