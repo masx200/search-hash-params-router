@@ -35,5 +35,6 @@ export function createSearchRouter() {
         set: setsearchparams,
         get: getsearchparams,
         transform: transformsearchparams,
+        [Symbol.toStringTag]: "SearchRouter",
     };
 }

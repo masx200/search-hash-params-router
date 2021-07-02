@@ -32,5 +32,6 @@ export function createHashRouter() {
         set: sethashparams,
         get: gethashparams,
         transform: transformhashparams,
+        [Symbol.toStringTag]: "HashRouter",
     };
 }
