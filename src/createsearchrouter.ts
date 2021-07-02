@@ -3,15 +3,22 @@
 import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 
 import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
-import { replacesearchparams } from "./replacesearchparams.ts";
+import { transformsearchparams } from "./transformsearchparams.ts";
 export function createSearchRouter() {
+    const eventname = "popstate";
     const listercallbacks = new Set<(p: Record<string, string>) => void>();
     function watchparams(callback: (p: Record<string, string>) => void) {
         listercallbacks.add(callback);
+        if (listercallbacks.size > 0) {
+            window.addEventListener(eventname, changelistener);
+        }
     }
 
     function unwatchparams(callback: (p: Record<string, string>) => void) {
         listercallbacks.delete(callback);
+        if (listercallbacks.size === 0) {
+            window.removeEventListener(eventname, changelistener);
+        }
     }
     const changelistener = () => {
         let searchparams = getsearchparams();
@@ -21,12 +28,12 @@ export function createSearchRouter() {
         );
     };
 
-    window.addEventListener("popstate", changelistener);
+    window.addEventListener(eventname, changelistener);
     return {
         watch: watchparams,
         unwatch: unwatchparams,
         set: setsearchparams,
         get: getsearchparams,
-        transform: replacesearchparams,
+        transform: transformsearchparams,
     };
 }

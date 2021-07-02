@@ -1,38 +1,38 @@
-function e(e, t) {
-    var n = Object.keys(e);
+function e(e, n) {
+    var t = Object.keys(e);
     if (Object.getOwnPropertySymbols) {
         var r = Object.getOwnPropertySymbols(e);
-        t && (r = r.filter((function(t) {
-            return Object.getOwnPropertyDescriptor(e, t).enumerable;
-        }))), n.push.apply(n, r);
-    }
-    return n;
-}
-
-function t(t) {
-    for (var r = 1; r < arguments.length; r++) {
-        var o = null != arguments[r] ? arguments[r] : {};
-        r % 2 ? e(Object(o), !0).forEach((function(e) {
-            n(t, e, o[e]);
-        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(o)) : e(Object(o)).forEach((function(e) {
-            Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(o, e));
-        }));
+        n && (r = r.filter((function(n) {
+            return Object.getOwnPropertyDescriptor(e, n).enumerable;
+        }))), t.push.apply(t, r);
     }
     return t;
 }
 
-function n(e, t, n) {
-    return t in e ? Object.defineProperty(e, t, {
-        value: n,
+function n(n) {
+    for (var r = 1; r < arguments.length; r++) {
+        var o = null != arguments[r] ? arguments[r] : {};
+        r % 2 ? e(Object(o), !0).forEach((function(e) {
+            t(n, e, o[e]);
+        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(n, Object.getOwnPropertyDescriptors(o)) : e(Object(o)).forEach((function(e) {
+            Object.defineProperty(n, e, Object.getOwnPropertyDescriptor(o, e));
+        }));
+    }
+    return n;
+}
+
+function t(e, n, t) {
+    return n in e ? Object.defineProperty(e, n, {
+        value: t,
         enumerable: !0,
         configurable: !0,
         writable: !0
-    }) : e[t] = n, e;
+    }) : e[n] = t, e;
 }
 
 function r(e) {
-    var n = location.hash, r = new URL(location.href);
-    r.hash = String(new URLSearchParams(t({}, e))), n !== r.hash && (history.pushState({}, "", r.href), 
+    var t = location.hash, r = new URL(location.href);
+    r.hash = String(new URLSearchParams(n({}, e))), t !== r.hash && (history.pushState({}, "", r.href), 
     window.dispatchEvent(new Event("hashchange")));
 }
 
@@ -40,35 +40,36 @@ function o() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function c(e) {
+function i(e) {
     r(e(o()));
 }
 
 function a() {
-    var e = new Set;
-    return window.addEventListener("hashchange", (function() {
-        var t = o();
-        e.forEach((function(e) {
+    var e = "hashchange", n = new Set;
+    var t = function() {
+        var e = o();
+        n.forEach((function(n) {
             return Promise.resolve().then((function() {
-                return e(t);
+                return n(e);
             }));
         }));
-    })), {
-        watch: function(t) {
-            e.add(t);
+    };
+    return window.addEventListener(e, t), {
+        watch: function(r) {
+            n.add(r), n.size > 0 && window.addEventListener(e, t);
         },
-        unwatch: function(t) {
-            e.delete(t);
+        unwatch: function(r) {
+            n.delete(r), 0 === n.size && window.removeEventListener(e, t);
         },
         set: r,
         get: o,
-        transform: c
+        transform: i
     };
 }
 
-function i(e) {
-    var n = location.search, r = new URL(location.href);
-    r.search = String(new URLSearchParams(t({}, e))), n !== r.search && (history.pushState({}, "", r.href), 
+function c(e) {
+    var t = location.search, r = new URL(location.href);
+    r.search = String(new URLSearchParams(n({}, e))), t !== r.search && (history.pushState({}, "", r.href), 
     window.dispatchEvent(new Event("popstate")));
 }
 
@@ -77,26 +78,27 @@ function s() {
 }
 
 function h(e) {
-    i(e(s()));
+    c(e(s()));
 }
 
 function u() {
-    var e = new Set;
-    return window.addEventListener("popstate", (function() {
-        var t = s();
-        e.forEach((function(e) {
+    var e = "popstate", n = new Set;
+    var t = function() {
+        var e = s();
+        n.forEach((function(n) {
             return Promise.resolve().then((function() {
-                return e(t);
+                return n(e);
             }));
         }));
-    })), {
-        watch: function(t) {
-            e.add(t);
+    };
+    return window.addEventListener(e, t), {
+        watch: function(r) {
+            n.add(r), n.size > 0 && window.addEventListener(e, t);
         },
-        unwatch: function(t) {
-            e.delete(t);
+        unwatch: function(r) {
+            n.delete(r), 0 === n.size && window.removeEventListener(e, t);
         },
-        set: i,
+        set: c,
         get: s,
         transform: h
     };

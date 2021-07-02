@@ -1,6 +1,6 @@
 {
     "name": "@masx200/search-hash-params-router",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "module": "dist/index.js",
     "types": "src/index.ts",
     "main": "dist/index.js",
