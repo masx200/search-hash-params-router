@@ -2,7 +2,8 @@
 import { sethashparams } from "./sethashparams.ts"; //@ts-ignore
 import { gethashparams } from "./gethashparams.ts"; //@ts-ignore
 import { transformhashparams } from "./transformhashparams.ts";
-export function createHashRouter() {
+import { Router } from "./Router";
+export function createHashRouter(): Router {
     const eventname = "hashchange";
     const listercallbacks = new Set<(p: Record<string, string>) => void>();
     function watchparams(callback: (p: Record<string, string>) => void) {

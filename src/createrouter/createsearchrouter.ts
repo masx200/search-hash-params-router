@@ -4,7 +4,8 @@ import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 
 import { getsearchparams } from "./getsearchparams.ts"; //@ts-ignore
 import { transformsearchparams } from "./transformsearchparams.ts";
-export function createSearchRouter() {
+import { Router } from "./Router";
+export function createSearchRouter(): Router {
     const eventname = "popstate";
     const listercallbacks = new Set<(p: Record<string, string>) => void>();
     function watchparams(callback: (p: Record<string, string>) => void) {
