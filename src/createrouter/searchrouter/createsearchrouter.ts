@@ -8,39 +8,40 @@ import { Router } from "../Router";
 import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 import { transformsearchparams } from "./transformsearchparams.ts";
 
+import EventEmitterTargetClass from "@masx200/event-emitter-target";
 export function createSearchRouter(): Router {
     const eventname = "popstate";
-    const listercallbacks = new Set<(p: Record<string, string>) => void>();
-    function watchparams(callback: (p: Record<string, string>) => void) {
-        listercallbacks.add(callback);
-        if (listercallbacks.size > 0) {
-            window.addEventListener(eventname, changelistener);
-        }
-    }
 
-    function unwatchparams(callback: (p: Record<string, string>) => void) {
-        listercallbacks.delete(callback);
-        if (listercallbacks.size === 0) {
-            window.removeEventListener(eventname, changelistener);
-        }
-    }
+    const emitter = EventEmitterTargetClass();
+
+    const arrayproto = Array.prototype;
     const changelistener = () => {
-        let searchparams = getsearchparams();
-
-        listercallbacks.forEach((call) =>
-            Promise.resolve().then(() => call(searchparams))
-        );
+        const searchparams = getsearchparams();
+        instance.emit("params", searchparams);
     };
 
     window.addEventListener(eventname, changelistener);
     const router = {
         href: getsearchhref,
-        watch: watchparams,
-        unwatch: unwatchparams,
+
         set: setsearchparams,
         get: getsearchparams,
         transform: transformsearchparams,
         [Symbol.toStringTag]: "SearchRouter",
     };
-    return router;
+
+    const instance: Router = (() => {
+        const ins = {};
+        const objarr = [emitter, arrayproto, router];
+
+        objarr.forEach((obj) => {
+            Reflect.ownKeys(obj).forEach((key) => {
+                Reflect.set(ins, key, Reflect.get(obj, key));
+            });
+        });
+
+        return ins as Router;
+    })();
+
+    return instance as Router;
 }
