@@ -9,4 +9,4 @@ export declare function createReactLink({ router, forwardRef, createElement, }: 
     target?: string | undefined;
     onClick?: ((event: import("react").MouseEvent) => void) | undefined;
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
-} & import("react").RefAttributes<HTMLAnchorElement>>;
+} & import("react").RefAttributes<unknown>>;

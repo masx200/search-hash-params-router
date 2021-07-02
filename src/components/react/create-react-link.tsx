@@ -10,7 +10,7 @@ export function createReactLink({
 }) {
     console.log(router, forwardRef, createElement);
     return forwardRef<
-        HTMLAnchorElement,
+        unknown,
         {
             component?: string | import("react").ComponentType<any>;
             target?: string;
