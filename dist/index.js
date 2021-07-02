@@ -76,7 +76,7 @@ function h(e) {
     c(e(a()));
 }
 
-function s() {
+function f() {
     const e = "popstate", t = new Set;
     const n = () => {
         let e = a();
@@ -98,7 +98,7 @@ function s() {
     };
 }
 
-function f({router: e, forwardRef: t, createElement: n}) {
+function s({router: e, forwardRef: t, createElement: n}) {
     return t((({to: t, onClick: r, children: o, target: a, ...i}, c) => {
         const h = {
             ...i,
@@ -112,13 +112,12 @@ function f({router: e, forwardRef: t, createElement: n}) {
                 }
                 n.defaultPrevented || 0 !== n.button || a && "_self" !== a || function(e) {
                     return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
-                }(n) || (n.preventDefault(), function(t) {
+                }(n) || (n.preventDefault(), function(e, t) {
                     if (!t) throw new TypeError(t);
-                    if ("function" != typeof t) {
-                        if ("object" != typeof t) throw new TypeError(t);
-                        e.set(t);
-                    } else e.transform(t);
-                }(t));
+                    if ("function" == typeof t) return void e.transform(t);
+                    if ("object" == typeof t) return void e.set(t);
+                    throw new TypeError(t);
+                }(e, t));
             },
             target: a
         };
@@ -126,4 +125,4 @@ function f({router: e, forwardRef: t, createElement: n}) {
     }));
 }
 
-export { o as createHashRouter, f as createReactLink, s as createSearchRouter };
+export { o as createHashRouter, s as createReactLink, f as createSearchRouter };

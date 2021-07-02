@@ -8,24 +8,6 @@ export function createReactLink({
     forwardRef: typeof import("react").forwardRef;
     createElement: typeof import("react").createElement;
 }) {
-    function navigate(
-        to:
-            | Record<string, string>
-            | ((old: Record<string, string>) => Record<string, string>)
-    ) {
-        if (!to) {
-            throw new TypeError(to);
-        }
-        if ("function" === typeof to) {
-            router.transform(to);
-            return;
-        }
-        if ("object" === typeof to) {
-            router.set(to);
-            return;
-        }
-        throw new TypeError(to);
-    }
     console.log(router, forwardRef, createElement);
     return forwardRef<
         HTMLAnchorElement,
@@ -58,7 +40,7 @@ export function createReactLink({
                 // ignore clicks with modifier keys
             ) {
                 event.preventDefault();
-                navigate(to);
+                navigate(router, to);
             }
         };
         const props = {
@@ -73,4 +55,23 @@ export function createReactLink({
 }
 function isModifiedEvent(event: import("react").MouseEvent) {
     return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
+function navigate(
+    router: Router,
+    to:
+        | Record<string, string>
+        | ((old: Record<string, string>) => Record<string, string>)
+) {
+    if (!to) {
+        throw new TypeError(to);
+    }
+    if ("function" === typeof to) {
+        router.transform(to);
+        return;
+    }
+    if ("object" === typeof to) {
+        router.set(to);
+        return;
+    }
+    throw new TypeError(to);
 }
