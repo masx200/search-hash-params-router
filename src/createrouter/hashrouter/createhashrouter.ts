@@ -5,7 +5,7 @@ import { RouteRecord } from "../RouteRecord";
 export function createHashRouter({
     routes = [],
 }: {
-    routes: RouteRecord[];
-}): Router {
+    routes?: RouteRecord[];
+} = {}): Router {
     return createBaseRouter({ routes, type: "hash" });
 }

@@ -169,14 +169,14 @@ function w({routes: e = [], type: t}) {
     return y;
 }
 
-function y({routes: e = []}) {
+function y({routes: e = []} = {}) {
     return w({
         routes: e,
         type: "hash"
     });
 }
 
-function p({routes: e = []}) {
+function p({routes: e = []} = {}) {
     return w({
         routes: e,
         type: "search"

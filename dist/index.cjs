@@ -173,7 +173,7 @@ function p({routes: e = [], type: t}) {
     return w;
 }
 
-exports.createHashRouter = function({routes: e = []}) {
+exports.createHashRouter = function({routes: e = []} = {}) {
     return p({
         routes: e,
         type: "hash"
@@ -203,7 +203,7 @@ exports.createHashRouter = function({routes: e = []}) {
         };
         return n(t, h, a);
     }));
-}, exports.createSearchRouter = function({routes: e = []}) {
+}, exports.createSearchRouter = function({routes: e = []} = {}) {
     return p({
         routes: e,
         type: "search"
