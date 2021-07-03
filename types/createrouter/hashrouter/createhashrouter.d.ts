@@ -1,4 +1,5 @@
 import { Router } from "../Router";
-export declare function createHashRouter({ routes }: {
-    routes: any[];
+import { RouteRecord } from "../RouteRecord";
+export declare function createHashRouter({ routes, }: {
+    routes: RouteRecord[];
 }): Router;

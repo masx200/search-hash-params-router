@@ -1,4 +1,5 @@
 import { Router } from "../Router";
-export declare function createSearchRouter({ routes }: {
-    routes: any[];
+import { RouteRecord } from "../RouteRecord";
+export declare function createSearchRouter({ routes, }: {
+    routes: RouteRecord[];
 }): Router;

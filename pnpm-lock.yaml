@@ -10,11 +10,15 @@ specifiers:
   '@rollup/plugin-commonjs': ^19.0.0
   '@rollup/plugin-node-resolve': ^13.0.0
   '@types/react': ^17.0.13
+  '@vue/runtime-core': ^3.1.4
   prettier: ^2.3.2
   rollup: ^2.52.6
   rollup-plugin-terser: ^7.0.2
   tslib: ^2.3.0
   typescript: ^4.3.5
+
+dependencies:
+  '@vue/runtime-core': 3.1.4
 
 devDependencies:
   '@babel/core': 7.14.6
@@ -1295,6 +1299,23 @@ packages:
   /@types/scheduler/0.16.1:
     resolution: {integrity: sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==}
     dev: true
+
+  /@vue/reactivity/3.1.4:
+    resolution: {integrity: sha512-YDlgii2Cr9yAoKVZFzgY4j0mYlVT73986X3e5SPp6ifqckSEoFSUWXZK2Tb53TB/9qO29BEEbspnKD3m3wAwkA==}
+    dependencies:
+      '@vue/shared': 3.1.4
+    dev: false
+
+  /@vue/runtime-core/3.1.4:
+    resolution: {integrity: sha512-qmVJgJuFxfT7M4qHQ4M6KqhKC66fjuswK+aBivE8dWiZ2rtIGl9gtJGpwqwjQEcKEBTOfvvrtrwBncYArJUO8Q==}
+    dependencies:
+      '@vue/reactivity': 3.1.4
+      '@vue/shared': 3.1.4
+    dev: false
+
+  /@vue/shared/3.1.4:
+    resolution: {integrity: sha512-6O45kZAmkLvzGLToBxEz4lR2W6kXohCtebV2UxjH9GXjd8X9AhEn68FN9eNanFtWNzvgw1hqd6HkPRVQalqf7Q==}
+    dev: false
 
   /ansi-styles/3.2.1:
     resolution: {integrity: sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==}
