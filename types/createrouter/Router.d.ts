@@ -1,7 +1,7 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
 export declare type Router = EventEmitterTarget & {
-    on: (event: "params", callback: (p: Record<string, string>) => void) => void;
-    off: (event: "params", callback: (p: Record<string, string>) => void) => void;
+    on: (event: "param" | "route" | "redirect", callback: (p: Record<string, any>) => void) => void;
+    off: (event: "param" | "route" | "redirect", callback: (p: Record<string, any>) => void) => void;
     set: (opt: Record<string, string>) => void;
     get: () => {
         [k: string]: string;

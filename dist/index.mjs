@@ -117,28 +117,28 @@ const s = (t => {
     return Reflect.set(r, e, n), r;
 })();
 
-function f() {
-    const o = s();
+function f({routes: o = []}) {
+    const c = s();
     window.addEventListener("hashchange", (() => {
         const t = e();
-        i.emit("params", t);
+        a.emit("param", t);
     }));
-    const c = {
+    const i = {
         href: r,
         set: t,
         get: e,
         transform: n,
         [Symbol.toStringTag]: "HashRouter",
-        routes: []
-    }, i = (() => {
+        routes: o
+    }, a = (() => {
         const t = {};
-        return [ o, c ].forEach((e => {
+        return [ c, i ].forEach((e => {
             Reflect.ownKeys(e).forEach((n => {
                 Reflect.set(t, n, Reflect.get(e, n));
             }));
         })), t;
     })();
-    return i;
+    return a;
 }
 
 function h() {
@@ -169,28 +169,28 @@ function w(t) {
     l(t(h()));
 }
 
-function m() {
-    const t = s();
+function m({routes: t = []}) {
+    const e = s();
     window.addEventListener("popstate", (() => {
         const t = h();
-        n.emit("params", t);
+        r.emit("param", t);
     }));
-    const e = {
+    const n = {
         href: u,
         set: l,
         get: h,
         transform: w,
         [Symbol.toStringTag]: "SearchRouter",
-        routes: []
-    }, n = (() => {
-        const n = {};
-        return [ t, e ].forEach((t => {
-            Reflect.ownKeys(t).forEach((e => {
-                Reflect.set(n, e, Reflect.get(t, e));
+        routes: t
+    }, r = (() => {
+        const t = {};
+        return [ e, n ].forEach((e => {
+            Reflect.ownKeys(e).forEach((n => {
+                Reflect.set(t, n, Reflect.get(e, n));
             }));
-        })), n;
+        })), t;
     })();
-    return n;
+    return r;
 }
 
 function y({router: t, forwardRef: e, createElement: n}) {

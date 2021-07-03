@@ -6,13 +6,13 @@ import { Router } from "../Router";
 //@ts-ignore
 import { gethashhref } from "./gethashhref.ts";
 import EventEmitterTargetClass from "@masx200/event-emitter-target";
-export function createHashRouter(): Router {
+export function createHashRouter({ routes = [] }: { routes: any[] }): Router {
     const eventname = "hashchange";
     const emitter = EventEmitterTargetClass();
 
     const changelistener = () => {
         const hashparams = gethashparams();
-        instance.emit("params", hashparams);
+        instance.emit("param", hashparams);
     };
 
     window.addEventListener(eventname, changelistener);
@@ -24,7 +24,7 @@ export function createHashRouter(): Router {
         get: gethashparams,
         transform: transformhashparams,
         [Symbol.toStringTag]: "HashRouter",
-        routes: [],
+        routes: routes,
     };
     const instance: Router = (() => {
         const ins = {};

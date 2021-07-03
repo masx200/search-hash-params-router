@@ -9,14 +9,14 @@ import { setsearchparams } from "./setsearchparams.ts"; //@ts-ignore
 import { transformsearchparams } from "./transformsearchparams.ts";
 
 import EventEmitterTargetClass from "@masx200/event-emitter-target";
-export function createSearchRouter(): Router {
+export function createSearchRouter({ routes = [] }: { routes: any[] }): Router {
     const eventname = "popstate";
 
     const emitter = EventEmitterTargetClass();
 
     const changelistener = () => {
         const searchparams = getsearchparams();
-        instance.emit("params", searchparams);
+        instance.emit("param", searchparams);
     };
 
     window.addEventListener(eventname, changelistener);
@@ -27,7 +27,7 @@ export function createSearchRouter(): Router {
         get: getsearchparams,
         transform: transformsearchparams,
         [Symbol.toStringTag]: "SearchRouter",
-        routes: [],
+        routes: routes,
     };
 
     const instance: Router = (() => {

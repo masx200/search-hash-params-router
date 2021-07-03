@@ -149,28 +149,28 @@ function l(e) {
     u(e(f()));
 }
 
-exports.createHashRouter = function() {
-    const o = s();
+exports.createHashRouter = function({routes: o = []}) {
+    const c = s();
     window.addEventListener("hashchange", (() => {
         const e = t();
-        a.emit("params", e);
+        i.emit("param", e);
     }));
-    const c = {
+    const a = {
         href: r,
         set: e,
         get: t,
         transform: n,
         [Symbol.toStringTag]: "HashRouter",
-        routes: []
-    }, a = (() => {
+        routes: o
+    }, i = (() => {
         const e = {};
-        return [ o, c ].forEach((t => {
+        return [ c, a ].forEach((t => {
             Reflect.ownKeys(t).forEach((n => {
                 Reflect.set(e, n, Reflect.get(t, n));
             }));
         })), e;
     })();
-    return a;
+    return i;
 }, exports.createReactLink = function({router: e, forwardRef: t, createElement: n}) {
     return t((({component: t = "a", to: r, onClick: o, children: c, target: a, ...i}, s) => {
         const f = {
@@ -196,27 +196,27 @@ exports.createHashRouter = function() {
         };
         return n(t, f, c);
     }));
-}, exports.createSearchRouter = function() {
-    const e = s();
+}, exports.createSearchRouter = function({routes: e = []}) {
+    const t = s();
     window.addEventListener("popstate", (() => {
         const e = f();
-        n.emit("params", e);
+        r.emit("param", e);
     }));
-    const t = {
+    const n = {
         href: h,
         set: u,
         get: f,
         transform: l,
         [Symbol.toStringTag]: "SearchRouter",
-        routes: []
-    }, n = (() => {
-        const n = {};
-        return [ e, t ].forEach((e => {
-            Reflect.ownKeys(e).forEach((t => {
-                Reflect.set(n, t, Reflect.get(e, t));
+        routes: e
+    }, r = (() => {
+        const e = {};
+        return [ t, n ].forEach((t => {
+            Reflect.ownKeys(t).forEach((n => {
+                Reflect.set(e, n, Reflect.get(t, n));
             }));
-        })), n;
+        })), e;
     })();
-    return n;
+    return r;
 };
 //# sourceMappingURL=index.cjs.map
