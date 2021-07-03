@@ -1,5 +1,5 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
-
+import { RouteRecord } from "./RouteRecord";
 export type Router = EventEmitterTarget & {
     on: (
         event: "param" | "route" | "redirect",
@@ -22,5 +22,5 @@ export type Router = EventEmitterTarget & {
             | Record<string, string>
             | ((old: Record<string, string>) => Record<string, string>)
     ): string;
-    routes: Array<any>;
+    routes: Array<RouteRecord>;
 };

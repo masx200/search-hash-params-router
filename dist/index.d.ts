@@ -51,7 +51,7 @@ export declare type Router = EventEmitterTarget & {
     transform: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
     href(opt: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)): string;
-    routes: Array<any>;
+    routes: Array<RouteRecord>;
 };
 
 export declare type RouteRecord = RecordRoute | RecordRedirect;
