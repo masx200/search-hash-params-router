@@ -1,4 +1,4 @@
 //@ts-ignore
-export * from "./createrouter/index.ts";
+export * from "./createrouter/index";
 //@ts-ignore
-export * from "./components/index.ts";
+export * from "./components/index";

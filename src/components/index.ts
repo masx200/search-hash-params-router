@@ -1,8 +1,8 @@
 //@ts-ignore
-export * from "./react/create-react-link.tsx";
+export * from "./react/create-react-link";
 //@ts-ignore
-export * from "./react/create-react-view.ts";
+export * from "./react/create-react-view";
 //@ts-ignore
-export * from "./vue/create-vue-link.ts";
+export * from "./vue/create-vue-link";
 //@ts-ignore
-export * from "./vue/create-vue-view.ts";
+export * from "./vue/create-vue-view";

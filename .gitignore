@@ -110,3 +110,4 @@ types/*/*.jsx
 types/*/*/*.js
 types/*/*/*.jsx
 .vscode/settings.json
+types/

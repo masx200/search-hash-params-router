@@ -1,23 +1,50 @@
 import { Router } from "../../createrouter/Router";
+import type {
+    ForwardRefExoticComponent,
+    RefAttributes,
+    ComponentType,
+    MouseEvent,
+    forwardRef as forwardRefType,
+    createElement as createElementType,
+} from "react";
+
+export type ReactLinkComponent = ForwardRefExoticComponent<
+    Pick<
+        {
+            [key: string]: any;
+            component?: string | ComponentType<any> | undefined;
+            target?: string | undefined;
+            onClick?: ((event: MouseEvent) => void) | undefined;
+            to:
+                | Record<string, string>
+                | ((old: Record<string, string>) => Record<string, string>);
+        },
+        string | number
+    > &
+        RefAttributes<unknown>
+>;
+
 export function createReactLink({
     router,
     forwardRef,
     createElement,
 }: {
     router: Router;
-    forwardRef: typeof import("react").forwardRef;
-    createElement: typeof import("react").createElement;
-}) {
+    forwardRef: typeof forwardRefType;
+    createElement: typeof createElementType;
+}): ReactLinkComponent {
     console.log(router, forwardRef, createElement);
     return forwardRef<
         unknown,
         {
-            component?: string | import("react").ComponentType<any>;
+            component?: string | ComponentType<any>;
             target?: string;
-            onClick?: (event: import("react").MouseEvent) => void;
+            onClick?: (event: MouseEvent) => void;
             to:
                 | Record<string, string>
                 | ((old: Record<string, string>) => Record<string, string>);
+
+            [key: string]: any;
         }
     >(
         (
@@ -32,7 +59,7 @@ export function createReactLink({
             forwardedRef
         ) => {
             const href: string = router.href(to);
-            const newclick = (event: import("react").MouseEvent) => {
+            const newclick = (event: MouseEvent) => {
                 try {
                     if (onClick) {
                         onClick(event);
@@ -66,7 +93,7 @@ export function createReactLink({
         }
     );
 }
-function isModifiedEvent(event: import("react").MouseEvent) {
+function isModifiedEvent(event: MouseEvent) {
     return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 function navigate(
