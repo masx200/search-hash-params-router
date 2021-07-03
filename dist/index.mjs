@@ -118,26 +118,27 @@ const s = (t => {
 })();
 
 function f() {
-    const o = s(), c = Array.prototype;
+    const o = s();
     window.addEventListener("hashchange", (() => {
         const t = e();
-        a.emit("params", t);
+        i.emit("params", t);
     }));
-    const i = {
+    const c = {
         href: r,
         set: t,
         get: e,
         transform: n,
-        [Symbol.toStringTag]: "HashRouter"
-    }, a = (() => {
+        [Symbol.toStringTag]: "HashRouter",
+        routes: []
+    }, i = (() => {
         const t = {};
-        return [ o, c, i ].forEach((e => {
+        return [ o, c ].forEach((e => {
             Reflect.ownKeys(e).forEach((n => {
                 Reflect.set(t, n, Reflect.get(e, n));
             }));
         })), t;
     })();
-    return a;
+    return i;
 }
 
 function h() {
@@ -168,30 +169,31 @@ function w(t) {
     l(t(h()));
 }
 
-function y() {
-    const t = s(), e = Array.prototype;
+function m() {
+    const t = s();
     window.addEventListener("popstate", (() => {
         const t = h();
-        r.emit("params", t);
+        n.emit("params", t);
     }));
-    const n = {
+    const e = {
         href: u,
         set: l,
         get: h,
         transform: w,
-        [Symbol.toStringTag]: "SearchRouter"
-    }, r = (() => {
-        const r = {};
-        return [ t, e, n ].forEach((t => {
+        [Symbol.toStringTag]: "SearchRouter",
+        routes: []
+    }, n = (() => {
+        const n = {};
+        return [ t, e ].forEach((t => {
             Reflect.ownKeys(t).forEach((e => {
-                Reflect.set(r, e, Reflect.get(t, e));
+                Reflect.set(n, e, Reflect.get(t, e));
             }));
-        })), r;
+        })), n;
     })();
-    return r;
+    return n;
 }
 
-function p({router: t, forwardRef: e, createElement: n}) {
+function y({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: c, target: i, ...a}, s) => {
         const f = {
             ...a,
@@ -218,4 +220,5 @@ function p({router: t, forwardRef: e, createElement: n}) {
     }));
 }
 
-export { f as createHashRouter, p as createReactLink, y as createSearchRouter };
+export { f as createHashRouter, y as createReactLink, m as createSearchRouter };
+//# sourceMappingURL=index.mjs.map

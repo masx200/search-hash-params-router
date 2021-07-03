@@ -10,7 +10,6 @@ export function createHashRouter(): Router {
     const eventname = "hashchange";
     const emitter = EventEmitterTargetClass();
 
-    const arrayproto = Array.prototype;
     const changelistener = () => {
         const hashparams = gethashparams();
         instance.emit("params", hashparams);
@@ -25,10 +24,11 @@ export function createHashRouter(): Router {
         get: gethashparams,
         transform: transformhashparams,
         [Symbol.toStringTag]: "HashRouter",
+        routes: [],
     };
     const instance: Router = (() => {
         const ins = {};
-        const objarr = [emitter, arrayproto, router];
+        const objarr = [emitter, router];
 
         objarr.forEach((obj) => {
             Reflect.ownKeys(obj).forEach((key) => {

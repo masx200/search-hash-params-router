@@ -1,9 +1,9 @@
 {
     "name": "@masx200/search-hash-params-router",
     "version": "1.0.3",
-    "module": "dist/index.js",
-    "types": "types/index.d.ts",
-    "main": "dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./types/index.d.ts",
+    "main": "./dist/index.cjs",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/masx200/search-hash-params-router.git"

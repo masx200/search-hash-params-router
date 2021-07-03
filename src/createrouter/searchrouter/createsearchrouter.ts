@@ -14,7 +14,6 @@ export function createSearchRouter(): Router {
 
     const emitter = EventEmitterTargetClass();
 
-    const arrayproto = Array.prototype;
     const changelistener = () => {
         const searchparams = getsearchparams();
         instance.emit("params", searchparams);
@@ -28,11 +27,12 @@ export function createSearchRouter(): Router {
         get: getsearchparams,
         transform: transformsearchparams,
         [Symbol.toStringTag]: "SearchRouter",
+        routes: [],
     };
 
     const instance: Router = (() => {
         const ins = {};
-        const objarr = [emitter, arrayproto, router];
+        const objarr = [emitter, router];
 
         objarr.forEach((obj) => {
             Reflect.ownKeys(obj).forEach((key) => {
