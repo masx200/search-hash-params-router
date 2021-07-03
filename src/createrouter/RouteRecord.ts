@@ -1,11 +1,13 @@
 import type { ComponentType } from "react";
 import type { Component } from "@vue/runtime-core";
-export interface RecordRoute {
+export interface RecordBase {
+    name: string | symbol | undefined;
     param: (opt: Record<string, string>) => boolean;
+}
+export interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
 }
-export interface RecordRedirect {
-    param: (opt: Record<string, string>) => boolean;
+export interface RecordRedirect extends RecordBase {
     redirect:
         | Record<string, string>
         | ((opt: Record<string, string>) => Record<string, string>);

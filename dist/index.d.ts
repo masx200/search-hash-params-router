@@ -31,13 +31,16 @@ export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
 }, string | number> & RefAttributes<unknown>>;
 
-export declare interface RecordRedirect {
+export declare interface RecordBase {
+    name: string | symbol | undefined;
     param: (opt: Record<string, string>) => boolean;
+}
+
+export declare interface RecordRedirect extends RecordBase {
     redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
 }
 
-export declare interface RecordRoute {
-    param: (opt: Record<string, string>) => boolean;
+export declare interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
 }
 
