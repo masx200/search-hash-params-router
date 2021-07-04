@@ -55,7 +55,7 @@ const routes = [
         component: Home,
 
         params(o) {
-            return (o.p = "home");
+            return (o.p === "home");
         },
     },
     {
