@@ -28,20 +28,16 @@ export declare function createSearchRouter({ routes, }?: {
     routes?: RouteRecord[];
 }): Router;
 
-export declare function gethashhref(to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)): string;
-
-export declare function gethashparams(): {
-    [k: string]: string;
-};
-
 export declare type RawRouter = {
     getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
     mount: () => void;
     unmount: () => void;
-    paramshref: typeof gethashhref;
-    setparams: typeof sethashparams;
-    getparams: typeof gethashparams;
-    transformparams: typeof transformhashparams;
+    paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
+    setparams: (opt: Record<string, string>) => void;
+    getparams: () => {
+        [k: string]: string;
+    };
+    transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
     routes: RouteRecord[];
 };
@@ -70,9 +66,5 @@ export declare interface RecordRoute extends RecordBase {
 export declare type Router = ReturnType<typeof createBaseRouter>;
 
 export declare type RouteRecord = RecordRoute | RecordRedirect;
-
-export declare function sethashparams(opt: Record<string, string>): void;
-
-export declare function transformhashparams(opt: (old: Record<string, string>) => Record<string, string>): void;
 
 export { }
