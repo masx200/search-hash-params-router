@@ -89,5 +89,7 @@ const routes = [
     },
 ];
 
-const router = createHashRouter();
+const hashrouter = createHashRouter();
+
+const searchrouter=createSearchRouter()
 ```
