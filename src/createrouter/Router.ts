@@ -1,8 +1,7 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
-import { RecordRedirect, RecordRoute, RouteRecord } from ".";
+
 export type Router = EventEmitterTarget & RawRouter;
 export type RawRouter = {
-    getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
     mount: () => void;
     unmount: () => void;
     paramshref: (
@@ -18,5 +17,4 @@ export type RawRouter = {
         opt: (old: Record<string, string>) => Record<string, string>
     ) => void;
     [Symbol.toStringTag]: string;
-    getroutes: () => RouteRecord[];
 };

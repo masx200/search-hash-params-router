@@ -9,9 +9,7 @@ import { RefAttributes } from 'react';
 
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
 
-export declare function createHashRouter({ routes, }?: {
-    routes?: RouteRecord[] | (() => RouteRecord[]);
-}): Router;
+export declare function createHashRouter(): Router;
 
 export declare function createReactLink({ router, forwardRef, createElement, }: {
     router: Router;
@@ -19,12 +17,9 @@ export declare function createReactLink({ router, forwardRef, createElement, }: 
     createElement: typeof createElement;
 }): ReactLinkComponent;
 
-export declare function createSearchRouter({ routes, }?: {
-    routes?: RouteRecord[] | (() => RouteRecord[]);
-}): Router;
+export declare function createSearchRouter(): Router;
 
 export declare type RawRouter = {
-    getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
     mount: () => void;
     unmount: () => void;
     paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
@@ -34,7 +29,6 @@ export declare type RawRouter = {
     };
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
-    getroutes: () => RouteRecord[];
 };
 
 export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{

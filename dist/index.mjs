@@ -147,15 +147,15 @@ function l(t) {
 
 var p = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
 
-var m = function(t) {
+var v = function(t) {
     var e = typeof t;
     return null != t && ("object" == e || "function" == e);
-}, v = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, d = v || y || Function("return this")(), w = d, g = function() {
+}, m = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, d = m || y || Function("return this")(), w = d, b = function() {
     return w.Date.now();
-}, b = /\s/;
+}, g = /\s/;
 
 var S = function(t) {
-    for (var e = t.length; e-- && b.test(t.charAt(e)); ) ;
+    for (var e = t.length; e-- && g.test(t.charAt(e)); ) ;
     return e;
 }, E = /^\s+/;
 
@@ -183,11 +183,11 @@ var A = function(t) {
     return null != t && "object" == typeof t;
 };
 
-var D = T, W = m, $ = function(t) {
+var D = T, W = v, $ = function(t) {
     return "symbol" == typeof t || C(t) && "[object Symbol]" == A(t);
 }, F = /^[-+]0x[0-9a-f]+$/i, I = /^0b[01]+$/i, V = /^0o[0-7]+$/i, z = parseInt;
 
-var H = m, _ = g, q = function(t) {
+var H = v, _ = b, q = function(t) {
     if ("number" == typeof t) return t;
     if ($(t)) return NaN;
     if (W(t)) {
@@ -207,16 +207,16 @@ var J = function(t, e, n) {
         var n = r, i = o;
         return r = o = void 0, u = e, a = t.apply(i, n);
     }
-    function m(t) {
+    function v(t) {
         return u = t, c = setTimeout(y, e), s ? p(t) : a;
     }
-    function v(t) {
+    function m(t) {
         var n = t - f;
         return void 0 === f || n >= e || n < 0 || h && t - u >= i;
     }
     function y() {
         var t = _();
-        if (v(t)) return d(t);
+        if (m(t)) return d(t);
         c = setTimeout(y, function(t) {
             var n = e - (t - f);
             return h ? G(n, i - (t - u)) : n;
@@ -226,9 +226,9 @@ var J = function(t, e, n) {
         return c = void 0, l && r ? p(t) : (r = o = void 0, a);
     }
     function w() {
-        var t = _(), n = v(t);
+        var t = _(), n = m(t);
         if (r = arguments, o = this, f = t, n) {
-            if (void 0 === c) return m(f);
+            if (void 0 === c) return v(f);
             if (h) return clearTimeout(c), c = setTimeout(y, e), p(f);
         }
         return void 0 === c && (c = setTimeout(y, e)), a;
@@ -241,47 +241,36 @@ var J = function(t, e, n) {
     }, w;
 };
 
-function Q(t, e) {
-    const n = "function" == typeof t ? t : () => t, r = "search" === e ? "popstate" : "hashchange", p = o();
-    let m, v;
-    const y = J((() => {
-        const t = "hash" === e ? i() : u();
-        w.emit("params", t);
-    })), d = J((t => {
-        v = function(t, e) {
-            for (let n of t) if (n.params(e)) return n;
-        }(n(), t), v && (m !== v && w.emit("route", v), m = v);
+function Q(t) {
+    const e = "search" === t ? "popstate" : "hashchange", n = o(), r = J((() => {
+        const e = "hash" === t ? i() : u();
+        p.emit("params", e);
     }));
-    const w = {
-        ...p,
+    const p = {
+        ...n,
         ...{
-            getcurrentroute: function() {
-                const t = w.getparams();
-                return d(t), v;
-            },
             mount: function() {
-                window.addEventListener(r, y), w.on("params", d), y();
+                window.addEventListener(e, r), r();
             },
             unmount: function() {
-                window.removeEventListener(r, y), w.off("params", d);
+                window.removeEventListener(e, r);
             },
-            paramshref: "hash" === e ? a : s,
-            setparams: "hash" === e ? c : h,
-            getparams: "hash" === e ? i : u,
-            transformparams: "hash" === e ? f : l,
-            [Symbol.toStringTag]: "search" === e ? "SearchRouter" : "HashRouter",
-            getroutes: n
+            paramshref: "hash" === t ? a : s,
+            setparams: "hash" === t ? c : h,
+            getparams: "hash" === t ? i : u,
+            transformparams: "hash" === t ? f : l,
+            [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter"
         }
     };
-    return w;
+    return p;
 }
 
-function X({routes: t = []} = {}) {
-    return Q(t, "hash");
+function X() {
+    return Q("hash");
 }
 
-function Y({routes: t = []} = {}) {
-    return Q(t, "search");
+function Y() {
+    return Q("search");
 }
 
 function Z({router: t, forwardRef: e, createElement: n}) {

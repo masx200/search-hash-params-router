@@ -5,7 +5,6 @@ import { createElement as createElementType } from "react";
 import { Component } from "@vue/runtime-core";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
-    getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
     mount: () => void;
     unmount: () => void;
     paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
@@ -15,8 +14,9 @@ type RawRouter = {
     };
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
-    getroutes: () => RouteRecord[];
 };
+declare function createHashRouter(): Router;
+declare function createSearchRouter(): Router;
 interface RecordBase {
     name: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
@@ -29,12 +29,6 @@ interface RecordRedirect extends RecordBase {
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
-declare function createHashRouter({ routes }?: {
-    routes?: RouteRecord[] | (() => RouteRecord[]);
-}): Router;
-declare function createSearchRouter({ routes }?: {
-    routes?: RouteRecord[] | (() => RouteRecord[]);
-}): Router;
 type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
     [key: string]: any;
     component?: string | ComponentType<any> | undefined;

@@ -23,49 +23,26 @@ import { RawRouter } from "./Router";
 //@ts-ignore
 import debounce from "lodash/debounce";
 export function createBaseRouter(
-    routes: RouteRecord[] | (() => RouteRecord[]),
     type: "search" | "hash"
 ): EventEmitterTarget & RawRouter {
-    const getroutes = "function" === typeof routes ? routes : () => routes;
     const eventname = "search" === type ? "popstate" : "hashchange";
 
     const emitter: EventEmitterTarget = EventEmitterTargetClass();
-    let lastroute: RecordRoute | RecordRedirect | undefined = undefined;
 
-    let currentroute: RecordRoute | RecordRedirect | undefined = undefined;
     const changelistener = debounce(() => {
         const params = "hash" === type ? gethashparams() : getsearchparams();
         instance.emit("params", params);
     });
-    const onparamschange = debounce((params: Record<string, string>) => {
-        currentroute = matchroute(getroutes(), params);
-        if (!currentroute) {
-            return;
-        }
-        if (lastroute !== currentroute) {
-            instance.emit("route", currentroute);
-        }
-        lastroute = currentroute;
-    });
     function mount() {
         window.addEventListener(eventname, changelistener);
 
-        instance.on("params", onparamschange);
         changelistener();
     }
     function unmount() {
         window.removeEventListener(eventname, changelistener);
-        instance.off("params", onparamschange);
-    }
-    function getcurrentroute() {
-        const params = instance.getparams();
-        onparamschange(params);
-        return currentroute;
     }
 
     const router: RawRouter = {
-        getcurrentroute,
-
         mount,
         unmount,
         paramshref: "hash" === type ? gethashhref : getsearchhref,
@@ -75,7 +52,6 @@ export function createBaseRouter(
         transformparams:
             "hash" === type ? transformhashparams : transformsearchparams,
         [Symbol.toStringTag]: "search" === type ? "SearchRouter" : "HashRouter",
-        getroutes: getroutes,
     };
 
     const instance = { ...emitter, ...router } as EventEmitterTarget &
