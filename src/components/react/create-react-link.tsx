@@ -1,28 +1,12 @@
 import { Router } from "../../createrouter/Router";
 import type {
-    ForwardRefExoticComponent,
-    RefAttributes,
     ComponentType,
     MouseEvent,
     forwardRef as forwardRefType,
     createElement as createElementType,
 } from "react";
-
-export type ReactLinkComponent = ForwardRefExoticComponent<
-    Pick<
-        {
-            [key: string]: any;
-            component?: string | ComponentType<any> | undefined;
-            target?: string | undefined;
-            onClick?: ((event: MouseEvent) => void) | undefined;
-            to:
-                | Record<string, string>
-                | ((old: Record<string, string>) => Record<string, string>);
-        },
-        string | number
-    > &
-        RefAttributes<unknown>
->;
+import { navigate } from "./navigate";
+import { ReactLinkComponent } from "./ReactLinkComponent";
 
 export function createReactLink({
     router,
@@ -58,7 +42,7 @@ export function createReactLink({
             },
             forwardedRef
         ) => {
-            const href: string = router.href(to);
+            const href: string = router.paramshref(to);
             const newclick = (event: MouseEvent) => {
                 try {
                     if (onClick) {
@@ -95,23 +79,4 @@ export function createReactLink({
 }
 function isModifiedEvent(event: MouseEvent) {
     return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-}
-function navigate(
-    router: Router,
-    to:
-        | Record<string, string>
-        | ((old: Record<string, string>) => Record<string, string>)
-) {
-    if (!to) {
-        throw new TypeError(to);
-    }
-    if ("function" === typeof to) {
-        router.transform(to);
-        return;
-    }
-    if ("object" === typeof to) {
-        router.set(to);
-        return;
-    }
-    throw new TypeError(to);
 }

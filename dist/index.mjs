@@ -1,214 +1,226 @@
-function e() {
+function t() {
     return {}.toString.call({
         [Symbol.toStringTag]: "EventEmitterTarget"
     });
 }
 
-function t(e) {
-    if ("string" != typeof e && "symbol" != typeof e) throw new TypeError(" EVENTNAME expected: string | symbol;but invalid :" + e);
+function e(t) {
+    if ("string" != typeof t && "symbol" != typeof t) throw new TypeError(" EVENTNAME expected: string | symbol;but invalid :" + t);
 }
 
-function n(e) {
-    if ("function" != typeof e) throw new TypeError(" EVENTLISTENER expected: (event?: any) => void;but invalid:" + e);
+function n(t) {
+    if ("function" != typeof t) throw new TypeError(" EVENTLISTENER expected: (event?: any) => void;but invalid:" + t);
 }
 
 function r() {
     const r = new Map, o = new WeakMap;
-    function a(e) {
-        let t = r.get(e);
-        return t || (t = new Set, r.set(e, t)), t;
+    function a(t) {
+        let e = r.get(t);
+        return e || (e = new Set, r.set(t, e)), e;
     }
-    function i(e) {
-        t(e), r.has(e) && a(e).clear();
+    function i(t) {
+        e(t), r.has(t) && a(t).clear();
     }
-    function c(e, n) {
-        t(e), r.has(e) && a(e).forEach((e => {
+    function s(t, n) {
+        e(t), r.has(t) && a(t).forEach((t => {
             Promise.resolve().then((() => {
-                e(n);
+                t(n);
             }));
         }));
     }
-    function s(e, r) {
-        t(e), n(r), a(e).add(r);
+    function c(t, r) {
+        e(t), n(r), a(t).add(r);
     }
-    function h(e, t) {
-        a(e).delete(t);
+    function f(t, e) {
+        a(t).delete(e);
     }
-    function f(e, r) {
-        t(e), n(r), h(e, r), function(e, t) {
-            const n = a(e);
-            let r = o.get(t);
+    function h(t, r) {
+        e(t), n(r), f(t, r), function(t, e) {
+            const n = a(t);
+            let r = o.get(e);
             r && n.delete(r);
-        }(e, r);
+        }(t, r);
     }
     function u() {
-        return [ ...r ].map((([e, t]) => [ e, [ ...t ] ]))[Symbol.iterator]();
+        return [ ...r ].map((([t, e]) => [ t, [ ...e ] ]))[Symbol.iterator]();
     }
     return {
-        [Symbol.toPrimitive]: e,
+        [Symbol.toPrimitive]: t,
         [Symbol.toStringTag]: "EventEmitterTarget",
         [Symbol.iterator]: u,
         entries: u,
-        listenerCount: function(e) {
-            return t(e), r.has(e) ? a(e).size : 0;
+        listenerCount: function(t) {
+            return e(t), r.has(t) ? a(t).size : 0;
         },
         clear: i,
         removeAllListeners: i,
-        on: s,
-        addListener: s,
-        off: f,
-        removeListener: f,
-        once: function(e, r) {
-            t(e), n(r);
+        on: c,
+        addListener: c,
+        off: h,
+        removeListener: h,
+        once: function(t, r) {
+            e(t), n(r);
             let a = !1, i = o.get(r);
             if (!i) {
-                const t = n => {
-                    h(e, t), h(e, r), a || (a = !0, r(n));
+                const e = n => {
+                    f(t, e), f(t, r), a || (a = !0, r(n));
                 };
-                i = t, o.set(r, i);
+                i = e, o.set(r, i);
             }
-            h(e, r), s(e, i);
+            f(t, r), c(t, i);
         },
-        emit: c,
-        dispatch: c,
+        emit: s,
+        dispatch: s,
         eventNames: function() {
             return [ ...r.keys() ];
         },
-        listeners: function(e) {
-            return t(e), r.has(e) ? [ ...a(e) ] : [];
+        listeners: function(t) {
+            return e(t), r.has(t) ? [ ...a(t) ] : [];
         }
     };
 }
 
-const o = (e => {
-    var t = Symbol(), n = new Function("return async()=>{}")()();
+const o = (t => {
+    var e = Symbol(), n = new Function("return async()=>{}")()();
     function o() {
-        const e = r();
-        return this && this instanceof o ? (Object.assign(this, e), this) : Reflect.construct(o, []);
+        const t = r();
+        return this && this instanceof o ? (Object.assign(this, t), this) : Reflect.construct(o, []);
     }
-    return Reflect.set(o, t, n), o;
+    return Reflect.set(o, e, n), o;
 })();
 
 function a() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function i(e) {
-    if (!e) throw new TypeError(e);
-    let t = a(), n = new URL(location.href);
-    if ("function" == typeof e) return t = e(t), n.hash = String(new URLSearchParams({
-        ...e
+function i(t) {
+    if (!t) throw new TypeError(t);
+    let e = a(), n = new URL(location.href);
+    if ("function" == typeof t) return e = t(e), n.hash = String(new URLSearchParams({
+        ...t
     })), n.href;
-    if ("object" == typeof e) return t = e, n.hash = String(new URLSearchParams({
-        ...e
+    if ("object" == typeof t) return e = t, n.hash = String(new URLSearchParams({
+        ...t
     })), n.href;
-    throw new TypeError(e);
+    throw new TypeError(t);
 }
 
-function c(e) {
-    const t = location.hash;
+function s(t) {
+    const e = location.hash;
     let n = new URL(location.href);
     n.hash = String(new URLSearchParams({
-        ...e
-    })), t !== n.hash && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("hashchange")));
+        ...t
+    })), e !== n.hash && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("hashchange")));
 }
 
-function s(e) {
-    c(e(a()));
+function c(t) {
+    s(t(a()));
 }
 
-function h() {
+function f() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function f(e) {
-    if (!e) throw new TypeError(e);
-    let t = h(), n = new URL(location.href);
-    if ("function" == typeof e) return t = e(t), n.search = String(new URLSearchParams({
-        ...e
+function h(t) {
+    if (!t) throw new TypeError(t);
+    let e = f(), n = new URL(location.href);
+    if ("function" == typeof t) return e = t(e), n.search = String(new URLSearchParams({
+        ...t
     })), n.href;
-    if ("object" == typeof e) return t = e, n.search = String(new URLSearchParams({
-        ...e
+    if ("object" == typeof t) return e = t, n.search = String(new URLSearchParams({
+        ...t
     })), n.href;
-    throw new TypeError(e);
+    throw new TypeError(t);
 }
 
-function u(e) {
-    const t = location.search;
+function u(t) {
+    const e = location.search;
     let n = new URL(location.href);
     n.search = String(new URLSearchParams({
-        ...e
-    })), t !== n.search && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("popstate")));
+        ...t
+    })), e !== n.search && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function l(e) {
-    u(e(h()));
+function l(t) {
+    u(t(f()));
 }
 
-function w({routes: e = [], type: t}) {
-    const n = "search" === t ? "popstate" : "hashchange", r = o();
-    window.addEventListener(n, (() => {
-        const e = "hash" === t ? a() : h();
-        y.emit("param", e);
-    }));
-    const w = {
-        href: "hash" === t ? i : f,
-        set: "hash" === t ? c : u,
-        get: "hash" === t ? a : h,
-        transform: "hash" === t ? s : l,
-        [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter",
-        routes: e
-    }, y = (() => {
-        const e = {};
-        return [ r, w ].forEach((t => {
-            Reflect.ownKeys(t).forEach((n => {
-                Reflect.set(e, n, Reflect.get(t, n));
-            }));
-        })), e;
-    })();
-    return y;
+function m({routes: t = [], type: e}) {
+    const n = "search" === e ? "popstate" : "hashchange", r = o();
+    let m, p;
+    const w = () => {
+        const t = "hash" === e ? a() : f();
+        E.emit("params", t);
+    }, y = e => {
+        p = function(t, e) {
+            for (let n of t) if (n.params(e)) return n;
+        }(t, e), m !== p && E.emit("route"), m = p;
+    };
+    const E = {
+        ...r,
+        ...{
+            getcurrentroute: function() {
+                const t = E.getparams();
+                return y(t), p;
+            },
+            mount: function() {
+                window.addEventListener(n, w), E.on("params", y), w();
+            },
+            unmount: function() {
+                window.removeEventListener(n, w), E.off("params", y);
+            },
+            paramshref: "hash" === e ? i : h,
+            setparams: "hash" === e ? s : u,
+            getparams: "hash" === e ? a : f,
+            transformparams: "hash" === e ? c : l,
+            [Symbol.toStringTag]: "search" === e ? "SearchRouter" : "HashRouter",
+            routes: t
+        }
+    };
+    return E;
 }
 
-function y({routes: e = []} = {}) {
-    return w({
-        routes: e,
+function p({routes: t = []} = {}) {
+    return m({
+        routes: t,
         type: "hash"
     });
 }
 
-function p({routes: e = []} = {}) {
-    return w({
-        routes: e,
+function w({routes: t = []} = {}) {
+    return m({
+        routes: t,
         type: "search"
     });
 }
 
-function m({router: e, forwardRef: t, createElement: n}) {
-    return t((({component: t = "a", to: r, onClick: o, children: a, target: i, ...c}, s) => {
-        const h = {
-            ...c,
-            ref: s,
-            href: e.href(r),
-            onClick: t => {
+function y({router: t, forwardRef: e, createElement: n}) {
+    return e((({component: e = "a", to: r, onClick: o, children: a, target: i, ...s}, c) => {
+        const f = {
+            ...s,
+            ref: c,
+            href: t.paramshref(r),
+            onClick: e => {
                 try {
-                    o && o(t);
-                } catch (e) {
-                    throw t.preventDefault(), e;
+                    o && o(e);
+                } catch (t) {
+                    throw e.preventDefault(), t;
                 }
-                t.defaultPrevented || 0 !== t.button || i && "_self" !== i || function(e) {
-                    return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
-                }(t) || (t.preventDefault(), function(e, t) {
-                    if (!t) throw new TypeError(t);
-                    if ("function" == typeof t) return void e.transform(t);
-                    if ("object" == typeof t) return void e.set(t);
-                    throw new TypeError(t);
-                }(e, r));
+                e.defaultPrevented || 0 !== e.button || i && "_self" !== i || function(t) {
+                    return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
+                }(e) || (e.preventDefault(), function(t, e) {
+                    if (!e) throw new TypeError(e);
+                    if ("function" != typeof e) {
+                        if ("object" != typeof e) throw new TypeError(e);
+                        t.setparams(e);
+                    } else t.transformparams(e);
+                }(t, r));
             },
             target: i
         };
-        return n(t, h, a);
+        return n(e, f, a);
     }));
 }
 
-export { y as createHashRouter, m as createReactLink, p as createSearchRouter };
+export { p as createHashRouter, y as createReactLink, w as createSearchRouter };
 //# sourceMappingURL=index.mjs.map

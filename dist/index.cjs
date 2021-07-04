@@ -18,7 +18,7 @@ function r() {
         let t = r.get(e);
         return t || (t = new Set, r.set(e, t)), t;
     }
-    function c(e) {
+    function s(e) {
         t(e), r.has(e) && a(e).clear();
     }
     function i(e, n) {
@@ -28,14 +28,14 @@ function r() {
             }));
         }));
     }
-    function s(e, r) {
+    function c(e, r) {
         t(e), n(r), a(e).add(r);
     }
-    function h(e, t) {
+    function f(e, t) {
         a(e).delete(t);
     }
-    function f(e, r) {
-        t(e), n(r), h(e, r), function(e, t) {
+    function h(e, r) {
+        t(e), n(r), f(e, r), function(e, t) {
             const n = a(e);
             let r = o.get(t);
             r && n.delete(r);
@@ -52,22 +52,22 @@ function r() {
         listenerCount: function(e) {
             return t(e), r.has(e) ? a(e).size : 0;
         },
-        clear: c,
-        removeAllListeners: c,
-        on: s,
-        addListener: s,
-        off: f,
-        removeListener: f,
+        clear: s,
+        removeAllListeners: s,
+        on: c,
+        addListener: c,
+        off: h,
+        removeListener: h,
         once: function(e, r) {
             t(e), n(r);
-            let a = !1, c = o.get(r);
-            if (!c) {
+            let a = !1, s = o.get(r);
+            if (!s) {
                 const t = n => {
-                    h(e, t), h(e, r), a || (a = !0, r(n));
+                    f(e, t), f(e, r), a || (a = !0, r(n));
                 };
-                c = t, o.set(r, c);
+                s = t, o.set(r, s);
             }
-            h(e, r), s(e, c);
+            f(e, r), c(e, s);
         },
         emit: i,
         dispatch: i,
@@ -97,7 +97,7 @@ function a() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function c(e) {
+function s(e) {
     if (!e) throw new TypeError(e);
     let t = a(), n = new URL(location.href);
     if ("function" == typeof e) return t = e(t), n.hash = String(new URLSearchParams({
@@ -117,17 +117,17 @@ function i(e) {
     })), t !== n.hash && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("hashchange")));
 }
 
-function s(e) {
+function c(e) {
     i(e(a()));
 }
 
-function h() {
+function f() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function f(e) {
+function h(e) {
     if (!e) throw new TypeError(e);
-    let t = h(), n = new URL(location.href);
+    let t = f(), n = new URL(location.href);
     if ("function" == typeof e) return t = e(t), n.search = String(new URLSearchParams({
         ...e
     })), n.href;
@@ -146,31 +146,42 @@ function u(e) {
 }
 
 function l(e) {
-    u(e(h()));
+    u(e(f()));
 }
 
 function p({routes: e = [], type: t}) {
     const n = "search" === t ? "popstate" : "hashchange", r = o();
-    window.addEventListener(n, (() => {
-        const e = "hash" === t ? a() : h();
-        w.emit("param", e);
-    }));
-    const p = {
-        href: "hash" === t ? c : f,
-        set: "hash" === t ? i : u,
-        get: "hash" === t ? a : h,
-        transform: "hash" === t ? s : l,
-        [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter",
-        routes: e
-    }, w = (() => {
-        const e = {};
-        return [ r, p ].forEach((t => {
-            Reflect.ownKeys(t).forEach((n => {
-                Reflect.set(e, n, Reflect.get(t, n));
-            }));
-        })), e;
-    })();
-    return w;
+    let p, m;
+    const w = () => {
+        const e = "hash" === t ? a() : f();
+        S.emit("params", e);
+    }, y = t => {
+        m = function(e, t) {
+            for (let n of e) if (n.params(t)) return n;
+        }(e, t), p !== m && S.emit("route"), p = m;
+    };
+    const S = {
+        ...r,
+        ...{
+            getcurrentroute: function() {
+                const e = S.getparams();
+                return y(e), m;
+            },
+            mount: function() {
+                window.addEventListener(n, w), S.on("params", y), w();
+            },
+            unmount: function() {
+                window.removeEventListener(n, w), S.off("params", y);
+            },
+            paramshref: "hash" === t ? s : h,
+            setparams: "hash" === t ? i : u,
+            getparams: "hash" === t ? a : f,
+            transformparams: "hash" === t ? c : l,
+            [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter",
+            routes: e
+        }
+    };
+    return S;
 }
 
 exports.createHashRouter = function({routes: e = []} = {}) {
@@ -179,29 +190,30 @@ exports.createHashRouter = function({routes: e = []} = {}) {
         type: "hash"
     });
 }, exports.createReactLink = function({router: e, forwardRef: t, createElement: n}) {
-    return t((({component: t = "a", to: r, onClick: o, children: a, target: c, ...i}, s) => {
-        const h = {
+    return t((({component: t = "a", to: r, onClick: o, children: a, target: s, ...i}, c) => {
+        const f = {
             ...i,
-            ref: s,
-            href: e.href(r),
+            ref: c,
+            href: e.paramshref(r),
             onClick: t => {
                 try {
                     o && o(t);
                 } catch (e) {
                     throw t.preventDefault(), e;
                 }
-                t.defaultPrevented || 0 !== t.button || c && "_self" !== c || function(e) {
+                t.defaultPrevented || 0 !== t.button || s && "_self" !== s || function(e) {
                     return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
                 }(t) || (t.preventDefault(), function(e, t) {
                     if (!t) throw new TypeError(t);
-                    if ("function" == typeof t) return void e.transform(t);
-                    if ("object" == typeof t) return void e.set(t);
-                    throw new TypeError(t);
+                    if ("function" != typeof t) {
+                        if ("object" != typeof t) throw new TypeError(t);
+                        e.setparams(t);
+                    } else e.transformparams(t);
                 }(e, r));
             },
-            target: c
+            target: s
         };
-        return n(t, h, a);
+        return n(t, f, a);
     }));
 }, exports.createSearchRouter = function({routes: e = []} = {}) {
     return p({

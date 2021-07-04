@@ -1,13 +1,18 @@
 import type { Component } from '@vue/runtime-core';
-import type { ComponentType } from 'react';
+import { ComponentType } from 'react';
 import type { createElement } from 'react';
 import { EventEmitterTarget } from '@masx200/event-emitter-target';
 import type { forwardRef } from 'react';
-import type { ForwardRefExoticComponent } from 'react';
-import type { MouseEvent as MouseEvent_2 } from 'react';
-import type { RefAttributes } from 'react';
+import { ForwardRefExoticComponent } from 'react';
+import { MouseEvent as MouseEvent_2 } from 'react';
+import { RefAttributes } from 'react';
 
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
+
+export declare function createBaseRouter({ routes, type, }: {
+    routes: RouteRecord[];
+    type: "search" | "hash";
+}): EventEmitterTarget & RawRouter;
 
 export declare function createHashRouter({ routes, }?: {
     routes?: RouteRecord[];
@@ -23,6 +28,24 @@ export declare function createSearchRouter({ routes, }?: {
     routes?: RouteRecord[];
 }): Router;
 
+export declare function gethashhref(to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)): string;
+
+export declare function gethashparams(): {
+    [k: string]: string;
+};
+
+export declare type RawRouter = {
+    getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
+    mount: () => void;
+    unmount: () => void;
+    paramshref: typeof gethashhref;
+    setparams: typeof sethashparams;
+    getparams: typeof gethashparams;
+    transformparams: typeof transformhashparams;
+    [Symbol.toStringTag]: string;
+    routes: RouteRecord[];
+};
+
 export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
     [key: string]: any;
     component?: string | ComponentType<any> | undefined;
@@ -33,7 +56,7 @@ export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
 
 export declare interface RecordBase {
     name: string | symbol | undefined;
-    param: (opt: Record<string, string>) => boolean;
+    params: (opt: Record<string, string>) => boolean;
 }
 
 export declare interface RecordRedirect extends RecordBase {
@@ -44,19 +67,12 @@ export declare interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
 }
 
-export declare type Router = EventEmitterTarget & {
-    on: (event: "param" | "route" | "redirect", callback: (p: Record<string, any>) => void) => void;
-    off: (event: "param" | "route" | "redirect", callback: (p: Record<string, any>) => void) => void;
-    set: (opt: Record<string, string>) => void;
-    get: () => {
-        [k: string]: string;
-    };
-    transform: (opt: (old: Record<string, string>) => Record<string, string>) => void;
-    [Symbol.toStringTag]: string;
-    href(opt: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)): string;
-    routes: Array<RouteRecord>;
-};
+export declare type Router = ReturnType<typeof createBaseRouter>;
 
 export declare type RouteRecord = RecordRoute | RecordRedirect;
+
+export declare function sethashparams(opt: Record<string, string>): void;
+
+export declare function transformhashparams(opt: (old: Record<string, string>) => Record<string, string>): void;
 
 export { }

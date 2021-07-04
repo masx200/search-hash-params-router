@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 import type { Component } from "@vue/runtime-core";
 export interface RecordBase {
     name: string | symbol | undefined;
-    param: (opt: Record<string, string>) => boolean;
+    params: (opt: Record<string, string>) => boolean;
 }
 export interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
