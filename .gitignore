@@ -111,3 +111,4 @@ types/*/*/*.js
 types/*/*/*.jsx
 .vscode/settings.json
 types/
+package-lock.json
