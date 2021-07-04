@@ -39,20 +39,13 @@ https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ### What does the proposed API look like?
 
-
 The query parameters can be obtained from location.search or location.hash.
-
 
 The query parameters can be modified in the following ways.
 
-
-
 examples
 
-
 examples:
-
-
 
 The route matching method example is as follows:
 
@@ -62,7 +55,7 @@ const routes = [
         component: Home,
 
         params(o) {
-            return o.p="home";
+            return (o.p = "home");
         },
     },
     {
@@ -79,7 +72,12 @@ const routes = [
             return o.bar === "bar1";
         },
     },
-{params(o){return !o.p},redirect:{p:"home"}},
+    {
+        params(o) {
+            return !o.p;
+        },
+        redirect: { p: "home" },
+    },
     {
         component: NotFound,
 
@@ -91,5 +89,5 @@ const routes = [
 
 const hashrouter = createHashRouter();
 
-const searchrouter=createSearchRouter()
+const searchrouter = createSearchRouter();
 ```
