@@ -9,11 +9,6 @@ import { RefAttributes } from 'react';
 
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
 
-export declare function createBaseRouter({ routes, type, }: {
-    routes: RouteRecord[];
-    type: "search" | "hash";
-}): EventEmitterTarget & RawRouter;
-
 export declare function createHashRouter({ routes, }?: {
     routes?: RouteRecord[];
 }): Router;
@@ -63,7 +58,7 @@ export declare interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
 }
 
-export declare type Router = ReturnType<typeof createBaseRouter>;
+export declare type Router = EventEmitterTarget & RawRouter;
 
 export declare type RouteRecord = RecordRoute | RecordRedirect;
 

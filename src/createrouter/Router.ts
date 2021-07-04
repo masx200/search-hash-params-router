@@ -1,10 +1,6 @@
-import { RecordRoute, RecordRedirect, RouteRecord } from ".";
-import { createBaseRouter } from "./createbaserouter";
-import { gethashhref } from "./hashrouter/gethashhref";
-import { gethashparams } from "./hashrouter/gethashparams";
-import { sethashparams } from "./hashrouter/sethashparams";
-import { transformhashparams } from "./hashrouter/transformhashparams";
-export type Router = ReturnType<typeof createBaseRouter>;
+import { EventEmitterTarget } from "@masx200/event-emitter-target";
+import { RecordRedirect, RecordRoute, RouteRecord } from ".";
+export type Router = EventEmitterTarget & RawRouter;
 export type RawRouter = {
     getcurrentroute: () => RecordRoute | RecordRedirect | undefined;
     mount: () => void;

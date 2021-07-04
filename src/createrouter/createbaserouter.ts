@@ -20,13 +20,10 @@ import { setsearchparams } from "./searchrouter/setsearchparams"; //@ts-ignore
 import { transformsearchparams } from "./searchrouter/transformsearchparams";
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
 import { RawRouter } from "./Router";
-export function createBaseRouter({
-    routes = [],
-    type,
-}: {
-    routes: RouteRecord[];
-    type: "search" | "hash";
-}): EventEmitterTarget & RawRouter {
+export function createBaseRouter(
+    routes: RouteRecord[],
+    type: "search" | "hash"
+): EventEmitterTarget & RawRouter {
     const eventname = "search" === type ? "popstate" : "hashchange";
 
     const emitter: EventEmitterTarget = EventEmitterTargetClass();

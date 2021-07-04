@@ -145,7 +145,7 @@ function l(t) {
     u(t(f()));
 }
 
-function m({routes: t = [], type: e}) {
+function m(t, e) {
     const n = "search" === e ? "popstate" : "hashchange", r = o();
     let m, p;
     const w = () => {
@@ -181,17 +181,11 @@ function m({routes: t = [], type: e}) {
 }
 
 function p({routes: t = []} = {}) {
-    return m({
-        routes: t,
-        type: "hash"
-    });
+    return m(t, "hash");
 }
 
 function w({routes: t = []} = {}) {
-    return m({
-        routes: t,
-        type: "search"
-    });
+    return m(t, "search");
 }
 
 function y({router: t, forwardRef: e, createElement: n}) {

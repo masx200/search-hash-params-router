@@ -1,5 +1,5 @@
 //@ts-ignore
-import { createBaseRouter } from "../createbaserouter.ts";
+import { createBaseRouter } from "../createbaserouter";
 import { Router } from "../Router";
 import { RouteRecord } from "../RouteRecord";
 export function createHashRouter({
@@ -7,5 +7,5 @@ export function createHashRouter({
 }: {
     routes?: RouteRecord[];
 } = {}): Router {
-    return createBaseRouter({ routes, type: "hash" });
+    return createBaseRouter(routes, "hash");
 }

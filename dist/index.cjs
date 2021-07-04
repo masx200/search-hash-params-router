@@ -18,10 +18,10 @@ function r() {
         let t = r.get(e);
         return t || (t = new Set, r.set(e, t)), t;
     }
-    function s(e) {
+    function i(e) {
         t(e), r.has(e) && a(e).clear();
     }
-    function i(e, n) {
+    function s(e, n) {
         t(e), r.has(e) && a(e).forEach((e => {
             Promise.resolve().then((() => {
                 e(n);
@@ -52,25 +52,25 @@ function r() {
         listenerCount: function(e) {
             return t(e), r.has(e) ? a(e).size : 0;
         },
-        clear: s,
-        removeAllListeners: s,
+        clear: i,
+        removeAllListeners: i,
         on: c,
         addListener: c,
         off: h,
         removeListener: h,
         once: function(e, r) {
             t(e), n(r);
-            let a = !1, s = o.get(r);
-            if (!s) {
+            let a = !1, i = o.get(r);
+            if (!i) {
                 const t = n => {
                     f(e, t), f(e, r), a || (a = !0, r(n));
                 };
-                s = t, o.set(r, s);
+                i = t, o.set(r, i);
             }
-            f(e, r), c(e, s);
+            f(e, r), c(e, i);
         },
-        emit: i,
-        dispatch: i,
+        emit: s,
+        dispatch: s,
         eventNames: function() {
             return [ ...r.keys() ];
         },
@@ -97,7 +97,7 @@ function a() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function s(e) {
+function i(e) {
     if (!e) throw new TypeError(e);
     let t = a(), n = new URL(location.href);
     if ("function" == typeof e) return t = e(t), n.hash = String(new URLSearchParams({
@@ -109,7 +109,7 @@ function s(e) {
     throw new TypeError(e);
 }
 
-function i(e) {
+function s(e) {
     const t = location.hash;
     let n = new URL(location.href);
     n.hash = String(new URLSearchParams({
@@ -118,7 +118,7 @@ function i(e) {
 }
 
 function c(e) {
-    i(e(a()));
+    s(e(a()));
 }
 
 function f() {
@@ -149,7 +149,7 @@ function l(e) {
     u(e(f()));
 }
 
-function p({routes: e = [], type: t}) {
+function p(e, t) {
     const n = "search" === t ? "popstate" : "hashchange", r = o();
     let p, m;
     const w = () => {
@@ -173,8 +173,8 @@ function p({routes: e = [], type: t}) {
             unmount: function() {
                 window.removeEventListener(n, w), S.off("params", y);
             },
-            paramshref: "hash" === t ? s : h,
-            setparams: "hash" === t ? i : u,
+            paramshref: "hash" === t ? i : h,
+            setparams: "hash" === t ? s : u,
             getparams: "hash" === t ? a : f,
             transformparams: "hash" === t ? c : l,
             [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter",
@@ -185,14 +185,11 @@ function p({routes: e = [], type: t}) {
 }
 
 exports.createHashRouter = function({routes: e = []} = {}) {
-    return p({
-        routes: e,
-        type: "hash"
-    });
+    return p(e, "hash");
 }, exports.createReactLink = function({router: e, forwardRef: t, createElement: n}) {
-    return t((({component: t = "a", to: r, onClick: o, children: a, target: s, ...i}, c) => {
+    return t((({component: t = "a", to: r, onClick: o, children: a, target: i, ...s}, c) => {
         const f = {
-            ...i,
+            ...s,
             ref: c,
             href: e.paramshref(r),
             onClick: t => {
@@ -201,7 +198,7 @@ exports.createHashRouter = function({routes: e = []} = {}) {
                 } catch (e) {
                     throw t.preventDefault(), e;
                 }
-                t.defaultPrevented || 0 !== t.button || s && "_self" !== s || function(e) {
+                t.defaultPrevented || 0 !== t.button || i && "_self" !== i || function(e) {
                     return !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
                 }(t) || (t.preventDefault(), function(e, t) {
                     if (!t) throw new TypeError(t);
@@ -211,14 +208,11 @@ exports.createHashRouter = function({routes: e = []} = {}) {
                     } else e.transformparams(t);
                 }(e, r));
             },
-            target: s
+            target: i
         };
         return n(t, f, a);
     }));
 }, exports.createSearchRouter = function({routes: e = []} = {}) {
-    return p({
-        routes: e,
-        type: "search"
-    });
+    return p(e, "search");
 };
 //# sourceMappingURL=index.cjs.map
