@@ -5,7 +5,7 @@ import type {
     forwardRef as forwardRefType,
     createElement as createElementType,
 } from "react";
-import { navigate } from "./navigate";
+import { navigate } from "../navigate";
 import { ReactLinkComponent } from "./ReactLinkComponent";
 
 export function createReactLink({
@@ -42,6 +42,9 @@ export function createReactLink({
             },
             forwardedRef
         ) => {
+            if (!to) {
+                throw new TypeError(to);
+            }
             const href: string = router.paramshref(to);
             const newclick = (event: MouseEvent) => {
                 try {

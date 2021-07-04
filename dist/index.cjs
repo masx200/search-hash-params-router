@@ -154,7 +154,7 @@ var p = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof wi
 var v = function(t) {
     var e = typeof t;
     return null != t && ("object" == e || "function" == e);
-}, m = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, d = m || y || Function("return this")(), w = d, b = function() {
+}, y = "object" == typeof p && p && p.Object === Object && p, m = "object" == typeof self && self && self.Object === Object && self, d = y || m || Function("return this")(), w = d, b = function() {
     return w.Date.now();
 }, g = /\s/;
 
@@ -212,16 +212,16 @@ var J = function(t, e, n) {
         return r = o = void 0, u = e, a = t.apply(i, n);
     }
     function v(t) {
-        return u = t, c = setTimeout(y, e), s ? p(t) : a;
+        return u = t, c = setTimeout(m, e), s ? p(t) : a;
     }
-    function m(t) {
+    function y(t) {
         var n = t - f;
         return void 0 === f || n >= e || n < 0 || h && t - u >= i;
     }
-    function y() {
+    function m() {
         var t = z();
-        if (m(t)) return d(t);
-        c = setTimeout(y, function(t) {
+        if (y(t)) return d(t);
+        c = setTimeout(m, function(t) {
             var n = e - (t - f);
             return h ? G(n, i - (t - u)) : n;
         }(t));
@@ -230,12 +230,12 @@ var J = function(t, e, n) {
         return c = void 0, l && r ? p(t) : (r = o = void 0, a);
     }
     function w() {
-        var t = z(), n = m(t);
+        var t = z(), n = y(t);
         if (r = arguments, o = this, f = t, n) {
             if (void 0 === c) return v(f);
-            if (h) return clearTimeout(c), c = setTimeout(y, e), p(f);
+            if (h) return clearTimeout(c), c = setTimeout(m, e), p(f);
         }
-        return void 0 === c && (c = setTimeout(y, e)), a;
+        return void 0 === c && (c = setTimeout(m, e)), a;
     }
     return e = q(e) || 0, V(n) && (s = !!n.leading, i = (h = "maxWait" in n) ? B(q(n.maxWait) || 0, e) : i, 
     l = "trailing" in n ? !!n.trailing : l), w.cancel = function() {
@@ -273,6 +273,7 @@ exports.createHashRouter = function() {
     return Q("hash");
 }, exports.createReactLink = function({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, f) => {
+        if (!r) throw new TypeError(r);
         const u = {
             ...c,
             ref: f,

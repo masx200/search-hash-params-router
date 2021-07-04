@@ -150,8 +150,8 @@ var p = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof wi
 var v = function(t) {
     var e = typeof t;
     return null != t && ("object" == e || "function" == e);
-}, m = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, d = m || y || Function("return this")(), w = d, b = function() {
-    return w.Date.now();
+}, m = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, w = m || y || Function("return this")(), d = w, b = function() {
+    return d.Date.now();
 }, g = /\s/;
 
 var S = function(t) {
@@ -161,7 +161,7 @@ var S = function(t) {
 
 var T = function(t) {
     return t ? t.slice(0, S(t) + 1).replace(E, "") : t;
-}, j = d.Symbol, L = j, R = Object.prototype, O = R.hasOwnProperty, U = R.toString, P = L ? L.toStringTag : void 0;
+}, j = w.Symbol, L = j, R = Object.prototype, O = R.hasOwnProperty, U = R.toString, P = L ? L.toStringTag : void 0;
 
 var N = function(t) {
     var e = O.call(t, P), n = t[P];
@@ -216,16 +216,16 @@ var J = function(t, e, n) {
     }
     function y() {
         var t = _();
-        if (m(t)) return d(t);
+        if (m(t)) return w(t);
         c = setTimeout(y, function(t) {
             var n = e - (t - f);
             return h ? G(n, i - (t - u)) : n;
         }(t));
     }
-    function d(t) {
+    function w(t) {
         return c = void 0, l && r ? p(t) : (r = o = void 0, a);
     }
-    function w() {
+    function d() {
         var t = _(), n = m(t);
         if (r = arguments, o = this, f = t, n) {
             if (void 0 === c) return v(f);
@@ -234,11 +234,11 @@ var J = function(t, e, n) {
         return void 0 === c && (c = setTimeout(y, e)), a;
     }
     return e = q(e) || 0, H(n) && (s = !!n.leading, i = (h = "maxWait" in n) ? B(q(n.maxWait) || 0, e) : i, 
-    l = "trailing" in n ? !!n.trailing : l), w.cancel = function() {
+    l = "trailing" in n ? !!n.trailing : l), d.cancel = function() {
         void 0 !== c && clearTimeout(c), u = 0, r = f = o = c = void 0;
-    }, w.flush = function() {
-        return void 0 === c ? a : d(_());
-    }, w;
+    }, d.flush = function() {
+        return void 0 === c ? a : w(_());
+    }, d;
 };
 
 function Q(t) {
@@ -275,6 +275,7 @@ function Y() {
 
 function Z({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, f) => {
+        if (!r) throw new TypeError(r);
         const u = {
             ...c,
             ref: f,
