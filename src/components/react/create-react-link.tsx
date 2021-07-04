@@ -43,7 +43,7 @@ export function createReactLink({
             forwardedRef
         ) => {
             if (!to) {
-                throw new TypeError(to);
+                throw new TypeError("object,function");
             }
             const href: string = router.paramshref(to);
             const newclick = (event: MouseEvent) => {

@@ -1,0 +1,2 @@
+export { createVueLink };
+function createVueLink() {}

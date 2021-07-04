@@ -7,7 +7,7 @@ export function navigate(
         | ((old: Record<string, string>) => Record<string, string>)
 ) {
     if (!to) {
-        throw new TypeError(to);
+        throw new TypeError("object,function");
     }
     if ("function" === typeof to) {
         router.transformparams(to);
@@ -17,5 +17,5 @@ export function navigate(
         router.setparams(to);
         return;
     }
-    throw new TypeError(to);
+    throw new TypeError("object,function");
 }
