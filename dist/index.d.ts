@@ -1,25 +1,25 @@
-import { Component } from '@vue/runtime-core';
+import type { Component } from '@vue/runtime-core';
 import { ComponentType } from 'react';
-import { createElement } from 'react';
+import type { createElement } from 'react';
 import { EventEmitterTarget } from '@masx200/event-emitter-target';
-import { forwardRef } from 'react';
+import type { forwardRef } from 'react';
 import { ForwardRefExoticComponent } from 'react';
 import { MouseEvent as MouseEvent_2 } from 'react';
 import { RefAttributes } from 'react';
 
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
 
-export declare function createHashRouter({ routes }?: {
+export declare function createHashRouter({ routes, }?: {
     routes?: RouteRecord[] | (() => RouteRecord[]);
 }): Router;
 
-export declare function createReactLink({ router, forwardRef, createElement }: {
+export declare function createReactLink({ router, forwardRef, createElement, }: {
     router: Router;
     forwardRef: typeof forwardRef;
     createElement: typeof createElement;
 }): ReactLinkComponent;
 
-export declare function createSearchRouter({ routes }?: {
+export declare function createSearchRouter({ routes, }?: {
     routes?: RouteRecord[] | (() => RouteRecord[]);
 }): Router;
 

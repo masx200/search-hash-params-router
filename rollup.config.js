@@ -4,14 +4,26 @@ import ts from "rollup-plugin-ts";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
 import { defineConfig } from "rollup";
+const terserplugin = terser({
+    compress: {
+        ecma: 2015,
+        toplevel: true,
+        unused: true,
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ["console.log"],
+    },
+    module: true,
+    mangle: true,
+    output: { comments: false, beautify: true },
+});
 export default defineConfig([
     {
         input: "./src/index.ts",
-        output: {
-            sourcemap: "inline",
-            format: "esm",
-            file: "./types/index.js",
-        },
+        output: [
+            { sourcemap: true, file: "./dist/index.mjs", format: "esm" },
+            { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
+        ],
         plugins: [
             ts(),
             resolve(),
@@ -31,24 +43,6 @@ export default defineConfig([
                 ],
                 extensions: [".js", ".tsx"],
                 babelHelpers: "bundled",
-                presets: [],
-            }),
-        ],
-    },
-    {
-        input: "./types/index.js",
-        output: [
-            { sourcemap: true, file: "./dist/index.mjs", format: "esm" },
-            { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
-        ],
-        plugins: [
-            resolve(),
-            commonjs(),
-            babel({
-                sourceMaps: true,
-                plugins: [],
-                extensions: [".js"],
-                babelHelpers: "bundled",
                 presets: [
                     [
                         "@babel/preset-env",
@@ -63,19 +57,7 @@ export default defineConfig([
                     ],
                 ],
             }),
-            terser({
-                compress: {
-                    ecma: 2015,
-                    toplevel: true,
-                    unused: true,
-                    drop_console: true,
-                    drop_debugger: true,
-                    pure_funcs: ["console.log"],
-                },
-                module: true,
-                mangle: true,
-                output: { comments: false, beautify: true },
-            }),
+            terserplugin,
         ],
     },
 ]);
