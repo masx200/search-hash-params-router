@@ -27,7 +27,7 @@ function createReactView({
                 return isrouterecord(o);
             })
         ) {
-            throw new TypeError("object");
+            throw new TypeError('{params:"function"}');
         }
         const [params, setparams] = useState(router.getparams());
         const [currentroute, setcurrentroute] = useState(
