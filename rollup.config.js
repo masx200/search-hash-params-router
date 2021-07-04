@@ -67,7 +67,7 @@ export default [
                 },
                 module: true,
                 mangle: true,
-                output: { comments: false, beautify: true },
+                output: { comments: false, beautify: false },
             }),
         ],
     },
