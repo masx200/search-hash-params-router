@@ -18,5 +18,5 @@ export type RawRouter = {
         opt: (old: Record<string, string>) => Record<string, string>
     ) => void;
     [Symbol.toStringTag]: string;
-    routes: RouteRecord[];
+    getroutes: () => RouteRecord[];
 };

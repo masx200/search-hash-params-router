@@ -7,7 +7,7 @@ import { RouteRecord } from "../RouteRecord";
 export function createSearchRouter({
     routes = [],
 }: {
-    routes?: RouteRecord[];
+    routes?: RouteRecord[] | (() => RouteRecord[]);
 } = {}): Router {
     return createBaseRouter(routes, "search");
 }

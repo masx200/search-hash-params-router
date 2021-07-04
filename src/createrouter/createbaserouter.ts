@@ -20,27 +20,30 @@ import { setsearchparams } from "./searchrouter/setsearchparams"; //@ts-ignore
 import { transformsearchparams } from "./searchrouter/transformsearchparams";
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
 import { RawRouter } from "./Router";
+//@ts-ignore
+import debounce from "lodash/debounce";
 export function createBaseRouter(
-    routes: RouteRecord[],
+    routes: RouteRecord[] | (() => RouteRecord[]),
     type: "search" | "hash"
 ): EventEmitterTarget & RawRouter {
+    const getroutes = "function" === typeof routes ? routes : () => routes;
     const eventname = "search" === type ? "popstate" : "hashchange";
 
     const emitter: EventEmitterTarget = EventEmitterTargetClass();
     let lastroute: RecordRoute | RecordRedirect | undefined = undefined;
 
     let currentroute: RecordRoute | RecordRedirect | undefined = undefined;
-    const changelistener = () => {
+    const changelistener = debounce(() => {
         const params = "hash" === type ? gethashparams() : getsearchparams();
         instance.emit("params", params);
-    };
-    const onparamschange = (params: Record<string, string>) => {
-        currentroute = matchroute(routes, params);
+    });
+    const onparamschange = debounce((params: Record<string, string>) => {
+        currentroute = matchroute(getroutes(), params);
         if (lastroute !== currentroute) {
             instance.emit("route");
         }
         lastroute = currentroute;
-    };
+    });
     function mount() {
         window.addEventListener(eventname, changelistener);
 
@@ -69,7 +72,7 @@ export function createBaseRouter(
         transformparams:
             "hash" === type ? transformhashparams : transformsearchparams,
         [Symbol.toStringTag]: "search" === type ? "SearchRouter" : "HashRouter",
-        routes: routes,
+        getroutes: getroutes,
     };
 
     const instance = { ...emitter, ...router } as EventEmitterTarget &

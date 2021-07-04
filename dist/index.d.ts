@@ -10,7 +10,7 @@ import { RefAttributes } from 'react';
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
 
 export declare function createHashRouter({ routes, }?: {
-    routes?: RouteRecord[];
+    routes?: RouteRecord[] | (() => RouteRecord[]);
 }): Router;
 
 export declare function createReactLink({ router, forwardRef, createElement, }: {
@@ -20,7 +20,7 @@ export declare function createReactLink({ router, forwardRef, createElement, }: 
 }): ReactLinkComponent;
 
 export declare function createSearchRouter({ routes, }?: {
-    routes?: RouteRecord[];
+    routes?: RouteRecord[] | (() => RouteRecord[]);
 }): Router;
 
 export declare type RawRouter = {
@@ -34,7 +34,7 @@ export declare type RawRouter = {
     };
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
-    routes: RouteRecord[];
+    getroutes: () => RouteRecord[];
 };
 
 export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
