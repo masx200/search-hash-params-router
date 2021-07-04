@@ -41,7 +41,7 @@ export default defineConfig([
                         },
                     ],
                 ],
-                extensions: [".js", ".tsx"],
+                extensions: [".js", ".tsx", ".ts"],
                 babelHelpers: "bundled",
                 presets: [
                     [
