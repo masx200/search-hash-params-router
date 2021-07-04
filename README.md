@@ -33,9 +33,6 @@ E.g
 https://nodejs.org/en/?foo=bar&baz=123
 
 
-
-https://nodejs.org/en/?qqq=1&www=111
-
 https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ```
@@ -92,7 +89,5 @@ const routes = [
     },
 ];
 
-const router = new ParamsRouter({
-    routes,
-});
+const router = createHashRouter();
 ```
