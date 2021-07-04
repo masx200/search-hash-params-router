@@ -39,8 +39,11 @@ export function createBaseRouter(
     });
     const onparamschange = debounce((params: Record<string, string>) => {
         currentroute = matchroute(getroutes(), params);
+        if (!currentroute) {
+            return;
+        }
         if (lastroute !== currentroute) {
-            instance.emit("route");
+            instance.emit("route", currentroute);
         }
         lastroute = currentroute;
     });

@@ -250,7 +250,7 @@ function Q(t, e) {
     })), d = J((t => {
         v = function(t, e) {
             for (let n of t) if (n.params(e)) return n;
-        }(n(), t), m !== v && w.emit("route"), m = v;
+        }(n(), t), v && (m !== v && w.emit("route", v), m = v);
     }));
     const w = {
         ...p,
