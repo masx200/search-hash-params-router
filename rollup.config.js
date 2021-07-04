@@ -3,16 +3,22 @@ import commonjs from "@rollup/plugin-commonjs";
 import ts from "rollup-plugin-typescript2";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
-export default [
+import { defineConfig } from "rollup";
+export default defineConfig([
     {
         input: "./src/index.ts",
-        output: { sourcemap: true, format: "esm", file: "./types/index.js" },
+        output: {
+            sourcemap: "inline",
+            format: "esm",
+            file: "./types/index.js",
+        },
         plugins: [
             ts(),
             resolve(),
             commonjs(),
 
             babel({
+                sourceMaps: true,
                 plugins: [
                     [
                         "@babel/plugin-transform-react-jsx",
@@ -39,6 +45,7 @@ export default [
             resolve(),
             commonjs(),
             babel({
+                sourceMaps: true,
                 plugins: [],
                 extensions: [".js"],
                 babelHelpers: "bundled",
@@ -71,4 +78,4 @@ export default [
             }),
         ],
     },
-];
+]);
