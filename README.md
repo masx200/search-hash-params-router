@@ -42,102 +42,20 @@ https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ### What does the proposed API look like?
 
-```js
-const changelistener = () => {
-    let hashparams = gethashparams();
-    let searchparams = getsearchparams();
-    console.log("hash params", hashparams);
-    console.log("search params", searchparams);
-};
-
-window.addEventListener("popstate", changelistener);
-
-window.addEventListener("hashchange", changelistener);
-
-function assign(opt) {
-    let params = getsearchparams();
-    setsearchparams(Object.assign(params, opt));
-}
-
-function replace(opt) {
-    setsearchparams(opt);
-}
-
-replace({ qqq: 1 });
-
-assign({ www: 111 });
-
-assign({ foo: "bar" });
-```
 
 The query parameters can be obtained from location.search or location.hash.
 
-```js
-function gethashparams() {
-    return (
-        location.hash &&
-        Object.fromEntries(new URLSearchParams(location.hash.slice(1)))
-    );
-}
-function getsearchparams() {
-    return (
-        location.search &&
-        Object.fromEntries(new URL(location.href).searchParams)
-    );
-}
-```
 
 The query parameters can be modified in the following ways.
 
-```js
-function setsearchparams(opt) {
-    let url = new URL(location.href);
 
-    url.search = String(new URLSearchParams({ ...opt }));
-    history.pushState(null, null, url.href);
-
-    window.dispatchEvent(new Event("popstate"));
-}
-
-function sethashparams(opt) {
-    let url = new URL(location.href);
-
-    url.hash = String(new URLSearchParams({ ...opt }));
-    history.pushState(null, null, url.href);
-
-    window.dispatchEvent(new Event("hashchange"));
-}
-```
 
 examples
 
-```txt
-
-location.href
-
-"https://jspang.com/detailed?id=54"
-
-getsearchparams()
-
-{id: "54"}
-
-
-```
 
 examples:
 
-```txt
 
-location.href
-
-"https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en"
-
-
-gethashparams()
-
-{view: "home", op: "translate", sl: "zh-CN", tl: "en"}
-
-```
 
 The route matching method example is as follows:
 
