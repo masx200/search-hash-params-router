@@ -61,29 +61,29 @@ const routes = [
     {
         component: Home,
 
-        filter({ hash, search }) {
-            return hash === "" && search === "";
+        params(o) {
+            return o.p="/";
         },
     },
     {
         component: Foo,
 
-        filter({ hash, search }) {
-            return search.foo === "foo1";
+        params(o) {
+            return o.foo === "foo1";
         },
     },
     {
         component: Bar,
 
-        filter({ hash, search }) {
-            return hash.bar === "bar1";
+        params(o) {
+            return o.bar === "bar1";
         },
     },
 
     {
         component: NotFound,
 
-        filter() {
+        params() {
             return true;
         },
     },
