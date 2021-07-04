@@ -79,7 +79,7 @@ const routes = [
             return o.bar === "bar1";
         },
     },
-{params(){},redirect:{p:"home"}},
+{params(o){return !o.p},redirect:{p:"home"}},
     {
         component: NotFound,
 
