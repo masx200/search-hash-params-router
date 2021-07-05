@@ -7,7 +7,7 @@ import type {
 } from "react";
 import { navigate } from "../navigate";
 import { ReactLinkComponent } from "./ReactLinkComponent";
-
+export type { ReactLinkComponent };
 export function createReactLink({
     router,
     forwardRef,
