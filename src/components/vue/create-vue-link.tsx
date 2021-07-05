@@ -40,6 +40,11 @@ resolveComponent:typeof resolveComponentType,
                     target,
                     innerRef:forwardedRef,
                 } = props;
+
+
+
+
+
                 if (!to) {
                     throw new TypeError("object,function");
                 }
@@ -73,7 +78,14 @@ const props = {
                 onClick: newclick,
                 target,
             };
-            return <Component {...props}>{children}</Component>;
+
+
+const Resolvedcomponent="string"===typeof Component?resolveComponent(Component):Component
+
+
+
+
+            return <Resolvedcomponent {...props}>{children}</Resolvedcomponent>;
                 
             };
         },
