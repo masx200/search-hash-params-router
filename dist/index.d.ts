@@ -1,11 +1,15 @@
 import type { Component } from '@vue/runtime-core';
-import { ComponentType } from 'react';
+import type { ComponentType } from 'react';
 import type { createElement } from 'react';
 import { EventEmitterTarget } from '@masx200/event-emitter-target';
+import type { FC } from 'react';
 import type { forwardRef } from 'react';
-import { ForwardRefExoticComponent } from 'react';
-import { MouseEvent as MouseEvent_2 } from 'react';
-import { RefAttributes } from 'react';
+import type { ForwardRefExoticComponent } from 'react';
+import type { MouseEvent as MouseEvent_2 } from 'react';
+import type { RefAttributes } from 'react';
+import type { useCallback } from 'react';
+import type { useEffect } from 'react';
+import type { useState } from 'react';
 
 export declare type ComponentReactOrVue = ComponentType<any> | Component;
 
@@ -17,7 +21,25 @@ export declare function createReactLink({ router, forwardRef, createElement, }: 
     createElement: typeof createElement;
 }): ReactLinkComponent;
 
+export declare function createReactView({ router, useCallback, createElement, useState, useEffect, }: {
+    router: Router;
+    useCallback: typeof useCallback;
+    createElement: typeof createElement;
+    useState: typeof useState;
+    useEffect: typeof useEffect;
+}): FC<{
+    routes: RouteRecord[];
+}>;
+
 export declare function createSearchRouter(): Router;
+
+export declare function createVueLink(): void;
+
+export declare function createVueView(): void;
+
+export declare function isRecordRedirect(o: any): o is RecordRedirect;
+
+export declare function isRecordRoute(o: any): o is RecordRoute;
 
 export declare type RawRouter = {
     mount: () => void;
@@ -50,6 +72,8 @@ export declare interface RecordRedirect extends RecordBase {
 
 export declare interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
+    props?: Record<string, any>;
+    children?: Array<any>;
 }
 
 export declare type Router = EventEmitterTarget & RawRouter;

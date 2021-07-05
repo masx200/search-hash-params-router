@@ -41,14 +41,14 @@ function r() {
             r && n.delete(r);
         }(t, r);
     }
-    function h() {
+    function l() {
         return [ ...r ].map((([t, e]) => [ t, [ ...e ] ]))[Symbol.iterator]();
     }
     return {
         [Symbol.toPrimitive]: t,
         [Symbol.toStringTag]: "EventEmitterTarget",
-        [Symbol.iterator]: h,
-        entries: h,
+        [Symbol.iterator]: l,
+        entries: l,
         listenerCount: function(t) {
             return e(t), r.has(t) ? i(t).size : 0;
         },
@@ -89,13 +89,109 @@ const o = (t => {
     return Reflect.set(o, e, n), o;
 })();
 
-function i() {
+var i = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
+
+var a = function(t) {
+    var e = typeof t;
+    return null != t && ("object" == e || "function" == e);
+}, c = "object" == typeof i && i && i.Object === Object && i, f = "object" == typeof self && self && self.Object === Object && self, u = c || f || Function("return this")(), s = u, l = function() {
+    return s.Date.now();
+}, h = /\s/;
+
+var p = function(t) {
+    for (var e = t.length; e-- && h.test(t.charAt(e)); ) ;
+    return e;
+}, m = /^\s+/;
+
+var y = function(t) {
+    return t ? t.slice(0, p(t) + 1).replace(m, "") : t;
+}, v = u.Symbol, d = v, w = Object.prototype, b = w.hasOwnProperty, g = w.toString, E = d ? d.toStringTag : void 0;
+
+var S = function(t) {
+    var e = b.call(t, E), n = t[E];
+    try {
+        t[E] = void 0;
+        var r = !0;
+    } catch (t) {}
+    var o = g.call(t);
+    return r && (e ? t[E] = n : delete t[E]), o;
+}, T = Object.prototype.toString;
+
+var j = S, L = function(t) {
+    return T.call(t);
+}, R = v ? v.toStringTag : void 0;
+
+var O = function(t) {
+    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : R && R in Object(t) ? j(t) : L(t);
+}, U = function(t) {
+    return null != t && "object" == typeof t;
+};
+
+var P = y, N = a, x = function(t) {
+    return "symbol" == typeof t || U(t) && "[object Symbol]" == O(t);
+}, k = /^[-+]0x[0-9a-f]+$/i, A = /^0b[01]+$/i, M = /^0o[0-7]+$/i, C = parseInt;
+
+var K = a, D = l, W = function(t) {
+    if ("number" == typeof t) return t;
+    if (x(t)) return NaN;
+    if (N(t)) {
+        var e = "function" == typeof t.valueOf ? t.valueOf() : t;
+        t = N(e) ? e + "" : e;
+    }
+    if ("string" != typeof t) return 0 === t ? t : +t;
+    t = P(t);
+    var n = A.test(t);
+    return n || M.test(t) ? C(t.slice(2), n ? 2 : 8) : k.test(t) ? NaN : +t;
+}, $ = Math.max, F = Math.min;
+
+var I = function(t, e, n) {
+    var r, o, i, a, c, f, u = 0, s = !1, l = !1, h = !0;
+    if ("function" != typeof t) throw new TypeError("Expected a function");
+    function p(e) {
+        var n = r, i = o;
+        return r = o = void 0, u = e, a = t.apply(i, n);
+    }
+    function m(t) {
+        return u = t, c = setTimeout(v, e), s ? p(t) : a;
+    }
+    function y(t) {
+        var n = t - f;
+        return void 0 === f || n >= e || n < 0 || l && t - u >= i;
+    }
+    function v() {
+        var t = D();
+        if (y(t)) return d(t);
+        c = setTimeout(v, function(t) {
+            var n = e - (t - f);
+            return l ? F(n, i - (t - u)) : n;
+        }(t));
+    }
+    function d(t) {
+        return c = void 0, h && r ? p(t) : (r = o = void 0, a);
+    }
+    function w() {
+        var t = D(), n = y(t);
+        if (r = arguments, o = this, f = t, n) {
+            if (void 0 === c) return m(f);
+            if (l) return clearTimeout(c), c = setTimeout(v, e), p(f);
+        }
+        return void 0 === c && (c = setTimeout(v, e)), a;
+    }
+    return e = W(e) || 0, K(n) && (s = !!n.leading, i = (l = "maxWait" in n) ? $(W(n.maxWait) || 0, e) : i, 
+    h = "trailing" in n ? !!n.trailing : h), w.cancel = function() {
+        void 0 !== c && clearTimeout(c), u = 0, r = f = o = c = void 0;
+    }, w.flush = function() {
+        return void 0 === c ? a : d(D());
+    }, w;
+};
+
+function V() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function a(t) {
+function z(t) {
     if (!t) throw new TypeError(t);
-    let e = i(), n = new URL(location.href);
+    let e = V(), n = new URL(location.href);
     if ("function" == typeof t) return e = t(e), n.hash = String(new URLSearchParams({
         ...t
     })), n.href;
@@ -105,7 +201,7 @@ function a(t) {
     throw new TypeError(t);
 }
 
-function c(t) {
+function H(t) {
     const e = location.hash;
     let n = new URL(location.href);
     n.hash = String(new URLSearchParams({
@@ -113,17 +209,17 @@ function c(t) {
     })), e !== n.hash && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("hashchange")));
 }
 
-function f(t) {
-    c(t(i()));
+function _(t) {
+    H(t(V()));
 }
 
-function u() {
+function q() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function s(t) {
+function B(t) {
     if (!t) throw new TypeError(t);
-    let e = u(), n = new URL(location.href);
+    let e = q(), n = new URL(location.href);
     if ("function" == typeof t) return e = t(e), n.search = String(new URLSearchParams({
         ...t
     })), n.href;
@@ -133,7 +229,7 @@ function s(t) {
     throw new TypeError(t);
 }
 
-function h(t) {
+function G(t) {
     const e = location.search;
     let n = new URL(location.href);
     n.search = String(new URLSearchParams({
@@ -141,128 +237,33 @@ function h(t) {
     })), e !== n.search && (history.pushState({}, "", n.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function l(t) {
-    h(t(u()));
+function J(t) {
+    G(t(q()));
 }
 
-var p = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
-
-var v = function(t) {
-    var e = typeof t;
-    return null != t && ("object" == e || "function" == e);
-}, m = "object" == typeof p && p && p.Object === Object && p, y = "object" == typeof self && self && self.Object === Object && self, w = m || y || Function("return this")(), d = w, b = function() {
-    return d.Date.now();
-}, g = /\s/;
-
-var S = function(t) {
-    for (var e = t.length; e-- && g.test(t.charAt(e)); ) ;
-    return e;
-}, E = /^\s+/;
-
-var T = function(t) {
-    return t ? t.slice(0, S(t) + 1).replace(E, "") : t;
-}, j = w.Symbol, L = j, R = Object.prototype, O = R.hasOwnProperty, U = R.toString, P = L ? L.toStringTag : void 0;
-
-var N = function(t) {
-    var e = O.call(t, P), n = t[P];
-    try {
-        t[P] = void 0;
-        var r = !0;
-    } catch (t) {}
-    var o = U.call(t);
-    return r && (e ? t[P] = n : delete t[P]), o;
-}, x = Object.prototype.toString;
-
-var M = N, k = function(t) {
-    return x.call(t);
-}, K = j ? j.toStringTag : void 0;
-
-var A = function(t) {
-    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : K && K in Object(t) ? M(t) : k(t);
-}, C = function(t) {
-    return null != t && "object" == typeof t;
-};
-
-var D = T, W = v, $ = function(t) {
-    return "symbol" == typeof t || C(t) && "[object Symbol]" == A(t);
-}, F = /^[-+]0x[0-9a-f]+$/i, I = /^0b[01]+$/i, V = /^0o[0-7]+$/i, z = parseInt;
-
-var H = v, _ = b, q = function(t) {
-    if ("number" == typeof t) return t;
-    if ($(t)) return NaN;
-    if (W(t)) {
-        var e = "function" == typeof t.valueOf ? t.valueOf() : t;
-        t = W(e) ? e + "" : e;
-    }
-    if ("string" != typeof t) return 0 === t ? t : +t;
-    t = D(t);
-    var n = I.test(t);
-    return n || V.test(t) ? z(t.slice(2), n ? 2 : 8) : F.test(t) ? NaN : +t;
-}, B = Math.max, G = Math.min;
-
-var J = function(t, e, n) {
-    var r, o, i, a, c, f, u = 0, s = !1, h = !1, l = !0;
-    if ("function" != typeof t) throw new TypeError("Expected a function");
-    function p(e) {
-        var n = r, i = o;
-        return r = o = void 0, u = e, a = t.apply(i, n);
-    }
-    function v(t) {
-        return u = t, c = setTimeout(y, e), s ? p(t) : a;
-    }
-    function m(t) {
-        var n = t - f;
-        return void 0 === f || n >= e || n < 0 || h && t - u >= i;
-    }
-    function y() {
-        var t = _();
-        if (m(t)) return w(t);
-        c = setTimeout(y, function(t) {
-            var n = e - (t - f);
-            return h ? G(n, i - (t - u)) : n;
-        }(t));
-    }
-    function w(t) {
-        return c = void 0, l && r ? p(t) : (r = o = void 0, a);
-    }
-    function d() {
-        var t = _(), n = m(t);
-        if (r = arguments, o = this, f = t, n) {
-            if (void 0 === c) return v(f);
-            if (h) return clearTimeout(c), c = setTimeout(y, e), p(f);
-        }
-        return void 0 === c && (c = setTimeout(y, e)), a;
-    }
-    return e = q(e) || 0, H(n) && (s = !!n.leading, i = (h = "maxWait" in n) ? B(q(n.maxWait) || 0, e) : i, 
-    l = "trailing" in n ? !!n.trailing : l), d.cancel = function() {
-        void 0 !== c && clearTimeout(c), u = 0, r = f = o = c = void 0;
-    }, d.flush = function() {
-        return void 0 === c ? a : w(_());
-    }, d;
-};
-
 function Q(t) {
-    const e = "search" === t ? "popstate" : "hashchange", n = o(), r = J((() => {
-        const e = "hash" === t ? i() : u();
-        p.emit("params", e);
+    let e = 0;
+    const n = "search" === t ? "popstate" : "hashchange", r = o(), i = I((() => {
+        const e = "hash" === t ? V() : q();
+        a.emit("params", e);
     }));
-    const p = {
-        ...n,
+    const a = {
+        ...r,
         ...{
             mount: function() {
-                window.addEventListener(e, r), r();
+                window.addEventListener(n, i), i(), e++;
             },
             unmount: function() {
-                window.removeEventListener(e, r);
+                e--, e <= 0 && window.removeEventListener(n, i);
             },
-            paramshref: "hash" === t ? a : s,
-            setparams: "hash" === t ? c : h,
-            getparams: "hash" === t ? i : u,
-            transformparams: "hash" === t ? f : l,
+            paramshref: "hash" === t ? z : B,
+            setparams: "hash" === t ? H : G,
+            getparams: "hash" === t ? V : q,
+            transformparams: "hash" === t ? _ : J,
             [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter"
         }
     };
-    return p;
+    return a;
 }
 
 function X() {
@@ -273,9 +274,25 @@ function Y() {
     return Q("search");
 }
 
-function Z({router: t, forwardRef: e, createElement: n}) {
+function Z(t) {
+    return "function" == typeof (null == t ? void 0 : t.params) && (null == t ? void 0 : t.component);
+}
+
+function tt(t) {
+    return "function" == typeof (null == t ? void 0 : t.params) && (null == t ? void 0 : t.redirect);
+}
+
+function et(t, e) {
+    if (!e) throw new TypeError("object,function");
+    if ("function" != typeof e) {
+        if ("object" != typeof e) throw new TypeError("object,function");
+        t.setparams(e);
+    } else t.transformparams(e);
+}
+
+function nt({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, f) => {
-        if (!r) throw new TypeError(r);
+        if (!r) throw new TypeError("object,function");
         const u = {
             ...c,
             ref: f,
@@ -288,13 +305,7 @@ function Z({router: t, forwardRef: e, createElement: n}) {
                 }
                 e.defaultPrevented || 0 !== e.button || a && "_self" !== a || function(t) {
                     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
-                }(e) || (e.preventDefault(), function(t, e) {
-                    if (!e) throw new TypeError(e);
-                    if ("function" != typeof e) {
-                        if ("object" != typeof e) throw new TypeError(e);
-                        t.setparams(e);
-                    } else t.transformparams(e);
-                }(t, r));
+                }(e) || (e.preventDefault(), et(t, r));
             },
             target: a
         };
@@ -302,5 +313,43 @@ function Z({router: t, forwardRef: e, createElement: n}) {
     }));
 }
 
-export { X as createHashRouter, Z as createReactLink, Y as createSearchRouter };
+function rt(t, e) {
+    for (let n of t) if (n.params(e)) return n;
+}
+
+function ot({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
+    return ({routes: i}) => {
+        if (!Array.isArray(i)) throw new TypeError("array");
+        if (!i.every((t => function(t) {
+            return !(!t || "object" != typeof t || "function" != typeof t.params);
+        }(t)))) throw new TypeError('{params:"function"}');
+        const [a, c] = r(t.getparams()), [f, u] = r(rt(i, a)), s = e(I((t => {
+            c(t);
+        })), []);
+        function l() {
+            t.unmount(), t.off("params", s);
+        }
+        if (o((() => {
+            u(rt(i, a));
+        }), [ i, a ]), o((() => {
+            if (tt(f)) {
+                const e = f.redirect;
+                et(t, e);
+            }
+        }), [ f ]), o((() => (t.mount(), t.on("params", s), l)), []), tt(f)) return null;
+        if (Z(f)) {
+            const t = f.component, e = f.children, r = f.props || {};
+            return Object.assign(r, {
+                params: a
+            }), n(t, r, " ", e);
+        }
+        return null;
+    };
+}
+
+function it() {}
+
+function at() {}
+
+export { X as createHashRouter, nt as createReactLink, ot as createReactView, Y as createSearchRouter, it as createVueLink, at as createVueView, tt as isRecordRedirect, Z as isRecordRoute };
 //# sourceMappingURL=index.mjs.map

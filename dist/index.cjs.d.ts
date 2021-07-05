@@ -1,7 +1,10 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
-import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent } from "react";
+import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, FC } from "react";
 import { forwardRef as forwardRefType } from "react";
 import { createElement as createElementType } from "react";
+import { useCallback as useCallbackType } from "react";
+import { useState as useStateType } from "react";
+import { useEffect as useEffectType } from "react";
 import { Component } from "@vue/runtime-core";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
@@ -23,12 +26,16 @@ interface RecordBase {
 }
 interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
+    props?: Record<string, any>;
+    children?: Array<any>;
 }
 interface RecordRedirect extends RecordBase {
     redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
+declare function isRecordRoute(o: any): o is RecordRoute;
+declare function isRecordRedirect(o: any): o is RecordRedirect;
 type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
     [key: string]: any;
     component?: string | ComponentType<any> | undefined;
@@ -41,4 +48,15 @@ declare function createReactLink({ router, forwardRef, createElement }: {
     forwardRef: typeof forwardRefType;
     createElement: typeof createElementType;
 }): ReactLinkComponent;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createReactLink, ReactLinkComponent };
+declare function createReactView({ router, useCallback, createElement, useState, useEffect }: {
+    router: Router;
+    useCallback: typeof useCallbackType;
+    createElement: typeof createElementType;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
+}): FC<{
+    routes: RouteRecord[];
+}>;
+declare function createVueLink(): void;
+declare function createVueView(): void;
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, isRecordRoute, isRecordRedirect, createReactLink, createReactView, createVueLink, createVueView, ReactLinkComponent };

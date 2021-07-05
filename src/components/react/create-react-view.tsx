@@ -9,8 +9,13 @@ import type {
     createElement as createElementType,
     useState as useStateType,
     useEffect as useEffectType,
+    ComponentType,
 } from "react";
-import { RouteRecord } from "../../createrouter";
+import {
+    isRecordRedirect,
+    isRecordRoute,
+    RouteRecord,
+} from "../../createrouter";
 export { createReactView };
 function createReactView({
     router,
@@ -61,12 +66,12 @@ function createReactView({
         }, [routes, params]);
 
         useEffect(() => {
-            if (currentroute?.redirect) {
+            if (isRecordRedirect(currentroute)) {
                 const redirect = currentroute.redirect;
 
                 navigate(router, redirect);
             }
-        }, [currentroute?.redirect]);
+        }, [currentroute]);
         function onmount() {
             router.mount();
             router.on("params", paramschange);
@@ -83,11 +88,11 @@ function createReactView({
             return onunmount;
         }, []);
 
-        if (currentroute?.redirect) {
+        if (isRecordRedirect(currentroute)) {
             return null;
         }
-        if (currentroute?.component) {
-            const Component = currentroute.component;
+        if (isRecordRoute(currentroute)) {
+            const Component = currentroute.component as ComponentType<any>;
 
             const children = currentroute.children;
 
