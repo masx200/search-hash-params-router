@@ -1,43 +1,13 @@
-import type { Component } from '@vue/runtime-core';
-import type { ComponentType } from 'react';
-import type { createElement } from 'react';
-import { EventEmitterTarget } from '@masx200/event-emitter-target';
-import type { FC } from 'react';
-import type { forwardRef } from 'react';
-import type { ForwardRefExoticComponent } from 'react';
-import type { MouseEvent as MouseEvent_2 } from 'react';
-import type { RefAttributes } from 'react';
-import type { useCallback } from 'react';
-import type { useEffect } from 'react';
-import type { useState } from 'react';
-
-export declare type ComponentReactOrVue = ComponentType<any> | Component;
-
-export declare function createHashRouter(): Router;
-
-export declare function createReactLink({ router, forwardRef, createElement, }: {
-    router: Router;
-    forwardRef: typeof forwardRef;
-    createElement: typeof createElement;
-}): ReactLinkComponent;
-
-export declare function createReactView({ router, useCallback, createElement, useState, useEffect, }: {
-    router: Router;
-    useCallback: typeof useCallback;
-    createElement: typeof createElement;
-    useState: typeof useState;
-    useEffect: typeof useEffect;
-}): FC<{
-    routes: RouteRecord[];
-}>;
-
-export declare function createSearchRouter(): Router;
-
-export declare function createVueLink(): void;
-
-export declare function createVueView(): void;
-
-export declare type RawRouter = {
+import { EventEmitterTarget } from "@masx200/event-emitter-target";
+import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, PropsWithChildren, FC } from "react";
+import { forwardRef as forwardRefType } from "react";
+import { createElement as createElementType } from "react";
+import { useCallback as useCallbackType } from "react";
+import { useState as useStateType } from "react";
+import { useEffect as useEffectType } from "react";
+import { Component } from "@vue/runtime-core";
+type Router = EventEmitterTarget & RawRouter;
+type RawRouter = {
     mount: () => void;
     unmount: () => void;
     paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
@@ -48,32 +18,43 @@ export declare type RawRouter = {
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
 };
-
-export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
-    [key: string]: any;
-    component?: string | ComponentType<any> | undefined;
-    target?: string | undefined;
-    onClick?: ((event: MouseEvent_2) => void) | undefined;
-    to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
-}, string | number> & RefAttributes<unknown>>;
-
-export declare interface RecordBase {
+declare function createHashRouter(): Router;
+declare function createSearchRouter(): Router;
+interface RecordBase {
     name?: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
 }
-
-export declare interface RecordRedirect extends RecordBase {
-    redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
-}
-
-export declare interface RecordRoute extends RecordBase {
+interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue;
     props?: Record<string, any>;
     children?: Array<any>;
 }
-
-export declare type Router = EventEmitterTarget & RawRouter;
-
-export declare type RouteRecord = RecordRoute | RecordRedirect;
-
-export { }
+interface RecordRedirect extends RecordBase {
+    redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
+}
+type RouteRecord = RecordRoute | RecordRedirect;
+type ComponentReactOrVue = ComponentType<any> | Component;
+declare function matchroute(routes: RouteRecord[], params: Record<string, string>): RouteRecord | undefined;
+type ReactLinkComponent = ForwardRefExoticComponent<PropsWithChildren<{
+    component?: string | ComponentType<any> | undefined;
+    target?: string | undefined;
+    onClick?: ((event: MouseEvent) => void) | undefined;
+    to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
+}> & RefAttributes<unknown>>;
+declare function createReactLink({ router, forwardRef, createElement }: {
+    router: Router;
+    forwardRef: typeof forwardRefType;
+    createElement: typeof createElementType;
+}): ReactLinkComponent;
+declare function createReactView({ router, useCallback, createElement, useState, useEffect }: {
+    router: Router;
+    useCallback: typeof useCallbackType;
+    createElement: typeof createElementType;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
+}): FC<{
+    routes: RouteRecord[];
+}>;
+declare function createVueLink(): void;
+declare function createVueView(): void;
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, createReactLink, createReactView, createVueLink, createVueView, ReactLinkComponent };

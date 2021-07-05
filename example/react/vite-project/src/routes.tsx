@@ -66,11 +66,15 @@ function NotFound() {
 function Foo() {
     return <h1>foo</h1>;
 }
-function Bar({ msg }: React.PropsWithChildren<{ msg: string }>) {
+function Bar({
+    msg,
+    params,
+}: React.PropsWithChildren<{ msg: string; params: any }>) {
     return (
         <div>
             <h1>bar</h1>
             <div>{msg}</div>
+            <div>{JSON.stringify(params)}</div>
         </div>
     );
 }

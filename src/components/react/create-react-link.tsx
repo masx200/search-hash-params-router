@@ -27,19 +27,10 @@ export function createReactLink({
             to:
                 | Record<string, string>
                 | ((old: Record<string, string>) => Record<string, string>);
-
-            [key: string]: any;
         }
     >(
         (
-            {
-                component: Component = "a",
-                to,
-                onClick,
-                children,
-                target,
-                ...rest
-            },
+            { component: Component = "a", to, onClick, children, target },
             forwardedRef
         ) => {
             if (!to) {
@@ -70,7 +61,6 @@ export function createReactLink({
                 }
             };
             const props = {
-                ...rest,
                 ref: forwardedRef,
                 href,
                 onClick: newclick,

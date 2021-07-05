@@ -37,6 +37,12 @@ https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ```
 
+## install
+
+```shell
+pnpm  add @masx200/search-hash-params-router
+```
+
 ### What does the proposed API look like?
 
 Typescript declaration:
@@ -54,6 +60,15 @@ examples
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
 ## examples:
+
+```js
+import {
+    createHashRouter,
+    createSearchRouter,
+    createReactView,
+    createReactLink,
+} from "@masx200/search-hash-params-router";
+```
 
 ```ts
 const routes = [
@@ -108,10 +123,33 @@ const routes = [
 ];
 ```
 
+```tsx
+function Bar({
+    msg,
+    params,
+}: React.PropsWithChildren<{ msg: string; params: any }>) {
+    return (
+        <div>
+            <h1>bar</h1>
+            <div>{msg}</div>
+            <div>{JSON.stringify(params)}</div>
+        </div>
+    );
+}
+```
+
 ```js
 const hashrouter = createHashRouter();
 
 const searchrouter = createSearchRouter();
+```
+
+```js
+searchrouter.on("params", (p) => {
+    console.log(p);
+
+    console.log(matchroute(routes, p));
+});
 ```
 
 ```js

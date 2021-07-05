@@ -1,5 +1,5 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
-import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, FC } from "react";
+import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, PropsWithChildren, FC } from "react";
 import { forwardRef as forwardRefType } from "react";
 import { createElement as createElementType } from "react";
 import { useCallback as useCallbackType } from "react";
@@ -21,7 +21,7 @@ type RawRouter = {
 declare function createHashRouter(): Router;
 declare function createSearchRouter(): Router;
 interface RecordBase {
-    name: string | symbol | undefined;
+    name?: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
 }
 interface RecordRoute extends RecordBase {
@@ -34,13 +34,13 @@ interface RecordRedirect extends RecordBase {
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
-type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
-    [key: string]: any;
+declare function matchroute(routes: RouteRecord[], params: Record<string, string>): RouteRecord | undefined;
+type ReactLinkComponent = ForwardRefExoticComponent<PropsWithChildren<{
     component?: string | ComponentType<any> | undefined;
     target?: string | undefined;
     onClick?: ((event: MouseEvent) => void) | undefined;
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
-}, string | number> & RefAttributes<unknown>>;
+}> & RefAttributes<unknown>>;
 declare function createReactLink({ router, forwardRef, createElement }: {
     router: Router;
     forwardRef: typeof forwardRefType;
@@ -57,4 +57,4 @@ declare function createReactView({ router, useCallback, createElement, useState,
 }>;
 declare function createVueLink(): void;
 declare function createVueView(): void;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createReactLink, createReactView, createVueLink, createVueView, ReactLinkComponent };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, createReactLink, createReactView, createVueLink, createVueView, ReactLinkComponent };

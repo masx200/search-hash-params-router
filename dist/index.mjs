@@ -275,6 +275,10 @@ function Y() {
 }
 
 function Z(t, e) {
+    for (let n of t) if (n.params(e)) return n;
+}
+
+function tt(t, e) {
     if (!e) throw new TypeError("object,function");
     if ("function" != typeof e) {
         if ("object" != typeof e) throw new TypeError("object,function");
@@ -282,13 +286,13 @@ function Z(t, e) {
     } else t.transformparams(e);
 }
 
-function tt({router: t, forwardRef: e, createElement: n}) {
-    return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, f) => {
+function et({router: t, forwardRef: e, createElement: n}) {
+    return e((({component: e = "a", to: r, onClick: o, children: i, target: a}, c) => {
         if (!r) throw new TypeError("object,function");
-        const u = {
-            ...c,
-            ref: f,
-            href: t.paramshref(r),
+        const f = t.paramshref(r);
+        return n(e, {
+            ref: c,
+            href: f,
             onClick: e => {
                 try {
                     o && o(e);
@@ -297,16 +301,11 @@ function tt({router: t, forwardRef: e, createElement: n}) {
                 }
                 e.defaultPrevented || 0 !== e.button || a && "_self" !== a || function(t) {
                     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
-                }(e) || (e.preventDefault(), Z(t, r));
+                }(e) || (e.preventDefault(), tt(t, r));
             },
             target: a
-        };
-        return n(e, u, i);
+        }, i);
     }));
-}
-
-function et(t, e) {
-    for (let n of t) if (n.params(e)) return n;
 }
 
 function nt(t) {
@@ -319,18 +318,18 @@ function rt({router: t, useCallback: e, createElement: n, useState: r, useEffect
         if (!i.every((t => function(t) {
             return !(!t || "object" != typeof t || "function" != typeof t.params);
         }(t)))) throw new TypeError('{params:"function"}');
-        const [a, c] = r(t.getparams()), [f, u] = r(et(i, a)), s = e(I((t => {
+        const [a, c] = r(t.getparams()), [f, u] = r(Z(i, a)), s = e(I((t => {
             c(t);
         })), []);
         function l() {
             t.unmount(), t.off("params", s);
         }
         if (o((() => {
-            u(et(i, a));
+            u(Z(i, a));
         }), [ i, a ]), o((() => {
             if (nt(f)) {
                 const e = f.redirect;
-                Z(t, e);
+                tt(t, e);
             }
         }), [ f ]), o((() => (t.mount(), t.on("params", s), l)), []), nt(f)) return null;
         if ("function" == typeof (null == (h = f) ? void 0 : h.params) && (null == h ? void 0 : h.component)) {
@@ -348,5 +347,5 @@ function ot() {}
 
 function it() {}
 
-export { X as createHashRouter, tt as createReactLink, rt as createReactView, Y as createSearchRouter, ot as createVueLink, it as createVueView };
+export { X as createHashRouter, et as createReactLink, rt as createReactView, Y as createSearchRouter, ot as createVueLink, it as createVueView, Z as matchroute };
 //# sourceMappingURL=index.mjs.map

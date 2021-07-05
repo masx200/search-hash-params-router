@@ -125,14 +125,14 @@ var j = E, R = function(t) {
     return T.call(t);
 }, L = v ? v.toStringTag : void 0;
 
-var O = function(t) {
+var x = function(t) {
     return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : L && L in Object(t) ? j(t) : R(t);
-}, x = function(t) {
+}, O = function(t) {
     return null != t && "object" == typeof t;
 };
 
 var P = y, U = a, N = function(t) {
-    return "symbol" == typeof t || x(t) && "[object Symbol]" == O(t);
+    return "symbol" == typeof t || O(t) && "[object Symbol]" == x(t);
 }, k = /^[-+]0x[0-9a-f]+$/i, M = /^0b[01]+$/i, V = /^0o[0-7]+$/i, A = parseInt;
 
 var C = a, K = l, D = function(t) {
@@ -271,15 +271,15 @@ function Q(t) {
 }
 
 function X(t, e) {
+    for (let n of t) if (n.params(e)) return n;
+}
+
+function Y(t, e) {
     if (!e) throw new TypeError("object,function");
     if ("function" != typeof e) {
         if ("object" != typeof e) throw new TypeError("object,function");
         t.setparams(e);
     } else t.transformparams(e);
-}
-
-function Y(t, e) {
-    for (let n of t) if (n.params(e)) return n;
 }
 
 function Z(t) {
@@ -289,12 +289,12 @@ function Z(t) {
 exports.createHashRouter = function() {
     return Q("hash");
 }, exports.createReactLink = function({router: t, forwardRef: e, createElement: n}) {
-    return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, u) => {
+    return e((({component: e = "a", to: r, onClick: o, children: i, target: a}, c) => {
         if (!r) throw new TypeError("object,function");
-        const f = {
-            ...c,
-            ref: u,
-            href: t.paramshref(r),
+        const u = t.paramshref(r);
+        return n(e, {
+            ref: c,
+            href: u,
             onClick: e => {
                 try {
                     o && o(e);
@@ -303,11 +303,10 @@ exports.createHashRouter = function() {
                 }
                 e.defaultPrevented || 0 !== e.button || a && "_self" !== a || function(t) {
                     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
-                }(e) || (e.preventDefault(), X(t, r));
+                }(e) || (e.preventDefault(), Y(t, r));
             },
             target: a
-        };
-        return n(e, f, i);
+        }, i);
     }));
 }, exports.createReactView = function({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
     return ({routes: i}) => {
@@ -315,18 +314,18 @@ exports.createHashRouter = function() {
         if (!i.every((t => function(t) {
             return !(!t || "object" != typeof t || "function" != typeof t.params);
         }(t)))) throw new TypeError('{params:"function"}');
-        const [a, c] = r(t.getparams()), [u, f] = r(Y(i, a)), s = e(_((t => {
+        const [a, c] = r(t.getparams()), [u, f] = r(X(i, a)), s = e(_((t => {
             c(t);
         })), []);
         function l() {
             t.unmount(), t.off("params", s);
         }
         if (o((() => {
-            f(Y(i, a));
+            f(X(i, a));
         }), [ i, a ]), o((() => {
             if (Z(u)) {
                 const e = u.redirect;
-                X(t, e);
+                Y(t, e);
             }
         }), [ u ]), o((() => (t.mount(), t.on("params", s), l)), []), Z(u)) return null;
         if ("function" == typeof (null == (h = u) ? void 0 : h.params) && (null == h ? void 0 : h.component)) {
@@ -340,5 +339,6 @@ exports.createHashRouter = function() {
     };
 }, exports.createSearchRouter = function() {
     return Q("search");
-}, exports.createVueLink = function() {}, exports.createVueView = function() {};
+}, exports.createVueLink = function() {}, exports.createVueView = function() {}, 
+exports.matchroute = X;
 //# sourceMappingURL=index.cjs.map

@@ -17,7 +17,9 @@ export function RouterTest() {
                 <br />
                 <Link to={{ foo: "foo1" }}>foo</Link>
                 <br />
-                <Link to={{ bar: "bar1" }}>bar</Link>
+                <Link to={{ bar: "bar1", other: Math.random().toString() }}>
+                    bar
+                </Link>
                 <br />
                 <Link to={{ 404: "not" }}>404</Link>
             </div>
