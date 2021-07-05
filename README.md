@@ -45,11 +45,13 @@ The query parameters can be modified in the following ways.
 
 examples
 
+https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
+
 examples:
 
 The route matching method example is as follows:
 
-```js
+```ts
 const routes = [
     {
         component: Home,
