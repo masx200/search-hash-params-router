@@ -35,7 +35,7 @@ function createVueLink({
                     to,
                     onClick,
                     target,
-                    innerRef,
+                    innerRef:forwardedRef,
                 } = props;
                 if (!to) {
                     throw new TypeError("object,function");
@@ -64,7 +64,14 @@ function createVueLink({
                         navigate(router, to);
                     }
                 };
-                return;
+const props = {
+                ref: forwardedRef,
+                href,
+                onClick: newclick,
+                target,
+            };
+            return <Component {...props}>{children}</Component>;
+                
             };
         },
     });
