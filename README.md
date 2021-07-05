@@ -67,6 +67,7 @@ import {
     createSearchRouter,
     createReactView,
     createReactLink,
+    matchroute,
 } from "@masx200/search-hash-params-router";
 ```
 
