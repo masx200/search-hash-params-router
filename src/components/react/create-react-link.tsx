@@ -7,6 +7,7 @@ import type {
 } from "react";
 import { navigate } from "../navigate";
 import { ReactLinkComponent } from "./ReactLinkComponent";
+import { isModifiedEvent } from "./isModifiedEvent";
 export type { ReactLinkComponent };
 export function createReactLink({
     router,
@@ -69,7 +70,4 @@ export function createReactLink({
             return <Component {...props}>{children}</Component>;
         }
     );
-}
-function isModifiedEvent(event: MouseEvent) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
