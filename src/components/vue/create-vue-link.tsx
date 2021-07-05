@@ -1,5 +1,6 @@
 import { Router } from "../../createrouter/Router";
-import {
+import type {
+resolveComponent as resolveComponentType,
     Ref,
     Component as ComponentType,
     defineComponent as defineComponentType,
@@ -11,9 +12,11 @@ export { createVueLink };
 
 function createVueLink({
     router,
+resolveComponent,
     defineComponent,
     h: createElement,
 }: {
+resolveComponent:typeof resolveComponentType,
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
