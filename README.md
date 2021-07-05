@@ -146,6 +146,12 @@ const hashrouter = createHashRouter();
 const searchrouter = createSearchRouter();
 ```
 
+获取当前路由参数对象
+
+```js
+console.log(searchrouter.getparams());
+```
+
 监听路由参数的变化事件，监听路由匹配切换的变化：
 
 ```js
