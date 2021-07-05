@@ -39,17 +39,21 @@ https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 
 ### What does the proposed API look like?
 
+Typescript declaration:
+
+https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
+
 The query parameters can be obtained from location.search or location.hash.
 
 The query parameters can be modified in the following ways.
+
+The route matching method example is as follows:
 
 examples
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
-examples:
-
-The route matching method example is as follows:
+## examples:
 
 ```ts
 const routes = [
