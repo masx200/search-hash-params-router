@@ -274,15 +274,7 @@ function Y() {
     return Q("search");
 }
 
-function Z(t) {
-    return "function" == typeof (null == t ? void 0 : t.params) && (null == t ? void 0 : t.component);
-}
-
-function tt(t) {
-    return "function" == typeof (null == t ? void 0 : t.params) && (null == t ? void 0 : t.redirect);
-}
-
-function et(t, e) {
+function Z(t, e) {
     if (!e) throw new TypeError("object,function");
     if ("function" != typeof e) {
         if ("object" != typeof e) throw new TypeError("object,function");
@@ -290,7 +282,7 @@ function et(t, e) {
     } else t.transformparams(e);
 }
 
-function nt({router: t, forwardRef: e, createElement: n}) {
+function tt({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a, ...c}, f) => {
         if (!r) throw new TypeError("object,function");
         const u = {
@@ -305,7 +297,7 @@ function nt({router: t, forwardRef: e, createElement: n}) {
                 }
                 e.defaultPrevented || 0 !== e.button || a && "_self" !== a || function(t) {
                     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
-                }(e) || (e.preventDefault(), et(t, r));
+                }(e) || (e.preventDefault(), Z(t, r));
             },
             target: a
         };
@@ -313,43 +305,48 @@ function nt({router: t, forwardRef: e, createElement: n}) {
     }));
 }
 
-function rt(t, e) {
+function et(t, e) {
     for (let n of t) if (n.params(e)) return n;
 }
 
-function ot({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
+function nt(t) {
+    return "function" == typeof (null == t ? void 0 : t.params) && (null == t ? void 0 : t.redirect);
+}
+
+function rt({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
     return ({routes: i}) => {
         if (!Array.isArray(i)) throw new TypeError("array");
         if (!i.every((t => function(t) {
             return !(!t || "object" != typeof t || "function" != typeof t.params);
         }(t)))) throw new TypeError('{params:"function"}');
-        const [a, c] = r(t.getparams()), [f, u] = r(rt(i, a)), s = e(I((t => {
+        const [a, c] = r(t.getparams()), [f, u] = r(et(i, a)), s = e(I((t => {
             c(t);
         })), []);
         function l() {
             t.unmount(), t.off("params", s);
         }
         if (o((() => {
-            u(rt(i, a));
+            u(et(i, a));
         }), [ i, a ]), o((() => {
-            if (tt(f)) {
+            if (nt(f)) {
                 const e = f.redirect;
-                et(t, e);
+                Z(t, e);
             }
-        }), [ f ]), o((() => (t.mount(), t.on("params", s), l)), []), tt(f)) return null;
-        if (Z(f)) {
+        }), [ f ]), o((() => (t.mount(), t.on("params", s), l)), []), nt(f)) return null;
+        if ("function" == typeof (null == (h = f) ? void 0 : h.params) && (null == h ? void 0 : h.component)) {
             const t = f.component, e = f.children, r = f.props || {};
             return Object.assign(r, {
                 params: a
-            }), n(t, r, " ", e);
+            }), n(t, r, e);
         }
         return null;
+        var h;
     };
 }
 
+function ot() {}
+
 function it() {}
 
-function at() {}
-
-export { X as createHashRouter, nt as createReactLink, ot as createReactView, Y as createSearchRouter, it as createVueLink, at as createVueView, tt as isRecordRedirect, Z as isRecordRoute };
+export { X as createHashRouter, tt as createReactLink, rt as createReactView, Y as createSearchRouter, ot as createVueLink, it as createVueView };
 //# sourceMappingURL=index.mjs.map

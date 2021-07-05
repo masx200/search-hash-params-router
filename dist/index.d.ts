@@ -37,10 +37,6 @@ export declare function createVueLink(): void;
 
 export declare function createVueView(): void;
 
-export declare function isRecordRedirect(o: any): o is RecordRedirect;
-
-export declare function isRecordRoute(o: any): o is RecordRoute;
-
 export declare type RawRouter = {
     mount: () => void;
     unmount: () => void;

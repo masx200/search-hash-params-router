@@ -11,11 +11,9 @@ import type {
     useEffect as useEffectType,
     ComponentType,
 } from "react";
-import {
-    isRecordRedirect,
-    isRecordRoute,
-    RouteRecord,
-} from "../../createrouter";
+import { RouteRecord } from "../../createrouter";
+import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
+import { isRecordRoute } from "../../createrouter/isRecordRoute";
 export { createReactView };
 function createReactView({
     router,
@@ -31,13 +29,7 @@ function createReactView({
     useEffect: typeof useEffectType;
 }): FC<{ routes: RouteRecord[] }> {
     return ({ routes }) => {
-        console.log(
-            router,
-
-            createElement,
-            useState,
-            useEffect
-        );
+        console.log(router, useCallback, createElement, useState, useEffect);
         if (!Array.isArray(routes)) {
             throw new TypeError("array");
         }
@@ -98,7 +90,7 @@ function createReactView({
 
             const props = currentroute.props || {};
             Object.assign(props, { params });
-            return <Component {...props}> {children}</Component>;
+            return <Component {...props}>{children}</Component>;
         } else {
             return null;
         }
