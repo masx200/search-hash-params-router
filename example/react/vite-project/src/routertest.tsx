@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Link } from "./link";
+import { Loading } from "./loading";
 import { Programmaticnavigation } from "./Programmaticnavigation";
 import { routes } from "./routes";
 import { View } from "./view";
@@ -28,7 +29,9 @@ export function RouterTest() {
             </div>
             <hr></hr>
             <div style={{ textAlign: "center" }}>
-                <View routes={routes} />
+                <Suspense fallback={<Loading />}>
+                    <View routes={routes} />
+                </Suspense>
             </div>
         </div>
     );

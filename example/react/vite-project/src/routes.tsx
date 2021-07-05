@@ -1,6 +1,10 @@
-import React from "react";
 import App from "./App";
+import { Bar } from "./Bar";
+import { Foo } from "./Foo";
 
+import { NotFound } from "./NotFound";
+import { lazy } from "react";
+const Home = lazy(() => import("./Home"));
 const routes = [
     {
         component: Home,
@@ -52,29 +56,3 @@ const routes = [
     },
 ];
 export { routes };
-function Home({ children }: React.PropsWithChildren<{}>) {
-    return (
-        <div>
-            <h1>home</h1>
-            <div>{children}</div>
-        </div>
-    );
-}
-function NotFound() {
-    return <h1>not found</h1>;
-}
-function Foo() {
-    return <h1>foo</h1>;
-}
-function Bar({
-    msg,
-    params,
-}: React.PropsWithChildren<{ msg: string; params: any }>) {
-    return (
-        <div>
-            <h1>bar</h1>
-            <div>{msg}</div>
-            <div>{JSON.stringify(params)}</div>
-        </div>
-    );
-}
