@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Bar({
+export default function Bar({
     msg,
     params,
 }: React.PropsWithChildren<{ msg: string; params: any }>) {

@@ -1,10 +1,9 @@
-import App from "./App";
-import { Bar } from "./Bar";
-import { Foo } from "./Foo";
-
 import { NotFound } from "./NotFound";
 import { lazy } from "react";
 const Home = lazy(() => import("./Home"));
+const App = lazy(() => import("./App"));
+const Bar = lazy(() => import("./Bar"));
+const Foo = lazy(() => import("./Foo"));
 const routes = [
     {
         component: Home,

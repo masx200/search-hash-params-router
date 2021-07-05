@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Foo() {
+export default function Foo() {
     return <h1>foo</h1>;
 }
