@@ -58,7 +58,7 @@ export declare type ReactLinkComponent = ForwardRefExoticComponent<Pick<{
 }, string | number> & RefAttributes<unknown>>;
 
 export declare interface RecordBase {
-    name: string | symbol | undefined;
+    name?: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
 }
 

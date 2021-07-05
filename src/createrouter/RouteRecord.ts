@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import type { Component } from "@vue/runtime-core";
 export interface RecordBase {
-    name: string | symbol | undefined;
+    name?: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
 }
 export interface RecordRoute extends RecordBase {

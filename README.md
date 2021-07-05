@@ -53,28 +53,42 @@ The route matching method example is as follows:
 const routes = [
     {
         component: Home,
-
-        params(o) {
+        children: ["hello home"],
+        params(o: any) {
+            return Object.keys(o).length === 0;
+        },
+    },
+    {
+        component: Home,
+        children: ["hello world"],
+        params(o: any) {
             return o.p === "home";
+        },
+    },
+    {
+        component: App,
+
+        params(o: any) {
+            return o.p === "app";
         },
     },
     {
         component: Foo,
 
-        params(o) {
+        params(o: any) {
             return o.foo === "foo1";
         },
     },
     {
         component: Bar,
-
-        params(o) {
+        props: { msg: "test props" },
+        params(o: any) {
             return o.bar === "bar1";
         },
     },
     {
-        params(o) {
-            return !o.p;
+        params(o: any) {
+            return "redirect" == o.p;
         },
         redirect: { p: "home" },
     },
@@ -86,8 +100,64 @@ const routes = [
         },
     },
 ];
+```
 
+```js
 const hashrouter = createHashRouter();
 
 const searchrouter = createSearchRouter();
+```
+
+```js
+const View = createReactView({
+    router: searchrouter,
+    createElement,
+    useCallback,
+    useEffect,
+    useState,
+});
+```
+
+```js
+const Link = createReactLink({
+    router: searchrouter,
+    forwardRef,
+    createElement,
+});
+```
+
+```jsx
+function RouterTest() {
+    return (
+        <div>
+            <div style={{ textAlign: "center" }}>
+                <Link to={{}}>start</Link>
+                <br />
+                <Link to={{ p: "home" }}>home</Link>
+                <br />
+                <Link to={{ p: "app" }}>app</Link>
+                <br />
+                <Link to={{ p: "redirect" }}>redirect</Link>
+                <br />
+                <Link to={{ foo: "foo1" }}>foo</Link>
+                <br />
+                <Link to={{ bar: "bar1" }}>bar</Link>
+                <br />
+                <Link to={{ 404: "not" }}>404</Link>
+            </div>
+            <div style={{ textAlign: "center" }}>
+                <View routes={routes} />
+            </div>
+        </div>
+    );
+}
+```
+
+```jsx
+ReactDOM.render(
+    <React.StrictMode>
+        <RouterTest />
+    </React.StrictMode>,
+    document.getElementById("root")
+);
 ```
