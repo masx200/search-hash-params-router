@@ -57,4 +57,4 @@ declare function createReactView({ router, useCallback, createElement, useState,
 }>;
 declare function createVueLink(): void;
 declare function createVueView(): void;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, createReactLink, createReactView, createVueLink, createVueView, ReactLinkComponent };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };
