@@ -28,13 +28,9 @@ I personally don't like the dynamic route matching mode, I like the query parame
 E.g
 
 ```txt
-
-
 https://nodejs.org/en/?foo=bar&baz=123
 
-
 https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
-
 ```
 
 ## install
@@ -61,6 +57,8 @@ https://github.com/masx200/search-hash-params-router/tree/master/example/react/v
 
 ## examples:
 
+导入模块：
+
 ```js
 import {
     createHashRouter,
@@ -70,6 +68,8 @@ import {
     matchroute,
 } from "@masx200/search-hash-params-router";
 ```
+
+创建路由条目：
 
 ```ts
 const routes = [
@@ -124,6 +124,8 @@ const routes = [
 ];
 ```
 
+接受路由参数：
+
 ```tsx
 function Bar({
     msg,
@@ -139,11 +141,15 @@ function Bar({
 }
 ```
 
+创建路由器：
+
 ```js
 const hashrouter = createHashRouter();
 
 const searchrouter = createSearchRouter();
 ```
+
+监听路由参数的变化事件，监听路由匹配切换的变化：
 
 ```js
 searchrouter.on("params", (p) => {
@@ -152,6 +158,8 @@ searchrouter.on("params", (p) => {
     console.log(matchroute(routes, p));
 });
 ```
+
+创建路由视图组件：
 
 ```js
 const View = createReactView({
@@ -163,6 +171,8 @@ const View = createReactView({
 });
 ```
 
+创建路由链接组件：
+
 ```js
 const Link = createReactLink({
     router: searchrouter,
@@ -170,6 +180,8 @@ const Link = createReactLink({
     createElement,
 });
 ```
+
+使用路由视图和路由链接的例子：
 
 ```jsx
 function RouterTest() {
@@ -198,6 +210,8 @@ function RouterTest() {
 }
 ```
 
+挂载组件渲染：
+
 ```jsx
 ReactDOM.render(
     <React.StrictMode>
@@ -205,4 +219,15 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById("root")
 );
+```
+
+编程式导航:
+
+```tsx
+function Programmaticnavigation() {
+    function onclick() {
+        searchrouter.setparams({ qqqqq: Math.random().toString() });
+    }
+    return <button onClick={onclick}>navigate </button>;
+}
 ```

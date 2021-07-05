@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "./link";
+import { Programmaticnavigation } from "./Programmaticnavigation";
 import { routes } from "./routes";
 import { View } from "./view";
 
@@ -7,6 +8,8 @@ export function RouterTest() {
     return (
         <div>
             <div style={{ textAlign: "center" }}>
+                <Programmaticnavigation />
+                <br />
                 <Link to={{}}>start</Link>
                 <br />
                 <Link to={{ p: "home" }}>home</Link>
@@ -23,6 +26,7 @@ export function RouterTest() {
                 <br />
                 <Link to={{ 404: "not" }}>404</Link>
             </div>
+            <hr></hr>
             <div style={{ textAlign: "center" }}>
                 <View routes={routes} />
             </div>
