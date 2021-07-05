@@ -1,31 +1,28 @@
 # search-hash-params-router
 
-使用 location.search 和 location.hash 中查询参数的前端路由器
+使用 `location.search` 和 `location.hash` 中查询参数的前端路由器
 
 不需要"Path-to-RegExp"了
 
 为路由器添加查询参数模式。基于历史记录模式。使用查询参数匹配而不是动态路由匹配。
 
-Add query parameter mode for routers. Based on history mode. Use query parameter matching instead of dynamic route matching.
-
-### What problem does this feature solve?
+### 此功能解决了什么问题？
 
 使用查询参数模式不需要服务器设置路由回退。
 
-The use of query parameter mode does not require the server to set up route fallback.
+我们可以使用路由的 history 模式，充分利用 history.pushState API，无需重新加载页面即可完成 URL 跳转。
 
-If you don't want a very ugly hash, we can use the history mode of routing, which makes full use of the history.pushState API to complete the URL jump without reloading the page.
+当您使用历史模式时，该 URL 就像一个普通的 url。
 
-When you use the history mode, the URL is like a normal url.
+我在使用历史模式时遇到了以下问题。
 
-I encountered the following problem using history mode.
+但是，要使用此模式，您需要配置后台支持。
 
-However, to use this mode, you need to configure the background support.
-If the background is not properly configured, when the user directly accesses in the browser, it will return 404.
+如果后台没有配置好，当用户直接在浏览器中访问时，会返回 404。
 
-I personally don't like the dynamic route matching mode, I like the query parameter matching mode.
+我个人不喜欢动态路由匹配模式，我喜欢查询参数匹配模式。
 
-E.g
+例如:
 
 ```txt
 https://nodejs.org/en/?foo=bar&baz=123
@@ -33,29 +30,29 @@ https://nodejs.org/en/?foo=bar&baz=123
 https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 ```
 
-## install
+## 安装
 
 ```shell
 pnpm  add @masx200/search-hash-params-router
 ```
 
-### What does the proposed API look like?
+### 提议的 API 是什么样的？
 
-Typescript declaration:
+Typescript 类型声明文件:
 
 https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
-The query parameters can be obtained from location.search or location.hash.
+查询参数可以从`location.search` 或`location.hash` 中获取。
 
-The query parameters can be modified in the following ways.
+可以通过以下方式修改查询参数。
 
-The route matching method example is as follows:
+路由匹配方法示例如下：
 
-examples
+例子:
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
-## examples:
+## 例子:
 
 导入模块：
 
