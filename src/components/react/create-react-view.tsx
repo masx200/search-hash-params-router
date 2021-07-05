@@ -1,8 +1,16 @@
-import { isrouterecord } from "../isrouterecord";
-import { matchroute } from "../../createrouter/matchroute";
-
-import { navigate } from "../navigate";
 import debounce from "lodash/debounce";
+import { matchroute } from "../../createrouter/matchroute";
+import { Router } from "../../createrouter/Router";
+import { isrouterecord } from "../isrouterecord";
+import { navigate } from "../navigate";
+import type {
+    FC,
+    useCallback as useCallbackType,
+    createElement as createElementType,
+    useState as useStateType,
+    useEffect as useEffectType,
+} from "react";
+import { RouteRecord } from "../../createrouter";
 export { createReactView };
 function createReactView({
     router,
@@ -10,7 +18,13 @@ function createReactView({
     createElement,
     useState,
     useEffect,
-}) {
+}: {
+    router: Router;
+    useCallback: typeof useCallbackType;
+    createElement: typeof createElementType;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
+}): FC<{ routes: RouteRecord[] }> {
     return ({ routes }) => {
         console.log(
             router,
@@ -29,7 +43,9 @@ function createReactView({
         ) {
             throw new TypeError('{params:"function"}');
         }
-        const [params, setparams] = useState(router.getparams());
+        const [params, setparams] = useState<Record<string, string>>(
+            router.getparams()
+        );
         const [currentroute, setcurrentroute] = useState(
             matchroute(routes, params)
         );
@@ -68,7 +84,7 @@ function createReactView({
         }, []);
 
         if (currentroute?.redirect) {
-            return;
+            return null;
         }
         if (currentroute?.component) {
             const Component = currentroute.component;
@@ -79,7 +95,7 @@ function createReactView({
             Object.assign(props, { params });
             return <Component {...props}> {children}</Component>;
         } else {
-            return;
+            return null;
         }
     };
 }
