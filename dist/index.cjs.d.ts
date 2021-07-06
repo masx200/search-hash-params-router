@@ -6,6 +6,11 @@ import { useCallback as useCallbackType } from "react";
 import { useState as useStateType } from "react";
 import { useEffect as useEffectType } from "react";
 import { Component } from "@vue/runtime-core";
+import { Ref } from "@vue/runtime-dom";
+import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
+import { Component as ComponentType$0 } from "@vue/runtime-dom";
+import { defineComponent as defineComponentType } from "@vue/runtime-dom";
+import { h as hType } from "@vue/runtime-dom";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
     mount: () => void;
@@ -55,6 +60,29 @@ declare function createReactView({ router, useCallback, createElement, useState,
 }): FC<{
     routes: RouteRecord[];
 }>;
-declare function createVueLink(): void;
+declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement }: {
+    resolveComponent: typeof resolveComponentType;
+    router: Router;
+    defineComponent: typeof defineComponentType;
+    h: typeof hType;
+}): import("@vue/runtime-core").DefineComponent<{
+    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
+    to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
+    onClick?: ((event: MouseEvent) => void) | undefined;
+    target?: string | undefined;
+    innerRef?: Ref<any> | undefined;
+}, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
+    component?: unknown;
+    to?: unknown;
+    onClick?: unknown;
+    target?: unknown;
+    innerRef?: unknown;
+} & {} & {
+    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
+    to?: Record<string, string> | ((old: Record<string, string>) => Record<string, string>) | undefined;
+    onClick?: ((event: MouseEvent) => void) | undefined;
+    target?: string | undefined;
+    innerRef?: Ref<any> | undefined;
+}>, {}>;
 declare function createVueView(): void;
 export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };

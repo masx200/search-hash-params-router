@@ -90,6 +90,7 @@ function createReactView({
 
             const props = currentroute.props || {};
             Object.assign(props, { params });
+            //@ts-ignore
             return <Component {...props}>{children}</Component>;
         } else {
             return null;

@@ -1,6 +1,6 @@
 import { Router } from "../../createrouter/Router";
 import type {
-resolveComponent as resolveComponentType,
+    resolveComponent as resolveComponentType,
     Ref,
     Component as ComponentType,
     defineComponent as defineComponentType,
@@ -12,11 +12,11 @@ export { createVueLink };
 
 function createVueLink({
     router,
-resolveComponent,
+    resolveComponent,
     defineComponent,
     h: createElement,
 }: {
-resolveComponent:typeof resolveComponentType,
+    resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
@@ -38,12 +38,8 @@ resolveComponent:typeof resolveComponentType,
                     to,
                     onClick,
                     target,
-                    innerRef:forwardedRef,
+                    innerRef: forwardedRef,
                 } = props;
-
-
-
-
 
                 if (!to) {
                     throw new TypeError("object,function");
@@ -72,21 +68,24 @@ resolveComponent:typeof resolveComponentType,
                         navigate(router, to);
                     }
                 };
-const props = {
-                ref: forwardedRef,
-                href,
-                onClick: newclick,
-                target,
-            };
+                const oprops = {
+                    ref: forwardedRef,
+                    href,
+                    onClick: newclick,
+                    target,
+                };
 
+                const Resolvedcomponent =
+                    "string" === typeof Component
+                        ? resolveComponent(Component)
+                        : Component;
 
-const Resolvedcomponent="string"===typeof Component?resolveComponent(Component):Component
-
-
-
-
-            return <Resolvedcomponent {...props}>{children}</Resolvedcomponent>;
-                
+                return (
+                    //@ts-ignore
+                    <Resolvedcomponent {...oprops}>
+                        {children}
+                    </Resolvedcomponent>
+                );
             };
         },
     });

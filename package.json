@@ -21,7 +21,7 @@
     "homepage": "https://github.com/masx200/search-hash-params-router#readme",
     "scripts": {
         "build": "tsc &&rollup -c rollup.config.js ",
-        "format": "prettier  */*.cjs */*.mjs --write *.js */*.ts */*.js     */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx"
+        "format": "prettier  */*.cjs */*.mjs --write *.js */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx"
     },
     "keywords": [],
     "devDependencies": {
