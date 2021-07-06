@@ -7,7 +7,7 @@ import type {
 } from "react";
 import { navigate } from "../navigate";
 import { ReactLinkComponent } from "./ReactLinkComponent";
-import { isModifiedEvent } from "./isModifiedEvent";
+import { isModifiedEvent } from "../isModifiedEvent";
 export type { ReactLinkComponent };
 export function createReactLink({
     router,

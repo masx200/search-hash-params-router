@@ -6,7 +6,7 @@ import type {
     defineComponent as defineComponentType,
     h as hType,
 } from "@vue/runtime-dom";
-import { isModifiedEvent } from "../react/isModifiedEvent";
+import { isModifiedEvent } from "../isModifiedEvent";
 import { navigate } from "../navigate";
 export { createVueLink };
 
