@@ -18,7 +18,7 @@ export function createReactLink({
     forwardRef: typeof forwardRefType;
     createElement: typeof createElementType;
 }): ReactLinkComponent {
-    console.log(router, forwardRef, createElement);
+    //console.log(router, forwardRef, createElement);
     return forwardRef<
         unknown,
         {
@@ -67,7 +67,7 @@ export function createReactLink({
                 onClick: newclick,
                 target,
             };
-            return <Component {...props}>{children}</Component>;
+            return createElement(Component ,{...props},children};
         }
     );
 }
