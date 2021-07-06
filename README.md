@@ -218,12 +218,7 @@ function RouterTest() {
 挂载组件渲染：
 
 ```jsx
-ReactDOM.render(
-    <React.StrictMode>
-        <RouterTest />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
+ReactDOM.render(<RouterTest />, document.getElementById("root"));
 ```
 
 编程式导航:

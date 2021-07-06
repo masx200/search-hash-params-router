@@ -3,9 +3,4 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { RouterTest } from "./routertest";
 
-ReactDOM.render(
-    <React.StrictMode>
-        <RouterTest />
-    </React.StrictMode>,
-    document.getElementById("root")
-);
+ReactDOM.render(<RouterTest />, document.getElementById("root"));
