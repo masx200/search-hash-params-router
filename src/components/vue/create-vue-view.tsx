@@ -45,15 +45,22 @@ function createVueView({
         createElement
     );
     return defineComponent<{ routes: RouteRecord[] }>({
-        setup(props) {
+        setup(_, { attrs }) {
+            const { routes } = attrs;
+            if (!Array.isArray(routes)) {
+                throw new TypeError("array");
+            }
             const params = ref(router.getparams());
-            const currentroute = ref(matchRoute(props.routes, params.value));
+            const currentroute = ref(matchRoute(routes, params.value));
             const paramschange = debounce((p) => {
                 params.value = p;
             });
             watch(
-                [() => props.routes, () => params.value],
+                [() => attrs.routes, () => params.value],
                 ([routes, params]) => {
+                    if (!Array.isArray(routes)) {
+                        throw new TypeError("array");
+                    }
                     currentroute.value = matchRoute(routes, params);
                 }
             );
@@ -77,7 +84,7 @@ function createVueView({
             onMounted(onmount);
             onUnmounted(onunmount);
             return () => {
-                const { routes } = props;
+                const { routes } = attrs;
                 if (!Array.isArray(routes)) {
                     throw new TypeError("array");
                 }

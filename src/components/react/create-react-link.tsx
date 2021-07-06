@@ -40,7 +40,7 @@ export function createReactLink({
             const href: string = router.paramshref(to);
             const newclick = (event: MouseEvent) => {
                 try {
-                    if (onClick) {
+                    if ("function" === typeof onClick) {
                         onClick(event);
                     }
                 } catch (ex) {

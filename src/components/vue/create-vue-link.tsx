@@ -31,7 +31,7 @@ function createVueLink({
         target?: string;
         innerRef?: Ref;
     }>({
-        setup(props, { slots: children }) {
+        setup(_, { slots: children, attrs }) {
             return () => {
                 const {
                     component: Component = "a",
@@ -39,15 +39,15 @@ function createVueLink({
                     onClick,
                     target,
                     innerRef: forwardedRef,
-                } = props;
+                } = attrs;
 
                 if (!to) {
                     throw new TypeError("object,function");
                 }
-                const href: string = router.paramshref(to);
+                const href: string = router.paramshref(to as any);
                 const newclick = (event: MouseEvent) => {
                     try {
-                        if (onClick) {
+                        if ("function" === typeof onClick) {
                             onClick(event);
                         }
                     } catch (ex) {
@@ -65,7 +65,7 @@ function createVueLink({
                         // ignore clicks with modifier keys
                     ) {
                         event.preventDefault();
-                        navigate(router, to);
+                        navigate(router, to as any);
                     }
                 };
                 const oprops = {
