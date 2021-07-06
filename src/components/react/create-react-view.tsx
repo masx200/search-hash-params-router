@@ -29,7 +29,7 @@ function createReactView({
     useEffect: typeof useEffectType;
 }): FC<{ routes: RouteRecord[] }> {
     return ({ routes }) => {
-        console.log(router, useCallback, createElement, useState, useEffect);
+      //  console.log(router, useCallback, createElement, useState, useEffect);
         if (!Array.isArray(routes)) {
             throw new TypeError("array");
         }
@@ -91,7 +91,7 @@ function createReactView({
             const props = currentroute.props || {};
             Object.assign(props, { params });
             //@ts-ignore
-            return <Component {...props}>{children}</Component>;
+            return createElement(Component ,{...props},children)
         } else {
             return null;
         }
