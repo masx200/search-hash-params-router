@@ -2,7 +2,7 @@
 
 使用 `location.search` 和 `location.hash` 中查询参数的前端路由器,
 
-支持在 react17 和 vue3 中使用.
+支持在 `react`17 和 `vue`3 中使用.
 
 不需要"Path-to-RegExp"了
 
@@ -12,7 +12,7 @@
 
 使用查询参数模式不需要服务器设置路由回退。
 
-我们可以使用路由的 history 模式，充分利用 `history.pushState` API，无需重新加载页面即可完成 URL 跳转。
+我们可以使用路由的 `history` 模式，充分利用 `history.pushState` API，无需重新加载页面即可完成 URL 跳转。
 
 当您使用历史模式时，该 URL 就像一个普通的 url。
 
@@ -128,14 +128,15 @@ const Link = createVueLink({
         </div>
     </div>
 </template>
-<script lang="ts">
+```
+
+```ts
 export default defineComponent({
     components: { Loading, Link, Programmaticnavigation, View },
     data: () => {
         return { routes };
     },
 });
-</script>
 ```
 
 ## 例子:在 React 中使用
