@@ -50,11 +50,97 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 路由匹配方法示例如下：
 
-例子:
+## 例子:在 Vue 中使用
 
-https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
+https://github.com/masx200/search-hash-params-router/tree/master/example/vue/my-vue-app
+
+导入模块：
+
+```js
+import {
+    createHashRouter,
+    createSearchRouter,
+    createVueView,
+    createVueLink,
+    matchRoute,
+} from "@masx200/search-hash-params-router";
+```
+
+创建路由视图组件：
+
+```js
+const View = createVueView({
+    onMounted,
+    onUnmounted,
+    router: hashrouter,
+    resolveComponent,
+    defineComponent,
+    h,
+    ref,
+    watch,
+});
+```
+
+创建路由链接组件：
+
+```js
+const Link = createVueLink({
+    router: hashrouter,
+
+    resolveComponent,
+    defineComponent,
+    h,
+});
+```
+
+使用路由视图和路由链接的例子：
+
+```vue
+<template>
+    <div>
+        <div style="text-align: center">
+            <Programmaticnavigation />
+            <br />
+            <Link :to="{}">start</Link>
+            <br />
+            <Link :to="{ p: 'home' }">home</Link>
+            <br />
+            <Link :to="{ p: 'app' }">app</Link>
+            <br />
+            <Link :to="{ p: 'redirect' }">redirect</Link>
+            <br />
+            <Link :to="{ foo: 'foo1' }">foo</Link>
+            <br />
+            <Link :to="{ bar: 'bar1', other: Math.random().toString() }">
+                bar
+            </Link>
+            <br />
+            <Link :to="{ 404: 'not' }">404</Link>
+        </div>
+        <hr />
+        <div style="text-align: center">
+            <suspense timeout="0">
+                <template #fallback>
+                    <Loading />
+                </template>
+                <View :routes="routes" />
+            </suspense>
+        </div>
+    </div>
+</template>
+<script lang="ts">
+export default defineComponent({
+    components: { Loading, Link, Programmaticnavigation, View },
+    data: () => {
+        return { routes };
+    },
+});
+</script>
+```
 
 ## 例子:在 React 中使用
+
+https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
 导入模块：
 
@@ -213,12 +299,6 @@ function RouterTest() {
         </div>
     );
 }
-```
-
-挂载组件渲染：
-
-```jsx
-ReactDOM.render(<RouterTest />, document.getElementById("root"));
 ```
 
 编程式导航:
