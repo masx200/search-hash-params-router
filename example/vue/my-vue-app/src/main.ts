@@ -1,4 +1,6 @@
-import { createApp } from "vue";
+import { createApp, defineAsyncComponent } from "vue";
 import routertest from "./routertest.vue";
-
-createApp(routertest).mount(document.querySelector("#app") || "#app");
+const Home = defineAsyncComponent(() => import("./Home.vue"));
+const app = createApp(routertest);
+app.component("Home", Home);
+app.mount(document.querySelector("#app") || "#app");
