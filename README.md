@@ -70,6 +70,7 @@ import {
 
 ```js
 const View = createVueView({
+    Fragment,
     onMounted,
     onUnmounted,
     router: hashrouter,
@@ -86,7 +87,7 @@ const View = createVueView({
 ```js
 const Link = createVueLink({
     router: hashrouter,
-
+    Fragment,
     resolveComponent,
     defineComponent,
     h,
