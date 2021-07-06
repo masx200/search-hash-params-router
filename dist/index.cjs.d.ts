@@ -11,6 +11,8 @@ import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
 import { Component as ComponentType$0 } from "@vue/runtime-dom";
 import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
+import { watch as watchType } from "@vue/runtime-dom";
+import { ref as refType } from "@vue/runtime-dom";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
     mount: () => void;
@@ -84,5 +86,20 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     target?: string | undefined;
     innerRef?: Ref<any> | undefined;
 }>, {}>;
-declare function createVueView(): void;
+declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref, watch }: {
+    onMounted: typeof import("@vue/runtime-dom").onMounted;
+    onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
+    resolveComponent: typeof resolveComponentType;
+    router: Router;
+    defineComponent: typeof defineComponentType;
+    h: typeof hType;
+    ref: typeof refType;
+    watch: typeof watchType;
+}): import("@vue/runtime-core").DefineComponent<{
+    routes: RouteRecord[];
+}, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
+    routes?: unknown;
+} & {} & {
+    routes?: RouteRecord[] | undefined;
+}>, {}>;
 export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchroute, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };

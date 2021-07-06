@@ -21,7 +21,7 @@ function createVueLink({
     defineComponent: typeof defineComponentType;
     h: typeof hType;
 }) {
-    console.log(router, defineComponent, createElement);
+    console.log(resolveComponent, router, defineComponent, createElement);
     return defineComponent<{
         component?: string | ComponentType;
         to:
