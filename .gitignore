@@ -112,3 +112,4 @@ types/*/*/*.jsx
 .vscode/settings.json
 types/
 package-lock.json
+example/react/vite-project/.vscode/settings.json
