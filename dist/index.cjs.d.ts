@@ -62,11 +62,12 @@ declare function createReactView({ router, useCallback, createElement, useState,
 }): FC<{
     routes: RouteRecord[];
 }>;
-declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement }: {
+declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement, Fragment }: {
     resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
+    Fragment: typeof import("@vue/runtime-core").Fragment;
 }): import("@vue/runtime-core").DefineComponent<{
     component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
@@ -86,7 +87,7 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     target?: string | undefined;
     innerRef?: Ref<any> | undefined;
 }>, {}>;
-declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref, watch }: {
+declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref, watch, Fragment }: {
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
@@ -95,6 +96,7 @@ declare function createVueView({ onMounted, onUnmounted, router, resolveComponen
     h: typeof hType;
     ref: typeof refType;
     watch: typeof watchType;
+    Fragment: typeof import("@vue/runtime-core").Fragment;
 }): import("@vue/runtime-core").DefineComponent<{
     routes: RouteRecord[];
 }, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{

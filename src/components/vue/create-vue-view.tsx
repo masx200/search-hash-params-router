@@ -24,6 +24,7 @@ function createVueView({
     h: createElement,
     ref,
     watch,
+    Fragment,
 }: {
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
@@ -33,17 +34,8 @@ function createVueView({
     h: typeof hType;
     ref: typeof refType;
     watch: typeof watchType;
+    Fragment: typeof import("@vue/runtime-core").Fragment;
 }) {
-    console.log(
-        onMounted,
-        onUnmounted,
-        watch,
-        ref,
-        resolveComponent,
-        router,
-        defineComponent,
-        createElement
-    );
     return defineComponent<{ routes: RouteRecord[] }>({
         setup(_, { attrs }) {
             const { routes } = attrs;
@@ -112,11 +104,16 @@ function createVueView({
                             ? resolveComponent(Component)
                             : Component;
 
-                    return (
+                    return createElement(
                         //@ts-ignore
-                        <Resolvedcomponent {...props}>
-                            {children}
-                        </Resolvedcomponent>
+                        Fragment,
+                        {},
+                        createElement(
+                            //@ts-ignore
+                            Resolvedcomponent,
+                            { ...props },
+                            children
+                        )
                     );
                 } else {
                     return null;

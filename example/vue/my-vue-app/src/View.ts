@@ -1,4 +1,5 @@
 import {
+    Fragment,
     defineComponent,
     h,
     onMounted,
@@ -10,6 +11,7 @@ import {
 import { createVueView } from "../../../../dist/index";
 import { hashrouter } from "./hashrouter";
 const View = createVueView({
+    Fragment,
     onMounted,
     onUnmounted,
     router: hashrouter,
