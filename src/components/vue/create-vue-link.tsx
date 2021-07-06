@@ -32,6 +32,9 @@ function createVueLink({
         target?: string;
         innerRef?: Ref;
     }>({
+
+inheritAttrs:false,
+
         setup(_, { slots: children, attrs }) {
             return () => {
                 const {
