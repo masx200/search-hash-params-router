@@ -4,7 +4,7 @@
         "access": "public"
     },
     "name": "@masx200/search-hash-params-router",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "main": "./dist/index.cjs",
@@ -14,7 +14,7 @@
     },
     "author": "masx200 <masx200@qq.com>",
     "license": "MIT",
-    "description": "",
+    "description": "使用 location.search 和 location.hash中查询参数的前端路由器，不需要\"Path-to-RegExp\"了",
     "bugs": {
         "url": "https://github.com/masx200/search-hash-params-router/issues"
     },
