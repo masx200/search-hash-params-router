@@ -5,7 +5,7 @@ export interface RecordBase {
     params: (opt: Record<string, string>) => boolean;
 }
 export interface RecordRoute extends RecordBase {
-    component: ComponentReactOrVue;
+    component: ComponentReactOrVue | string;
     props?: Record<string, any>;
     children?: Array<any>;
 }
