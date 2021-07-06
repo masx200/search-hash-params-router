@@ -403,5 +403,5 @@ exports.createHashRouter = function() {
             };
         }
     });
-}, exports.matchroute = X;
+}, exports.matchRoute = X;
 //# sourceMappingURL=index.cjs.map

@@ -411,5 +411,5 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
     });
 }
 
-export { X as createHashRouter, nt as createReactLink, at as createReactView, Y as createSearchRouter, ut as createVueLink, ct as createVueView, Z as matchroute };
+export { X as createHashRouter, nt as createReactLink, at as createReactView, Y as createSearchRouter, ut as createVueLink, ct as createVueView, Z as matchRoute };
 //# sourceMappingURL=index.mjs.map

@@ -1,5 +1,5 @@
 import debounce from "lodash/debounce";
-import { matchroute } from "../../createrouter/matchroute";
+import { matchRoute } from "../../createrouter/matchRoute";
 import { Router } from "../../createrouter/Router";
 import { isrouterecord } from "../isrouterecord";
 import { navigate } from "../navigate";
@@ -44,7 +44,7 @@ function createReactView({
             router.getparams()
         );
         const [currentroute, setcurrentroute] = useState(
-            matchroute(routes, params)
+            matchRoute(routes, params)
         );
 
         const paramschange = useCallback(
@@ -54,7 +54,7 @@ function createReactView({
             []
         );
         useEffect(() => {
-            setcurrentroute(matchroute(routes, params));
+            setcurrentroute(matchRoute(routes, params));
         }, [routes, params]);
 
         useEffect(() => {

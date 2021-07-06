@@ -1,6 +1,6 @@
 import { RouteRecord } from "./RouteRecord";
 
-export function matchroute(
+export function matchRoute(
     routes: RouteRecord[],
     params: Record<string, string>
 ) {

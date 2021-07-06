@@ -9,7 +9,7 @@ import type {
 import debounce from "lodash/debounce";
 import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
 import { isRecordRoute } from "../../createrouter/isRecordRoute";
-import { matchroute } from "../../createrouter/matchroute";
+import { matchRoute } from "../../createrouter/matchRoute";
 import { Router } from "../../createrouter/Router";
 import { RouteRecord } from "../../createrouter/RouteRecord";
 import { isrouterecord } from "../isrouterecord";
@@ -47,14 +47,14 @@ function createVueView({
     return defineComponent<{ routes: RouteRecord[] }>({
         setup(props) {
             const params = ref(router.getparams());
-            const currentroute = ref(matchroute(props.routes, params.value));
+            const currentroute = ref(matchRoute(props.routes, params.value));
             const paramschange = debounce((p) => {
                 params.value = p;
             });
             watch(
                 [() => props.routes, () => params.value],
                 ([routes, params]) => {
-                    currentroute.value = matchroute(routes, params);
+                    currentroute.value = matchRoute(routes, params);
                 }
             );
             watch([() => currentroute.value], ([currentroute]) => {

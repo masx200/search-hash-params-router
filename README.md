@@ -54,7 +54,7 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
-## 例子:
+## 例子:在 React 中使用
 
 导入模块：
 
@@ -64,7 +64,7 @@ import {
     createSearchRouter,
     createReactView,
     createReactLink,
-    matchroute,
+    matchRoute,
 } from "@masx200/search-hash-params-router";
 ```
 
@@ -160,7 +160,7 @@ console.log(searchrouter.getparams());
 searchrouter.on("params", (p) => {
     console.log(p);
 
-    console.log(matchroute(routes, p));
+    console.log(matchRoute(routes, p));
 });
 ```
 
