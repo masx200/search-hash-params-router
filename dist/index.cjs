@@ -343,7 +343,7 @@ exports.createHashRouter = function() {
         }), []), et(u)) return null;
         if (nt(u)) {
             const t = u.component, n = u.children, r = u.props || {};
-            return Object.assign(r, {
+            return Object.assign({}, r, {
                 params: a
             }), e(t, {
                 ...r
@@ -407,7 +407,7 @@ exports.createHashRouter = function() {
                 if (h.value = Z(t, l.value), et(h.value)) return null;
                 if (nt(h.value)) {
                     const t = h.value.component, e = h.value.children, n = h.value.props || {};
-                    Object.assign(n, {
+                    Object.assign({}, n, {
                         params: l.value
                     });
                     const o = "string" == typeof t ? r(t) : t;

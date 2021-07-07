@@ -347,7 +347,7 @@ function at({router: t, createElement: e, useState: n, useEffect: r}) {
         }), []), ot(u)) return null;
         if (it(u)) {
             const t = u.component, n = u.children, r = u.props || {};
-            return Object.assign(r, {
+            return Object.assign({}, r, {
                 params: i
             }), e(t, {
                 ...r
@@ -413,7 +413,7 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
                 if (h.value = nt(t, l.value), ot(h.value)) return null;
                 if (it(h.value)) {
                     const t = h.value.component, e = h.value.children, n = h.value.props || {};
-                    Object.assign(n, {
+                    Object.assign({}, n, {
                         params: l.value
                     });
                     const o = "string" == typeof t ? r(t) : t;

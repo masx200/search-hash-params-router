@@ -101,7 +101,7 @@ function createVueView({
                     const children = currentroute.value.children;
 
                     const props = currentroute.value.props || {};
-                    Object.assign(props, { params: params.value });
+                    Object.assign({}, props, { params: params.value });
                     const Resolvedcomponent =
                         "string" === typeof Component
                             ? resolveComponent(Component)
