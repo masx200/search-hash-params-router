@@ -129,17 +129,36 @@ const Link = createVueLink({
         </div>
     </div>
 </template>
-```
+<script>
 
-```ts
+import { defineComponent } from "vue";
 export default defineComponent({
     components: { Loading, Link, Programmaticnavigation, View },
     data: () => {
         return { routes };
     },
 });
+</script>
 ```
 
+接受路由参数：
+
+```vue
+<template>
+    <div>
+        <h1>bar</h1>
+        <div>{{ msg }}</div>
+        <div>{{ JSON.stringify(params) }}</div>
+    </div>
+</template>
+<script>
+import { defineComponent } from "vue";
+
+export default defineComponent({
+    props: ["msg", "params"],
+});
+</script>
+```
 ## 例子:在 React 中使用
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
