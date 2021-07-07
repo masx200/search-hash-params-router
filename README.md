@@ -177,7 +177,7 @@ const View = createVueView({
 ```js
 const Link = createVueLink({
     router: hashrouter,
-    Fragment,
+
     resolveComponent,
     defineComponent,
     h,
@@ -287,7 +287,7 @@ function Bar({
 const View = createReactView({
     router: searchrouter,
     createElement,
-    useCallback,
+
     useEffect,
     useState,
 });

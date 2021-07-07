@@ -15,13 +15,11 @@ function createVueLink({
     resolveComponent,
     defineComponent,
     h: createElement,
-    Fragment,
 }: {
     resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-    Fragment: typeof import("@vue/runtime-core").Fragment;
 }) {
     return defineComponent<{
         component?: string | ComponentType;
@@ -85,14 +83,9 @@ function createVueLink({
 
                 return createElement(
                     //@ts-ignore
-                    Fragment,
-                    {},
-                    createElement(
-                        //@ts-ignore
-                        Resolvedcomponent,
-                        { ...oprops },
-                        children
-                    )
+                    Resolvedcomponent,
+                    { ...oprops },
+                    children
                 );
             };
         },

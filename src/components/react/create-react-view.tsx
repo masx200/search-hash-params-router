@@ -5,7 +5,6 @@ import { isrouterecord } from "../isrouterecord";
 import { navigate } from "../navigate";
 import type {
     FC,
-    useCallback as useCallbackType,
     createElement as createElementType,
     useState as useStateType,
     useEffect as useEffectType,
@@ -17,19 +16,18 @@ import { isRecordRoute } from "../../createrouter/isRecordRoute";
 export { createReactView };
 function createReactView({
     router,
-    useCallback,
+
     createElement,
     useState,
     useEffect,
 }: {
     router: Router;
-    useCallback: typeof useCallbackType;
+
     createElement: typeof createElementType;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
 }): FC<{ routes: RouteRecord[] }> {
     return ({ routes }) => {
-        //  console.log(router, useCallback, createElement, useState, useEffect);
         if (!Array.isArray(routes)) {
             throw new TypeError("array");
         }
@@ -47,12 +45,6 @@ function createReactView({
             matchRoute(routes, params)
         );
 
-        const paramschange = useCallback(
-            debounce((p) => {
-                setparams(p);
-            }),
-            []
-        );
         useEffect(() => {
             setcurrentroute(matchRoute(routes, params));
         }, [routes, params]);
@@ -64,17 +56,21 @@ function createReactView({
                 navigate(router, redirect);
             }
         }, [currentroute]);
-        function onmount() {
-            router.mount();
-            router.on("params", paramschange);
-        }
 
-        function onunmount() {
-            router.unmount();
-
-            router.off("params", paramschange);
-        }
         useEffect(() => {
+            const paramschange = debounce((p) => {
+                setparams(p);
+            });
+            function onmount() {
+                router.mount();
+                router.on("params", paramschange);
+            }
+
+            function onunmount() {
+                router.unmount();
+
+                router.off("params", paramschange);
+            }
             onmount();
 
             return onunmount;

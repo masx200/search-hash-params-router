@@ -2,7 +2,6 @@ import { EventEmitterTarget } from "@masx200/event-emitter-target";
 import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, PropsWithChildren, FC } from "react";
 import { forwardRef as forwardRefType } from "react";
 import { createElement as createElementType } from "react";
-import { useCallback as useCallbackType } from "react";
 import { useState as useStateType } from "react";
 import { useEffect as useEffectType } from "react";
 import { Component } from "@vue/runtime-core";
@@ -52,21 +51,19 @@ declare function createReactLink({ router, forwardRef, createElement }: {
     forwardRef: typeof forwardRefType;
     createElement: typeof createElementType;
 }): ReactLinkComponent;
-declare function createReactView({ router, useCallback, createElement, useState, useEffect }: {
+declare function createReactView({ router, createElement, useState, useEffect }: {
     router: Router;
-    useCallback: typeof useCallbackType;
     createElement: typeof createElementType;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
 }): FC<{
     routes: RouteRecord[];
 }>;
-declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement, Fragment }: {
+declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement }: {
     resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-    Fragment: typeof import("@vue/runtime-core").Fragment;
 }): import("@vue/runtime-core").DefineComponent<{
     component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);

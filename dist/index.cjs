@@ -105,10 +105,10 @@ var i = function(t) {
 var p = function(t) {
     for (var e = t.length; e-- && h.test(t.charAt(e)); ) ;
     return e;
-}, m = /^\s+/;
+}, y = /^\s+/;
 
-var y = function(t) {
-    return t ? t.slice(0, p(t) + 1).replace(m, "") : t;
+var m = function(t) {
+    return t ? t.slice(0, p(t) + 1).replace(y, "") : t;
 }, v = f.Symbol, w = v, d = Object.prototype, b = d.hasOwnProperty, g = d.toString, E = w ? w.toStringTag : void 0;
 
 var S = function(t) {
@@ -131,11 +131,11 @@ var O = function(t) {
     return null != t && "object" == typeof t;
 };
 
-var P = y, U = i, A = function(t) {
+var P = m, U = i, A = function(t) {
     return "symbol" == typeof t || x(t) && "[object Symbol]" == O(t);
-}, C = /^[-+]0x[0-9a-f]+$/i, N = /^0b[01]+$/i, k = /^0o[0-7]+$/i, M = parseInt;
+}, N = /^[-+]0x[0-9a-f]+$/i, C = /^0b[01]+$/i, k = /^0o[0-7]+$/i, M = parseInt;
 
-var V = i, D = l, F = function(t) {
+var V = i, D = l, K = function(t) {
     if ("number" == typeof t) return t;
     if (A(t)) return NaN;
     if (U(t)) {
@@ -144,9 +144,9 @@ var V = i, D = l, F = function(t) {
     }
     if ("string" != typeof t) return 0 === t ? t : +t;
     t = P(t);
-    var n = N.test(t);
-    return n || k.test(t) ? M(t.slice(2), n ? 2 : 8) : C.test(t) ? NaN : +t;
-}, K = Math.max, _ = Math.min;
+    var n = C.test(t);
+    return n || k.test(t) ? M(t.slice(2), n ? 2 : 8) : N.test(t) ? NaN : +t;
+}, _ = Math.max, F = Math.min;
 
 var W = function(t, e, n) {
     var r, o, a, i, u, c, f = 0, s = !1, l = !1, h = !0;
@@ -155,33 +155,33 @@ var W = function(t, e, n) {
         var n = r, a = o;
         return r = o = void 0, f = e, i = t.apply(a, n);
     }
-    function m(t) {
+    function y(t) {
         return f = t, u = setTimeout(v, e), s ? p(t) : i;
     }
-    function y(t) {
+    function m(t) {
         var n = t - c;
         return void 0 === c || n >= e || n < 0 || l && t - f >= a;
     }
     function v() {
         var t = D();
-        if (y(t)) return w(t);
+        if (m(t)) return w(t);
         u = setTimeout(v, function(t) {
             var n = e - (t - c);
-            return l ? _(n, a - (t - f)) : n;
+            return l ? F(n, a - (t - f)) : n;
         }(t));
     }
     function w(t) {
         return u = void 0, h && r ? p(t) : (r = o = void 0, i);
     }
     function d() {
-        var t = D(), n = y(t);
+        var t = D(), n = m(t);
         if (r = arguments, o = this, c = t, n) {
-            if (void 0 === u) return m(c);
+            if (void 0 === u) return y(c);
             if (l) return clearTimeout(u), u = setTimeout(v, e), p(c);
         }
         return void 0 === u && (u = setTimeout(v, e)), i;
     }
-    return e = F(e) || 0, V(n) && (s = !!n.leading, a = (l = "maxWait" in n) ? K(F(n.maxWait) || 0, e) : a, 
+    return e = K(e) || 0, V(n) && (s = !!n.leading, a = (l = "maxWait" in n) ? _(K(n.maxWait) || 0, e) : a, 
     h = "trailing" in n ? !!n.trailing : h), d.cancel = function() {
         void 0 !== u && clearTimeout(u), f = 0, r = c = o = u = void 0;
     }, d.flush = function() {
@@ -321,59 +321,61 @@ exports.createHashRouter = function() {
             }
         }, a);
     }));
-}, exports.createReactView = function({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
-    return ({routes: a}) => {
-        if (!Array.isArray(a)) throw new TypeError("array");
-        if (!a.every((t => tt(t)))) throw new TypeError('{params:"function"}');
-        const [i, u] = r(t.getparams()), [c, f] = r(Z(a, i)), s = e(W((t => {
-            u(t);
-        })), []);
-        function l() {
-            t.unmount(), t.off("params", s);
-        }
-        if (o((() => {
-            f(Z(a, i));
-        }), [ a, i ]), o((() => {
-            if (et(c)) {
-                const e = c.redirect;
+}, exports.createReactView = function({router: t, createElement: e, useState: n, useEffect: r}) {
+    return ({routes: o}) => {
+        if (!Array.isArray(o)) throw new TypeError("array");
+        if (!o.every((t => tt(t)))) throw new TypeError('{params:"function"}');
+        const [a, i] = n(t.getparams()), [u, c] = n(Z(o, a));
+        if (r((() => {
+            c(Z(o, a));
+        }), [ o, a ]), r((() => {
+            if (et(u)) {
+                const e = u.redirect;
                 X(t, e);
             }
-        }), [ c ]), o((() => (t.mount(), t.on("params", s), l)), []), et(c)) return null;
-        if (nt(c)) {
-            const t = c.component, e = c.children, r = c.props || {};
+        }), [ u ]), r((() => {
+            const e = W((t => {
+                i(t);
+            }));
+            return t.mount(), t.on("params", e), function() {
+                t.unmount(), t.off("params", e);
+            };
+        }), []), et(u)) return null;
+        if (nt(u)) {
+            const t = u.component, n = u.children, r = u.props || {};
             return Object.assign(r, {
-                params: i
-            }), n(t, {
+                params: a
+            }), e(t, {
                 ...r
-            }, e);
+            }, n);
         }
         return null;
     };
 }, exports.createSearchRouter = function() {
     return Q("search");
-}, exports.createVueLink = function({router: t, resolveComponent: e, defineComponent: n, h: r, Fragment: o}) {
+}, exports.createVueLink = function({router: t, resolveComponent: e, defineComponent: n, h: r}) {
     return n({
         inheritAttrs: !1,
-        setup: (n, {slots: a, attrs: i}) => () => {
-            const {component: n = "a", to: u, onClick: c, target: f, innerRef: s} = i;
-            if (!u) throw new TypeError("object,function");
-            const l = {
-                ref: s,
-                href: t.paramshref(u),
+        setup: (n, {slots: o, attrs: a}) => () => {
+            const {component: n = "a", to: i, onClick: u, target: c, innerRef: f} = a;
+            if (!i) throw new TypeError("object,function");
+            const s = {
+                ref: f,
+                href: t.paramshref(i),
                 onClick: e => {
                     try {
-                        "function" == typeof c && c(e);
+                        "function" == typeof u && u(e);
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || Y(e) || (e.preventDefault(), 
-                    X(t, u));
+                    e.defaultPrevented || 0 !== e.button || c && "_self" !== c || Y(e) || (e.preventDefault(), 
+                    X(t, i));
                 },
-                target: f
-            }, h = "string" == typeof n ? e(n) : n;
-            return r(o, {}, r(h, {
-                ...l
-            }, a));
+                target: c
+            }, l = "string" == typeof n ? e(n) : n;
+            return r(l, {
+                ...s
+            }, o);
         }
     });
 }, exports.createVueView = function({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defineComponent: o, h: a, ref: i, watch: u, Fragment: c}) {
