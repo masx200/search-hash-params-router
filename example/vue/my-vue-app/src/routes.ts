@@ -4,6 +4,7 @@ const Home = defineAsyncComponent(() => import("./Home.vue"));
 const App = defineAsyncComponent(() => import("./App.vue"));
 const Bar = defineAsyncComponent(() => import("./Bar.vue"));
 const Foo = defineAsyncComponent(() => import("./Foo.vue"));
+console.log(Bar);
 const routes = [
     {
         component: Home,

@@ -101,19 +101,19 @@ var a = function(t) {
 var p = function(t) {
     for (var e = t.length; e-- && h.test(t.charAt(e)); ) ;
     return e;
-}, m = /^\s+/;
+}, y = /^\s+/;
 
-var y = function(t) {
-    return t ? t.slice(0, p(t) + 1).replace(m, "") : t;
-}, v = f.Symbol, w = v, d = Object.prototype, g = d.hasOwnProperty, b = d.toString, E = w ? w.toStringTag : void 0;
+var m = function(t) {
+    return t ? t.slice(0, p(t) + 1).replace(y, "") : t;
+}, v = f.Symbol, w = v, d = Object.prototype, b = d.hasOwnProperty, g = d.toString, E = w ? w.toStringTag : void 0;
 
 var S = function(t) {
-    var e = g.call(t, E), n = t[E];
+    var e = b.call(t, E), n = t[E];
     try {
         t[E] = void 0;
         var r = !0;
     } catch (t) {}
-    var o = b.call(t);
+    var o = g.call(t);
     return r && (e ? t[E] = n : delete t[E]), o;
 }, T = Object.prototype.toString;
 
@@ -127,7 +127,7 @@ var O = function(t) {
     return null != t && "object" == typeof t;
 };
 
-var A = y, P = a, N = function(t) {
+var A = m, P = a, N = function(t) {
     return "symbol" == typeof t || U(t) && "[object Symbol]" == O(t);
 }, C = /^[-+]0x[0-9a-f]+$/i, x = /^0b[01]+$/i, k = /^0o[0-7]+$/i, M = parseInt;
 
@@ -151,16 +151,16 @@ var I = function(t, e, n) {
         var n = r, i = o;
         return r = o = void 0, f = e, a = t.apply(i, n);
     }
-    function m(t) {
+    function y(t) {
         return f = t, u = setTimeout(v, e), s ? p(t) : a;
     }
-    function y(t) {
+    function m(t) {
         var n = t - c;
         return void 0 === c || n >= e || n < 0 || l && t - f >= i;
     }
     function v() {
         var t = K();
-        if (y(t)) return w(t);
+        if (m(t)) return w(t);
         u = setTimeout(v, function(t) {
             var n = e - (t - c);
             return l ? $(n, i - (t - f)) : n;
@@ -170,9 +170,9 @@ var I = function(t, e, n) {
         return u = void 0, h && r ? p(t) : (r = o = void 0, a);
     }
     function d() {
-        var t = K(), n = y(t);
+        var t = K(), n = m(t);
         if (r = arguments, o = this, c = t, n) {
-            if (void 0 === u) return m(c);
+            if (void 0 === u) return y(c);
             if (l) return clearTimeout(u), u = setTimeout(v, e), p(c);
         }
         return void 0 === u && (u = setTimeout(v, e)), a;
@@ -347,10 +347,11 @@ function at({router: t, createElement: e, useState: n, useEffect: r}) {
         }), []), ot(u)) return null;
         if (it(u)) {
             const t = u.component, n = u.children, r = u.props || {};
-            return Object.assign({}, r, {
+            let o = Object.assign({}, r, {
                 params: i
-            }), e(t, {
-                ...r
+            });
+            return e(t, {
+                ...o
             }, n);
         }
         return null;
@@ -412,13 +413,12 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
                 if (!t.every((t => rt(t)))) throw new TypeError('{params:"function"}');
                 if (h.value = nt(t, l.value), ot(h.value)) return null;
                 if (it(h.value)) {
-                    const t = h.value.component, e = h.value.children, n = h.value.props || {};
-                    Object.assign({}, n, {
+                    const t = h.value.component, e = h.value.children;
+                    let n = h.value.props || {}, o = Object.assign({}, n, {
                         params: l.value
-                    });
-                    const o = "string" == typeof t ? r(t) : t;
-                    return i(c, {}, i(o, {
-                        ...n
+                    }), a = "string" == typeof t ? r(t) : t;
+                    return "object" == typeof a && (a = Object.assign({}, a)), i(c, {}, i(a, {
+                        ...o
                     }, e));
                 }
                 return null;

@@ -100,21 +100,28 @@ function createVueView({
 
                     const children = currentroute.value.children;
 
-                    const props = currentroute.value.props || {};
-                    Object.assign({}, props, { params: params.value });
-                    const Resolvedcomponent =
+                    let props = currentroute.value.props || {};
+                    let oprops = Object.assign({}, props, {
+                        params: params.value,
+                    });
+                    let Resolvedcomponent =
                         "string" === typeof Component
                             ? resolveComponent(Component)
                             : Component;
-
+                    if (typeof Resolvedcomponent === "object") {
+                        Resolvedcomponent = Object.assign(
+                            {},
+                            Resolvedcomponent
+                        );
+                    }
                     return createElement(
                         //@ts-ignore
                         Fragment,
                         {},
                         createElement(
-                            //@ts-ignore
+                            // @ts-ignore
                             Resolvedcomponent,
-                            { ...props },
+                            { ...oprops },
                             children
                         )
                     );
