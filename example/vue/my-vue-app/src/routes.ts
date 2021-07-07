@@ -1,19 +1,19 @@
 import NotFound from "./NotFound.vue";
 import { defineAsyncComponent } from "vue";
-//
+const Home = defineAsyncComponent(() => import("./Home.vue"));
 const App = defineAsyncComponent(() => import("./App.vue"));
 const Bar = defineAsyncComponent(() => import("./Bar.vue"));
 const Foo = defineAsyncComponent(() => import("./Foo.vue"));
 const routes = [
     {
-        component: "Home",
+        component: Home,
         children: ["hello home"],
         params(o: any) {
             return Object.keys(o).length === 0;
         },
     },
     {
-        component: "Home",
+        component: Home,
         children: ["hello world"],
         params(o: any) {
             return o.p === "home";

@@ -50,6 +50,97 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 路由匹配方法示例如下：
 
+## 通用例子:
+
+创建路由器：
+
+```js
+const hashrouter = createHashRouter();
+
+const searchrouter = createSearchRouter();
+```
+
+编程式导航:
+
+```ts
+searchrouter.setparams({ qqqqq: Math.random().toString() });
+searchrouter.transformparams((o) => {
+    return {
+        ...o,
+        qqqqq: Math.random().toString(),
+    };
+});
+```
+
+获取当前路由参数对象
+
+```js
+console.log(searchrouter.getparams());
+```
+
+监听路由参数的变化事件，监听路由匹配切换的变化：
+
+```js
+searchrouter.on("params", (p) => {
+    console.log(p);
+});
+```
+
+创建路由条目：
+
+```ts
+const routes = [
+    {
+        component: Home,
+        children: ["hello home"],
+        params(o: any) {
+            return Object.keys(o).length === 0;
+        },
+    },
+    {
+        component: Home,
+        children: ["hello world"],
+        params(o: any) {
+            return o.p === "home";
+        },
+    },
+    {
+        component: App,
+
+        params(o: any) {
+            return o.p === "app";
+        },
+    },
+    {
+        component: Foo,
+
+        params(o: any) {
+            return o.foo === "foo1";
+        },
+    },
+    {
+        component: Bar,
+        props: { msg: "test props" },
+        params(o: any) {
+            return o.bar === "bar1";
+        },
+    },
+    {
+        params(o: any) {
+            return "redirect" == o.p;
+        },
+        redirect: { p: "home" },
+    },
+    {
+        component: NotFound,
+
+        params() {
+            return true;
+        },
+    },
+];
+```
+
 ## 例子:在 Vue 中使用
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/vue/my-vue-app
@@ -62,7 +153,6 @@ import {
     createSearchRouter,
     createVueView,
     createVueLink,
-    matchRoute,
 } from "@masx200/search-hash-params-router";
 ```
 
@@ -130,7 +220,6 @@ const Link = createVueLink({
     </div>
 </template>
 <script>
-
 import { defineComponent } from "vue";
 export default defineComponent({
     components: { Loading, Link, Programmaticnavigation, View },
@@ -159,6 +248,7 @@ export default defineComponent({
 });
 </script>
 ```
+
 ## 例子:在 React 中使用
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
@@ -171,63 +261,7 @@ import {
     createSearchRouter,
     createReactView,
     createReactLink,
-    matchRoute,
 } from "@masx200/search-hash-params-router";
-```
-
-创建路由条目：
-
-```ts
-const routes = [
-    {
-        component: Home,
-        children: ["hello home"],
-        params(o: any) {
-            return Object.keys(o).length === 0;
-        },
-    },
-    {
-        component: Home,
-        children: ["hello world"],
-        params(o: any) {
-            return o.p === "home";
-        },
-    },
-    {
-        component: App,
-
-        params(o: any) {
-            return o.p === "app";
-        },
-    },
-    {
-        component: Foo,
-
-        params(o: any) {
-            return o.foo === "foo1";
-        },
-    },
-    {
-        component: Bar,
-        props: { msg: "test props" },
-        params(o: any) {
-            return o.bar === "bar1";
-        },
-    },
-    {
-        params(o: any) {
-            return "redirect" == o.p;
-        },
-        redirect: { p: "home" },
-    },
-    {
-        component: NotFound,
-
-        params() {
-            return true;
-        },
-    },
-];
 ```
 
 接受路由参数：
@@ -245,30 +279,6 @@ function Bar({
         </div>
     );
 }
-```
-
-创建路由器：
-
-```js
-const hashrouter = createHashRouter();
-
-const searchrouter = createSearchRouter();
-```
-
-获取当前路由参数对象
-
-```js
-console.log(searchrouter.getparams());
-```
-
-监听路由参数的变化事件，监听路由匹配切换的变化：
-
-```js
-searchrouter.on("params", (p) => {
-    console.log(p);
-
-    console.log(matchRoute(routes, p));
-});
 ```
 
 创建路由视图组件：
@@ -319,16 +329,5 @@ function RouterTest() {
             </div>
         </div>
     );
-}
-```
-
-编程式导航:
-
-```tsx
-function Programmaticnavigation() {
-    function onclick() {
-        searchrouter.setparams({ qqqqq: Math.random().toString() });
-    }
-    return <button onClick={onclick}>navigate </button>;
 }
 ```

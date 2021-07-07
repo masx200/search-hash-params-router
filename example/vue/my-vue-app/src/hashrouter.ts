@@ -1,8 +1,7 @@
-import { createHashRouter, matchRoute } from "../../../../dist/index";
+import { createHashRouter } from "../../../../dist/index";
 const hashrouter = createHashRouter();
-import { routes } from "./routes";
+console.log(hashrouter);
 hashrouter.on("params", (p) => {
     console.log(p);
-    console.log(matchRoute(routes, p));
 });
 export { hashrouter };

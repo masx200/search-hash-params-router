@@ -271,10 +271,6 @@ function Q(t) {
 }
 
 function X(t, e) {
-    for (let n of t) if (n.params(e)) return n;
-}
-
-function Y(t, e) {
     if (!e) throw new TypeError("object,function");
     if ("function" != typeof e) {
         if ("object" != typeof e) throw new TypeError("object,function");
@@ -282,8 +278,12 @@ function Y(t, e) {
     } else t.transformparams(e);
 }
 
-function Z(t) {
+function Y(t) {
     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
+}
+
+function Z(t, e) {
+    for (let n of t) if (n.params(e)) return n;
 }
 
 function tt(t) {
@@ -314,8 +314,8 @@ exports.createHashRouter = function() {
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || i && "_self" !== i || Z(e) || (e.preventDefault(), 
-                    Y(t, r));
+                    e.defaultPrevented || 0 !== e.button || i && "_self" !== i || Y(e) || (e.preventDefault(), 
+                    X(t, r));
                 },
                 target: i
             }
@@ -325,18 +325,18 @@ exports.createHashRouter = function() {
     return ({routes: a}) => {
         if (!Array.isArray(a)) throw new TypeError("array");
         if (!a.every((t => tt(t)))) throw new TypeError('{params:"function"}');
-        const [i, u] = r(t.getparams()), [c, f] = r(X(a, i)), s = e(W((t => {
+        const [i, u] = r(t.getparams()), [c, f] = r(Z(a, i)), s = e(W((t => {
             u(t);
         })), []);
         function l() {
             t.unmount(), t.off("params", s);
         }
         if (o((() => {
-            f(X(a, i));
+            f(Z(a, i));
         }), [ a, i ]), o((() => {
             if (et(c)) {
                 const e = c.redirect;
-                Y(t, e);
+                X(t, e);
             }
         }), [ c ]), o((() => (t.mount(), t.on("params", s), l)), []), et(c)) return null;
         if (nt(c)) {
@@ -366,8 +366,8 @@ exports.createHashRouter = function() {
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || Z(e) || (e.preventDefault(), 
-                    Y(t, u));
+                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || Y(e) || (e.preventDefault(), 
+                    X(t, u));
                 },
                 target: f
             }, h = "string" == typeof n ? e(n) : n;
@@ -382,17 +382,17 @@ exports.createHashRouter = function() {
         setup(o, {attrs: f}) {
             const {routes: s} = f;
             if (!Array.isArray(s)) throw new TypeError("array");
-            const l = i(n.getparams()), h = i(X(s, l.value)), p = W((t => {
+            const l = i(n.getparams()), h = i(Z(s, l.value)), p = W((t => {
                 l.value = t;
             }));
             return u([ () => l.value ], (([t]) => {
                 const {routes: e} = f;
                 if (!Array.isArray(e)) throw new TypeError("array");
-                h.value = X(e, t);
+                h.value = Z(e, t);
             })), u([ () => h.value ], (([t]) => {
                 if (et(t)) {
                     const e = t.redirect;
-                    Y(n, e);
+                    X(n, e);
                 }
             })), t((function() {
                 n.mount(), n.on("params", p);
@@ -402,7 +402,7 @@ exports.createHashRouter = function() {
                 const {routes: t} = f;
                 if (!Array.isArray(t)) throw new TypeError("array");
                 if (!t.every((t => tt(t)))) throw new TypeError('{params:"function"}');
-                if (h.value = X(t, l.value), et(h.value)) return null;
+                if (h.value = Z(t, l.value), et(h.value)) return null;
                 if (nt(h.value)) {
                     const t = h.value.component, e = h.value.children, n = h.value.props || {};
                     Object.assign(n, {
@@ -417,5 +417,5 @@ exports.createHashRouter = function() {
             };
         }
     });
-}, exports.matchRoute = X;
+};
 //# sourceMappingURL=index.cjs.map

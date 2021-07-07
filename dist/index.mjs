@@ -275,10 +275,6 @@ function Y() {
 }
 
 function Z(t, e) {
-    for (let n of t) if (n.params(e)) return n;
-}
-
-function tt(t, e) {
     if (!e) throw new TypeError("object,function");
     if ("function" != typeof e) {
         if ("object" != typeof e) throw new TypeError("object,function");
@@ -286,11 +282,11 @@ function tt(t, e) {
     } else t.transformparams(e);
 }
 
-function et(t) {
+function tt(t) {
     return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
 }
 
-function nt({router: t, forwardRef: e, createElement: n}) {
+function et({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: a, target: i}, u) => {
         if (!r) throw new TypeError("object,function");
         const c = t.paramshref(r);
@@ -304,13 +300,17 @@ function nt({router: t, forwardRef: e, createElement: n}) {
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || i && "_self" !== i || et(e) || (e.preventDefault(), 
-                    tt(t, r));
+                    e.defaultPrevented || 0 !== e.button || i && "_self" !== i || tt(e) || (e.preventDefault(), 
+                    Z(t, r));
                 },
                 target: i
             }
         }, a);
     }));
+}
+
+function nt(t, e) {
+    for (let n of t) if (n.params(e)) return n;
 }
 
 function rt(t) {
@@ -329,18 +329,18 @@ function it({router: t, useCallback: e, createElement: n, useState: r, useEffect
     return ({routes: a}) => {
         if (!Array.isArray(a)) throw new TypeError("array");
         if (!a.every((t => rt(t)))) throw new TypeError('{params:"function"}');
-        const [i, u] = r(t.getparams()), [c, f] = r(Z(a, i)), s = e(I((t => {
+        const [i, u] = r(t.getparams()), [c, f] = r(nt(a, i)), s = e(I((t => {
             u(t);
         })), []);
         function l() {
             t.unmount(), t.off("params", s);
         }
         if (o((() => {
-            f(Z(a, i));
+            f(nt(a, i));
         }), [ a, i ]), o((() => {
             if (ot(c)) {
                 const e = c.redirect;
-                tt(t, e);
+                Z(t, e);
             }
         }), [ c ]), o((() => (t.mount(), t.on("params", s), l)), []), ot(c)) return null;
         if (at(c)) {
@@ -370,8 +370,8 @@ function ut({router: t, resolveComponent: e, defineComponent: n, h: r, Fragment:
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || et(e) || (e.preventDefault(), 
-                    tt(t, u));
+                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || tt(e) || (e.preventDefault(), 
+                    Z(t, u));
                 },
                 target: f
             }, h = "string" == typeof n ? e(n) : n;
@@ -388,17 +388,17 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
         setup(o, {attrs: f}) {
             const {routes: s} = f;
             if (!Array.isArray(s)) throw new TypeError("array");
-            const l = i(n.getparams()), h = i(Z(s, l.value)), p = I((t => {
+            const l = i(n.getparams()), h = i(nt(s, l.value)), p = I((t => {
                 l.value = t;
             }));
             return u([ () => l.value ], (([t]) => {
                 const {routes: e} = f;
                 if (!Array.isArray(e)) throw new TypeError("array");
-                h.value = Z(e, t);
+                h.value = nt(e, t);
             })), u([ () => h.value ], (([t]) => {
                 if (ot(t)) {
                     const e = t.redirect;
-                    tt(n, e);
+                    Z(n, e);
                 }
             })), t((function() {
                 n.mount(), n.on("params", p);
@@ -408,7 +408,7 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
                 const {routes: t} = f;
                 if (!Array.isArray(t)) throw new TypeError("array");
                 if (!t.every((t => rt(t)))) throw new TypeError('{params:"function"}');
-                if (h.value = Z(t, l.value), ot(h.value)) return null;
+                if (h.value = nt(t, l.value), ot(h.value)) return null;
                 if (at(h.value)) {
                     const t = h.value.component, e = h.value.children, n = h.value.props || {};
                     Object.assign(n, {
@@ -425,5 +425,5 @@ function ct({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
     });
 }
 
-export { X as createHashRouter, nt as createReactLink, it as createReactView, Y as createSearchRouter, ut as createVueLink, ct as createVueView, Z as matchRoute };
+export { X as createHashRouter, et as createReactLink, it as createReactView, Y as createSearchRouter, ut as createVueLink, ct as createVueView };
 //# sourceMappingURL=index.mjs.map

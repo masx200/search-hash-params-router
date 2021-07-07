@@ -41,7 +41,6 @@ interface RecordRedirect extends RecordBase {
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
-declare function matchRoute(routes: RouteRecord[], params: Record<string, string>): RouteRecord | undefined;
 type ReactLinkComponent = ForwardRefExoticComponent<PropsWithChildren<{
     component?: string | ComponentType<any> | undefined;
     target?: string | undefined;
@@ -104,4 +103,4 @@ declare function createVueView({ onMounted, onUnmounted, router, resolveComponen
 } & {} & {
     routes?: RouteRecord[] | undefined;
 }>, {}>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, matchRoute, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };
