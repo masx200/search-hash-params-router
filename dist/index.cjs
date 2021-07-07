@@ -305,18 +305,20 @@ exports.createHashRouter = function() {
         if (!r) throw new TypeError("object,function");
         const u = t.paramshref(r);
         return n(e, {
-            ref: c,
-            href: u,
-            onClick: e => {
-                try {
-                    "function" == typeof o && o(e);
-                } catch (t) {
-                    throw e.preventDefault(), t;
-                }
-                e.defaultPrevented || 0 !== e.button || i && "_self" !== i || Z(e) || (e.preventDefault(), 
-                Y(t, r));
-            },
-            target: i
+            ...{
+                ref: c,
+                href: u,
+                onClick: e => {
+                    try {
+                        "function" == typeof o && o(e);
+                    } catch (t) {
+                        throw e.preventDefault(), t;
+                    }
+                    e.defaultPrevented || 0 !== e.button || i && "_self" !== i || Z(e) || (e.preventDefault(), 
+                    Y(t, r));
+                },
+                target: i
+            }
         }, a);
     }));
 }, exports.createReactView = function({router: t, useCallback: e, createElement: n, useState: r, useEffect: o}) {
@@ -341,7 +343,9 @@ exports.createHashRouter = function() {
             const t = u.component, e = u.children, r = u.props || {};
             return Object.assign(r, {
                 params: i
-            }), n(t, r, e);
+            }), n(t, {
+                ...r
+            }, e);
         }
         return null;
     };
@@ -349,6 +353,7 @@ exports.createHashRouter = function() {
     return Q("search");
 }, exports.createVueLink = function({router: t, resolveComponent: e, defineComponent: n, h: r, Fragment: o}) {
     return n({
+        inheritAttrs: !1,
         setup: (n, {slots: a, attrs: i}) => () => {
             const {component: n = "a", to: c, onClick: u, target: f, innerRef: s} = i;
             if (!c) throw new TypeError("object,function");
@@ -373,6 +378,7 @@ exports.createHashRouter = function() {
     });
 }, exports.createVueView = function({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defineComponent: o, h: a, ref: i, watch: c, Fragment: u}) {
     return o({
+        inheritAttrs: !1,
         setup(o, {attrs: f}) {
             const {routes: s} = f;
             if (!Array.isArray(s)) throw new TypeError("array");

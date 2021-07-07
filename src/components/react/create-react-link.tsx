@@ -67,7 +67,7 @@ export function createReactLink({
                 onClick: newclick,
                 target,
             };
-            return createElement(Component ,{...props},children};
+            return createElement(Component, { ...props }, children);
         }
     );
 }

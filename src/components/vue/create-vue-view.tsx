@@ -37,7 +37,7 @@ function createVueView({
     Fragment: typeof import("@vue/runtime-core").Fragment;
 }) {
     return defineComponent<{ routes: RouteRecord[] }>({
-inheritAttrs:false,
+        inheritAttrs: false,
         setup(_, { attrs }) {
             const { routes } = attrs;
             if (!Array.isArray(routes)) {
