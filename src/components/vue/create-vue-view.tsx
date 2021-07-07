@@ -39,6 +39,7 @@ function createVueView({
     return defineComponent<{ routes: RouteRecord[] }>({
         inheritAttrs: false,
         setup(_, { attrs }) {
+            //attrs不是响应式对象
             const { routes } = attrs;
             if (!Array.isArray(routes)) {
                 throw new TypeError("array");
@@ -48,15 +49,13 @@ function createVueView({
             const paramschange = debounce((p) => {
                 params.value = p;
             });
-            watch(
-                [() => attrs.routes, () => params.value],
-                ([routes, params]) => {
-                    if (!Array.isArray(routes)) {
-                        throw new TypeError("array");
-                    }
-                    currentroute.value = matchRoute(routes, params);
+            watch([() => params.value], ([params]) => {
+                const { routes } = attrs;
+                if (!Array.isArray(routes)) {
+                    throw new TypeError("array");
                 }
-            );
+                currentroute.value = matchRoute(routes, params);
+            });
             watch([() => currentroute.value], ([currentroute]) => {
                 if (isRecordRedirect(currentroute)) {
                     const redirect = currentroute.redirect;
@@ -78,6 +77,7 @@ function createVueView({
             onUnmounted(onunmount);
             return () => {
                 const { routes } = attrs;
+                //attrs属性有变化
                 if (!Array.isArray(routes)) {
                     throw new TypeError("array");
                 }
@@ -88,6 +88,8 @@ function createVueView({
                 ) {
                     throw new TypeError('{params:"function"}');
                 }
+
+                currentroute.value = matchRoute(routes, params.value);
 
                 if (isRecordRedirect(currentroute.value)) {
                     return null;
