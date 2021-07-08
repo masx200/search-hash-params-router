@@ -1,4 +1,4 @@
-import {
+import {readonly,
     // Fragment,
     defineComponent,
     h,
@@ -10,7 +10,7 @@ import {
 } from "vue";
 import { createVueView } from "../../../../dist/index";
 import { hashrouter } from "./hashrouter";
-const View = createVueView({
+const View = createVueView({readonly,
     // Fragment,
     onMounted,
     onUnmounted,
