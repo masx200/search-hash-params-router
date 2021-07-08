@@ -4,11 +4,12 @@ import { Loading } from "./loading";
 import { Programmaticnavigation } from "./Programmaticnavigation";
 import { routes } from "./routes";
 import { View } from "./view";
-
+import Hooktest from "./hooktest";
 export function RouterTest() {
     return (
         <div>
             <div style={{ textAlign: "center" }}>
+                <Hooktest />
                 <Programmaticnavigation />
                 <br />
                 <Link to={{}}>start</Link>

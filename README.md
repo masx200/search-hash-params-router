@@ -291,11 +291,34 @@ https://github.com/masx200/search-hash-params-router/tree/master/example/react/v
 
 ```js
 import {
+    createReactParamsHook,
     createHashRouter,
     createSearchRouter,
     createReactView,
     createReactLink,
 } from "@masx200/search-hash-params-router";
+```
+
+创建路由参数 Hook:
+
+```js
+const useParams = createReactParamsHook({
+    router: searchrouter,
+    useEffect,
+    useState,
+});
+```
+
+在任意组件中获取当前的路由参数:
+
+```jsx
+function Hooktest() {
+    const params = useParams();
+    useEffect(() => {
+        console.log(params);
+    }, [params]);
+    return <div>params:{JSON.stringify(params)}</div>;
+}
 ```
 
 接受路由参数：
