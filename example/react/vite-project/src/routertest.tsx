@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef, useEffect } from "react";
 import { Link } from "./link";
 import { Loading } from "./loading";
 import { Programmaticnavigation } from "./Programmaticnavigation";
@@ -6,13 +6,19 @@ import { routes } from "./routes";
 import { View } from "./view";
 import Hooktest from "./hooktest";
 export function RouterTest() {
+    const refelement = useRef<Element>();
+    useEffect(() => {
+        console.log(refelement.current);
+    }, [refelement.current]);
     return (
         <div>
             <div style={{ textAlign: "center" }}>
                 <Hooktest />
                 <Programmaticnavigation />
                 <br />
-                <Link to={{}}>start</Link>
+                <Link to={{}} ref={refelement}>
+                    start
+                </Link>
                 <br />
                 <Link to={{ p: "home" }}>home</Link>
                 <br />
