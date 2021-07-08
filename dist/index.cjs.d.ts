@@ -50,6 +50,11 @@ declare function createReactLink({ router, forwardRef, createElement }: {
     forwardRef: typeof forwardRefType;
     createElement: typeof createElementType;
 }): ReactLinkComponent;
+declare function createReactParamsHook({ router, useState, useEffect }: {
+    router: Router;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
+}): () => Record<string, string>;
 declare function createReactView({ router, createElement, useState, useEffect }: {
     router: Router;
     createElement: typeof createElementType;
@@ -97,4 +102,4 @@ declare function createVueView({ onMounted, onUnmounted, router, resolveComponen
 } & {} & {
     routes?: RouteRecord[] | undefined;
 }>, {}>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createVueLink, createVueView };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView };

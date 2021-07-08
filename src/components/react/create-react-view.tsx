@@ -1,4 +1,3 @@
-import debounce from "lodash/debounce";
 import { matchRoute } from "../../createrouter/matchRoute";
 import { Router } from "../../createrouter/Router";
 import { isrouterecord } from "../isrouterecord";
@@ -13,7 +12,8 @@ import type {
 import { RouteRecord } from "../../createrouter";
 import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
 import { isRecordRoute } from "../../createrouter/isRecordRoute";
-export { createReactView };
+import { createReactParamsHook } from "./createReactParamsHook";
+export { createReactView, createReactParamsHook };
 function createReactView({
     router,
 
@@ -27,6 +27,11 @@ function createReactView({
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
 }): FC<{ routes: RouteRecord[] }> {
+    const useParams = createReactParamsHook({
+        router,
+        useState,
+        useEffect,
+    });
     return ({ routes }) => {
         if (!Array.isArray(routes)) {
             throw new TypeError("array");
@@ -38,44 +43,8 @@ function createReactView({
         ) {
             throw new TypeError('{params:"function"}');
         }
-        const [params, setparams] = useState<Record<string, string>>(
-            router.getparams()
-        );
-        // const [currentroute, setcurrentroute] = useState(
-        //     matchRoute(routes, params)
-        // );
 
-        // useEffect(() => {
-        //     setcurrentroute(matchRoute(routes, params));
-        // }, [routes, params]);
-
-        // useEffect(() => {
-        //     if (isRecordRedirect(currentroute)) {
-        //         const redirect = currentroute.redirect;
-
-        //         navigate(router, redirect);
-        //     }
-        // }, [currentroute]);
-
-        useEffect(() => {
-            const paramschange = debounce((p) => {
-                setparams(p);
-            });
-            function onmount() {
-                router.mount();
-                router.on("params", paramschange);
-            }
-
-            function onunmount() {
-                router.unmount();
-
-                router.off("params", paramschange);
-                paramschange.cancel();
-            }
-            onmount();
-
-            return onunmount;
-        }, []);
+        const params = useParams();
         const currentroute = matchRoute(routes, params);
         if (isRecordRedirect(currentroute)) {
             const redirect = currentroute.redirect;

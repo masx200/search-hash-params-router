@@ -28,14 +28,14 @@ function r() {
             }));
         }));
     }
-    function f(t, r) {
+    function u(t, r) {
         e(t), n(r), i(t).add(r);
     }
-    function u(t, e) {
+    function f(t, e) {
         i(t).delete(e);
     }
     function s(t, r) {
-        e(t), n(r), u(t, r), function(t, e) {
+        e(t), n(r), f(t, r), function(t, e) {
             const n = i(t);
             let r = o.get(e);
             r && n.delete(r);
@@ -54,8 +54,8 @@ function r() {
         },
         clear: a,
         removeAllListeners: a,
-        on: f,
-        addListener: f,
+        on: u,
+        addListener: u,
         off: s,
         removeListener: s,
         once: function(t, r) {
@@ -63,11 +63,11 @@ function r() {
             let i = !1, a = o.get(r);
             if (!a) {
                 const e = n => {
-                    u(t, e), u(t, r), i || (i = !0, r(n));
+                    f(t, e), f(t, r), i || (i = !0, r(n));
                 };
                 a = e, o.set(r, a);
             }
-            u(t, r), f(t, a);
+            f(t, r), u(t, a);
         },
         emit: c,
         dispatch: c,
@@ -94,7 +94,7 @@ var i = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof wi
 var a = function(t) {
     var e = typeof t;
     return null != t && ("object" == e || "function" == e);
-}, c = "object" == typeof i && i && i.Object === Object && i, f = "object" == typeof self && self && self.Object === Object && self, u = c || f || Function("return this")(), s = u, l = function() {
+}, c = "object" == typeof i && i && i.Object === Object && i, u = "object" == typeof self && self && self.Object === Object && self, f = c || u || Function("return this")(), s = f, l = function() {
     return s.Date.now();
 }, h = /\s/;
 
@@ -105,7 +105,7 @@ var p = function(t) {
 
 var y = function(t) {
     return t ? t.slice(0, p(t) + 1).replace(m, "") : t;
-}, v = u.Symbol, w = v, d = Object.prototype, b = d.hasOwnProperty, g = d.toString, E = w ? w.toStringTag : void 0;
+}, v = f.Symbol, w = v, d = Object.prototype, b = d.hasOwnProperty, g = d.toString, E = w ? w.toStringTag : void 0;
 
 var S = function(t) {
     var e = b.call(t, E), n = t[E];
@@ -145,25 +145,25 @@ var D = a, K = l, W = function(t) {
 }, $ = Math.max, F = Math.min;
 
 var I = function(t, e, n) {
-    var r, o, i, a, c, f, u = 0, s = !1, l = !1, h = !0;
+    var r, o, i, a, c, u, f = 0, s = !1, l = !1, h = !0;
     if ("function" != typeof t) throw new TypeError("Expected a function");
     function p(e) {
         var n = r, i = o;
-        return r = o = void 0, u = e, a = t.apply(i, n);
+        return r = o = void 0, f = e, a = t.apply(i, n);
     }
     function m(t) {
-        return u = t, c = setTimeout(v, e), s ? p(t) : a;
+        return f = t, c = setTimeout(v, e), s ? p(t) : a;
     }
     function y(t) {
-        var n = t - f;
-        return void 0 === f || n >= e || n < 0 || l && t - u >= i;
+        var n = t - u;
+        return void 0 === u || n >= e || n < 0 || l && t - f >= i;
     }
     function v() {
         var t = K();
         if (y(t)) return w(t);
         c = setTimeout(v, function(t) {
-            var n = e - (t - f);
-            return l ? F(n, i - (t - u)) : n;
+            var n = e - (t - u);
+            return l ? F(n, i - (t - f)) : n;
         }(t));
     }
     function w(t) {
@@ -171,15 +171,15 @@ var I = function(t, e, n) {
     }
     function d() {
         var t = K(), n = y(t);
-        if (r = arguments, o = this, f = t, n) {
-            if (void 0 === c) return m(f);
-            if (l) return clearTimeout(c), c = setTimeout(v, e), p(f);
+        if (r = arguments, o = this, u = t, n) {
+            if (void 0 === c) return m(u);
+            if (l) return clearTimeout(c), c = setTimeout(v, e), p(u);
         }
         return void 0 === c && (c = setTimeout(v, e)), a;
     }
     return e = W(e) || 0, D(n) && (s = !!n.leading, i = (l = "maxWait" in n) ? $(W(n.maxWait) || 0, e) : i, 
     h = "trailing" in n ? !!n.trailing : h), d.cancel = function() {
-        void 0 !== c && clearTimeout(c), u = 0, r = f = o = c = void 0;
+        void 0 !== c && clearTimeout(c), f = 0, r = u = o = c = void 0;
     }, d.flush = function() {
         return void 0 === c ? a : w(K());
     }, d;
@@ -289,11 +289,11 @@ function tt(t) {
 function et({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a}, c) => {
         if (!r) throw new TypeError("object,function");
-        const f = t.paramshref(r);
+        const u = t.paramshref(r);
         return n(e, {
             ...{
                 ref: c,
-                href: f,
+                href: u,
                 onClick: e => {
                     try {
                         "function" == typeof o && o(e);
@@ -325,46 +325,56 @@ function it(t) {
     return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.component);
 }
 
-function at({router: t, createElement: e, useState: n, useEffect: r}) {
-    return ({routes: o}) => {
-        if (!Array.isArray(o)) throw new TypeError("array");
-        if (!o.every((t => rt(t)))) throw new TypeError('{params:"function"}');
-        const [i, a] = n(t.getparams());
-        r((() => {
+function at({router: t, useState: e, useEffect: n}) {
+    return function() {
+        const [r, o] = e(t.getparams());
+        return n((() => {
             const e = I((t => {
-                a(t);
+                o(t);
             }));
             return t.mount(), t.on("params", e), function() {
                 t.unmount(), t.off("params", e), e.cancel();
             };
-        }), []);
-        const c = nt(o, i);
-        if (ot(c)) {
-            const e = c.redirect;
+        }), []), r;
+    };
+}
+
+function ct({router: t, createElement: e, useState: n, useEffect: r}) {
+    const o = at({
+        router: t,
+        useState: n,
+        useEffect: r
+    });
+    return ({routes: n}) => {
+        if (!Array.isArray(n)) throw new TypeError("array");
+        if (!n.every((t => rt(t)))) throw new TypeError('{params:"function"}');
+        const r = o(), i = nt(n, r);
+        if (ot(i)) {
+            const e = i.redirect;
             Z(t, e);
         }
-        if (ot(c)) return null;
-        if (it(c)) {
-            const t = c.component, n = c.children, r = c.props || {};
-            let o = Object.assign({}, r, {
-                params: i
+        if (ot(i)) return null;
+        if (it(i)) {
+            const t = i.component, n = i.children, o = i.props || {};
+            let a = Object.assign({}, o, {
+                params: r
             });
             return e(t, {
-                ...o
+                ...a
             }, n);
         }
         return null;
     };
 }
 
-function ct({router: t, resolveComponent: e, defineComponent: n, h: r}) {
+function ut({router: t, resolveComponent: e, defineComponent: n, h: r}) {
     return n({
         inheritAttrs: !1,
         setup: (n, {slots: o, attrs: i}) => () => {
-            const {component: n = "a", to: a, onClick: c, target: f, innerRef: u} = i;
+            const {component: n = "a", to: a, onClick: c, target: u, innerRef: f} = i;
             if (!a) throw new TypeError("object,function");
             const s = {
-                ref: u,
+                ref: f,
                 href: t.paramshref(a),
                 onClick: e => {
                     try {
@@ -372,10 +382,10 @@ function ct({router: t, resolveComponent: e, defineComponent: n, h: r}) {
                     } catch (t) {
                         throw e.preventDefault(), t;
                     }
-                    e.defaultPrevented || 0 !== e.button || f && "_self" !== f || tt(e) || (e.preventDefault(), 
+                    e.defaultPrevented || 0 !== e.button || u && "_self" !== u || tt(e) || (e.preventDefault(), 
                     Z(t, a));
                 },
-                target: f
+                target: u
             }, l = "string" == typeof n ? e(n) : n;
             return r(l, {
                 ...s
@@ -388,10 +398,10 @@ function ft({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
     return o({
         inheritAttrs: !1,
         setup(o, {attrs: c}) {
-            const {routes: f} = c;
-            if (!Array.isArray(f)) throw new TypeError("array");
-            const u = a(n.getparams()), s = I((t => {
-                u.value = t;
+            const {routes: u} = c;
+            if (!Array.isArray(u)) throw new TypeError("array");
+            const f = a(n.getparams()), s = I((t => {
+                f.value = t;
             }));
             return t((function() {
                 n.mount(), n.on("params", s);
@@ -401,7 +411,7 @@ function ft({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
                 const {routes: t} = c;
                 if (!Array.isArray(t)) throw new TypeError("array");
                 if (!t.every((t => rt(t)))) throw new TypeError('{params:"function"}');
-                const e = nt(t, u.value);
+                const e = nt(t, f.value);
                 if (ot(e)) {
                     const t = e.redirect;
                     Z(n, t);
@@ -410,7 +420,7 @@ function ft({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
                 if (it(e)) {
                     const t = e.component, n = e.children;
                     let o = e.props || {}, a = Object.assign({}, o, {
-                        params: u.value
+                        params: f.value
                     }), c = "string" == typeof t ? r(t) : t;
                     return i(c, {
                         ...a
@@ -422,5 +432,5 @@ function ft({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
     });
 }
 
-export { X as createHashRouter, et as createReactLink, at as createReactView, Y as createSearchRouter, ct as createVueLink, ft as createVueView };
+export { X as createHashRouter, et as createReactLink, at as createReactParamsHook, ct as createReactView, Y as createSearchRouter, ut as createVueLink, ft as createVueView };
 //# sourceMappingURL=index.mjs.map

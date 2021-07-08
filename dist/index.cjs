@@ -133,7 +133,7 @@ var O = function(t) {
 
 var P = y, U = a, A = function(t) {
     return "symbol" == typeof t || x(t) && "[object Symbol]" == O(t);
-}, N = /^[-+]0x[0-9a-f]+$/i, C = /^0b[01]+$/i, k = /^0o[0-7]+$/i, M = parseInt;
+}, N = /^[-+]0x[0-9a-f]+$/i, k = /^0b[01]+$/i, C = /^0o[0-7]+$/i, M = parseInt;
 
 var V = a, D = l, K = function(t) {
     if ("number" == typeof t) return t;
@@ -144,11 +144,11 @@ var V = a, D = l, K = function(t) {
     }
     if ("string" != typeof t) return 0 === t ? t : +t;
     t = P(t);
-    var n = C.test(t);
-    return n || k.test(t) ? M(t.slice(2), n ? 2 : 8) : N.test(t) ? NaN : +t;
-}, _ = Math.max, W = Math.min;
+    var n = k.test(t);
+    return n || C.test(t) ? M(t.slice(2), n ? 2 : 8) : N.test(t) ? NaN : +t;
+}, _ = Math.max, H = Math.min;
 
-var $ = function(t, e, n) {
+var W = function(t, e, n) {
     var r, o, i, a, c, u, f = 0, s = !1, l = !1, h = !0;
     if ("function" != typeof t) throw new TypeError("Expected a function");
     function p(e) {
@@ -167,7 +167,7 @@ var $ = function(t, e, n) {
         if (y(t)) return w(t);
         c = setTimeout(v, function(t) {
             var n = e - (t - u);
-            return l ? W(n, i - (t - f)) : n;
+            return l ? H(n, i - (t - f)) : n;
         }(t));
     }
     function w(t) {
@@ -189,13 +189,13 @@ var $ = function(t, e, n) {
     }, d;
 };
 
-function F() {
+function $() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function H(t) {
+function F(t) {
     if (!t) throw new TypeError(t);
-    let e = F(), n = new URL(location.href);
+    let e = $(), n = new URL(location.href);
     if ("function" == typeof t) return e = t(e), n.hash = String(new URLSearchParams({
         ...t
     })), n.href;
@@ -214,7 +214,7 @@ function I(t) {
 }
 
 function z(t) {
-    I(t(F()));
+    I(t($()));
 }
 
 function q() {
@@ -247,8 +247,8 @@ function J(t) {
 
 function Q(t) {
     let e = 0;
-    const n = "search" === t ? "popstate" : "hashchange", r = o(), i = $((() => {
-        const e = "hash" === t ? F() : q();
+    const n = "search" === t ? "popstate" : "hashchange", r = o(), i = W((() => {
+        const e = "hash" === t ? $() : q();
         a.emit("params", e);
     }));
     const a = {
@@ -260,9 +260,9 @@ function Q(t) {
             unmount: function() {
                 e--, e <= 0 && (window.removeEventListener(n, i), i.cancel());
             },
-            paramshref: "hash" === t ? H : B,
+            paramshref: "hash" === t ? F : B,
             setparams: "hash" === t ? I : G,
-            getparams: "hash" === t ? F : q,
+            getparams: "hash" === t ? $ : q,
             transformparams: "hash" === t ? z : J,
             [Symbol.toStringTag]: "search" === t ? "SearchRouter" : "HashRouter"
         }
@@ -298,6 +298,20 @@ function nt(t) {
     return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.component);
 }
 
+function rt({router: t, useState: e, useEffect: n}) {
+    return function() {
+        const [r, o] = e(t.getparams());
+        return n((() => {
+            const e = W((t => {
+                o(t);
+            }));
+            return t.mount(), t.on("params", e), function() {
+                t.unmount(), t.off("params", e), e.cancel();
+            };
+        }), []), r;
+    };
+}
+
 exports.createHashRouter = function() {
     return Q("hash");
 }, exports.createReactLink = function({router: t, forwardRef: e, createElement: n}) {
@@ -321,32 +335,28 @@ exports.createHashRouter = function() {
             }
         }, i);
     }));
-}, exports.createReactView = function({router: t, createElement: e, useState: n, useEffect: r}) {
-    return ({routes: o}) => {
-        if (!Array.isArray(o)) throw new TypeError("array");
-        if (!o.every((t => tt(t)))) throw new TypeError('{params:"function"}');
-        const [i, a] = n(t.getparams());
-        r((() => {
-            const e = $((t => {
-                a(t);
-            }));
-            return t.mount(), t.on("params", e), function() {
-                t.unmount(), t.off("params", e), e.cancel();
-            };
-        }), []);
-        const c = Z(o, i);
-        if (et(c)) {
-            const e = c.redirect;
+}, exports.createReactParamsHook = rt, exports.createReactView = function({router: t, createElement: e, useState: n, useEffect: r}) {
+    const o = rt({
+        router: t,
+        useState: n,
+        useEffect: r
+    });
+    return ({routes: n}) => {
+        if (!Array.isArray(n)) throw new TypeError("array");
+        if (!n.every((t => tt(t)))) throw new TypeError('{params:"function"}');
+        const r = o(), i = Z(n, r);
+        if (et(i)) {
+            const e = i.redirect;
             X(t, e);
         }
-        if (et(c)) return null;
-        if (nt(c)) {
-            const t = c.component, n = c.children, r = c.props || {};
-            let o = Object.assign({}, r, {
-                params: i
+        if (et(i)) return null;
+        if (nt(i)) {
+            const t = i.component, n = i.children, o = i.props || {};
+            let a = Object.assign({}, o, {
+                params: r
             });
             return e(t, {
-                ...o
+                ...a
             }, n);
         }
         return null;
@@ -384,7 +394,7 @@ exports.createHashRouter = function() {
         setup(o, {attrs: c}) {
             const {routes: u} = c;
             if (!Array.isArray(u)) throw new TypeError("array");
-            const f = a(n.getparams()), s = $((t => {
+            const f = a(n.getparams()), s = W((t => {
                 f.value = t;
             }));
             return t((function() {
