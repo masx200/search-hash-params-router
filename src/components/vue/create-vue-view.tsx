@@ -72,6 +72,7 @@ function createVueView({
                 router.unmount();
 
                 router.off("params", paramschange);
+                paramschange.cancel();
             }
             onMounted(onmount);
             onUnmounted(onunmount);

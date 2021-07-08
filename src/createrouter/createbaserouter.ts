@@ -43,6 +43,7 @@ export function createBaseRouter(
         mountcount--;
         if (mountcount <= 0) {
             window.removeEventListener(eventname, changelistener);
+            changelistener.cancel();
         }
     }
 

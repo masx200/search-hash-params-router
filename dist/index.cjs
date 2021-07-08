@@ -258,7 +258,7 @@ function Q(t) {
                 window.addEventListener(n, i), i(), e++;
             },
             unmount: function() {
-                e--, e <= 0 && window.removeEventListener(n, i);
+                e--, e <= 0 && (window.removeEventListener(n, i), i.cancel());
             },
             paramshref: "hash" === t ? H : B,
             setparams: "hash" === t ? I : G,
@@ -325,22 +325,21 @@ exports.createHashRouter = function() {
     return ({routes: o}) => {
         if (!Array.isArray(o)) throw new TypeError("array");
         if (!o.every((t => tt(t)))) throw new TypeError('{params:"function"}');
-        const [i, a] = n(t.getparams()), [c, u] = n(Z(o, i));
-        if (r((() => {
-            u(Z(o, i));
-        }), [ o, i ]), r((() => {
-            if (et(c)) {
-                const e = c.redirect;
-                X(t, e);
-            }
-        }), [ c ]), r((() => {
+        const [i, a] = n(t.getparams());
+        r((() => {
             const e = $((t => {
                 a(t);
             }));
             return t.mount(), t.on("params", e), function() {
-                t.unmount(), t.off("params", e);
+                t.unmount(), t.off("params", e), e.cancel();
             };
-        }), []), et(c)) return null;
+        }), []);
+        const c = Z(o, i);
+        if (et(c)) {
+            const e = c.redirect;
+            X(t, e);
+        }
+        if (et(c)) return null;
         if (nt(c)) {
             const t = c.component, n = c.children, r = c.props || {};
             let o = Object.assign({}, r, {
@@ -391,7 +390,7 @@ exports.createHashRouter = function() {
             return t((function() {
                 n.mount(), n.on("params", s);
             })), e((function() {
-                n.unmount(), n.off("params", s);
+                n.unmount(), n.off("params", s), s.cancel();
             })), () => {
                 const {routes: t} = c;
                 if (!Array.isArray(t)) throw new TypeError("array");

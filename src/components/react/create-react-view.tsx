@@ -41,21 +41,21 @@ function createReactView({
         const [params, setparams] = useState<Record<string, string>>(
             router.getparams()
         );
-        const [currentroute, setcurrentroute] = useState(
-            matchRoute(routes, params)
-        );
+        // const [currentroute, setcurrentroute] = useState(
+        //     matchRoute(routes, params)
+        // );
 
-        useEffect(() => {
-            setcurrentroute(matchRoute(routes, params));
-        }, [routes, params]);
+        // useEffect(() => {
+        //     setcurrentroute(matchRoute(routes, params));
+        // }, [routes, params]);
 
-        useEffect(() => {
-            if (isRecordRedirect(currentroute)) {
-                const redirect = currentroute.redirect;
+        // useEffect(() => {
+        //     if (isRecordRedirect(currentroute)) {
+        //         const redirect = currentroute.redirect;
 
-                navigate(router, redirect);
-            }
-        }, [currentroute]);
+        //         navigate(router, redirect);
+        //     }
+        // }, [currentroute]);
 
         useEffect(() => {
             const paramschange = debounce((p) => {
@@ -70,12 +70,18 @@ function createReactView({
                 router.unmount();
 
                 router.off("params", paramschange);
+                paramschange.cancel();
             }
             onmount();
 
             return onunmount;
         }, []);
+        const currentroute = matchRoute(routes, params);
+        if (isRecordRedirect(currentroute)) {
+            const redirect = currentroute.redirect;
 
+            navigate(router, redirect);
+        }
         if (isRecordRedirect(currentroute)) {
             return null;
         }

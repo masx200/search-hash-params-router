@@ -254,7 +254,7 @@ function Q(t) {
                 window.addEventListener(n, i), i(), e++;
             },
             unmount: function() {
-                e--, e <= 0 && window.removeEventListener(n, i);
+                e--, e <= 0 && (window.removeEventListener(n, i), i.cancel());
             },
             paramshref: "hash" === t ? _ : B,
             setparams: "hash" === t ? z : G,
@@ -329,22 +329,21 @@ function at({router: t, createElement: e, useState: n, useEffect: r}) {
     return ({routes: o}) => {
         if (!Array.isArray(o)) throw new TypeError("array");
         if (!o.every((t => rt(t)))) throw new TypeError('{params:"function"}');
-        const [i, a] = n(t.getparams()), [c, f] = n(nt(o, i));
-        if (r((() => {
-            f(nt(o, i));
-        }), [ o, i ]), r((() => {
-            if (ot(c)) {
-                const e = c.redirect;
-                Z(t, e);
-            }
-        }), [ c ]), r((() => {
+        const [i, a] = n(t.getparams());
+        r((() => {
             const e = I((t => {
                 a(t);
             }));
             return t.mount(), t.on("params", e), function() {
-                t.unmount(), t.off("params", e);
+                t.unmount(), t.off("params", e), e.cancel();
             };
-        }), []), ot(c)) return null;
+        }), []);
+        const c = nt(o, i);
+        if (ot(c)) {
+            const e = c.redirect;
+            Z(t, e);
+        }
+        if (ot(c)) return null;
         if (it(c)) {
             const t = c.component, n = c.children, r = c.props || {};
             let o = Object.assign({}, r, {
@@ -397,7 +396,7 @@ function ft({onMounted: t, onUnmounted: e, router: n, resolveComponent: r, defin
             return t((function() {
                 n.mount(), n.on("params", s);
             })), e((function() {
-                n.unmount(), n.off("params", s);
+                n.unmount(), n.off("params", s), s.cancel();
             })), () => {
                 const {routes: t} = c;
                 if (!Array.isArray(t)) throw new TypeError("array");
