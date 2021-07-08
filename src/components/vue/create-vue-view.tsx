@@ -1,5 +1,5 @@
 import type {
-    watch as watchType,
+    // watch as watchType,
     Component as ComponentType,
     defineComponent as defineComponentType,
     h as hType,
@@ -23,9 +23,9 @@ function createVueView({
     defineComponent,
     h: createElement,
     ref,
-    watch,
-    Fragment,
-}: {
+}: // watch,
+// Fragment,
+{
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
@@ -33,8 +33,8 @@ function createVueView({
     defineComponent: typeof defineComponentType;
     h: typeof hType;
     ref: typeof refType;
-    watch: typeof watchType;
-    Fragment: typeof import("@vue/runtime-core").Fragment;
+    // watch: typeof watchType;
+    // Fragment: typeof import("@vue/runtime-core").Fragment;
 }) {
     return defineComponent<{ routes: RouteRecord[] }>({
         inheritAttrs: false,
@@ -45,24 +45,24 @@ function createVueView({
                 throw new TypeError("array");
             }
             const params = ref(router.getparams());
-            const currentroute = ref(matchRoute(routes, params.value));
+            // const currentroute = ref(matchRoute(routes, params.value));
             const paramschange = debounce((p) => {
                 params.value = p;
             });
-            watch([() => params.value], ([params]) => {
-                const { routes } = attrs;
-                if (!Array.isArray(routes)) {
-                    throw new TypeError("array");
-                }
-                currentroute.value = matchRoute(routes, params);
-            });
-            watch([() => currentroute.value], ([currentroute]) => {
-                if (isRecordRedirect(currentroute)) {
-                    const redirect = currentroute.redirect;
+            // watch([() => params.value], ([params]) => {
+            //     const { routes } = attrs;
+            //     if (!Array.isArray(routes)) {
+            //         throw new TypeError("array");
+            //     }
+            //     currentroute.value = matchRoute(routes, params);
+            // });
+            // watch([() => currentroute.value], ([currentroute]) => {
+            //     if (isRecordRedirect(currentroute)) {
+            //         const redirect = currentroute.redirect;
 
-                    navigate(router, redirect);
-                }
-            });
+            //         navigate(router, redirect);
+            //     }
+            // });
             function onmount() {
                 router.mount();
                 router.on("params", paramschange);
@@ -77,7 +77,7 @@ function createVueView({
             onUnmounted(onunmount);
             return () => {
                 const { routes } = attrs;
-                //attrs属性有变化
+                //attrs可能属性有变化
                 if (!Array.isArray(routes)) {
                     throw new TypeError("array");
                 }
@@ -89,18 +89,22 @@ function createVueView({
                     throw new TypeError('{params:"function"}');
                 }
 
-                currentroute.value = matchRoute(routes, params.value);
+                const currentroute = matchRoute(routes, params.value);
+                if (isRecordRedirect(currentroute)) {
+                    const redirect = currentroute.redirect;
 
-                if (isRecordRedirect(currentroute.value)) {
+                    navigate(router, redirect);
+                }
+                if (isRecordRedirect(currentroute)) {
                     return null;
                 }
-                if (isRecordRoute(currentroute.value)) {
-                    const Component = currentroute.value
-                        .component as ComponentType<any>;
+                if (isRecordRoute(currentroute)) {
+                    const Component =
+                        currentroute.component as ComponentType<any>;
 
-                    const children = currentroute.value.children;
+                    const children = currentroute.children;
 
-                    let props = currentroute.value.props || {};
+                    let props = currentroute.props || {};
                     let oprops = Object.assign({}, props, {
                         params: params.value,
                     });
@@ -108,22 +112,22 @@ function createVueView({
                         "string" === typeof Component
                             ? resolveComponent(Component)
                             : Component;
-                    if (typeof Resolvedcomponent === "object") {
-                        Resolvedcomponent = Object.assign(
-                            {},
-                            Resolvedcomponent
-                        );
-                    }
+                    // if (typeof Resolvedcomponent === "object") {
+                    //     Resolvedcomponent = Object.assign(
+                    //         {},
+                    //         Resolvedcomponent
+                    //     );
+                    // }
                     return createElement(
-                        //@ts-ignore
-                        Fragment,
-                        {},
-                        createElement(
-                            // @ts-ignore
-                            Resolvedcomponent,
-                            { ...oprops },
-                            children
-                        )
+                        // //@ts-ignore
+                        // Fragment,
+                        // {},
+                        // createElement(
+                        // @ts-ignore
+                        Resolvedcomponent,
+                        { ...oprops },
+                        children
+                        // )
                     );
                 } else {
                     return null;

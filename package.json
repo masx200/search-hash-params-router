@@ -4,7 +4,7 @@
         "access": "public"
     },
     "name": "@masx200/search-hash-params-router",
-    "version": "1.1.9",
+    "version": "1.2.0",
     "module": "./dist/index.mjs",
     "types": "./dist/index.d.ts",
     "main": "./dist/index.cjs",

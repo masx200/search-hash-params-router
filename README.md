@@ -160,7 +160,6 @@ import {
 
 ```js
 const View = createVueView({
-    Fragment,
     onMounted,
     onUnmounted,
     router: hashrouter,
@@ -168,7 +167,6 @@ const View = createVueView({
     defineComponent,
     h,
     ref,
-    watch,
 });
 ```
 

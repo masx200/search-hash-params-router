@@ -1,17 +1,17 @@
 import {
-    Fragment,
+    // Fragment,
     defineComponent,
     h,
     onMounted,
     onUnmounted,
     ref,
     resolveComponent,
-    watch,
+    // watch,
 } from "vue";
 import { createVueView } from "../../../../dist/index";
 import { hashrouter } from "./hashrouter";
 const View = createVueView({
-    Fragment,
+    // Fragment,
     onMounted,
     onUnmounted,
     router: hashrouter,
@@ -19,6 +19,6 @@ const View = createVueView({
     defineComponent,
     h,
     ref,
-    watch,
+    // watch,
 });
 export { View };

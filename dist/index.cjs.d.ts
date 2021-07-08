@@ -10,7 +10,6 @@ import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
 import { Component as ComponentType$0 } from "@vue/runtime-dom";
 import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
-import { watch as watchType } from "@vue/runtime-dom";
 import { ref as refType } from "@vue/runtime-dom";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
@@ -83,7 +82,7 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     target?: string | undefined;
     innerRef?: Ref<any> | undefined;
 }>, {}>;
-declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref, watch, Fragment }: {
+declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref }: {
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
@@ -91,8 +90,6 @@ declare function createVueView({ onMounted, onUnmounted, router, resolveComponen
     defineComponent: typeof defineComponentType;
     h: typeof hType;
     ref: typeof refType;
-    watch: typeof watchType;
-    Fragment: typeof import("@vue/runtime-core").Fragment;
 }): import("@vue/runtime-core").DefineComponent<{
     routes: RouteRecord[];
 }, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
