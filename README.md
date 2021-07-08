@@ -160,6 +160,7 @@ import {
 
 ```js
 const View = createVueView({
+    readonly,
     onMounted,
     onUnmounted,
     router: hashrouter,
