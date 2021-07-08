@@ -105,7 +105,7 @@ var p = function(t) {
 
 var m = function(t) {
     return t ? t.slice(0, p(t) + 1).replace(y, "") : t;
-}, d = f.Symbol, v = d, w = Object.prototype, b = w.hasOwnProperty, g = w.toString, E = v ? v.toStringTag : void 0;
+}, v = f.Symbol, d = v, w = Object.prototype, b = w.hasOwnProperty, g = w.toString, E = d ? d.toStringTag : void 0;
 
 var S = function(t) {
     var e = b.call(t, E), n = t[E];
@@ -115,14 +115,14 @@ var S = function(t) {
     } catch (t) {}
     var o = g.call(t);
     return r && (e ? t[E] = n : delete t[E]), o;
-}, T = Object.prototype.toString;
+}, j = Object.prototype.toString;
 
-var j = S, R = function(t) {
-    return T.call(t);
-}, L = d ? d.toStringTag : void 0;
+var T = S, R = function(t) {
+    return j.call(t);
+}, L = v ? v.toStringTag : void 0;
 
 var U = function(t) {
-    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : L && L in Object(t) ? j(t) : R(t);
+    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : L && L in Object(t) ? T(t) : R(t);
 }, O = function(t) {
     return null != t && "object" == typeof t;
 };
@@ -152,36 +152,36 @@ var I = function(t, e, n) {
         return r = o = void 0, f = e, a = t.apply(i, n);
     }
     function y(t) {
-        return f = t, c = setTimeout(d, e), s ? p(t) : a;
+        return f = t, c = setTimeout(v, e), s ? p(t) : a;
     }
     function m(t) {
         var n = t - u;
         return void 0 === u || n >= e || n < 0 || l && t - f >= i;
     }
-    function d() {
+    function v() {
         var t = K();
-        if (m(t)) return v(t);
-        c = setTimeout(d, function(t) {
+        if (m(t)) return d(t);
+        c = setTimeout(v, function(t) {
             var n = e - (t - u);
             return l ? F(n, i - (t - f)) : n;
         }(t));
     }
-    function v(t) {
+    function d(t) {
         return c = void 0, h && r ? p(t) : (r = o = void 0, a);
     }
     function w() {
         var t = K(), n = m(t);
         if (r = arguments, o = this, u = t, n) {
             if (void 0 === c) return y(u);
-            if (l) return clearTimeout(c), c = setTimeout(d, e), p(u);
+            if (l) return clearTimeout(c), c = setTimeout(v, e), p(u);
         }
-        return void 0 === c && (c = setTimeout(d, e)), a;
+        return void 0 === c && (c = setTimeout(v, e)), a;
     }
     return e = W(e) || 0, D(n) && (s = !!n.leading, i = (l = "maxWait" in n) ? $(W(n.maxWait) || 0, e) : i, 
     h = "trailing" in n ? !!n.trailing : h), w.cancel = function() {
         void 0 !== c && clearTimeout(c), f = 0, r = u = o = c = void 0;
     }, w.flush = function() {
-        return void 0 === c ? a : v(K());
+        return void 0 === c ? a : d(K());
     }, w;
 };
 
@@ -375,9 +375,11 @@ function ut({router: t, resolveComponent: e, defineComponent: n, h: r}) {
             const {component: n = "a", to: a, onClick: c, target: u, innerRef: f} = i;
             if (!a) throw new TypeError("object,function");
             if ("function" != typeof a && "object" != typeof a) throw new TypeError("object,function");
-            const s = {
-                ref: f ? "function" == typeof f ? f : void 0 : void 0,
-                href: t.paramshref(a),
+            const s = t.paramshref(a), l = {
+                ref: "function" == typeof f ? f : f && "object" == typeof f ? t => {
+                    Reflect.set(f, "value", t);
+                } : void 0,
+                href: s,
                 onClick: e => {
                     try {
                         "function" == typeof c && c(e);
@@ -388,9 +390,9 @@ function ut({router: t, resolveComponent: e, defineComponent: n, h: r}) {
                     Z(t, a));
                 },
                 target: u
-            }, l = "string" == typeof n ? e(n) : n;
-            return r(l, {
-                ...s
+            }, h = "string" == typeof n ? e(n) : n;
+            return r(h, {
+                ...l
             }, o);
         }
     });

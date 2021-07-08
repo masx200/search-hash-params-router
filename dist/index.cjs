@@ -384,9 +384,11 @@ exports.createHashRouter = function() {
             const {component: n = "a", to: a, onClick: c, target: u, innerRef: f} = i;
             if (!a) throw new TypeError("object,function");
             if ("function" != typeof a && "object" != typeof a) throw new TypeError("object,function");
-            const s = {
-                ref: f ? "function" == typeof f ? f : void 0 : void 0,
-                href: t.paramshref(a),
+            const s = t.paramshref(a), l = {
+                ref: "function" == typeof f ? f : f && "object" == typeof f ? t => {
+                    Reflect.set(f, "value", t);
+                } : void 0,
+                href: s,
                 onClick: e => {
                     try {
                         "function" == typeof c && c(e);
@@ -397,9 +399,9 @@ exports.createHashRouter = function() {
                     X(t, a));
                 },
                 target: u
-            }, l = "string" == typeof n ? e(n) : n;
-            return r(l, {
-                ...s
+            }, p = "string" == typeof n ? e(n) : n;
+            return r(p, {
+                ...l
             }, o);
         }
     });

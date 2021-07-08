@@ -72,7 +72,9 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
     onClick?: ((event: MouseEvent) => void) | undefined;
     target?: string | undefined;
-    innerRef?: ((r: any) => void) | undefined;
+    innerRef?: {
+        value?: any;
+    } | ((r: any) => void) | undefined;
 }, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
     component?: unknown;
     to?: unknown;
@@ -84,7 +86,9 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     to?: Record<string, string> | ((old: Record<string, string>) => Record<string, string>) | undefined;
     onClick?: ((event: MouseEvent) => void) | undefined;
     target?: string | undefined;
-    innerRef?: ((r: any) => void) | undefined;
+    innerRef?: {
+        value?: any;
+    } | ((r: any) => void) | undefined;
 }>, {}>;
 declare function createVueParamsHook({ router, ref, onMounted, onUnmounted, readonly }: {
     readonly: typeof import("@vue/runtime-dom").readonly;

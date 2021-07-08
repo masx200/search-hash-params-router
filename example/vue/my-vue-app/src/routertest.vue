@@ -6,7 +6,7 @@
             <br />
             <Link :to="{}" :innerRef="refelement1">start</Link>
             <br />
-            <Link :to="{ p: 'home' }">home</Link>
+            <Link :to="{ p: 'home' }" :innerRef="refele2">home</Link>
             <br />
             <Link :to="{ p: 'app' }">app</Link>
             <br />

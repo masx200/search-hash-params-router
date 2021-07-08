@@ -28,7 +28,7 @@ function createVueLink({
             | ((old: Record<string, string>) => Record<string, string>);
         onClick?: (event: MouseEvent) => void;
         target?: string;
-        innerRef?: (r: any) => void;
+        innerRef?: ((r: any) => void) | { value?: any };
     }>({
         inheritAttrs: false,
 
@@ -76,9 +76,14 @@ function createVueLink({
                 const reffun =
                     "function" === typeof forwardedRef
                         ? forwardedRef
+                        : forwardedRef && "object" === typeof forwardedRef
+                        ? (e: any) => {
+                              Reflect.set(forwardedRef, "value", e);
+                          }
                         : undefined;
+
                 const oprops = {
-                    ref: forwardedRef ? reffun : undefined,
+                    ref: reffun,
                     href,
                     onClick: newclick,
                     target,

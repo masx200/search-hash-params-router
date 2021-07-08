@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, reactive, watch } from "vue";
 import Hooktest from "./hooktest.vue";
 import { Link } from "./Link";
 import Loading from "./loading.vue";
@@ -10,8 +10,14 @@ export default defineComponent({
         function refelement1(r: any) {
             console.log(r);
         }
-
-        return { refelement1 };
+        const refele2 = reactive({ value: undefined });
+        watch(
+            () => refele2.value,
+            (e) => {
+                console.log(e);
+            }
+        );
+        return { refelement1, refele2 };
     },
     components: { Hooktest, Loading, Link, Programmaticnavigation, View },
     data: () => {
