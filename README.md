@@ -149,6 +149,7 @@ https://github.com/masx200/search-hash-params-router/tree/master/example/vue/my-
 
 ```js
 import {
+    createVueParamsHook,
     createHashRouter,
     createSearchRouter,
     createVueView,
@@ -181,6 +182,40 @@ const Link = createVueLink({
     defineComponent,
     h,
 });
+```
+
+创建路由参数 Hook:
+
+```js
+const useParams = createVueParamsHook({
+    router: hashrouter,
+    ref,
+    readonly,
+    onMounted,
+    onUnmounted,
+});
+```
+
+在任意组件中获取当前的路由参数:
+
+```vue
+<template>
+    <div>params:{{ JSON.stringify(params) }}</div>
+</template>
+<script lang="ts">
+export default defineComponent({
+    setup() {
+        const params = useParams();
+        watch(
+            () => params.value,
+            (params) => {
+                console.log(params);
+            }
+        );
+        return { params };
+    },
+});
+</script>
 ```
 
 使用路由视图和路由链接的例子：
