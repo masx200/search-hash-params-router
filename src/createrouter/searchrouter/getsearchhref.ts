@@ -7,7 +7,7 @@ export function getsearchhref(
         | ((old: Record<string, string>) => Record<string, string>)
 ): string {
     if (!to) {
-        throw new TypeError(to);
+        throw new TypeError("object,function");
     }
     let params: {
         [k: string]: string;
@@ -24,5 +24,5 @@ export function getsearchhref(
         url.search = String(new URLSearchParams({ ...to }));
         return url.href;
     }
-    throw new TypeError(to);
+    throw new TypeError("object,function");
 }

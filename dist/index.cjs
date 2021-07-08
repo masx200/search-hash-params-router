@@ -105,10 +105,10 @@ var a = function(t) {
 var p = function(t) {
     for (var e = t.length; e-- && h.test(t.charAt(e)); ) ;
     return e;
-}, m = /^\s+/;
+}, y = /^\s+/;
 
-var y = function(t) {
-    return t ? t.slice(0, p(t) + 1).replace(m, "") : t;
+var m = function(t) {
+    return t ? t.slice(0, p(t) + 1).replace(y, "") : t;
 }, v = f.Symbol, w = v, d = Object.prototype, b = d.hasOwnProperty, g = d.toString, E = w ? w.toStringTag : void 0;
 
 var S = function(t) {
@@ -119,19 +119,19 @@ var S = function(t) {
     } catch (t) {}
     var o = g.call(t);
     return r && (e ? t[E] = n : delete t[E]), o;
-}, T = Object.prototype.toString;
+}, j = Object.prototype.toString;
 
-var j = S, R = function(t) {
-    return T.call(t);
+var T = S, R = function(t) {
+    return j.call(t);
 }, L = v ? v.toStringTag : void 0;
 
 var O = function(t) {
-    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : L && L in Object(t) ? j(t) : R(t);
+    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : L && L in Object(t) ? T(t) : R(t);
 }, x = function(t) {
     return null != t && "object" == typeof t;
 };
 
-var P = y, U = a, A = function(t) {
+var P = m, U = a, A = function(t) {
     return "symbol" == typeof t || x(t) && "[object Symbol]" == O(t);
 }, N = /^[-+]0x[0-9a-f]+$/i, k = /^0b[01]+$/i, C = /^0o[0-7]+$/i, M = parseInt;
 
@@ -155,16 +155,16 @@ var W = function(t, e, n) {
         var n = r, i = o;
         return r = o = void 0, f = e, a = t.apply(i, n);
     }
-    function m(t) {
+    function y(t) {
         return f = t, c = setTimeout(v, e), s ? p(t) : a;
     }
-    function y(t) {
+    function m(t) {
         var n = t - u;
         return void 0 === u || n >= e || n < 0 || l && t - f >= i;
     }
     function v() {
         var t = D();
-        if (y(t)) return w(t);
+        if (m(t)) return w(t);
         c = setTimeout(v, function(t) {
             var n = e - (t - u);
             return l ? H(n, i - (t - f)) : n;
@@ -174,9 +174,9 @@ var W = function(t, e, n) {
         return c = void 0, h && r ? p(t) : (r = o = void 0, a);
     }
     function d() {
-        var t = D(), n = y(t);
+        var t = D(), n = m(t);
         if (r = arguments, o = this, u = t, n) {
-            if (void 0 === c) return m(u);
+            if (void 0 === c) return y(u);
             if (l) return clearTimeout(c), c = setTimeout(v, e), p(u);
         }
         return void 0 === c && (c = setTimeout(v, e)), a;
@@ -194,7 +194,7 @@ function $() {
 }
 
 function F(t) {
-    if (!t) throw new TypeError(t);
+    if (!t) throw new TypeError("object,function");
     let e = $(), n = new URL(location.href);
     if ("function" == typeof t) return e = t(e), n.hash = String(new URLSearchParams({
         ...t
@@ -202,7 +202,7 @@ function F(t) {
     if ("object" == typeof t) return e = t, n.hash = String(new URLSearchParams({
         ...t
     })), n.href;
-    throw new TypeError(t);
+    throw new TypeError("object,function");
 }
 
 function I(t) {
@@ -222,7 +222,7 @@ function q() {
 }
 
 function B(t) {
-    if (!t) throw new TypeError(t);
+    if (!t) throw new TypeError("object,function");
     let e = q(), n = new URL(location.href);
     if ("function" == typeof t) return e = t(e), n.search = String(new URLSearchParams({
         ...t
@@ -230,7 +230,7 @@ function B(t) {
     if ("object" == typeof t) return e = t, n.search = String(new URLSearchParams({
         ...t
     })), n.href;
-    throw new TypeError(t);
+    throw new TypeError("object,function");
 }
 
 function G(t) {
@@ -317,6 +317,7 @@ exports.createHashRouter = function() {
 }, exports.createReactLink = function({router: t, forwardRef: e, createElement: n}) {
     return e((({component: e = "a", to: r, onClick: o, children: i, target: a}, c) => {
         if (!r) throw new TypeError("object,function");
+        if ("function" != typeof r && "object" != typeof r) throw new TypeError("object,function");
         const u = t.paramshref(r);
         return n(e, {
             ...{
@@ -369,6 +370,7 @@ exports.createHashRouter = function() {
         setup: (n, {slots: o, attrs: i}) => () => {
             const {component: n = "a", to: a, onClick: c, target: u, innerRef: f} = i;
             if (!a) throw new TypeError("object,function");
+            if ("function" != typeof a && "object" != typeof a) throw new TypeError("object,function");
             const s = {
                 ref: f,
                 href: t.paramshref(a),

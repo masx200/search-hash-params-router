@@ -36,6 +36,9 @@ export function createReactLink({
             if (!to) {
                 throw new TypeError("object,function");
             }
+            if (!("function" === typeof to || "object" === typeof to)) {
+                throw new TypeError("object,function");
+            }
             const href: string = router.paramshref(to);
             const newclick = (event: MouseEvent) => {
                 try {

@@ -20,6 +20,8 @@
     },
     "homepage": "https://github.com/masx200/search-hash-params-router#readme",
     "scripts": {
+        "dev-vue": "vite example/vue/my-vue-app",
+        "dev-react": "vite example/react/vite-project",
         "build": "tsc &&rollup -c rollup.config.js ",
         "format": "prettier  */*.cjs */*.mjs --write *.js */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts"
     },
@@ -42,6 +44,7 @@
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-ts": "^1.4.0",
         "tslib": "^2.3.0",
+        "vite": "^2.4.1",
         "typescript": "^4.3.5"
     },
     "dependencies": {},
