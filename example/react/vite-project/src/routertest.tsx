@@ -10,6 +10,10 @@ export function RouterTest() {
     useEffect(() => {
         console.log(refelement.current);
     }, [refelement.current]);
+
+    function reffun(e: any) {
+        console.log(e);
+    }
     return (
         <div>
             <div style={{ textAlign: "center" }}>
@@ -20,7 +24,9 @@ export function RouterTest() {
                     start
                 </Link>
                 <br />
-                <Link to={{ p: "home" }}>home</Link>
+                <Link to={{ p: "home" }} ref={reffun}>
+                    home
+                </Link>
                 <br />
                 <Link to={{ p: "app" }}>app</Link>
                 <br />
