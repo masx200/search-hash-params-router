@@ -1,4 +1,5 @@
-import {readonly,
+import {
+    readonly,
     // Fragment,
     defineComponent,
     h,
@@ -10,7 +11,8 @@ import {readonly,
 } from "vue";
 import { createVueView } from "../../../../dist/index";
 import { hashrouter } from "./hashrouter";
-const View = createVueView({readonly,
+const View = createVueView({
+    readonly,
     // Fragment,
     onMounted,
     onUnmounted,
