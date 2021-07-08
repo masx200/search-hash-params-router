@@ -82,10 +82,10 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     target?: unknown;
     innerRef?: unknown;
 } & {} & {
-    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
-    to?: Record<string, string> | ((old: Record<string, string>) => Record<string, string>) | undefined;
     onClick?: ((event: MouseEvent) => void) | undefined;
     target?: string | undefined;
+    to?: Record<string, string> | ((old: Record<string, string>) => Record<string, string>) | undefined;
+    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
     innerRef?: {
         value?: any;
     } | ((r: any) => void) | undefined;
