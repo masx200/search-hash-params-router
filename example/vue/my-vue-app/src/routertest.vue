@@ -1,6 +1,7 @@
 <template>
     <div>
         <div style="text-align: center">
+            <Hooktest></Hooktest>
             <Programmaticnavigation />
             <br />
             <Link :to="{}">start</Link>

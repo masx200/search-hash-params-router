@@ -1,4 +1,4 @@
-import { createApp, defineAsyncComponent } from "vue";
+import { createApp } from "vue";
 import "./index.css";
 import routertest from "./routertest.vue";
 

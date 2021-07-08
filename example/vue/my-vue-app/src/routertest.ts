@@ -4,9 +4,9 @@ import Loading from "./loading.vue";
 import Programmaticnavigation from "./Programmaticnavigation.vue";
 import { routes } from "./routes";
 import { View } from "./View";
-
+import Hooktest from "./hooktest.vue";
 export default defineComponent({
-    components: { Loading, Link, Programmaticnavigation, View },
+    components: { Hooktest, Loading, Link, Programmaticnavigation, View },
     data: () => {
         return { routes };
     },
