@@ -6,7 +6,6 @@ import type {
     ref as refType,
     resolveComponent as resolveComponentType,
 } from "@vue/runtime-dom";
-import debounce from "lodash/debounce";
 import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
 import { isRecordRoute } from "../../createrouter/isRecordRoute";
 import { matchRoute } from "../../createrouter/matchRoute";
@@ -14,8 +13,10 @@ import { Router } from "../../createrouter/Router";
 import { RouteRecord } from "../../createrouter/RouteRecord";
 import { isrouterecord } from "../isrouterecord";
 import { navigate } from "../navigate";
-export { createVueView };
+import { createVueParamsHook } from "./createVueParamsHook";
+export { createVueView, createVueParamsHook };
 function createVueView({
+    readonly,
     onMounted,
     onUnmounted,
     router,
@@ -26,6 +27,7 @@ function createVueView({
 }: // watch,
 // Fragment,
 {
+    readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
@@ -36,6 +38,13 @@ function createVueView({
     // watch: typeof watchType;
     // Fragment: typeof import("@vue/runtime-core").Fragment;
 }) {
+    const useParams = createVueParamsHook({
+        router,
+        ref,
+        onMounted,
+        onUnmounted,
+        readonly,
+    });
     return defineComponent<{ routes: RouteRecord[] }>({
         inheritAttrs: false,
         setup(_, { attrs }) {
@@ -44,38 +53,7 @@ function createVueView({
             if (!Array.isArray(routes)) {
                 throw new TypeError("array");
             }
-            const params = ref(router.getparams());
-            // const currentroute = ref(matchRoute(routes, params.value));
-            const paramschange = debounce((p) => {
-                params.value = p;
-            });
-            // watch([() => params.value], ([params]) => {
-            //     const { routes } = attrs;
-            //     if (!Array.isArray(routes)) {
-            //         throw new TypeError("array");
-            //     }
-            //     currentroute.value = matchRoute(routes, params);
-            // });
-            // watch([() => currentroute.value], ([currentroute]) => {
-            //     if (isRecordRedirect(currentroute)) {
-            //         const redirect = currentroute.redirect;
-
-            //         navigate(router, redirect);
-            //     }
-            // });
-            function onmount() {
-                router.mount();
-                router.on("params", paramschange);
-            }
-
-            function onunmount() {
-                router.unmount();
-
-                router.off("params", paramschange);
-                paramschange.cancel();
-            }
-            onMounted(onmount);
-            onUnmounted(onunmount);
+            const params = useParams();
             return () => {
                 const { routes } = attrs;
                 //attrs可能属性有变化

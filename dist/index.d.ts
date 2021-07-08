@@ -54,7 +54,7 @@ declare function createReactParamsHook({ router, useState, useEffect }: {
     router: Router;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
-}): () => Record<string, string>;
+}): () => Readonly<Record<string, string>>;
 declare function createReactView({ router, createElement, useState, useEffect }: {
     router: Router;
     createElement: typeof createElementType;
@@ -87,7 +87,19 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     target?: string | undefined;
     innerRef?: Ref<any> | undefined;
 }>, {}>;
-declare function createVueView({ onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref }: {
+declare function createVueParamsHook({ router, ref, onMounted, onUnmounted, readonly }: {
+    readonly: typeof import("@vue/runtime-dom").readonly;
+    onMounted: typeof import("@vue/runtime-dom").onMounted;
+    router: Router;
+    ref: typeof refType;
+    onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
+}): () => {
+    readonly value: {
+        readonly [x: string]: string;
+    };
+};
+declare function createVueView({ readonly, onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref }: {
+    readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
@@ -102,4 +114,4 @@ declare function createVueView({ onMounted, onUnmounted, router, resolveComponen
 } & {} & {
     routes?: RouteRecord[] | undefined;
 }>, {}>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView, createVueParamsHook };

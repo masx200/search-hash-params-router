@@ -10,7 +10,7 @@ export function createReactParamsHook({
     router: Router;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
-}) {
+}): () => Readonly<Record<string, string>> {
     return function () {
         const [params, setparams] = useState<Record<string, string>>(
             router.getparams()
