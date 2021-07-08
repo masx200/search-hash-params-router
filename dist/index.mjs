@@ -376,7 +376,7 @@ function ut({router: t, resolveComponent: e, defineComponent: n, h: r}) {
             if (!a) throw new TypeError("object,function");
             if ("function" != typeof a && "object" != typeof a) throw new TypeError("object,function");
             const s = {
-                ref: f,
+                ref: f ? "function" == typeof f ? f : void 0 : void 0,
                 href: t.paramshref(a),
                 onClick: e => {
                     try {

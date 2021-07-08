@@ -4,7 +4,7 @@
             <Hooktest></Hooktest>
             <Programmaticnavigation />
             <br />
-            <Link :to="{}">start</Link>
+            <Link :to="{}" :innerRef="refelement1">start</Link>
             <br />
             <Link :to="{ p: 'home' }">home</Link>
             <br />
