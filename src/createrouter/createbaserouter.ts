@@ -44,6 +44,7 @@ export function createBaseRouter(
         if (mountcount <= 0) {
             window.removeEventListener(eventname, changelistener);
             changelistener.cancel();
+            instance.removeAllListeners("params");
         }
     }
 

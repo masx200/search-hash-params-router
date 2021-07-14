@@ -52,7 +52,7 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 ## 通用例子:
 
-创建路由器：
+#### 创建路由器：
 
 ```js
 const hashrouter = createHashRouter();
@@ -60,7 +60,7 @@ const hashrouter = createHashRouter();
 const searchrouter = createSearchRouter();
 ```
 
-编程式导航:
+#### 编程式导航:
 
 ```ts
 searchrouter.setparams({ qqqqq: Math.random().toString() });
@@ -72,13 +72,27 @@ searchrouter.transformparams((o) => {
 });
 ```
 
-获取当前路由参数对象
+#### 获取当前路由参数对象
 
 ```js
 console.log(searchrouter.getparams());
 ```
 
-监听路由参数的变化事件，监听路由匹配切换的变化：
+#### 如果没有使用`createVueView`或`createReactView`,
+
+##### 那么需要在使用前使用挂载
+
+```js
+searchrouter.mount();
+```
+
+##### 需要在不使用时使用卸载
+
+```js
+searchrouter.unmount();
+```
+
+#### 监听路由参数的变化事件，监听路由匹配切换的变化：
 
 ```js
 searchrouter.on("params", (p) => {
@@ -86,7 +100,15 @@ searchrouter.on("params", (p) => {
 });
 ```
 
-创建路由条目：
+#### 根据参数获取新链接路径
+
+```js
+searchrouter.paramshref((o) => {
+    return { ...o, qqqqq: Math.random().toString() };
+});
+```
+
+#### 创建路由条目：
 
 ```ts
 const routes = [
@@ -145,7 +167,7 @@ const routes = [
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/vue/my-vue-app
 
-导入模块：
+#### 导入模块：
 
 ```js
 import {
@@ -157,7 +179,7 @@ import {
 } from "@masx200/search-hash-params-router";
 ```
 
-创建路由视图组件：
+#### 创建路由视图组件：
 
 ```js
 const View = createVueView({
@@ -172,7 +194,7 @@ const View = createVueView({
 });
 ```
 
-创建路由链接组件：
+#### 创建路由链接组件：
 
 ```js
 const Link = createVueLink({
@@ -184,7 +206,7 @@ const Link = createVueLink({
 });
 ```
 
-创建路由参数 Hook:
+#### 创建路由参数 Hook:
 
 ```js
 const useParams = createVueParamsHook({
@@ -196,7 +218,7 @@ const useParams = createVueParamsHook({
 });
 ```
 
-在任意组件中获取当前的路由参数:
+#### 在任意组件中获取当前的路由参数:
 
 ```vue
 <template>
@@ -218,7 +240,7 @@ export default defineComponent({
 </script>
 ```
 
-使用路由视图和路由链接的例子：
+#### 使用路由视图和路由链接的例子：
 
 ```vue
 <template>
@@ -264,7 +286,7 @@ export default defineComponent({
 </script>
 ```
 
-接受路由参数：
+#### 接受路由参数：
 
 ```vue
 <template>
@@ -287,7 +309,7 @@ export default defineComponent({
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
 
-导入模块：
+#### 导入模块：
 
 ```js
 import {
@@ -299,7 +321,7 @@ import {
 } from "@masx200/search-hash-params-router";
 ```
 
-创建路由参数 Hook:
+#### 创建路由参数 Hook:
 
 ```js
 const useParams = createReactParamsHook({
@@ -309,7 +331,7 @@ const useParams = createReactParamsHook({
 });
 ```
 
-在任意组件中获取当前的路由参数:
+#### 在任意组件中获取当前的路由参数:
 
 ```jsx
 function Hooktest() {
@@ -321,7 +343,7 @@ function Hooktest() {
 }
 ```
 
-接受路由参数：
+#### 接受路由参数：
 
 ```tsx
 function Bar({
@@ -338,7 +360,7 @@ function Bar({
 }
 ```
 
-创建路由视图组件：
+#### 创建路由视图组件：
 
 ```js
 const View = createReactView({
@@ -350,7 +372,7 @@ const View = createReactView({
 });
 ```
 
-创建路由链接组件：
+#### 创建路由链接组件：
 
 ```js
 const Link = createReactLink({
@@ -360,7 +382,7 @@ const Link = createReactLink({
 });
 ```
 
-使用路由视图和路由链接的例子：
+#### 使用路由视图和路由链接的例子：
 
 ```jsx
 function RouterTest() {
