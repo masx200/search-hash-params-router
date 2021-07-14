@@ -103,7 +103,7 @@ searchrouter.on("params", (p) => {
 #### 根据参数获取新链接路径
 
 ```js
-searchrouter.paramshref((o) => {
+let newhref = searchrouter.paramshref((o) => {
     return { ...o, qqqqq: Math.random().toString() };
 });
 ```
