@@ -133,7 +133,7 @@ var x = function(t) {
 
 var U = m, P = a, k = function(t) {
     return "symbol" == typeof t || O(t) && "[object Symbol]" == x(t);
-}, C = /^[-+]0x[0-9a-f]+$/i, A = /^0b[01]+$/i, N = /^0o[0-7]+$/i, M = parseInt;
+}, A = /^[-+]0x[0-9a-f]+$/i, C = /^0b[01]+$/i, N = /^0o[0-7]+$/i, M = parseInt;
 
 var V = a, H = l, K = function(t) {
     if ("number" == typeof t) return t;
@@ -144,8 +144,8 @@ var V = a, H = l, K = function(t) {
     }
     if ("string" != typeof t) return 0 === t ? t : +t;
     t = U(t);
-    var n = A.test(t);
-    return n || N.test(t) ? M(t.slice(2), n ? 2 : 8) : C.test(t) ? NaN : +t;
+    var n = C.test(t);
+    return n || N.test(t) ? M(t.slice(2), n ? 2 : 8) : A.test(t) ? NaN : +t;
 }, D = Math.max, W = Math.min;
 
 var $ = function(t, e, n) {
@@ -258,7 +258,7 @@ function Q(t) {
                 window.addEventListener(n, i), i(), e++;
             },
             unmount: function() {
-                e--, e <= 0 && (window.removeEventListener(n, i), i.cancel());
+                e--, e <= 0 && (window.removeEventListener(n, i), i.cancel(), a.removeAllListeners("params"));
             },
             paramshref: "hash" === t ? F : B,
             setparams: "hash" === t ? I : G,

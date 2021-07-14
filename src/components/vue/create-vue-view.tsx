@@ -8,7 +8,7 @@ import type {
 } from "@vue/runtime-dom";
 import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
 import { isRecordRoute } from "../../createrouter/isRecordRoute";
-import { matchRoute } from "../../createrouter/matchRoute";
+import { matchRoute } from "../../createrouter/matchroute";
 import { Router } from "../../createrouter/Router";
 import { RouteRecord } from "../../createrouter/RouteRecord";
 import { isrouterecord } from "../isrouterecord";

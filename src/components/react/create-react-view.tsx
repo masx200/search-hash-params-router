@@ -1,4 +1,4 @@
-import { matchRoute } from "../../createrouter/matchRoute";
+import { matchRoute } from "../../createrouter/matchroute";
 import { Router } from "../../createrouter/Router";
 import { isrouterecord } from "../isrouterecord";
 import { navigate } from "../navigate";
