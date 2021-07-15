@@ -21,7 +21,7 @@ export default defineConfig([
     {
         input: "./src/index.ts",
         output: [
-            { sourcemap: true, file: "./dist/index.mjs", format: "esm" },
+            { sourcemap: true, file: "./dist/index.js", format: "esm" },
             { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
         ],
         plugins: [
@@ -43,19 +43,7 @@ export default defineConfig([
                 ],
                 extensions: [".js", ".tsx", ".ts"],
                 babelHelpers: "bundled",
-                presets: [
-                    [
-                        "@babel/preset-env",
-                        {
-                            targets: [
-                                "last 1 edge version",
-                                "last 1 safari version",
-                                "last 1 chrome version",
-                                "last 1 firefox version",
-                            ],
-                        },
-                    ],
-                ],
+                presets: [["@babel/preset-env", {}]],
             }),
             terserplugin,
         ],
