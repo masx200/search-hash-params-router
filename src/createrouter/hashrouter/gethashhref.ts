@@ -16,12 +16,12 @@ export function gethashhref(
 
     if ("function" === typeof to) {
         params = to(params);
-        url.hash = String(new URLSearchParams({ ...to }));
+        url.hash = String(new URLSearchParams({ ...params }));
         return url.href;
     }
     if ("object" === typeof to) {
         params = to;
-        url.hash = String(new URLSearchParams({ ...to }));
+        url.hash = String(new URLSearchParams({ ...params }));
         return url.href;
     }
     throw new TypeError("object,function");
