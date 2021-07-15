@@ -266,9 +266,9 @@ function Q() {
 function X(t) {
     if (!t) throw new TypeError("object,function");
     var n = Q(), o = new URL(location.href);
-    if ("function" == typeof t) return n = t(n), o.hash = String(new URLSearchParams(r({}, t))), 
+    if ("function" == typeof t) return n = t(n), o.hash = String(new URLSearchParams(r({}, n))), 
     o.href;
-    if ("object" === e(t)) return n = t, o.hash = String(new URLSearchParams(r({}, t))), 
+    if ("object" === e(t)) return n = t, o.hash = String(new URLSearchParams(r({}, n))), 
     o.href;
     throw new TypeError("object,function");
 }
@@ -290,9 +290,9 @@ function tt() {
 function rt(t) {
     if (!t) throw new TypeError("object,function");
     var n = tt(), o = new URL(location.href);
-    if ("function" == typeof t) return n = t(n), o.search = String(new URLSearchParams(r({}, t))), 
+    if ("function" == typeof t) return n = t(n), o.search = String(new URLSearchParams(r({}, n))), 
     o.href;
-    if ("object" === e(t)) return n = t, o.search = String(new URLSearchParams(r({}, t))), 
+    if ("object" === e(t)) return n = t, o.search = String(new URLSearchParams(r({}, n))), 
     o.href;
     throw new TypeError("object,function");
 }
