@@ -310,8 +310,19 @@ export default defineComponent({
 
 ### 自定义路由链接组件
 
-```js
+```vue
+<template>
+    <Link :to="to" :component="Customlinkcomponent"><slot /></Link>
+</template>
+<script>
+import { defineComponent } from "vue";
 
+export default defineComponent({
+    components: { Link },
+    data: () => ({ Customlinkcomponent }),
+    props: ["to"],
+});
+</script>
 ```
 
 ```ts
