@@ -11,3 +11,10 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+
+[aria-current="page"]{
+    border-color: green;
+    border-width: medium;
+    border-style:solid
+}

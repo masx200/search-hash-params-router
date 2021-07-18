@@ -1,19 +1,19 @@
 function t(t, r) {
-    var n = Object.keys(t);
+    var e = Object.keys(t);
     if (Object.getOwnPropertySymbols) {
-        var e = Object.getOwnPropertySymbols(t);
-        r && (e = e.filter((function(r) {
+        var n = Object.getOwnPropertySymbols(t);
+        r && (n = n.filter((function(r) {
             return Object.getOwnPropertyDescriptor(t, r).enumerable;
-        }))), n.push.apply(n, e);
+        }))), e.push.apply(e, n);
     }
-    return n;
+    return e;
 }
 
 function r(r) {
-    for (var n = 1; n < arguments.length; n++) {
-        var o = null != arguments[n] ? arguments[n] : {};
-        n % 2 ? t(Object(o), !0).forEach((function(t) {
-            e(r, t, o[t]);
+    for (var e = 1; e < arguments.length; e++) {
+        var o = null != arguments[e] ? arguments[e] : {};
+        e % 2 ? t(Object(o), !0).forEach((function(t) {
+            n(r, t, o[t]);
         })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(o)) : t(Object(o)).forEach((function(t) {
             Object.defineProperty(r, t, Object.getOwnPropertyDescriptor(o, t));
         }));
@@ -21,128 +21,128 @@ function r(r) {
     return r;
 }
 
-function n(t) {
-    return (n = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+function e(t) {
+    return (e = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
         return typeof t;
     } : function(t) {
         return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
     })(t);
 }
 
-function e(t, r, n) {
+function n(t, r, e) {
     return r in t ? Object.defineProperty(t, r, {
-        value: n,
+        value: e,
         enumerable: !0,
         configurable: !0,
         writable: !0
-    }) : t[r] = n, t;
+    }) : t[r] = e, t;
 }
 
 function o(t, r) {
     return function(t) {
         if (Array.isArray(t)) return t;
     }(t) || function(t, r) {
-        var n = null == t ? null : "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
-        if (null == n) return;
-        var e, o, i = [], a = !0, u = !1;
+        var e = null == t ? null : "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
+        if (null == e) return;
+        var n, o, a = [], i = !0, u = !1;
         try {
-            for (n = n.call(t); !(a = (e = n.next()).done) && (i.push(e.value), !r || i.length !== r); a = !0) ;
+            for (e = e.call(t); !(i = (n = e.next()).done) && (a.push(n.value), !r || a.length !== r); i = !0) ;
         } catch (t) {
             u = !0, o = t;
         } finally {
             try {
-                a || null == n.return || n.return();
+                i || null == e.return || e.return();
             } finally {
                 if (u) throw o;
             }
         }
-        return i;
-    }(t, r) || i(t, r) || function() {
+        return a;
+    }(t, r) || a(t, r) || function() {
         throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }();
 }
 
-function i(t, r) {
+function a(t, r) {
     if (t) {
-        if ("string" == typeof t) return a(t, r);
-        var n = Object.prototype.toString.call(t).slice(8, -1);
-        return "Object" === n && t.constructor && (n = t.constructor.name), "Map" === n || "Set" === n ? Array.from(t) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? a(t, r) : void 0;
+        if ("string" == typeof t) return i(t, r);
+        var e = Object.prototype.toString.call(t).slice(8, -1);
+        return "Object" === e && t.constructor && (e = t.constructor.name), "Map" === e || "Set" === e ? Array.from(t) : "Arguments" === e || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e) ? i(t, r) : void 0;
     }
 }
 
-function a(t, r) {
+function i(t, r) {
     (null == r || r > t.length) && (r = t.length);
-    for (var n = 0, e = new Array(r); n < r; n++) e[n] = t[n];
-    return e;
+    for (var e = 0, n = new Array(r); e < r; e++) n[e] = t[e];
+    return n;
 }
 
 function u(t) {
-    return (u = "function" == typeof Symbol && "symbol" == n(Symbol.iterator) ? function(t) {
-        return n(t);
+    return (u = "function" == typeof Symbol && "symbol" == e(Symbol.iterator) ? function(t) {
+        return e(t);
     } : function(t) {
-        return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : n(t);
+        return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : e(t);
     })(t);
 }
 
-function c(t, r, n) {
+function c(t, r, e) {
     return r in t ? Object.defineProperty(t, r, {
-        value: n,
+        value: e,
         enumerable: !0,
         configurable: !0,
         writable: !0
-    }) : t[r] = n, t;
+    }) : t[r] = e, t;
 }
 
 function f(t, r) {
     return function(t) {
         if (Array.isArray(t)) return t;
     }(t) || function(t, r) {
-        var n = null == t ? null : "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
-        if (null != n) {
-            var e, o, i = [], a = !0, u = !1;
+        var e = null == t ? null : "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
+        if (null != e) {
+            var n, o, a = [], i = !0, u = !1;
             try {
-                for (n = n.call(t); !(a = (e = n.next()).done) && (i.push(e.value), !r || i.length !== r); a = !0) ;
+                for (e = e.call(t); !(i = (n = e.next()).done) && (a.push(n.value), !r || a.length !== r); i = !0) ;
             } catch (t) {
                 u = !0, o = t;
             } finally {
                 try {
-                    a || null == n.return || n.return();
+                    i || null == e.return || e.return();
                 } finally {
                     if (u) throw o;
                 }
             }
-            return i;
+            return a;
         }
-    }(t, r) || s(t, r) || function() {
+    }(t, r) || l(t, r) || function() {
         throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }();
 }
 
-function l(t) {
+function s(t) {
     return function(t) {
-        if (Array.isArray(t)) return y(t);
+        if (Array.isArray(t)) return p(t);
     }(t) || function(t) {
         if ("undefined" != typeof Symbol && null != t[Symbol.iterator] || null != t["@@iterator"]) return Array.from(t);
-    }(t) || s(t) || function() {
+    }(t) || l(t) || function() {
         throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }();
 }
 
-function s(t, r) {
+function l(t, r) {
     if (t) {
-        if ("string" == typeof t) return y(t, r);
-        var n = Object.prototype.toString.call(t).slice(8, -1);
-        return "Object" === n && t.constructor && (n = t.constructor.name), "Map" === n || "Set" === n ? Array.from(t) : "Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n) ? y(t, r) : void 0;
+        if ("string" == typeof t) return p(t, r);
+        var e = Object.prototype.toString.call(t).slice(8, -1);
+        return "Object" === e && t.constructor && (e = t.constructor.name), "Map" === e || "Set" === e ? Array.from(t) : "Arguments" === e || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e) ? p(t, r) : void 0;
     }
 }
 
-function y(t, r) {
+function p(t, r) {
     (null == r || r > t.length) && (r = t.length);
-    for (var n = 0, e = new Array(r); n < r; n++) e[n] = t[n];
-    return e;
+    for (var e = 0, n = new Array(r); e < r; e++) n[e] = t[e];
+    return n;
 }
 
-function p() {
+function v() {
     return {}.toString.call(c({}, Symbol.toStringTag, "EventEmitterTarget"));
 }
 
@@ -150,301 +150,828 @@ function h(t) {
     if ("string" != typeof t && "symbol" !== u(t)) throw new TypeError(" EVENTNAME expected: string | symbol;but invalid :" + t);
 }
 
-function v(t) {
+function y(t) {
     if ("function" != typeof t) throw new TypeError(" EVENTLISTENER expected: (event?: any) => void;but invalid:" + t);
 }
 
-function m() {
-    var t, r = new Map, n = new WeakMap;
-    function e(t) {
-        var n = r.get(t);
-        return n || (n = new Set, r.set(t, n)), n;
+function b() {
+    var t, r = new Map, e = new WeakMap;
+    function n(t) {
+        var e = r.get(t);
+        return e || (e = new Set, r.set(t, e)), e;
     }
     function o(t) {
-        h(t), r.has(t) && e(t).clear();
+        h(t), r.has(t) && n(t).clear();
     }
-    function i(t, n) {
-        h(t), r.has(t) && e(t).forEach((function(t) {
+    function a(t, e) {
+        h(t), r.has(t) && n(t).forEach((function(t) {
             Promise.resolve().then((function() {
-                t(n);
+                t(e);
             }));
         }));
     }
-    function a(t, r) {
-        h(t), v(r), e(t).add(r);
+    function i(t, r) {
+        h(t), y(r), n(t).add(r);
     }
     function u(t, r) {
-        e(t).delete(r);
+        n(t).delete(r);
     }
-    function s(t, r) {
-        h(t), v(r), u(t, r), function(t, r) {
-            var o = e(t), i = n.get(r);
-            i && o.delete(i);
+    function l(t, r) {
+        h(t), y(r), u(t, r), function(t, r) {
+            var o = n(t), a = e.get(r);
+            a && o.delete(a);
         }(t, r);
     }
-    function y() {
-        return l(r).map((function(t) {
+    function p() {
+        return s(r).map((function(t) {
             var r = f(t, 2);
-            return [ r[0], l(r[1]) ];
+            return [ r[0], s(r[1]) ];
         }))[Symbol.iterator]();
     }
-    return c(t = {}, Symbol.toPrimitive, p), c(t, Symbol.toStringTag, "EventEmitterTarget"), 
-    c(t, Symbol.iterator, y), c(t, "entries", y), c(t, "listenerCount", (function(t) {
-        return h(t), r.has(t) ? e(t).size : 0;
-    })), c(t, "clear", o), c(t, "removeAllListeners", o), c(t, "on", a), c(t, "addListener", a), 
-    c(t, "off", s), c(t, "removeListener", s), c(t, "once", (function(t, r) {
-        h(t), v(r);
-        var e = !1, o = n.get(r);
-        o || (o = function n(o) {
-            u(t, n), u(t, r), e || (e = !0, r(o));
-        }, n.set(r, o)), u(t, r), a(t, o);
-    })), c(t, "emit", i), c(t, "dispatch", i), c(t, "eventNames", (function() {
-        return l(r.keys());
+    return c(t = {}, Symbol.toPrimitive, v), c(t, Symbol.toStringTag, "EventEmitterTarget"), 
+    c(t, Symbol.iterator, p), c(t, "entries", p), c(t, "listenerCount", (function(t) {
+        return h(t), r.has(t) ? n(t).size : 0;
+    })), c(t, "clear", o), c(t, "removeAllListeners", o), c(t, "on", i), c(t, "addListener", i), 
+    c(t, "off", l), c(t, "removeListener", l), c(t, "once", (function(t, r) {
+        h(t), y(r);
+        var n = !1, o = e.get(r);
+        o || (o = function e(o) {
+            u(t, e), u(t, r), n || (n = !0, r(o));
+        }, e.set(r, o)), u(t, r), i(t, o);
+    })), c(t, "emit", a), c(t, "dispatch", a), c(t, "eventNames", (function() {
+        return s(r.keys());
     })), c(t, "listeners", (function(t) {
-        return h(t), r.has(t) ? l(e(t)) : [];
+        return h(t), r.has(t) ? s(n(t)) : [];
     })), t;
 }
 
-var b = function(t) {
+var d = function(t) {
     var r = Symbol();
     try {
-        var n = new Function("return async()=>{}")()();
+        var e = new Function("return async()=>{}")()();
     } catch (t) {}
-    function e() {
-        var t = m();
-        return this && this instanceof e ? (Object.assign(this, t), this) : Reflect.construct(e, []);
+    function n() {
+        var t = b();
+        return this && this instanceof n ? (Object.assign(this, t), this) : Reflect.construct(n, []);
     }
-    return Reflect.set(e, r, n), e;
-}(), d = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
+    return Reflect.set(n, r, e), n;
+}(), m = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
 
-var w = function(t) {
-    var r = n(t);
+var g = function(t) {
+    var r = e(t);
     return null != t && ("object" == r || "function" == r);
-}, g = "object" == n(d) && d && d.Object === Object && d, S = "object" == ("undefined" == typeof self ? "undefined" : n(self)) && self && self.Object === Object && self, j = g || S || Function("return this")(), E = j, T = function() {
-    return E.Date.now();
-}, O = /\s/;
+}, j = "object" == e(m) && m && m.Object === Object && m, _ = j, w = "object" == ("undefined" == typeof self ? "undefined" : e(self)) && self && self.Object === Object && self, S = _ || w || Function("return this")(), O = S, E = function() {
+    return O.Date.now();
+}, A = /\s/;
 
-var A = function(t) {
-    for (var r = t.length; r-- && O.test(t.charAt(r)); ) ;
+var T = function(t) {
+    for (var r = t.length; r-- && A.test(t.charAt(r)); ) ;
     return r;
 }, P = /^\s+/;
 
-var R = function(t) {
-    return t ? t.slice(0, A(t) + 1).replace(P, "") : t;
-}, L = j.Symbol, U = L, C = Object.prototype, I = C.hasOwnProperty, x = C.toString, k = U ? U.toStringTag : void 0;
+var x = function(t) {
+    return t ? t.slice(0, T(t) + 1).replace(P, "") : t;
+}, R = S.Symbol, z = R, L = Object.prototype, U = L.hasOwnProperty, k = L.toString, M = z ? z.toStringTag : void 0;
 
-var M = function(t) {
-    var r = I.call(t, k), n = t[k];
+var I = function(t) {
+    var r = U.call(t, M), e = t[M];
     try {
-        t[k] = void 0;
-        var e = !0;
+        t[M] = void 0;
+        var n = !0;
     } catch (t) {}
-    var o = x.call(t);
-    return e && (r ? t[k] = n : delete t[k]), o;
-}, N = Object.prototype.toString;
+    var o = k.call(t);
+    return n && (r ? t[M] = e : delete t[M]), o;
+}, C = Object.prototype.toString;
 
-var D = M, $ = function(t) {
-    return N.call(t);
-}, K = L ? L.toStringTag : void 0;
+var D = I, N = function(t) {
+    return C.call(t);
+}, $ = R ? R.toStringTag : void 0;
 
-var W = function(t) {
-    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : K && K in Object(t) ? D(t) : $(t);
-}, F = function(t) {
-    return null != t && "object" == n(t);
+var F = function(t) {
+    return null == t ? void 0 === t ? "[object Undefined]" : "[object Null]" : $ && $ in Object(t) ? D(t) : N(t);
 };
 
-var V = R, z = w, H = function(t) {
-    return "symbol" == n(t) || F(t) && "[object Symbol]" == W(t);
-}, _ = /^[-+]0x[0-9a-f]+$/i, q = /^0b[01]+$/i, B = /^0o[0-7]+$/i, G = parseInt;
+var B = function(t) {
+    return null != t && "object" == e(t);
+}, V = F, W = B;
 
-var J = w, Q = T, X = function(t) {
+var K = x, q = g, G = function(t) {
+    return "symbol" == e(t) || W(t) && "[object Symbol]" == V(t);
+}, H = /^[-+]0x[0-9a-f]+$/i, J = /^0b[01]+$/i, Q = /^0o[0-7]+$/i, X = parseInt;
+
+var Y = g, Z = E, tt = function(t) {
     if ("number" == typeof t) return t;
-    if (H(t)) return NaN;
-    if (z(t)) {
+    if (G(t)) return NaN;
+    if (q(t)) {
         var r = "function" == typeof t.valueOf ? t.valueOf() : t;
-        t = z(r) ? r + "" : r;
+        t = q(r) ? r + "" : r;
     }
     if ("string" != typeof t) return 0 === t ? t : +t;
-    t = V(t);
-    var n = q.test(t);
-    return n || B.test(t) ? G(t.slice(2), n ? 2 : 8) : _.test(t) ? NaN : +t;
-}, Y = Math.max, Z = Math.min;
+    t = K(t);
+    var e = J.test(t);
+    return e || Q.test(t) ? X(t.slice(2), e ? 2 : 8) : H.test(t) ? NaN : +t;
+}, rt = Math.max, et = Math.min;
 
-var tt = function(t, r, n) {
-    var e, o, i, a, u, c, f = 0, l = !1, s = !1, y = !0;
+var nt = function(t, r, e) {
+    var n, o, a, i, u, c, f = 0, s = !1, l = !1, p = !0;
     if ("function" != typeof t) throw new TypeError("Expected a function");
-    function p(r) {
-        var n = e, i = o;
-        return e = o = void 0, f = r, a = t.apply(i, n);
+    function v(r) {
+        var e = n, a = o;
+        return n = o = void 0, f = r, i = t.apply(a, e);
     }
     function h(t) {
-        return f = t, u = setTimeout(m, r), l ? p(t) : a;
+        return f = t, u = setTimeout(b, r), s ? v(t) : i;
     }
-    function v(t) {
-        var n = t - c;
-        return void 0 === c || n >= r || n < 0 || s && t - f >= i;
+    function y(t) {
+        var e = t - c;
+        return void 0 === c || e >= r || e < 0 || l && t - f >= a;
     }
-    function m() {
-        var t = Q();
-        if (v(t)) return b(t);
-        u = setTimeout(m, function(t) {
-            var n = r - (t - c);
-            return s ? Z(n, i - (t - f)) : n;
+    function b() {
+        var t = Z();
+        if (y(t)) return d(t);
+        u = setTimeout(b, function(t) {
+            var e = r - (t - c);
+            return l ? et(e, a - (t - f)) : e;
         }(t));
     }
-    function b(t) {
-        return u = void 0, y && e ? p(t) : (e = o = void 0, a);
+    function d(t) {
+        return u = void 0, p && n ? v(t) : (n = o = void 0, i);
     }
-    function d() {
-        var t = Q(), n = v(t);
-        if (e = arguments, o = this, c = t, n) {
+    function m() {
+        var t = Z(), e = y(t);
+        if (n = arguments, o = this, c = t, e) {
             if (void 0 === u) return h(c);
-            if (s) return clearTimeout(u), u = setTimeout(m, r), p(c);
+            if (l) return clearTimeout(u), u = setTimeout(b, r), v(c);
         }
-        return void 0 === u && (u = setTimeout(m, r)), a;
+        return void 0 === u && (u = setTimeout(b, r)), i;
     }
-    return r = X(r) || 0, J(n) && (l = !!n.leading, i = (s = "maxWait" in n) ? Y(X(n.maxWait) || 0, r) : i, 
-    y = "trailing" in n ? !!n.trailing : y), d.cancel = function() {
-        void 0 !== u && clearTimeout(u), f = 0, e = c = o = u = void 0;
-    }, d.flush = function() {
-        return void 0 === u ? a : b(Q());
-    }, d;
+    return r = tt(r) || 0, Y(e) && (s = !!e.leading, a = (l = "maxWait" in e) ? rt(tt(e.maxWait) || 0, r) : a, 
+    p = "trailing" in e ? !!e.trailing : p), m.cancel = function() {
+        void 0 !== u && clearTimeout(u), f = 0, n = c = o = u = void 0;
+    }, m.flush = function() {
+        return void 0 === u ? i : d(Z());
+    }, m;
 };
 
-function rt() {
+function ot() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
-}
-
-function nt(t) {
-    if (!t) throw new TypeError("object,function");
-    var e = rt(), o = new URL(location.href);
-    if ("function" == typeof t) return e = t(e), o.hash = String(new URLSearchParams(r({}, e))), 
-    o.href;
-    if ("object" === n(t)) return e = t, o.hash = String(new URLSearchParams(r({}, e))), 
-    o.href;
-    throw new TypeError("object,function");
-}
-
-function et(t) {
-    var n = location.hash, e = new URL(location.href);
-    e.hash = String(new URLSearchParams(r({}, t))), n !== e.hash && (history.pushState({}, "", e.href), 
-    window.dispatchEvent(new Event("hashchange")));
-}
-
-function ot(t) {
-    et(t(rt()));
-}
-
-function it() {
-    return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
 function at(t) {
     if (!t) throw new TypeError("object,function");
-    var e = it(), o = new URL(location.href);
-    if ("function" == typeof t) return e = t(e), o.search = String(new URLSearchParams(r({}, e))), 
+    var n = ot(), o = new URL(location.href);
+    if ("function" == typeof t) return n = t(n), o.hash = String(new URLSearchParams(r({}, n))), 
     o.href;
-    if ("object" === n(t)) return e = t, o.search = String(new URLSearchParams(r({}, e))), 
+    if ("object" === e(t)) return n = t, o.hash = String(new URLSearchParams(r({}, n))), 
     o.href;
     throw new TypeError("object,function");
 }
 
-function ut(t) {
-    var n = location.search, e = new URL(location.href);
-    e.search = String(new URLSearchParams(r({}, t))), n !== e.search && (history.pushState({}, "", e.href), 
-    window.dispatchEvent(new Event("popstate")));
+function it(t) {
+    var e = location.hash, n = new URL(location.href);
+    n.hash = String(new URLSearchParams(r({}, t))), e !== n.hash && (history.pushState({}, "", n.href), 
+    window.dispatchEvent(new Event("hashchange")));
 }
 
-function ct(t) {
-    ut(t(it()));
+function ut(t) {
+    it(t(ot()));
+}
+
+function ct() {
+    return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
 function ft(t) {
-    var n = 0, o = "search" === t ? "popstate" : "hashchange", i = b(), a = tt((function() {
-        var r = "hash" === t ? rt() : it();
-        c.emit("params", r);
-    }));
-    var u = e({
-        mount: function() {
-            window.addEventListener(o, a), a(), n++;
-        },
-        unmount: function() {
-            --n <= 0 && (window.removeEventListener(o, a), a.cancel(), c.removeAllListeners("params"));
-        },
-        paramshref: "hash" === t ? nt : at,
-        setparams: "hash" === t ? et : ut,
-        getparams: "hash" === t ? rt : it,
-        transformparams: "hash" === t ? ot : ct
-    }, Symbol.toStringTag, "search" === t ? "SearchRouter" : "HashRouter"), c = r(r({}, i), u);
-    return c;
+    if (!t) throw new TypeError("object,function");
+    var n = ct(), o = new URL(location.href);
+    if ("function" == typeof t) return n = t(n), o.search = String(new URLSearchParams(r({}, n))), 
+    o.href;
+    if ("object" === e(t)) return n = t, o.search = String(new URLSearchParams(r({}, n))), 
+    o.href;
+    throw new TypeError("object,function");
 }
 
-function lt() {
-    return ft("hash");
+function st(t) {
+    var e = location.search, n = new URL(location.href);
+    n.search = String(new URLSearchParams(r({}, t))), e !== n.search && (history.pushState({}, "", n.href), 
+    window.dispatchEvent(new Event("popstate")));
 }
 
-function st() {
-    return ft("search");
-}
-
-function yt(t, r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" != typeof r) {
-        if ("object" !== n(r)) throw new TypeError("object,function");
-        t.setparams(r);
-    } else t.transformparams(r);
+function lt(t) {
+    st(t(ct()));
 }
 
 function pt(t) {
-    var r = t.onClick, n = t.target, e = t.router, o = t.to;
-    return function(t) {
+    var e = 0, o = "search" === t ? "popstate" : "hashchange", a = d(), i = nt((function() {
+        var r = "hash" === t ? ot() : ct();
+        c.emit("params", r);
+    }));
+    var u = n({
+        mount: function() {
+            window.addEventListener(o, i), i(), e++;
+        },
+        unmount: function() {
+            --e <= 0 && (window.removeEventListener(o, i), i.cancel(), c.removeAllListeners("params"));
+        },
+        paramshref: "hash" === t ? at : ft,
+        setparams: "hash" === t ? it : st,
+        getparams: "hash" === t ? ot : ct,
+        transformparams: "hash" === t ? ut : lt
+    }, Symbol.toStringTag, "search" === t ? "SearchRouter" : "HashRouter"), c = r(r({}, a), u);
+    return c;
+}
+
+function vt() {
+    return pt("hash");
+}
+
+function ht() {
+    return pt("search");
+}
+
+var yt = function() {
+    this.__data__ = [], this.size = 0;
+};
+
+var bt = function(t, r) {
+    return t === r || t != t && r != r;
+}, dt = bt;
+
+var mt = function(t, r) {
+    for (var e = t.length; e--; ) if (dt(t[e][0], r)) return e;
+    return -1;
+}, gt = mt, jt = Array.prototype.splice;
+
+var _t = mt;
+
+var wt = mt;
+
+var St = mt;
+
+var Ot = yt, Et = function(t) {
+    var r = this.__data__, e = gt(r, t);
+    return !(e < 0) && (e == r.length - 1 ? r.pop() : jt.call(r, e, 1), --this.size, 
+    !0);
+}, At = function(t) {
+    var r = this.__data__, e = _t(r, t);
+    return e < 0 ? void 0 : r[e][1];
+}, Tt = function(t) {
+    return wt(this.__data__, t) > -1;
+}, Pt = function(t, r) {
+    var e = this.__data__, n = St(e, t);
+    return n < 0 ? (++this.size, e.push([ t, r ])) : e[n][1] = r, this;
+};
+
+function xt(t) {
+    var r = -1, e = null == t ? 0 : t.length;
+    for (this.clear(); ++r < e; ) {
+        var n = t[r];
+        this.set(n[0], n[1]);
+    }
+}
+
+xt.prototype.clear = Ot, xt.prototype.delete = Et, xt.prototype.get = At, xt.prototype.has = Tt, 
+xt.prototype.set = Pt;
+
+var Rt = xt, zt = Rt;
+
+var Lt = function() {
+    this.__data__ = new zt, this.size = 0;
+};
+
+var Ut = function(t) {
+    var r = this.__data__, e = r.delete(t);
+    return this.size = r.size, e;
+};
+
+var kt = function(t) {
+    return this.__data__.get(t);
+};
+
+var Mt = function(t) {
+    return this.__data__.has(t);
+}, It = F, Ct = g;
+
+var Dt, Nt = function(t) {
+    if (!Ct(t)) return !1;
+    var r = It(t);
+    return "[object Function]" == r || "[object GeneratorFunction]" == r || "[object AsyncFunction]" == r || "[object Proxy]" == r;
+}, $t = S["__core-js_shared__"], Ft = (Dt = /[^.]+$/.exec($t && $t.keys && $t.keys.IE_PROTO || "")) ? "Symbol(src)_1." + Dt : "";
+
+var Bt = function(t) {
+    return !!Ft && Ft in t;
+}, Vt = Function.prototype.toString;
+
+var Wt = function(t) {
+    if (null != t) {
         try {
-            "function" == typeof r && r(t);
-        } catch (r) {
-            throw t.preventDefault(), r;
+            return Vt.call(t);
+        } catch (t) {}
+        try {
+            return t + "";
+        } catch (t) {}
+    }
+    return "";
+}, Kt = Nt, qt = Bt, Gt = g, Ht = Wt, Jt = /^\[object .+?Constructor\]$/, Qt = Function.prototype, Xt = Object.prototype, Yt = Qt.toString, Zt = Xt.hasOwnProperty, tr = RegExp("^" + Yt.call(Zt).replace(/[\\^$.*+?()[\]{}|]/g, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
+
+var rr = function(t) {
+    return !(!Gt(t) || qt(t)) && (Kt(t) ? tr : Jt).test(Ht(t));
+}, er = function(t, r) {
+    return null == t ? void 0 : t[r];
+};
+
+var nr = function(t, r) {
+    var e = er(t, r);
+    return rr(e) ? e : void 0;
+}, or = nr(S, "Map"), ar = nr(Object, "create"), ir = ar;
+
+var ur = function() {
+    this.__data__ = ir ? ir(null) : {}, this.size = 0;
+};
+
+var cr = function(t) {
+    var r = this.has(t) && delete this.__data__[t];
+    return this.size -= r ? 1 : 0, r;
+}, fr = ar, sr = Object.prototype.hasOwnProperty;
+
+var lr = function(t) {
+    var r = this.__data__;
+    if (fr) {
+        var e = r[t];
+        return "__lodash_hash_undefined__" === e ? void 0 : e;
+    }
+    return sr.call(r, t) ? r[t] : void 0;
+}, pr = ar, vr = Object.prototype.hasOwnProperty;
+
+var hr = ar;
+
+var yr = ur, br = cr, dr = lr, mr = function(t) {
+    var r = this.__data__;
+    return pr ? void 0 !== r[t] : vr.call(r, t);
+}, gr = function(t, r) {
+    var e = this.__data__;
+    return this.size += this.has(t) ? 0 : 1, e[t] = hr && void 0 === r ? "__lodash_hash_undefined__" : r, 
+    this;
+};
+
+function jr(t) {
+    var r = -1, e = null == t ? 0 : t.length;
+    for (this.clear(); ++r < e; ) {
+        var n = t[r];
+        this.set(n[0], n[1]);
+    }
+}
+
+jr.prototype.clear = yr, jr.prototype.delete = br, jr.prototype.get = dr, jr.prototype.has = mr, 
+jr.prototype.set = gr;
+
+var _r = jr, wr = Rt, Sr = or;
+
+var Or = function(t) {
+    var r = e(t);
+    return "string" == r || "number" == r || "symbol" == r || "boolean" == r ? "__proto__" !== t : null === t;
+};
+
+var Er = function(t, r) {
+    var e = t.__data__;
+    return Or(r) ? e["string" == typeof r ? "string" : "hash"] : e.map;
+}, Ar = Er;
+
+var Tr = Er;
+
+var Pr = Er;
+
+var xr = Er;
+
+var Rr = function() {
+    this.size = 0, this.__data__ = {
+        hash: new _r,
+        map: new (Sr || wr),
+        string: new _r
+    };
+}, zr = function(t) {
+    var r = Ar(this, t).delete(t);
+    return this.size -= r ? 1 : 0, r;
+}, Lr = function(t) {
+    return Tr(this, t).get(t);
+}, Ur = function(t) {
+    return Pr(this, t).has(t);
+}, kr = function(t, r) {
+    var e = xr(this, t), n = e.size;
+    return e.set(t, r), this.size += e.size == n ? 0 : 1, this;
+};
+
+function Mr(t) {
+    var r = -1, e = null == t ? 0 : t.length;
+    for (this.clear(); ++r < e; ) {
+        var n = t[r];
+        this.set(n[0], n[1]);
+    }
+}
+
+Mr.prototype.clear = Rr, Mr.prototype.delete = zr, Mr.prototype.get = Lr, Mr.prototype.has = Ur, 
+Mr.prototype.set = kr;
+
+var Ir = Mr, Cr = Rt, Dr = or, Nr = Ir;
+
+var $r = Rt, Fr = Lt, Br = Ut, Vr = kt, Wr = Mt, Kr = function(t, r) {
+    var e = this.__data__;
+    if (e instanceof Cr) {
+        var n = e.__data__;
+        if (!Dr || n.length < 199) return n.push([ t, r ]), this.size = ++e.size, this;
+        e = this.__data__ = new Nr(n);
+    }
+    return e.set(t, r), this.size = e.size, this;
+};
+
+function qr(t) {
+    var r = this.__data__ = new $r(t);
+    this.size = r.size;
+}
+
+qr.prototype.clear = Fr, qr.prototype.delete = Br, qr.prototype.get = Vr, qr.prototype.has = Wr, 
+qr.prototype.set = Kr;
+
+var Gr = qr;
+
+var Hr = Ir, Jr = function(t) {
+    return this.__data__.set(t, "__lodash_hash_undefined__"), this;
+}, Qr = function(t) {
+    return this.__data__.has(t);
+};
+
+function Xr(t) {
+    var r = -1, e = null == t ? 0 : t.length;
+    for (this.__data__ = new Hr; ++r < e; ) this.add(t[r]);
+}
+
+Xr.prototype.add = Xr.prototype.push = Jr, Xr.prototype.has = Qr;
+
+var Yr = Xr, Zr = function(t, r) {
+    for (var e = -1, n = null == t ? 0 : t.length; ++e < n; ) if (r(t[e], e, t)) return !0;
+    return !1;
+}, te = function(t, r) {
+    return t.has(r);
+};
+
+var re = function(t, r, e, n, o, a) {
+    var i = 1 & e, u = t.length, c = r.length;
+    if (u != c && !(i && c > u)) return !1;
+    var f = a.get(t), s = a.get(r);
+    if (f && s) return f == r && s == t;
+    var l = -1, p = !0, v = 2 & e ? new Yr : void 0;
+    for (a.set(t, r), a.set(r, t); ++l < u; ) {
+        var h = t[l], y = r[l];
+        if (n) var b = i ? n(y, h, l, r, t, a) : n(h, y, l, t, r, a);
+        if (void 0 !== b) {
+            if (b) continue;
+            p = !1;
+            break;
         }
-        t.defaultPrevented || 0 !== t.button || n && "_self" !== n || function(t) {
-            return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
-        }(t) || (t.preventDefault(), yt(e, o));
+        if (v) {
+            if (!Zr(r, (function(t, r) {
+                if (!te(v, r) && (h === t || o(h, t, e, n, a))) return v.push(r);
+            }))) {
+                p = !1;
+                break;
+            }
+        } else if (h !== y && !o(h, y, e, n, a)) {
+            p = !1;
+            break;
+        }
+    }
+    return a.delete(t), a.delete(r), p;
+};
+
+var ee = S.Uint8Array, ne = bt, oe = re, ae = function(t) {
+    var r = -1, e = Array(t.size);
+    return t.forEach((function(t, n) {
+        e[++r] = [ n, t ];
+    })), e;
+}, ie = function(t) {
+    var r = -1, e = Array(t.size);
+    return t.forEach((function(t) {
+        e[++r] = t;
+    })), e;
+}, ue = R ? R.prototype : void 0, ce = ue ? ue.valueOf : void 0;
+
+var fe = function(t, r, e, n, o, a, i) {
+    switch (e) {
+      case "[object DataView]":
+        if (t.byteLength != r.byteLength || t.byteOffset != r.byteOffset) return !1;
+        t = t.buffer, r = r.buffer;
+
+      case "[object ArrayBuffer]":
+        return !(t.byteLength != r.byteLength || !a(new ee(t), new ee(r)));
+
+      case "[object Boolean]":
+      case "[object Date]":
+      case "[object Number]":
+        return ne(+t, +r);
+
+      case "[object Error]":
+        return t.name == r.name && t.message == r.message;
+
+      case "[object RegExp]":
+      case "[object String]":
+        return t == r + "";
+
+      case "[object Map]":
+        var u = ae;
+
+      case "[object Set]":
+        var c = 1 & n;
+        if (u || (u = ie), t.size != r.size && !c) return !1;
+        var f = i.get(t);
+        if (f) return f == r;
+        n |= 2, i.set(t, r);
+        var s = oe(u(t), u(r), n, o, a, i);
+        return i.delete(t), s;
+
+      case "[object Symbol]":
+        if (ce) return ce.call(t) == ce.call(r);
+    }
+    return !1;
+};
+
+var se = function(t, r) {
+    for (var e = -1, n = r.length, o = t.length; ++e < n; ) t[o + e] = r[e];
+    return t;
+}, le = Array.isArray, pe = se, ve = le;
+
+var he = function(t, r, e) {
+    var n = r(t);
+    return ve(t) ? n : pe(n, e(t));
+};
+
+var ye = function(t, r) {
+    for (var e = -1, n = null == t ? 0 : t.length, o = 0, a = []; ++e < n; ) {
+        var i = t[e];
+        r(i, e, t) && (a[o++] = i);
+    }
+    return a;
+}, be = function() {
+    return [];
+}, de = Object.prototype.propertyIsEnumerable, me = Object.getOwnPropertySymbols, ge = me ? function(t) {
+    return null == t ? [] : (t = Object(t), ye(me(t), (function(r) {
+        return de.call(t, r);
+    })));
+} : be;
+
+var je = function(t, r) {
+    for (var e = -1, n = Array(t); ++e < t; ) n[e] = r(e);
+    return n;
+}, _e = F, we = B;
+
+var Se = function(t) {
+    return we(t) && "[object Arguments]" == _e(t);
+}, Oe = B, Ee = Object.prototype, Ae = Ee.hasOwnProperty, Te = Ee.propertyIsEnumerable, Pe = Se(function() {
+    return arguments;
+}()) ? Se : function(t) {
+    return Oe(t) && Ae.call(t, "callee") && !Te.call(t, "callee");
+}, xe = {
+    exports: {}
+};
+
+var Re = function() {
+    return !1;
+};
+
+!function(t, r) {
+    var e = S, n = Re, o = r && !r.nodeType && r, a = o && t && !t.nodeType && t, i = a && a.exports === o ? e.Buffer : void 0, u = (i ? i.isBuffer : void 0) || n;
+    t.exports = u;
+}(xe, xe.exports);
+
+var ze = /^(?:0|[1-9]\d*)$/;
+
+var Le = function(t, r) {
+    var n = e(t);
+    return !!(r = null == r ? 9007199254740991 : r) && ("number" == n || "symbol" != n && ze.test(t)) && t > -1 && t % 1 == 0 && t < r;
+};
+
+var Ue = function(t) {
+    return "number" == typeof t && t > -1 && t % 1 == 0 && t <= 9007199254740991;
+}, ke = F, Me = Ue, Ie = B, Ce = {};
+
+Ce["[object Float32Array]"] = Ce["[object Float64Array]"] = Ce["[object Int8Array]"] = Ce["[object Int16Array]"] = Ce["[object Int32Array]"] = Ce["[object Uint8Array]"] = Ce["[object Uint8ClampedArray]"] = Ce["[object Uint16Array]"] = Ce["[object Uint32Array]"] = !0, 
+Ce["[object Arguments]"] = Ce["[object Array]"] = Ce["[object ArrayBuffer]"] = Ce["[object Boolean]"] = Ce["[object DataView]"] = Ce["[object Date]"] = Ce["[object Error]"] = Ce["[object Function]"] = Ce["[object Map]"] = Ce["[object Number]"] = Ce["[object Object]"] = Ce["[object RegExp]"] = Ce["[object Set]"] = Ce["[object String]"] = Ce["[object WeakMap]"] = !1;
+
+var De = function(t) {
+    return Ie(t) && Me(t.length) && !!Ce[ke(t)];
+};
+
+var Ne = function(t) {
+    return function(r) {
+        return t(r);
+    };
+}, $e = {
+    exports: {}
+};
+
+!function(t, r) {
+    var e = j, n = r && !r.nodeType && r, o = n && t && !t.nodeType && t, a = o && o.exports === n && e.process, i = function() {
+        try {
+            var t = o && o.require && o.require("util").types;
+            return t || a && a.binding && a.binding("util");
+        } catch (t) {}
+    }();
+    t.exports = i;
+}($e, $e.exports);
+
+var Fe = De, Be = Ne, Ve = $e.exports, We = Ve && Ve.isTypedArray, Ke = We ? Be(We) : Fe, qe = je, Ge = Pe, He = le, Je = xe.exports, Qe = Le, Xe = Ke, Ye = Object.prototype.hasOwnProperty;
+
+var Ze = function(t, r) {
+    var e = He(t), n = !e && Ge(t), o = !e && !n && Je(t), a = !e && !n && !o && Xe(t), i = e || n || o || a, u = i ? qe(t.length, String) : [], c = u.length;
+    for (var f in t) !r && !Ye.call(t, f) || i && ("length" == f || o && ("offset" == f || "parent" == f) || a && ("buffer" == f || "byteLength" == f || "byteOffset" == f) || Qe(f, c)) || u.push(f);
+    return u;
+}, tn = Object.prototype;
+
+var rn = function(t) {
+    var r = t && t.constructor;
+    return t === ("function" == typeof r && r.prototype || tn);
+};
+
+var en = function(t, r) {
+    return function(e) {
+        return t(r(e));
+    };
+}(Object.keys, Object), nn = rn, on = en, an = Object.prototype.hasOwnProperty;
+
+var un = Nt, cn = Ue;
+
+var fn = Ze, sn = function(t) {
+    if (!nn(t)) return on(t);
+    var r = [];
+    for (var e in Object(t)) an.call(t, e) && "constructor" != e && r.push(e);
+    return r;
+}, ln = function(t) {
+    return null != t && cn(t.length) && !un(t);
+};
+
+var pn = he, vn = ge, hn = function(t) {
+    return ln(t) ? fn(t) : sn(t);
+};
+
+var yn = function(t) {
+    return pn(t, hn, vn);
+}, bn = Object.prototype.hasOwnProperty;
+
+var dn = function(t, r, e, n, o, a) {
+    var i = 1 & e, u = yn(t), c = u.length;
+    if (c != yn(r).length && !i) return !1;
+    for (var f = c; f--; ) {
+        var s = u[f];
+        if (!(i ? s in r : bn.call(r, s))) return !1;
+    }
+    var l = a.get(t), p = a.get(r);
+    if (l && p) return l == r && p == t;
+    var v = !0;
+    a.set(t, r), a.set(r, t);
+    for (var h = i; ++f < c; ) {
+        var y = t[s = u[f]], b = r[s];
+        if (n) var d = i ? n(b, y, s, r, t, a) : n(y, b, s, t, r, a);
+        if (!(void 0 === d ? y === b || o(y, b, e, n, a) : d)) {
+            v = !1;
+            break;
+        }
+        h || (h = "constructor" == s);
+    }
+    if (v && !h) {
+        var m = t.constructor, g = r.constructor;
+        m == g || !("constructor" in t) || !("constructor" in r) || "function" == typeof m && m instanceof m && "function" == typeof g && g instanceof g || (v = !1);
+    }
+    return a.delete(t), a.delete(r), v;
+}, mn = nr(S, "DataView"), gn = or, jn = nr(S, "Promise"), _n = nr(S, "Set"), wn = nr(S, "WeakMap"), Sn = F, On = Wt, En = On(mn), An = On(gn), Tn = On(jn), Pn = On(_n), xn = On(wn), Rn = Sn;
+
+(mn && "[object DataView]" != Rn(new mn(new ArrayBuffer(1))) || gn && "[object Map]" != Rn(new gn) || jn && "[object Promise]" != Rn(jn.resolve()) || _n && "[object Set]" != Rn(new _n) || wn && "[object WeakMap]" != Rn(new wn)) && (Rn = function(t) {
+    var r = Sn(t), e = "[object Object]" == r ? t.constructor : void 0, n = e ? On(e) : "";
+    if (n) switch (n) {
+      case En:
+        return "[object DataView]";
+
+      case An:
+        return "[object Map]";
+
+      case Tn:
+        return "[object Promise]";
+
+      case Pn:
+        return "[object Set]";
+
+      case xn:
+        return "[object WeakMap]";
+    }
+    return r;
+});
+
+var zn = Gr, Ln = re, Un = fe, kn = dn, Mn = Rn, In = le, Cn = xe.exports, Dn = Ke, Nn = "[object Object]", $n = Object.prototype.hasOwnProperty;
+
+var Fn = function(t, r, e, n, o, a) {
+    var i = In(t), u = In(r), c = i ? "[object Array]" : Mn(t), f = u ? "[object Array]" : Mn(r), s = (c = "[object Arguments]" == c ? Nn : c) == Nn, l = (f = "[object Arguments]" == f ? Nn : f) == Nn, p = c == f;
+    if (p && Cn(t)) {
+        if (!Cn(r)) return !1;
+        i = !0, s = !1;
+    }
+    if (p && !s) return a || (a = new zn), i || Dn(t) ? Ln(t, r, e, n, o, a) : Un(t, r, c, e, n, o, a);
+    if (!(1 & e)) {
+        var v = s && $n.call(t, "__wrapped__"), h = l && $n.call(r, "__wrapped__");
+        if (v || h) {
+            var y = v ? t.value() : t, b = h ? r.value() : r;
+            return a || (a = new zn), o(y, b, e, n, a);
+        }
+    }
+    return !!p && (a || (a = new zn), kn(t, r, e, n, o, a));
+}, Bn = B;
+
+var Vn = function t(r, e, n, o, a) {
+    return r === e || (null == r || null == e || !Bn(r) && !Bn(e) ? r != r && e != e : Fn(r, e, n, o, t, a));
+};
+
+var Wn = function(t, r) {
+    return Vn(t, r);
+};
+
+function Kn(t) {
+    var r = t.onClick, e = t.target, n = t.router, o = t.to;
+    return function(t) {
+        if (t) {
+            try {
+                "function" == typeof r && r(t);
+            } catch (r) {
+                throw t.preventDefault(), r;
+            }
+            t.defaultPrevented || 0 !== t.button || e && "_self" !== e || function(t) {
+                return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
+            }(t) || (t.preventDefault(), n.setparams(o));
+        } else n.setparams(o);
     };
 }
 
-function ht(t) {
-    var e = t.router, o = t.forwardRef, i = t.createElement;
-    return o((function(t, o) {
-        var a = t.component, u = void 0 === a ? "a" : a, c = t.to, f = t.onClick, l = t.children, s = t.target;
-        if (!c) throw new TypeError("object,function");
-        if ("function" != typeof c && "object" !== n(c)) throw new TypeError("object,function");
-        var y = e.paramshref(c), p = pt({
-            onClick: f,
-            target: s,
-            router: e,
-            to: c
-        });
-        return i(u, r({}, {
-            ref: o,
-            href: y,
-            onClick: p,
-            target: s
-        }), l);
-    }));
+function qn(t) {
+    var r = t.router, e = t.useState, n = t.useEffect;
+    return function() {
+        var t = o(e(r.getparams()), 2), a = t[0], i = t[1];
+        return n((function() {
+            var t = nt((function(t) {
+                i(t);
+            }));
+            return r.mount(), r.on("params", t), function() {
+                r.unmount(), r.off("params", t), t.cancel();
+            };
+        }), []), a;
+    };
 }
 
-function vt(t, r) {
-    var n, e = function(t, r) {
-        var n = "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
-        if (!n) {
-            if (Array.isArray(t) || (n = i(t)) || r && t && "number" == typeof t.length) {
-                n && (t = n);
-                var e = 0, o = function() {};
+function Gn(t) {
+    var r = t.router, n = t.useState, o = t.useEffect, a = t.createElement, i = qn({
+        router: r,
+        useState: n,
+        useEffect: o
+    });
+    return function(t) {
+        var n = t.component, o = void 0 === n ? u : n, c = t.target, f = t.to, s = t.onClick, l = t.innerRef, p = t.children, v = i();
+        if (!f || "object" !== e(f)) throw new TypeError("object");
+        var h = r.paramshref(f), y = Wn(v, f), b = Kn({
+            onClick: s,
+            target: c,
+            router: r,
+            to: f
+        });
+        return a(o, {
+            innerRef: l,
+            target: c,
+            href: h,
+            isActive: y,
+            navigate: b
+        }, p);
+    };
+    function u(t) {
+        var r = t.innerRef, e = t.target, n = t.children, o = t.href, i = t.isActive, u = t.navigate;
+        return a("a", {
+            ref: r,
+            target: e,
+            href: o,
+            onClick: u,
+            "aria-current": i ? "page" : "false"
+        }, n);
+    }
+}
+
+function Hn(t, r) {
+    var e, n = function(t, r) {
+        var e = "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
+        if (!e) {
+            if (Array.isArray(t) || (e = a(t)) || r && t && "number" == typeof t.length) {
+                e && (t = e);
+                var n = 0, o = function() {};
                 return {
                     s: o,
                     n: function() {
-                        return e >= t.length ? {
+                        return n >= t.length ? {
                             done: !0
                         } : {
                             done: !1,
-                            value: t[e++]
+                            value: t[n++]
                         };
                     },
                     e: function(t) {
@@ -455,168 +982,161 @@ function vt(t, r) {
             }
             throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
         }
-        var a, u = !0, c = !1;
+        var i, u = !0, c = !1;
         return {
             s: function() {
-                n = n.call(t);
+                e = e.call(t);
             },
             n: function() {
-                var t = n.next();
+                var t = e.next();
                 return u = t.done, t;
             },
             e: function(t) {
-                c = !0, a = t;
+                c = !0, i = t;
             },
             f: function() {
                 try {
-                    u || null == n.return || n.return();
+                    u || null == e.return || e.return();
                 } finally {
-                    if (c) throw a;
+                    if (c) throw i;
                 }
             }
         };
     }(t);
     try {
-        for (e.s(); !(n = e.n()).done; ) {
-            var o = n.value;
+        for (n.s(); !(e = n.n()).done; ) {
+            var o = e.value;
             if (o.params(r)) return o;
         }
     } catch (t) {
-        e.e(t);
+        n.e(t);
     } finally {
-        e.f();
+        n.f();
     }
 }
 
-function mt(t) {
-    return !(!t || "object" !== n(t) || "function" != typeof t.params);
+function Jn(t) {
+    return !(!t || "object" !== e(t) || "function" != typeof t.params);
 }
 
-function bt(t) {
+function Qn(t, r) {
+    if (!r) throw new TypeError("object,function");
+    if ("function" != typeof r) {
+        if ("object" !== e(r)) throw new TypeError("object,function");
+        t.setparams(r);
+    } else t.transformparams(r);
+}
+
+function Xn(t) {
     return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.redirect);
 }
 
-function dt(t) {
+function Yn(t) {
     return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.component);
 }
 
-function wt(t) {
-    var r = t.router, n = t.useState, e = t.useEffect;
-    return function() {
-        var t = o(n(r.getparams()), 2), i = t[0], a = t[1];
-        return e((function() {
-            var t = tt((function(t) {
-                a(t);
-            }));
-            return r.mount(), r.on("params", t), function() {
-                r.unmount(), r.off("params", t), t.cancel();
-            };
-        }), []), i;
-    };
-}
-
-function gt(t) {
-    var n = t.router, e = t.createElement, o = t.useState, i = t.useEffect, a = wt({
-        router: n,
+function Zn(t) {
+    var e = t.router, n = t.createElement, o = t.useState, a = t.useEffect, i = qn({
+        router: e,
         useState: o,
-        useEffect: i
+        useEffect: a
     });
     return function(t) {
         var o = t.routes;
         if (!Array.isArray(o)) throw new TypeError("array");
         if (!o.every((function(t) {
-            return mt(t);
+            return Jn(t);
         }))) throw new TypeError('{params:"function"}');
-        var i = a(), u = vt(o, i);
-        if (bt(u)) {
+        var a = i(), u = Hn(o, a);
+        if (Xn(u)) {
             var c = u.redirect;
-            yt(n, c);
+            Qn(e, c);
         }
-        if (bt(u)) return null;
-        if (dt(u)) {
-            var f = u.component, l = u.children, s = u.props || {}, y = Object.assign({}, s, {
-                params: i
+        if (Xn(u)) return null;
+        if (Yn(u)) {
+            var f = u.component, s = u.children, l = u.props || {}, p = Object.assign({}, l, {
+                params: a
             });
-            return e(f, r({}, y), l);
+            return n(f, r({}, p), s);
         }
         return null;
     };
 }
 
-function St(t) {
-    var e = t.router, o = t.resolveComponent, i = t.defineComponent, a = t.h;
-    return i({
+function to(t) {
+    var n = t.router, o = t.resolveComponent, a = t.defineComponent, i = t.h;
+    return a({
         inheritAttrs: !1,
-        setup: function(t, i) {
-            var u = i.slots, c = i.attrs;
+        setup: function(t, a) {
+            var u = a.slots, c = a.attrs;
             return function() {
-                var t = c.component, i = void 0 === t ? "a" : t, f = c.to, l = c.onClick, s = c.target, y = c.innerRef;
+                var t = c.component, a = void 0 === t ? "a" : t, f = c.to, s = c.onClick, l = c.target, p = c.innerRef;
                 if (!f) throw new TypeError("object,function");
-                if ("function" != typeof f && "object" !== n(f)) throw new TypeError("object,function");
-                var p = e.paramshref(f), h = pt({
-                    onClick: l,
-                    target: s,
-                    router: e,
+                if ("function" != typeof f && "object" !== e(f)) throw new TypeError("object,function");
+                var v = n.paramshref(f), h = Kn({
+                    onClick: s,
+                    target: l,
+                    router: n,
                     to: f
-                }), v = {
-                    ref: "function" == typeof y ? y : y && "object" === n(y) ? function(t) {
-                        Reflect.set(y, "value", t);
+                }), y = {
+                    ref: "function" == typeof p ? p : p && "object" === e(p) ? function(t) {
+                        Reflect.set(p, "value", t);
                     } : void 0,
-                    href: p,
+                    href: v,
                     onClick: h,
-                    target: s
-                }, m = "string" == typeof i ? o(i) : i;
-                return a(m, r({}, v), u);
+                    target: l
+                }, b = "string" == typeof a ? o(a) : a;
+                return i(b, r({}, y), u);
             };
         }
     });
 }
 
-function jt(t) {
-    var r = t.router, n = t.ref, e = t.onMounted, o = t.onUnmounted, i = t.readonly;
+function ro(t) {
+    var r = t.router, e = t.ref, n = t.onMounted, o = t.onUnmounted, a = t.readonly;
     return function() {
-        var t = n(r.getparams()), a = tt((function(r) {
+        var t = e(r.getparams()), i = nt((function(r) {
             t.value = r;
         }));
-        return e((function() {
-            r.mount(), r.on("params", a);
+        return n((function() {
+            r.mount(), r.on("params", i);
         })), o((function() {
-            r.unmount(), r.off("params", a), a.cancel();
-        })), i(t);
+            r.unmount(), r.off("params", i), i.cancel();
+        })), a(t);
     };
 }
 
-function Et(t) {
-    var n = t.readonly, e = t.onMounted, o = t.onUnmounted, i = t.router, a = t.resolveComponent, u = t.defineComponent, c = t.h, f = t.ref, l = jt({
-        router: i,
+function eo(t) {
+    var e = t.readonly, n = t.onMounted, o = t.onUnmounted, a = t.router, i = t.resolveComponent, u = t.defineComponent, c = t.h, f = t.ref, s = ro({
+        router: a,
         ref: f,
-        onMounted: e,
+        onMounted: n,
         onUnmounted: o,
-        readonly: n
+        readonly: e
     });
     return u({
         inheritAttrs: !1,
-        setup: function(t, n) {
-            var e = n.attrs, o = e.routes;
+        setup: function(t, e) {
+            var n = e.attrs, o = n.routes;
             if (!Array.isArray(o)) throw new TypeError("array");
-            var u = l();
+            var u = s();
             return function() {
-                var t = e.routes;
+                var t = n.routes;
                 if (!Array.isArray(t)) throw new TypeError("array");
                 if (!t.every((function(t) {
-                    return mt(t);
+                    return Jn(t);
                 }))) throw new TypeError('{params:"function"}');
-                var n = vt(t, u.value);
-                if (bt(n)) {
-                    var o = n.redirect;
-                    yt(i, o);
+                var e = Hn(t, u.value);
+                if (Xn(e)) {
+                    var o = e.redirect;
+                    Qn(a, o);
                 }
-                if (bt(n)) return null;
-                if (dt(n)) {
-                    var f = n.component, l = n.children, s = n.props || {}, y = Object.assign({}, s, {
+                if (Xn(e)) return null;
+                if (Yn(e)) {
+                    var f = e.component, s = e.children, l = e.props || {}, p = Object.assign({}, l, {
                         params: u.value
-                    }), p = "string" == typeof f ? a(f) : f;
-                    return c(p, r({}, y), l);
+                    }), v = "string" == typeof f ? i(f) : f;
+                    return c(v, r({}, p), s);
                 }
                 return null;
             };
@@ -624,5 +1144,5 @@ function Et(t) {
     });
 }
 
-export { lt as createHashRouter, ht as createReactLink, wt as createReactParamsHook, gt as createReactView, st as createSearchRouter, St as createVueLink, jt as createVueParamsHook, Et as createVueView };
+export { vt as createHashRouter, Gn as createReactLink, qn as createReactParamsHook, Zn as createReactView, ht as createSearchRouter, to as createVueLink, ro as createVueParamsHook, eo as createVueView };
 //# sourceMappingURL=index.js.map

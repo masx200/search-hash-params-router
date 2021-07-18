@@ -11,7 +11,7 @@ export function RouterTest() {
         console.log(refelement.current);
     }, [refelement.current]);
 
-    function reffun(e: any) {
+    function reffun(e: Element) {
         console.log(e);
     }
     return (
@@ -20,11 +20,11 @@ export function RouterTest() {
                 <Hooktest />
                 <Programmaticnavigation />
                 <br />
-                <Link to={{}} ref={refelement}>
+                <Link to={{}} innerRef={refelement}>
                     start
                 </Link>
                 <br />
-                <Link to={{ p: "home" }} ref={reffun}>
+                <Link to={{ p: "home" }} innerRef={reffun}>
                     home
                 </Link>
                 <br />

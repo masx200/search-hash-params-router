@@ -1,9 +1,8 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
-import { ComponentType, ForwardRefExoticComponent, RefAttributes, MouseEvent, PropsWithChildren, FC } from "react";
-import { forwardRef as forwardRefType } from "react";
+import { ComponentType, FC, MouseEvent } from "react";
 import { createElement as createElementType } from "react";
-import { useState as useStateType } from "react";
 import { useEffect as useEffectType } from "react";
+import { useState as useStateType } from "react";
 import { Component } from "@vue/runtime-core";
 import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
 import { Component as ComponentType$0 } from "@vue/runtime-dom";
@@ -38,17 +37,20 @@ interface RecordRedirect extends RecordBase {
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
-type ReactLinkComponent = ForwardRefExoticComponent<PropsWithChildren<{
-    component?: string | ComponentType<any> | undefined;
-    target?: string | undefined;
-    onClick?: ((event: MouseEvent) => void) | undefined;
-    to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
-}> & RefAttributes<unknown>>;
-declare function createReactLink({ router, forwardRef, createElement }: {
+declare function createReactLink({ router, useState, useEffect, createElement }: {
     router: Router;
-    forwardRef: typeof forwardRefType;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
     createElement: typeof createElementType;
-}): ReactLinkComponent;
+}): FC<{
+    component?: string | ComponentType<any>;
+    target?: string;
+    onClick?: (event: MouseEvent) => void;
+    to: Record<string, string>;
+    innerRef?: {
+        current: any;
+    } | ((current: any) => void);
+}>;
 declare function createReactParamsHook({ router, useState, useEffect }: {
     router: Router;
     useState: typeof useStateType;
@@ -117,4 +119,4 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
 } & {} & {
     routes?: RouteRecord[] | undefined;
 }>, {}>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, ReactLinkComponent, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView, createVueParamsHook };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView, createVueParamsHook };

@@ -1,6 +1,5 @@
-import { Router } from "../createrouter/Router";
 import { MouseEvent } from "react";
-import { navigate } from "./navigate";
+import { Router } from "../createrouter/Router";
 import { isModifiedEvent } from "./isModifiedEvent";
 
 export function createclickhandler({
@@ -12,11 +11,13 @@ export function createclickhandler({
     onClick?: ((event: MouseEvent) => void) | undefined;
     target?: string | undefined;
     router: Router;
-    to:
-        | Record<string, string>
-        | ((old: Record<string, string>) => Record<string, string>);
+    to: Record<string, string>;
 }) {
-    return (event: MouseEvent) => {
+    return (event?: MouseEvent) => {
+        if (!event) {
+            router.setparams(to);
+            return;
+        }
         try {
             if ("function" === typeof onClick) {
                 onClick(event);
@@ -36,7 +37,7 @@ export function createclickhandler({
             // ignore clicks with modifier keys
         ) {
             event.preventDefault();
-            navigate(router, to);
+            router.setparams(to);
         }
     };
 }

@@ -377,7 +377,8 @@ const View = createReactView({
 ```js
 const Link = createReactLink({
     router: searchrouter,
-    forwardRef,
+    useEffect,
+    useState,
     createElement,
 });
 ```
@@ -409,4 +410,22 @@ function RouterTest() {
         </div>
     );
 }
+```
+
+### 自定义路由链接组件
+
+```jsx
+<Link to={{}} component={Customlinkcomponent}>
+    start
+</Link>
+```
+
+```ts
+declare const Customlinkcomponent: ComponentType<{
+    innerRef?: { current: any } | ((current: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+}>;
 ```

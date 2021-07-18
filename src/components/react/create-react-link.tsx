@@ -1,57 +1,95 @@
-import { Router } from "../../createrouter/Router";
+import isEqual from "lodash/isEqual";
 import type {
     ComponentType,
-    MouseEvent,
-    forwardRef as forwardRefType,
     createElement as createElementType,
+    FC,
+    MouseEvent,
+    PropsWithChildren,
+    useEffect as useEffectType,
+    useState as useStateType,
 } from "react";
-import { ReactLinkComponent } from "./ReactLinkComponent";
+import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
-export type { ReactLinkComponent };
+import { createReactParamsHook } from "./createReactParamsHook";
 export function createReactLink({
     router,
-    forwardRef,
+    useState,
+    useEffect,
     createElement,
 }: {
     router: Router;
-    forwardRef: typeof forwardRefType;
+    useState: typeof useStateType;
+    useEffect: typeof useEffectType;
     createElement: typeof createElementType;
-}): ReactLinkComponent {
-    return forwardRef<
-        unknown,
-        {
-            component?: string | ComponentType<any>;
-            target?: string;
-            onClick?: (event: MouseEvent) => void;
-            to:
-                | Record<string, string>
-                | ((old: Record<string, string>) => Record<string, string>);
+}): FC<{
+    component?: ComponentType<{
+        innerRef?: { current: any } | ((current: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }>;
+    target?: string;
+    onClick?: (event: MouseEvent) => void;
+    to: Record<string, string>;
+    innerRef?: { current: any } | ((current: any) => void);
+}> {
+    const useParams = createReactParamsHook({
+        router,
+        useState,
+        useEffect,
+    });
+    return function ({
+        component = linkcomponentdefault,
+        target,
+        to,
+        onClick,
+        innerRef,
+        children,
+    }) {
+        const params = useParams();
+        if (!to || !("object" === typeof to)) {
+            throw new TypeError("object");
         }
-    >(
-        (
-            { component: Component = "a", to, onClick, children, target },
-            forwardedRef
-        ) => {
-            if (!to) {
-                throw new TypeError("object,function");
-            }
-            if (!("function" === typeof to || "object" === typeof to)) {
-                throw new TypeError("object,function");
-            }
-            const href: string = router.paramshref(to);
-            const newclick = createclickhandler({
-                onClick,
+        const href: string = router.paramshref(to);
+
+        const isActive = isEqual(params, to);
+        const navigate = createclickhandler({
+            onClick,
+            target,
+            router,
+            to,
+        });
+        return createElement(
+            component,
+            { innerRef, target, href, isActive, navigate },
+            children
+        );
+    };
+    function linkcomponentdefault({
+        innerRef,
+        target,
+        children,
+        href,
+        isActive,
+        navigate,
+    }: PropsWithChildren<{
+        innerRef?: { current: any } | ((current: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }>) {
+        return createElement(
+            "a",
+            {
+                ref: innerRef,
                 target,
-                router,
-                to,
-            });
-            const props = {
-                ref: forwardedRef,
                 href,
-                onClick: newclick,
-                target,
-            };
-            return createElement(Component, { ...props }, children);
-        }
-    );
+                onClick: navigate,
+                "aria-current": isActive ? "page" : "false",
+            },
+            children
+        );
+    }
 }
