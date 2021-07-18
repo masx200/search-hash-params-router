@@ -48,7 +48,7 @@ function createVueView({
     return defineComponent({
         props: ["routes"],
         inheritAttrs: false,
-        setup(props: { routes: RouteRecord[] }, {}) {
+        setup(props: { routes: RouteRecord[] }) {
             //attrs不是响应式对象
 
             const params = useParams();

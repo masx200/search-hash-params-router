@@ -237,7 +237,7 @@ var x = function(t) {
     return t ? t.slice(0, T(t) + 1).replace(P, "") : t;
 }, R = S.Symbol, k = R, L = Object.prototype, z = L.hasOwnProperty, U = L.toString, M = k ? k.toStringTag : void 0;
 
-var C = function(t) {
+var I = function(t) {
     var r = z.call(t, M), e = t[M];
     try {
         t[M] = void 0;
@@ -245,10 +245,10 @@ var C = function(t) {
     } catch (t) {}
     var o = U.call(t);
     return n && (r ? t[M] = e : delete t[M]), o;
-}, I = Object.prototype.toString;
+}, C = Object.prototype.toString;
 
-var D = C, N = function(t) {
-    return I.call(t);
+var D = I, N = function(t) {
+    return C.call(t);
 }, V = R ? R.toStringTag : void 0;
 
 var $ = function(t) {
@@ -448,11 +448,11 @@ var zt = function(t) {
     return this.__data__.has(t);
 }, Ut = $, Mt = g;
 
-var Ct, It = function(t) {
+var It, Ct = function(t) {
     if (!Mt(t)) return !1;
     var r = Ut(t);
     return "[object Function]" == r || "[object GeneratorFunction]" == r || "[object AsyncFunction]" == r || "[object Proxy]" == r;
-}, Dt = S["__core-js_shared__"], Nt = (Ct = /[^.]+$/.exec(Dt && Dt.keys && Dt.keys.IE_PROTO || "")) ? "Symbol(src)_1." + Ct : "";
+}, Dt = S["__core-js_shared__"], Nt = (It = /[^.]+$/.exec(Dt && Dt.keys && Dt.keys.IE_PROTO || "")) ? "Symbol(src)_1." + It : "";
 
 var Vt = function(t) {
     return !!Nt && Nt in t;
@@ -468,7 +468,7 @@ var Ft = function(t) {
         } catch (t) {}
     }
     return "";
-}, Bt = It, Wt = Vt, Ht = g, Kt = Ft, qt = /^\[object .+?Constructor\]$/, Gt = Function.prototype, Jt = Object.prototype, Qt = Gt.toString, Xt = Jt.hasOwnProperty, Yt = RegExp("^" + Qt.call(Xt).replace(/[\\^$.*+?()[\]{}|]/g, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
+}, Bt = Ct, Wt = Vt, Ht = g, Kt = Ft, qt = /^\[object .+?Constructor\]$/, Gt = Function.prototype, Jt = Object.prototype, Qt = Gt.toString, Xt = Jt.hasOwnProperty, Yt = RegExp("^" + Qt.call(Xt).replace(/[\\^$.*+?()[\]{}|]/g, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
 
 var Zt = function(t) {
     return !(!Ht(t) || Wt(t)) && (Bt(t) ? Yt : qt).test(Kt(t));
@@ -568,14 +568,14 @@ function zr(t) {
 zr.prototype.clear = Pr, zr.prototype.delete = xr, zr.prototype.get = Rr, zr.prototype.has = kr, 
 zr.prototype.set = Lr;
 
-var Ur = zr, Mr = Pt, Cr = er, Ir = Ur;
+var Ur = zr, Mr = Pt, Ir = er, Cr = Ur;
 
 var Dr = Pt, Nr = Rt, Vr = kt, $r = Lt, Fr = zt, Br = function(t, r) {
     var e = this.__data__;
     if (e instanceof Mr) {
         var n = e.__data__;
-        if (!Cr || n.length < 199) return n.push([ t, r ]), this.size = ++e.size, this;
-        e = this.__data__ = new Ir(n);
+        if (!Ir || n.length < 199) return n.push([ t, r ]), this.size = ++e.size, this;
+        e = this.__data__ = new Cr(n);
     }
     return e.set(t, r), this.size = e.size, this;
 };
@@ -752,11 +752,11 @@ var ke = function(t) {
 Me["[object Float32Array]"] = Me["[object Float64Array]"] = Me["[object Int8Array]"] = Me["[object Int16Array]"] = Me["[object Int32Array]"] = Me["[object Uint8Array]"] = Me["[object Uint8ClampedArray]"] = Me["[object Uint16Array]"] = Me["[object Uint32Array]"] = !0, 
 Me["[object Arguments]"] = Me["[object Array]"] = Me["[object ArrayBuffer]"] = Me["[object Boolean]"] = Me["[object DataView]"] = Me["[object Date]"] = Me["[object Error]"] = Me["[object Function]"] = Me["[object Map]"] = Me["[object Number]"] = Me["[object Object]"] = Me["[object RegExp]"] = Me["[object Set]"] = Me["[object String]"] = Me["[object WeakMap]"] = !1;
 
-var Ce = function(t) {
+var Ie = function(t) {
     return Ue(t) && ze(t.length) && !!Me[Le(t)];
 };
 
-var Ie = function(t) {
+var Ce = function(t) {
     return function(r) {
         return t(r);
     };
@@ -774,7 +774,7 @@ var Ie = function(t) {
     t.exports = i;
 }(De, De.exports);
 
-var Ne = Ce, Ve = Ie, $e = De.exports, Fe = $e && $e.isTypedArray, Be = Fe ? Ve(Fe) : Ne, We = me, He = Ee, Ke = fe, qe = Te.exports, Ge = Re, Je = Be, Qe = Object.prototype.hasOwnProperty;
+var Ne = Ie, Ve = Ce, $e = De.exports, Fe = $e && $e.isTypedArray, Be = Fe ? Ve(Fe) : Ne, We = me, He = Ee, Ke = fe, qe = Te.exports, Ge = Re, Je = Be, Qe = Object.prototype.hasOwnProperty;
 
 var Xe = function(t, r) {
     var e = Ke(t), n = !e && He(t), o = !e && !n && qe(t), a = !e && !n && !o && Je(t), i = e || n || o || a, u = i ? We(t.length, String) : [], c = u.length;
@@ -793,7 +793,7 @@ var tn = function(t, r) {
     };
 }(Object.keys, Object), rn = Ze, en = tn, nn = Object.prototype.hasOwnProperty;
 
-var on = It, an = ke;
+var on = Ct, an = ke;
 
 var un = Xe, cn = function(t) {
     if (!rn(t)) return en(t);
@@ -860,15 +860,15 @@ var yn = function(t, r, e, n, o, a) {
     return r;
 });
 
-var xn = Hr, Rn = Zr, kn = ue, Ln = yn, zn = Pn, Un = fe, Mn = Te.exports, Cn = Be, In = "[object Object]", Dn = Object.prototype.hasOwnProperty;
+var xn = Hr, Rn = Zr, kn = ue, Ln = yn, zn = Pn, Un = fe, Mn = Te.exports, In = Be, Cn = "[object Object]", Dn = Object.prototype.hasOwnProperty;
 
 var Nn = function(t, r, e, n, o, a) {
-    var i = Un(t), u = Un(r), c = i ? "[object Array]" : zn(t), f = u ? "[object Array]" : zn(r), s = (c = "[object Arguments]" == c ? In : c) == In, l = (f = "[object Arguments]" == f ? In : f) == In, p = c == f;
+    var i = Un(t), u = Un(r), c = i ? "[object Array]" : zn(t), f = u ? "[object Array]" : zn(r), s = (c = "[object Arguments]" == c ? Cn : c) == Cn, l = (f = "[object Arguments]" == f ? Cn : f) == Cn, p = c == f;
     if (p && Mn(t)) {
         if (!Mn(r)) return !1;
         i = !0, s = !1;
     }
-    if (p && !s) return a || (a = new xn), i || Cn(t) ? Rn(t, r, e, n, o, a) : kn(t, r, c, e, n, o, a);
+    if (p && !s) return a || (a = new xn), i || In(t) ? Rn(t, r, e, n, o, a) : kn(t, r, c, e, n, o, a);
     if (!(1 & e)) {
         var v = s && Dn.call(t, "__wrapped__"), h = l && Dn.call(r, "__wrapped__");
         if (v || h) {
@@ -1134,18 +1134,15 @@ exports.createHashRouter = function() {
     return u({
         props: [ "routes" ],
         inheritAttrs: !1,
-        setup: function(t, e) {
-            !function(t) {
-                if (null == t) throw new TypeError("Cannot destructure undefined");
-            }(e);
-            var n = s();
+        setup: function(t) {
+            var e = s();
             return function() {
-                var e = t.routes;
-                if (!Array.isArray(e)) throw new TypeError("array");
-                if (!e.every((function(t) {
+                var n = t.routes;
+                if (!Array.isArray(n)) throw new TypeError("array");
+                if (!n.every((function(t) {
                     return Kn(t);
                 }))) throw new TypeError('{params:"function"}');
-                var o = Hn(e, n.value);
+                var o = Hn(n, e.value);
                 if (Gn(o)) {
                     var u = o.redirect;
                     qn(a, u);
@@ -1153,7 +1150,7 @@ exports.createHashRouter = function() {
                 if (Gn(o)) return null;
                 if (Jn(o)) {
                     var f = o.component, s = Object.assign({}, {}, {
-                        params: n.value
+                        params: e.value
                     }), l = "string" == typeof f ? i(f) : f;
                     return c(l, r({}, s));
                 }
