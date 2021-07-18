@@ -3,7 +3,7 @@ import type {
     defineComponent as defineComponentType,
     h as hType,
     ref as refType,
-    resolveComponent as resolveComponentType
+    resolveComponent as resolveComponentType,
 } from "@vue/runtime-dom";
 import isEqual from "lodash/isEqual";
 import { Router } from "../../createrouter/Router";

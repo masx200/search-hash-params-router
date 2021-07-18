@@ -415,10 +415,10 @@ function RouterTest() {
 ### 自定义路由链接组件
 
 ```jsx
-function YourCustomlink({ to }) {
+function YourCustomlink({ to, children }) {
     return (
         <Link to={to} component={Customlinkcomponent}>
-            start
+            {children}
         </Link>
     );
 }
