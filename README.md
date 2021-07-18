@@ -415,9 +415,13 @@ function RouterTest() {
 ### 自定义路由链接组件
 
 ```jsx
-<Link to={{}} component={Customlinkcomponent}>
-    start
-</Link>
+function Yourlink({ to }) {
+    return (
+        <Link to={to} component={Customlinkcomponent}>
+            start
+        </Link>
+    );
+}
 ```
 
 ```ts
