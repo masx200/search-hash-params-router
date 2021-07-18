@@ -1,6 +1,6 @@
 import type {
     // watch as watchType,
-    Component as ComponentType,
+    Component,
     defineComponent as defineComponentType,
     h as hType,
     ref as refType,
@@ -37,7 +37,7 @@ function createVueView({
     ref: typeof refType;
     // watch: typeof watchType;
     // Fragment: typeof import("@vue/runtime-core").Fragment;
-}) {
+}): Component<{ routes: RouteRecord[] }> {
     const useParams = createVueParamsHook({
         router,
         ref,
@@ -45,17 +45,15 @@ function createVueView({
         onUnmounted,
         readonly,
     });
-    return defineComponent<{ routes: RouteRecord[] }>({
+    return defineComponent({
+        props: ["routes"],
         inheritAttrs: false,
-        setup(_, { attrs }) {
+        setup(props: { routes: RouteRecord[] }, {}) {
             //attrs不是响应式对象
-            const { routes } = attrs;
-            if (!Array.isArray(routes)) {
-                throw new TypeError("array");
-            }
+
             const params = useParams();
             return () => {
-                const { routes } = attrs;
+                const { routes } = props;
                 //attrs可能属性有变化
                 if (!Array.isArray(routes)) {
                     throw new TypeError("array");
@@ -78,8 +76,7 @@ function createVueView({
                     return null;
                 }
                 if (isRecordRoute(currentroute)) {
-                    const Component =
-                        currentroute.component as ComponentType<any>;
+                    const Component = currentroute.component as Component;
 
                     let props = {};
                     let oprops = Object.assign({}, props, {
@@ -89,18 +86,9 @@ function createVueView({
                         "string" === typeof Component
                             ? resolveComponent(Component)
                             : Component;
-                    // if (typeof Resolvedcomponent === "object") {
-                    //     Resolvedcomponent = Object.assign(
-                    //         {},
-                    //         Resolvedcomponent
-                    //     );
-                    // }
+
                     return createElement(
-                        // //@ts-ignore
-                        // Fragment,
-                        // {},
-                        // createElement(
-                        // @ts-ignore
+                        //@ts-ignore
                         Resolvedcomponent,
                         { ...oprops }
 

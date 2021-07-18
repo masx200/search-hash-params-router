@@ -312,14 +312,14 @@ export default defineComponent({
 
 ```vue
 <template>
-    <Link :to="to" component="Customlinkcomponent"><slot /></Link>
+    <Link :to="to" :component="Customlinkcomponent"><slot /></Link>
 </template>
 <script>
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    components: { Link, Customlinkcomponent },
-
+    components: { Link },
+    data: () => ({ Customlinkcomponent }),
     props: ["to"],
 });
 </script>

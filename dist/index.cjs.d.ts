@@ -116,11 +116,7 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     defineComponent: typeof defineComponentType;
     h: typeof hType;
     ref: typeof refType;
-}): import("@vue/runtime-core").DefineComponent<{
+}): Component$0<{
     routes: RouteRecord[];
-}, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
-    routes?: unknown;
-} & {} & {
-    routes?: RouteRecord[] | undefined;
-}>, {}>;
+}>;
 export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView, createVueParamsHook };
