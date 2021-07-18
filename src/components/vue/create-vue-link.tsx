@@ -1,56 +1,107 @@
-import { Router } from "../../createrouter/Router";
 import type {
-    resolveComponent as resolveComponentType,
-    Ref,
-    Component as ComponentType,
+    Component,
     defineComponent as defineComponentType,
     h as hType,
+    ref as refType,
+    resolveComponent as resolveComponentType
 } from "@vue/runtime-dom";
-import { isModifiedEvent } from "../isModifiedEvent";
-import { navigate } from "../navigate";
+import isEqual from "lodash/isEqual";
+import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
+import { createVueParamsHook } from "./createVueParamsHook";
 export { createVueLink };
-
 function createVueLink({
     router,
     resolveComponent,
     defineComponent,
     h: createElement,
+    ref,
+    onMounted,
+    onUnmounted,
+    readonly,
 }: {
+    ref: typeof refType;
+    readonly: typeof import("@vue/runtime-dom").readonly;
+    onMounted: typeof import("@vue/runtime-dom").onMounted;
+    onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}) {
-    return defineComponent<{
-        component?: string | ComponentType;
-        to:
-            | Record<string, string>
-            | ((old: Record<string, string>) => Record<string, string>);
-        onClick?: (event: MouseEvent) => void;
-        target?: string;
-        innerRef?: ((r: any) => void) | { value?: any };
-    }>({
-        inheritAttrs: false,
+}): Component<{
+    component?:
+        | "string"
+        | Component<{
+              innerRef?: { value: any } | ((value: any) => void);
+              target?: string;
+              href: string;
+              isActive: boolean;
+              navigate: (event?: MouseEvent) => void;
+          }>;
+    to: Record<string, string>;
 
-        setup(_, { slots: children, attrs }) {
+    onClick?: (event: MouseEvent) => void;
+    target?: string;
+    innerRef?: ((r: any) => void) | { value: any };
+}> {
+    const useParams = createVueParamsHook({
+        router,
+        ref,
+        onMounted,
+        onUnmounted,
+        readonly,
+    });
+
+    const linkcomponentdefault = defineComponent({
+        inheritAttrs: false,
+        props: ["innerRef", "target", "href", "isActive", "navigate"],
+        setup(
+            props: {
+                innerRef?: { value: any } | ((value: any) => void);
+                target?: string;
+                href: string;
+                isActive: boolean;
+                navigate: (event?: MouseEvent) => void;
+            },
+            { slots: children }
+        ) {
+            return () => {
+                const { innerRef, target, href, navigate, isActive } = props;
+                //@ts-ignore
+                return createElement(
+                    //@ts-ignore
+                    "a",
+                    {
+                        ref: innerRef,
+                        target,
+                        href,
+                        onClick: navigate,
+                        "aria-current": isActive ? "page" : "false",
+                    },
+                    children
+                );
+            };
+        },
+    });
+    return defineComponent({
+        inheritAttrs: false,
+        props: ["component", "to", "target", "onClick", "innerRef"],
+        setup(props, { slots: children }) {
+            const params = useParams();
             return () => {
                 const {
-                    component: Component = "a",
+                    component = linkcomponentdefault,
                     to,
                     onClick,
                     target,
-                    innerRef: forwardedRef,
-                } = attrs;
+                    innerRef: innerRef,
+                } = props;
 
-                if (!to) {
-                    throw new TypeError("object,function");
+                if (!to || !("object" === typeof to)) {
+                    throw new TypeError("object");
                 }
-                if (!("function" === typeof to || "object" === typeof to)) {
-                    throw new TypeError("object,function");
-                }
-                const href: string = router.paramshref(to as any);
-                const newclick = createclickhandler({
+                const href: string = router.paramshref(to);
+                const navigate = createclickhandler({
                     //@ts-ignore
                     onClick,
                     //@ts-ignore
@@ -59,32 +110,25 @@ function createVueLink({
                     //@ts-ignore
                     to,
                 });
-
+                const isActive = isEqual(params.value, to);
                 const reffun =
-                    "function" === typeof forwardedRef
-                        ? forwardedRef
-                        : forwardedRef && "object" === typeof forwardedRef
+                    "function" === typeof innerRef
+                        ? innerRef
+                        : innerRef && "object" === typeof innerRef
                         ? (e: any) => {
-                              Reflect.set(forwardedRef, "value", e);
+                              Reflect.set(innerRef, "value", e);
                           }
                         : undefined;
 
-                const oprops = {
-                    ref: reffun,
-                    href,
-                    onClick: newclick,
-                    target,
-                };
-
                 const Resolvedcomponent =
-                    "string" === typeof Component
-                        ? resolveComponent(Component)
-                        : Component;
+                    "string" === typeof component
+                        ? resolveComponent(component)
+                        : component;
 
                 return createElement(
                     //@ts-ignore
                     Resolvedcomponent,
-                    { ...oprops },
+                    { isActive, innerRef: reffun, href, navigate, target },
                     children
                 );
             };

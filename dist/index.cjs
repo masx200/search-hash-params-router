@@ -224,18 +224,18 @@ var d = function(t) {
 var g = function(t) {
     var r = e(t);
     return null != t && ("object" == r || "function" == r);
-}, j = "object" == e(m) && m && m.Object === Object && m, _ = j, w = "object" == ("undefined" == typeof self ? "undefined" : e(self)) && self && self.Object === Object && self, S = _ || w || Function("return this")(), O = S, E = function() {
+}, j = "object" == e(m) && m && m.Object === Object && m, _ = j, w = "object" == ("undefined" == typeof self ? "undefined" : e(self)) && self && self.Object === Object && self, S = _ || w || Function("return this")(), O = S, A = function() {
     return O.Date.now();
-}, A = /\s/;
+}, E = /\s/;
 
 var T = function(t) {
-    for (var r = t.length; r-- && A.test(t.charAt(r)); ) ;
+    for (var r = t.length; r-- && E.test(t.charAt(r)); ) ;
     return r;
 }, P = /^\s+/;
 
 var x = function(t) {
     return t ? t.slice(0, T(t) + 1).replace(P, "") : t;
-}, R = S.Symbol, L = R, k = Object.prototype, z = k.hasOwnProperty, U = k.toString, M = L ? L.toStringTag : void 0;
+}, R = S.Symbol, k = R, L = Object.prototype, z = L.hasOwnProperty, U = L.toString, M = k ? k.toStringTag : void 0;
 
 var I = function(t) {
     var r = z.call(t, M), e = t[M];
@@ -263,7 +263,7 @@ var H = x, K = g, q = function(t) {
     return "symbol" == e(t) || W(t) && "[object Symbol]" == B(t);
 }, G = /^[-+]0x[0-9a-f]+$/i, J = /^0b[01]+$/i, Q = /^0o[0-7]+$/i, X = parseInt;
 
-var Y = g, Z = E, tt = function(t) {
+var Y = g, Z = A, tt = function(t) {
     if ("number" == typeof t) return t;
     if (q(t)) return NaN;
     if (K(t)) {
@@ -411,9 +411,9 @@ var wt = vt, St = function(t) {
 }, Ot = function(t) {
     var r = this.__data__, e = gt(r, t);
     return e < 0 ? void 0 : r[e][1];
-}, Et = function(t) {
+}, At = function(t) {
     return jt(this.__data__, t) > -1;
-}, At = function(t, r) {
+}, Et = function(t, r) {
     var e = this.__data__, n = _t(e, t);
     return n < 0 ? (++this.size, e.push([ t, r ])) : e[n][1] = r, this;
 };
@@ -426,8 +426,8 @@ function Tt(t) {
     }
 }
 
-Tt.prototype.clear = wt, Tt.prototype.delete = St, Tt.prototype.get = Ot, Tt.prototype.has = Et, 
-Tt.prototype.set = At;
+Tt.prototype.clear = wt, Tt.prototype.delete = St, Tt.prototype.get = Ot, Tt.prototype.has = At, 
+Tt.prototype.set = Et;
 
 var Pt = Tt, xt = Pt;
 
@@ -435,12 +435,12 @@ var Rt = function() {
     this.__data__ = new xt, this.size = 0;
 };
 
-var Lt = function(t) {
+var kt = function(t) {
     var r = this.__data__, e = r.delete(t);
     return this.size = r.size, e;
 };
 
-var kt = function(t) {
+var Lt = function(t) {
     return this.__data__.get(t);
 };
 
@@ -533,9 +533,9 @@ var Sr = function(t, r) {
     return wr(r) ? e["string" == typeof r ? "string" : "hash"] : e.map;
 }, Or = Sr;
 
-var Er = Sr;
-
 var Ar = Sr;
+
+var Er = Sr;
 
 var Tr = Sr;
 
@@ -549,10 +549,10 @@ var Pr = function() {
     var r = Or(this, t).delete(t);
     return this.size -= r ? 1 : 0, r;
 }, Rr = function(t) {
-    return Er(this, t).get(t);
-}, Lr = function(t) {
-    return Ar(this, t).has(t);
-}, kr = function(t, r) {
+    return Ar(this, t).get(t);
+}, kr = function(t) {
+    return Er(this, t).has(t);
+}, Lr = function(t, r) {
     var e = Tr(this, t), n = e.size;
     return e.set(t, r), this.size += e.size == n ? 0 : 1, this;
 };
@@ -565,12 +565,12 @@ function zr(t) {
     }
 }
 
-zr.prototype.clear = Pr, zr.prototype.delete = xr, zr.prototype.get = Rr, zr.prototype.has = Lr, 
-zr.prototype.set = kr;
+zr.prototype.clear = Pr, zr.prototype.delete = xr, zr.prototype.get = Rr, zr.prototype.has = kr, 
+zr.prototype.set = Lr;
 
 var Ur = zr, Mr = Pt, Ir = er, Cr = Ur;
 
-var Dr = Pt, Nr = Rt, Vr = Lt, $r = kt, Fr = zt, Br = function(t, r) {
+var Dr = Pt, Nr = Rt, Vr = kt, $r = Lt, Fr = zt, Br = function(t, r) {
     var e = this.__data__;
     if (e instanceof Mr) {
         var n = e.__data__;
@@ -721,10 +721,10 @@ var me = function(t, r) {
 
 var _e = function(t) {
     return je(t) && "[object Arguments]" == ge(t);
-}, we = F, Se = Object.prototype, Oe = Se.hasOwnProperty, Ee = Se.propertyIsEnumerable, Ae = _e(function() {
+}, we = F, Se = Object.prototype, Oe = Se.hasOwnProperty, Ae = Se.propertyIsEnumerable, Ee = _e(function() {
     return arguments;
 }()) ? _e : function(t) {
-    return we(t) && Oe.call(t, "callee") && !Ee.call(t, "callee");
+    return we(t) && Oe.call(t, "callee") && !Ae.call(t, "callee");
 }, Te = {
     exports: {}
 };
@@ -745,15 +745,15 @@ var Re = function(t, r) {
     return !!(r = null == r ? 9007199254740991 : r) && ("number" == n || "symbol" != n && xe.test(t)) && t > -1 && t % 1 == 0 && t < r;
 };
 
-var Le = function(t) {
+var ke = function(t) {
     return "number" == typeof t && t > -1 && t % 1 == 0 && t <= 9007199254740991;
-}, ke = $, ze = Le, Ue = F, Me = {};
+}, Le = $, ze = ke, Ue = F, Me = {};
 
 Me["[object Float32Array]"] = Me["[object Float64Array]"] = Me["[object Int8Array]"] = Me["[object Int16Array]"] = Me["[object Int32Array]"] = Me["[object Uint8Array]"] = Me["[object Uint8ClampedArray]"] = Me["[object Uint16Array]"] = Me["[object Uint32Array]"] = !0, 
 Me["[object Arguments]"] = Me["[object Array]"] = Me["[object ArrayBuffer]"] = Me["[object Boolean]"] = Me["[object DataView]"] = Me["[object Date]"] = Me["[object Error]"] = Me["[object Function]"] = Me["[object Map]"] = Me["[object Number]"] = Me["[object Object]"] = Me["[object RegExp]"] = Me["[object Set]"] = Me["[object String]"] = Me["[object WeakMap]"] = !1;
 
 var Ie = function(t) {
-    return Ue(t) && ze(t.length) && !!Me[ke(t)];
+    return Ue(t) && ze(t.length) && !!Me[Le(t)];
 };
 
 var Ce = function(t) {
@@ -774,7 +774,7 @@ var Ce = function(t) {
     t.exports = i;
 }(De, De.exports);
 
-var Ne = Ie, Ve = Ce, $e = De.exports, Fe = $e && $e.isTypedArray, Be = Fe ? Ve(Fe) : Ne, We = me, He = Ae, Ke = fe, qe = Te.exports, Ge = Re, Je = Be, Qe = Object.prototype.hasOwnProperty;
+var Ne = Ie, Ve = Ce, $e = De.exports, Fe = $e && $e.isTypedArray, Be = Fe ? Ve(Fe) : Ne, We = me, He = Ee, Ke = fe, qe = Te.exports, Ge = Re, Je = Be, Qe = Object.prototype.hasOwnProperty;
 
 var Xe = function(t, r) {
     var e = Ke(t), n = !e && He(t), o = !e && !n && qe(t), a = !e && !n && !o && Je(t), i = e || n || o || a, u = i ? We(t.length, String) : [], c = u.length;
@@ -793,7 +793,7 @@ var tn = function(t, r) {
     };
 }(Object.keys, Object), rn = Ze, en = tn, nn = Object.prototype.hasOwnProperty;
 
-var on = Ct, an = Le;
+var on = Ct, an = ke;
 
 var un = Xe, cn = function(t) {
     if (!rn(t)) return en(t);
@@ -837,7 +837,7 @@ var yn = function(t, r, e, n, o, a) {
         m == g || !("constructor" in t) || !("constructor" in r) || "function" == typeof m && m instanceof m && "function" == typeof g && g instanceof g || (v = !1);
     }
     return a.delete(t), a.delete(r), v;
-}, bn = rr(S, "DataView"), dn = er, mn = rr(S, "Promise"), gn = rr(S, "Set"), jn = rr(S, "WeakMap"), _n = $, wn = Ft, Sn = wn(bn), On = wn(dn), En = wn(mn), An = wn(gn), Tn = wn(jn), Pn = _n;
+}, bn = rr(S, "DataView"), dn = er, mn = rr(S, "Promise"), gn = rr(S, "Set"), jn = rr(S, "WeakMap"), _n = $, wn = Ft, Sn = wn(bn), On = wn(dn), An = wn(mn), En = wn(gn), Tn = wn(jn), Pn = _n;
 
 (bn && "[object DataView]" != Pn(new bn(new ArrayBuffer(1))) || dn && "[object Map]" != Pn(new dn) || mn && "[object Promise]" != Pn(mn.resolve()) || gn && "[object Set]" != Pn(new gn) || jn && "[object WeakMap]" != Pn(new jn)) && (Pn = function(t) {
     var r = _n(t), e = "[object Object]" == r ? t.constructor : void 0, n = e ? wn(e) : "";
@@ -848,10 +848,10 @@ var yn = function(t, r, e, n, o, a) {
       case On:
         return "[object Map]";
 
-      case En:
+      case An:
         return "[object Promise]";
 
-      case An:
+      case En:
         return "[object Set]";
 
       case Tn:
@@ -860,7 +860,7 @@ var yn = function(t, r, e, n, o, a) {
     return r;
 });
 
-var xn = Hr, Rn = Zr, Ln = ue, kn = yn, zn = Pn, Un = fe, Mn = Te.exports, In = Be, Cn = "[object Object]", Dn = Object.prototype.hasOwnProperty;
+var xn = Hr, Rn = Zr, kn = ue, Ln = yn, zn = Pn, Un = fe, Mn = Te.exports, In = Be, Cn = "[object Object]", Dn = Object.prototype.hasOwnProperty;
 
 var Nn = function(t, r, e, n, o, a) {
     var i = Un(t), u = Un(r), c = i ? "[object Array]" : zn(t), f = u ? "[object Array]" : zn(r), s = (c = "[object Arguments]" == c ? Cn : c) == Cn, l = (f = "[object Arguments]" == f ? Cn : f) == Cn, p = c == f;
@@ -868,7 +868,7 @@ var Nn = function(t, r, e, n, o, a) {
         if (!Mn(r)) return !1;
         i = !0, s = !1;
     }
-    if (p && !s) return a || (a = new xn), i || In(t) ? Rn(t, r, e, n, o, a) : Ln(t, r, c, e, n, o, a);
+    if (p && !s) return a || (a = new xn), i || In(t) ? Rn(t, r, e, n, o, a) : kn(t, r, c, e, n, o, a);
     if (!(1 & e)) {
         var v = s && Dn.call(t, "__wrapped__"), h = l && Dn.call(r, "__wrapped__");
         if (v || h) {
@@ -876,7 +876,7 @@ var Nn = function(t, r, e, n, o, a) {
             return a || (a = new xn), o(y, b, e, n, a);
         }
     }
-    return !!p && (a || (a = new xn), kn(t, r, e, n, o, a));
+    return !!p && (a || (a = new xn), Ln(t, r, e, n, o, a));
 }, Vn = F;
 
 var $n = function t(r, e, n, o, a) {
@@ -1074,29 +1074,52 @@ exports.createHashRouter = function() {
 }, exports.createSearchRouter = function() {
     return pt("search");
 }, exports.createVueLink = function(t) {
-    var n = t.router, o = t.resolveComponent, a = t.defineComponent, i = t.h;
-    return a({
+    var r = t.router, n = t.resolveComponent, o = t.defineComponent, a = t.h, i = t.ref, u = t.onMounted, c = t.onUnmounted, f = t.readonly, s = Qn({
+        router: r,
+        ref: i,
+        onMounted: u,
+        onUnmounted: c,
+        readonly: f
+    }), l = o({
         inheritAttrs: !1,
-        setup: function(t, a) {
-            var u = a.slots, c = a.attrs;
+        props: [ "innerRef", "target", "href", "isActive", "navigate" ],
+        setup: function(t, r) {
+            var e = r.slots;
             return function() {
-                var t = c.component, a = void 0 === t ? "a" : t, f = c.to, s = c.onClick, l = c.target, p = c.innerRef;
-                if (!f) throw new TypeError("object,function");
-                if ("function" != typeof f && "object" !== e(f)) throw new TypeError("object,function");
-                var v = n.paramshref(f), h = Bn({
+                var r = t.innerRef, n = t.target, o = t.href, i = t.navigate, u = t.isActive;
+                return a("a", {
+                    ref: r,
+                    target: n,
+                    href: o,
+                    onClick: i,
+                    "aria-current": u ? "page" : "false"
+                }, e);
+            };
+        }
+    });
+    return o({
+        inheritAttrs: !1,
+        props: [ "component", "to", "target", "onClick", "innerRef" ],
+        setup: function(t, o) {
+            var i = o.slots, u = s();
+            return function() {
+                var o = t.component, c = void 0 === o ? l : o, f = t.to, s = t.onClick, p = t.target, v = t.innerRef;
+                if (!f || "object" !== e(f)) throw new TypeError("object");
+                var h = r.paramshref(f), y = Bn({
                     onClick: s,
-                    target: l,
-                    router: n,
+                    target: p,
+                    router: r,
                     to: f
-                }), y = {
-                    ref: "function" == typeof p ? p : p && "object" === e(p) ? function(t) {
-                        Reflect.set(p, "value", t);
-                    } : void 0,
-                    href: v,
-                    onClick: h,
-                    target: l
-                }, b = "string" == typeof a ? o(a) : a;
-                return i(b, r({}, y), u);
+                }), b = Fn(u.value, f), d = "function" == typeof v ? v : v && "object" === e(v) ? function(t) {
+                    Reflect.set(v, "value", t);
+                } : void 0, m = "string" == typeof c ? n(c) : c;
+                return a(m, {
+                    isActive: b,
+                    innerRef: d,
+                    href: h,
+                    navigate: y,
+                    target: p
+                }, i);
             };
         }
     });

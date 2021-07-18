@@ -4,11 +4,11 @@ import { createElement as createElementType } from "react";
 import { useEffect as useEffectType } from "react";
 import { useState as useStateType } from "react";
 import { Component } from "@vue/runtime-core";
-import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
-import { Component as ComponentType$0 } from "@vue/runtime-dom";
+import { Component as Component$0 } from "@vue/runtime-dom";
 import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
 import { ref as refType } from "@vue/runtime-dom";
+import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
 type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
     mount: () => void;
@@ -72,34 +72,32 @@ declare function createReactView({ router, createElement, useState, useEffect }:
 }): FC<{
     routes: RouteRecord[];
 }>;
-declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement }: {
+declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement, ref, onMounted, onUnmounted, readonly }: {
+    ref: typeof refType;
+    readonly: typeof import("@vue/runtime-dom").readonly;
+    onMounted: typeof import("@vue/runtime-dom").onMounted;
+    onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
     resolveComponent: typeof resolveComponentType;
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}): import("@vue/runtime-core").DefineComponent<{
-    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
-    to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>);
-    onClick?: ((event: MouseEvent) => void) | undefined;
-    target?: string | undefined;
-    innerRef?: {
-        value?: any;
-    } | ((r: any) => void) | undefined;
-}, {}, {}, {}, {}, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").ComponentOptionsMixin, import("@vue/runtime-core").EmitsOptions, string, import("@vue/runtime-core").VNodeProps & import("@vue/runtime-core").AllowedComponentProps & import("@vue/runtime-core").ComponentCustomProps, Readonly<{
-    component?: unknown;
-    to?: unknown;
-    onClick?: unknown;
-    target?: unknown;
-    innerRef?: unknown;
-} & {} & {
-    onClick?: ((event: MouseEvent) => void) | undefined;
-    target?: string | undefined;
-    to?: Record<string, string> | ((old: Record<string, string>) => Record<string, string>) | undefined;
-    component?: string | ComponentType$0<any, any, any, import("@vue/runtime-core").ComputedOptions, import("@vue/runtime-core").MethodOptions> | undefined;
-    innerRef?: {
-        value?: any;
-    } | ((r: any) => void) | undefined;
-}>, {}>;
+}): Component$0<{
+    component?: "string" | Component$0<{
+        innerRef?: {
+            value: any;
+        } | ((value: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }>;
+    to: Record<string, string>;
+    onClick?: (event: MouseEvent) => void;
+    target?: string;
+    innerRef?: ((r: any) => void) | {
+        value: any;
+    };
+}>;
 declare function createVueParamsHook({ router, ref, onMounted, onUnmounted, readonly }: {
     readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
