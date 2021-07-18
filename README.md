@@ -308,6 +308,26 @@ export default defineComponent({
 </script>
 ```
 
+### 自定义路由链接组件
+
+```js
+
+```
+
+```ts
+declare const Customlinkcomponent: Component<{
+    innerRef?:
+        | {
+              value: any;
+          }
+        | ((value: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+}>;
+```
+
 ## 例子:在 React 中使用
 
 https://github.com/masx200/search-hash-params-router/tree/master/example/react/vite-project
