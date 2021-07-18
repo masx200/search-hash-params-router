@@ -43,7 +43,15 @@ declare function createReactLink({ router, useState, useEffect, createElement }:
     useEffect: typeof useEffectType;
     createElement: typeof createElementType;
 }): FC<{
-    component?: string | ComponentType<any>;
+    component?: ComponentType<{
+        innerRef?: {
+            current: any;
+        } | ((current: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }>;
     target?: string;
     onClick?: (event: MouseEvent) => void;
     to: Record<string, string>;

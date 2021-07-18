@@ -53,5 +53,12 @@
     },
     "files": [
         "dist"
-    ]
+    ],
+    "peerDependencies": {
+        "@types/react": "^17.0.13",
+        "@types/react-dom": "^17.0.9",
+        "@masx200/event-emitter-target": "^1.1.9",
+        "@vue/runtime-core": "^3.1.4",
+        "@vue/runtime-dom": "^3.1.4"
+    }
 }
