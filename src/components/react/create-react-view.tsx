@@ -57,12 +57,10 @@ function createReactView({
         if (isRecordRoute(currentroute)) {
             const Component = currentroute.component as ComponentType<any>;
 
-            const children = currentroute.children;
-
-            const props = currentroute.props || {};
+            const props = {};
             let oprops = Object.assign({}, props, { params });
             //@ts-ignore
-            return createElement(Component, { ...oprops }, children);
+            return createElement(Component, { ...oprops });
         } else {
             return null;
         }

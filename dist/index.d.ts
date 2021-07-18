@@ -29,8 +29,6 @@ interface RecordBase {
 }
 interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue | string;
-    props?: Record<string, any>;
-    children?: Array<any>;
 }
 interface RecordRedirect extends RecordBase {
     redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);

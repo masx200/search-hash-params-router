@@ -7,14 +7,14 @@ const Foo = lazy(() => import("./Foo"));
 const routes = [
     {
         component: Home,
-        children: ["hello home"],
+
         params(o: any) {
             return Object.keys(o).length === 0;
         },
     },
     {
         component: Home,
-        children: ["hello world"],
+
         params(o: any) {
             return o.p === "home";
         },
@@ -35,7 +35,7 @@ const routes = [
     },
     {
         component: Bar,
-        props: { msg: "test props" },
+
         params(o: any) {
             return o.bar === "bar1";
         },

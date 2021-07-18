@@ -6,8 +6,6 @@ export interface RecordBase {
 }
 export interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue | string;
-    props?: Record<string, any>;
-    children?: Array<any>;
 }
 export interface RecordRedirect extends RecordBase {
     redirect:

@@ -1054,10 +1054,10 @@ function Zn(t) {
         }
         if (Xn(u)) return null;
         if (Yn(u)) {
-            var f = u.component, s = u.children, l = u.props || {}, p = Object.assign({}, l, {
+            var f = u.component, s = Object.assign({}, {}, {
                 params: a
             });
-            return n(f, r({}, p), s);
+            return n(f, r({}, s));
         }
         return null;
     };
@@ -1156,10 +1156,10 @@ function eo(t) {
                 }
                 if (Xn(e)) return null;
                 if (Yn(e)) {
-                    var f = e.component, s = e.children, l = e.props || {}, p = Object.assign({}, l, {
+                    var f = e.component, s = Object.assign({}, {}, {
                         params: u.value
-                    }), v = "string" == typeof f ? i(f) : f;
-                    return c(v, r({}, p), s);
+                    }), l = "string" == typeof f ? i(f) : f;
+                    return c(l, r({}, s));
                 }
                 return null;
             };

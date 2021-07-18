@@ -81,9 +81,7 @@ function createVueView({
                     const Component =
                         currentroute.component as ComponentType<any>;
 
-                    const children = currentroute.children;
-
-                    let props = currentroute.props || {};
+                    let props = {};
                     let oprops = Object.assign({}, props, {
                         params: params.value,
                     });
@@ -104,8 +102,8 @@ function createVueView({
                         // createElement(
                         // @ts-ignore
                         Resolvedcomponent,
-                        { ...oprops },
-                        children
+                        { ...oprops }
+
                         // )
                     );
                 } else {
