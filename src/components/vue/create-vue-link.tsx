@@ -10,6 +10,14 @@ import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
 import { createVueParamsHook } from "./createVueParamsHook";
 export { createVueLink };
+
+export type CustomVueLinkProps = {
+    innerRef?: { value: any } | ((value: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+};
 function createVueLink({
     router,
     resolveComponent,
@@ -29,15 +37,7 @@ function createVueLink({
     defineComponent: typeof defineComponentType;
     h: typeof hType;
 }): Component<{
-    component?:
-        | "string"
-        | Component<{
-              innerRef?: { value: any } | ((value: any) => void);
-              target?: string;
-              href: string;
-              isActive: boolean;
-              navigate: (event?: MouseEvent) => void;
-          }>;
+    component?: "string" | Component<CustomVueLinkProps>;
     to: Record<string, string>;
 
     onClick?: (event: MouseEvent) => void;
@@ -52,37 +52,31 @@ function createVueLink({
         readonly,
     });
 
-    const linkcomponentdefault = defineComponent({
-        inheritAttrs: true,
-        props: ["innerRef", "target", "href", "isActive", "navigate"],
-        setup(
-            props: {
-                innerRef?: { value: any } | ((value: any) => void);
-                target?: string;
-                href: string;
-                isActive: boolean;
-                navigate: (event?: MouseEvent) => void;
-            },
-            { slots: children }
-        ) {
-            return () => {
-                const { innerRef, target, href, navigate, isActive } = props;
-                //@ts-ignore
-                return createElement(
+    const linkcomponentdefault: Component<CustomVueLinkProps> = defineComponent(
+        {
+            inheritAttrs: true,
+            props: ["innerRef", "target", "href", "isActive", "navigate"],
+            setup(props, { slots: children }) {
+                return () => {
+                    const { innerRef, target, href, navigate, isActive } =
+                        props;
                     //@ts-ignore
-                    "a",
-                    {
-                        ref: innerRef,
-                        target,
-                        href,
-                        onClick: navigate,
-                        "aria-current": isActive ? "page" : "false",
-                    },
-                    children
-                );
-            };
-        },
-    });
+                    return createElement(
+                        //@ts-ignore
+                        "a",
+                        {
+                            ref: innerRef,
+                            target,
+                            href,
+                            onClick: navigate,
+                            "aria-current": isActive ? "page" : "false",
+                        },
+                        children
+                    );
+                };
+            },
+        }
+    );
     return defineComponent({
         inheritAttrs: true,
         props: ["component", "to", "target", "onClick", "innerRef"],

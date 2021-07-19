@@ -11,6 +11,13 @@ import type {
 import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
 import { createReactParamsHook } from "./createReactParamsHook";
+export type CustomReactLinkProps = Record<string, any> & {
+    innerRef?: { current: any } | ((current: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+};
 export function createReactLink({
     router,
     useState,
@@ -21,19 +28,15 @@ export function createReactLink({
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
     createElement: typeof createElementType;
-}): FC<{
-    component?: ComponentType<{
-        innerRef?: { current: any } | ((current: any) => void);
+}): FC<
+    Record<string, any> & {
+        component?: ComponentType<CustomReactLinkProps>;
         target?: string;
-        href: string;
-        isActive: boolean;
-        navigate: (event?: MouseEvent) => void;
-    }>;
-    target?: string;
-    onClick?: (event: MouseEvent) => void;
-    to: Record<string, string>;
-    innerRef?: { current: any } | ((current: any) => void);
-}> {
+        onClick?: (event: MouseEvent) => void;
+        to: Record<string, string>;
+        innerRef?: { current: any } | ((current: any) => void);
+    }
+> {
     const useParams = createReactParamsHook({
         router,
         useState,
@@ -75,13 +78,7 @@ export function createReactLink({
         isActive,
         navigate,
         ...rest
-    }: PropsWithChildren<{
-        innerRef?: { current: any } | ((current: any) => void);
-        target?: string;
-        href: string;
-        isActive: boolean;
-        navigate: (event?: MouseEvent) => void;
-    }>) {
+    }: PropsWithChildren<CustomReactLinkProps>) {
         return createElement(
             "a",
             {

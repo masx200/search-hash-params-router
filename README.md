@@ -249,7 +249,6 @@ export default defineComponent({
 <template>
     <div>
         <div style="text-align: center">
-            <Programmaticnavigation />
             <br />
             <Link :to="{}">start</Link>
             <br />
@@ -281,7 +280,7 @@ export default defineComponent({
 <script>
 import { defineComponent } from "vue";
 export default defineComponent({
-    components: { Loading, Link, Programmaticnavigation, View },
+    components: { Loading, Link, View },
     data: () => {
         return { routes };
     },
@@ -460,11 +459,13 @@ function YourCustomlink({ to, children, ...rest }) {
 ```
 
 ```ts
-declare const Customlinkcomponent: ComponentType<{
-    innerRef?: { current: any } | ((current: any) => void);
-    target?: string;
-    href: string;
-    isActive: boolean;
-    navigate: (event?: MouseEvent) => void;
-}>;
+declare const Customlinkcomponent: ComponentType<
+    Record<string, any> & {
+        innerRef?: { current: any } | ((current: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }
+>;
 ```

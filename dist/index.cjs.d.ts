@@ -35,21 +35,22 @@ interface RecordRedirect extends RecordBase {
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component;
+type CustomReactLinkProps = Record<string, any> & {
+    innerRef?: {
+        current: any;
+    } | ((current: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+};
 declare function createReactLink({ router, useState, useEffect, createElement }: {
     router: Router;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
     createElement: typeof createElementType;
-}): FC<{
-    component?: ComponentType<{
-        innerRef?: {
-            current: any;
-        } | ((current: any) => void);
-        target?: string;
-        href: string;
-        isActive: boolean;
-        navigate: (event?: MouseEvent) => void;
-    }>;
+}): FC<Record<string, any> & {
+    component?: ComponentType<CustomReactLinkProps>;
     target?: string;
     onClick?: (event: MouseEvent) => void;
     to: Record<string, string>;
@@ -70,6 +71,15 @@ declare function createReactView({ router, createElement, useState, useEffect }:
 }): FC<{
     routes: RouteRecord[];
 }>;
+type CustomVueLinkProps = {
+    innerRef?: {
+        value: any;
+    } | ((value: any) => void);
+    target?: string;
+    href: string;
+    isActive: boolean;
+    navigate: (event?: MouseEvent) => void;
+};
 declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement, ref, onMounted, onUnmounted, readonly }: {
     ref: typeof refType;
     readonly: typeof import("@vue/runtime-dom").readonly;
@@ -80,15 +90,7 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     defineComponent: typeof defineComponentType;
     h: typeof hType;
 }): Component$0<{
-    component?: "string" | Component$0<{
-        innerRef?: {
-            value: any;
-        } | ((value: any) => void);
-        target?: string;
-        href: string;
-        isActive: boolean;
-        navigate: (event?: MouseEvent) => void;
-    }>;
+    component?: "string" | Component$0<CustomVueLinkProps>;
     to: Record<string, string>;
     onClick?: (event: MouseEvent) => void;
     target?: string;
@@ -119,4 +121,4 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
 }): Component$0<{
     routes: RouteRecord[];
 }>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createReactLink, createReactView, createReactParamsHook, createVueLink, createVueView, createVueParamsHook };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, CustomReactLinkProps, createReactLink, createReactView, createReactParamsHook, createVueLink, CustomVueLinkProps, createVueView, createVueParamsHook };
