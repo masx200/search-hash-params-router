@@ -476,7 +476,7 @@ Typescript 类型声明文件:
 
 https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
-### `VueLink` `Props`
+### `VueLink` 的`Props`
 
 #### `to`
 
@@ -485,6 +485,16 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 #### `component`
 
 自定义路由链接组件.
+
+##### 自定义组件的`Props`
+
+-   `href`：解析后的 URL。将会作为一个 <a> 元素的 href 属性。
+
+-   `navigate`：触发导航的函数。会在必要时自动阻止事件
+
+-   `innerRef`:用于获取内部的`<a></a>`标签的元素的`Ref`.
+
+-   `isActive`：链接是否激活状态
 
 #### `innerRef`
 
