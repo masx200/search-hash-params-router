@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import type { Component } from "@vue/runtime-core";
+import type { Component } from "@vue/runtime-dom";
 export interface RecordBase {
     name?: string | symbol | undefined;
     params: (opt: Record<string, string>) => boolean;
