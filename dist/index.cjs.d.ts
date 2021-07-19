@@ -3,8 +3,7 @@ import { ComponentType, FC, MouseEvent } from "react";
 import { createElement as createElementType } from "react";
 import { useEffect as useEffectType } from "react";
 import { useState as useStateType } from "react";
-import { Component } from "@vue/runtime-core";
-import { Component as Component$0 } from "@vue/runtime-dom";
+import { Component } from "@vue/runtime-dom";
 import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
 import { ref as refType } from "@vue/runtime-dom";
@@ -89,8 +88,8 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}): Component$0<Record<string, any> & {
-    component?: "string" | Component$0<CustomVueLinkProps>;
+}): Component<Record<string, any> & {
+    component?: "string" | Component<CustomVueLinkProps>;
     to: Record<string, string>;
     onClick?: (event: MouseEvent) => void;
     target?: string;
@@ -118,7 +117,7 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     defineComponent: typeof defineComponentType;
     h: typeof hType;
     ref: typeof refType;
-}): Component$0<{
+}): Component<{
     routes: RouteRecord[];
 }>;
 export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, CustomReactLinkProps, createReactLink, createReactView, createReactParamsHook, createVueLink, CustomVueLinkProps, createVueView, createVueParamsHook };
