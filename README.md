@@ -48,8 +48,6 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 可以通过以下方式修改查询参数。
 
-路由匹配方法示例如下：
-
 ## 通用例子:
 
 #### 创建路由器：
@@ -471,3 +469,27 @@ declare const Customlinkcomponent: ComponentType<
     }
 >;
 ```
+
+## API
+
+Typescript 类型声明文件:
+
+https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
+
+### VueLink Props
+
+#### `to`
+
+表示目标路由的链接.
+
+#### `component`
+
+自定义路由链接组件.
+
+#### `innerRef`
+
+用于获取内部的`<a></a>`标签的元素的`Ref`.
+
+#### 其他参数
+
+您也可以传递您希望在`a`标签上使用的参数.
