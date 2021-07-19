@@ -34,7 +34,7 @@ interface RecordRedirect extends RecordBase {
     redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
 }
 type RouteRecord = RecordRoute | RecordRedirect;
-type ComponentReactOrVue = ComponentType<any> | Component;
+type ComponentReactOrVue = ComponentType<any> | Component<any>;
 type CustomReactLinkProps = Record<string, any> & {
     innerRef?: {
         current: any;

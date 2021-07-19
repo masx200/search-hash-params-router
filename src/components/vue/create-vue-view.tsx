@@ -76,7 +76,7 @@ function createVueView({
                     return null;
                 }
                 if (isRecordRoute(currentroute)) {
-                    const Component = currentroute.component as Component;
+                    const Component = currentroute.component as Component<any>;
 
                     let props = {};
                     let oprops = Object.assign({}, props, {

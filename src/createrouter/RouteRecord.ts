@@ -13,4 +13,4 @@ export interface RecordRedirect extends RecordBase {
         | ((opt: Record<string, string>) => Record<string, string>);
 }
 export type RouteRecord = RecordRoute | RecordRedirect;
-export type ComponentReactOrVue = ComponentType<any> | Component;
+export type ComponentReactOrVue = ComponentType<any> | Component<any>;
