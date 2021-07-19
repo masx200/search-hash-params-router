@@ -480,7 +480,7 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 #### `to`
 
-表示目标路由的链接.
+表示目标路由的链接参数对象.
 
 #### `component`
 
