@@ -318,6 +318,7 @@ export default defineComponent({
 import { defineComponent } from "vue";
 
 export default defineComponent({
+inheritAttrs:true,
     components: { Link },
     data: () => ({ Customlinkcomponent }),
     props: ["to"],
