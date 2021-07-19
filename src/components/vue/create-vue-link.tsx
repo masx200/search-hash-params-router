@@ -53,7 +53,7 @@ function createVueLink({
     });
 
     const linkcomponentdefault = defineComponent({
-        inheritAttrs: false,
+        inheritAttrs: true,
         props: ["innerRef", "target", "href", "isActive", "navigate"],
         setup(
             props: {
@@ -84,7 +84,7 @@ function createVueLink({
         },
     });
     return defineComponent({
-        inheritAttrs: false,
+        inheritAttrs: true,
         props: ["component", "to", "target", "onClick", "innerRef"],
         setup(props, { slots: children }) {
             const params = useParams();
