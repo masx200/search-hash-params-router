@@ -71,8 +71,8 @@ function createVueView({
                     const redirect = currentroute.redirect;
 
                     navigate(router, redirect);
-                }
-                if (isRecordRedirect(currentroute)) {
+                    // }
+                    // if (isRecordRedirect(currentroute)) {
                     return null;
                 }
                 if (isRecordRoute(currentroute)) {
