@@ -11,7 +11,7 @@ import { createclickhandler } from "../createclickhandler";
 import { createVueParamsHook } from "./createVueParamsHook";
 export { createVueLink };
 
-export type CustomVueLinkProps = {
+export type CustomVueLinkProps = Record<string, any> & {
     innerRef?: { value: any } | ((value: any) => void);
     target?: string;
     href: string;
@@ -36,14 +36,16 @@ function createVueLink({
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}): Component<{
-    component?: "string" | Component<CustomVueLinkProps>;
-    to: Record<string, string>;
+}): Component<
+    Record<string, any> & {
+        component?: "string" | Component<CustomVueLinkProps>;
+        to: Record<string, string>;
 
-    onClick?: (event: MouseEvent) => void;
-    target?: string;
-    innerRef?: ((r: any) => void) | { value: any };
-}> {
+        onClick?: (event: MouseEvent) => void;
+        target?: string;
+        innerRef?: ((r: any) => void) | { value: any };
+    }
+> {
     const useParams = createVueParamsHook({
         router,
         ref,

@@ -326,17 +326,19 @@ export default defineComponent({
 ```
 
 ```ts
-declare const Customlinkcomponent: Component<{
-    innerRef?:
-        | {
-              value: any;
-          }
-        | ((value: any) => void);
-    target?: string;
-    href: string;
-    isActive: boolean;
-    navigate: (event?: MouseEvent) => void;
-}>;
+declare const Customlinkcomponent: Component<
+    Record<string, any> & {
+        innerRef?:
+            | {
+                  value: any;
+              }
+            | ((value: any) => void);
+        target?: string;
+        href: string;
+        isActive: boolean;
+        navigate: (event?: MouseEvent) => void;
+    }
+>;
 ```
 
 ## 例子:在 React 中使用

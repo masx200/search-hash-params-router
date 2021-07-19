@@ -71,7 +71,7 @@ declare function createReactView({ router, createElement, useState, useEffect }:
 }): FC<{
     routes: RouteRecord[];
 }>;
-type CustomVueLinkProps = {
+type CustomVueLinkProps = Record<string, any> & {
     innerRef?: {
         value: any;
     } | ((value: any) => void);
@@ -89,7 +89,7 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}): Component$0<{
+}): Component$0<Record<string, any> & {
     component?: "string" | Component$0<CustomVueLinkProps>;
     to: Record<string, string>;
     onClick?: (event: MouseEvent) => void;
