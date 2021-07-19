@@ -45,7 +45,8 @@ export function createReactLink({
         to,
         onClick,
         innerRef,
-        children,...rest
+        children,
+        ...rest
     }) {
         const params = useParams();
         if (!to || !("object" === typeof to)) {
@@ -62,7 +63,7 @@ export function createReactLink({
         });
         return createElement(
             component,
-            { innerRef, target, href, isActive, navigate ,...rest},
+            { innerRef, target, href, isActive, navigate, ...rest },
             children
         );
     };
@@ -72,7 +73,8 @@ export function createReactLink({
         children,
         href,
         isActive,
-        navigate,...rest
+        navigate,
+        ...rest
     }: PropsWithChildren<{
         innerRef?: { current: any } | ((current: any) => void);
         target?: string;
@@ -87,7 +89,8 @@ export function createReactLink({
                 target,
                 href,
                 onClick: navigate,
-                "aria-current": isActive ? "page" : "false",...rest
+                "aria-current": isActive ? "page" : "false",
+                ...rest,
             },
             children
         );
