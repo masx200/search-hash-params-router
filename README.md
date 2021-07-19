@@ -488,7 +488,7 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 ##### 自定义组件的`Props`
 
--   `href`：解析后的 URL。将会作为一个 `<a>` 元素的 href 属性。
+-   `href`：解析后的 URL。将会作为一个 `<a></a>` 元素的 href 属性。
 
 -   `navigate`：触发导航的函数。会在必要时自动阻止事件
 
@@ -502,4 +502,4 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 #### 其他参数
 
-您也可以传递您希望在`a`标签上使用的参数.
+您也可以传递您希望在`<a></a>`标签上使用的参数.
