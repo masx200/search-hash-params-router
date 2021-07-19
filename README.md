@@ -449,9 +449,9 @@ function RouterTest() {
 ### 自定义路由链接组件
 
 ```jsx
-function YourCustomlink({ to, children }) {
+function YourCustomlink({ to, children ,...rest}) {
     return (
-        <Link to={to} component={Customlinkcomponent}>
+        <Link to={to} component={Customlinkcomponent} {...rest}>
             {children}
         </Link>
     );
