@@ -476,7 +476,7 @@ Typescript 类型声明文件:
 
 https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
-### `Link` 的`Props`
+### 组件`Link` 的`Props`
 
 #### `to`
 
