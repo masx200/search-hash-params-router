@@ -4,6 +4,7 @@ import type {
     h as hType,
     ref as refType,
     resolveComponent as resolveComponentType,
+    SetupContext,
 } from "@vue/runtime-dom";
 import isEqual from "lodash/isEqual";
 import { Router } from "../../createrouter/Router";
@@ -18,6 +19,18 @@ export type CustomVueLinkProps = Record<string, any> & {
     isActive: boolean;
     navigate: (event?: MouseEvent) => void;
 };
+export type DefaultVueLinkProps = Record<string, any> & {
+    component?: "string" | Component<CustomVueLinkProps>;
+    to: Record<string, string>;
+    onClick?: (event: MouseEvent) => void;
+    target?: string;
+    innerRef?:
+        | ((r: any) => void)
+        | {
+              value: any;
+          };
+};
+
 function createVueLink({
     router,
     resolveComponent,
@@ -36,16 +49,7 @@ function createVueLink({
     router: Router;
     defineComponent: typeof defineComponentType;
     h: typeof hType;
-}): Component<
-    Record<string, any> & {
-        component?: "string" | Component<CustomVueLinkProps>;
-        to: Record<string, string>;
-
-        onClick?: (event: MouseEvent) => void;
-        target?: string;
-        innerRef?: ((r: any) => void) | { value: any };
-    }
-> {
+}): Component<DefaultVueLinkProps> {
     const useParams = createVueParamsHook({
         router,
         ref,
@@ -54,35 +58,38 @@ function createVueLink({
         readonly,
     });
 
-    const linkcomponentdefault: Component<CustomVueLinkProps> = defineComponent(
-        {
-            inheritAttrs: true,
-            props: ["innerRef", "target", "href", "isActive", "navigate"],
-            setup(props, { slots: children }) {
-                return () => {
-                    const { innerRef, target, href, navigate, isActive } =
-                        props;
-                    //@ts-ignore
-                    return createElement(
-                        //@ts-ignore
-                        "a",
-                        {
-                            ref: innerRef,
-                            target,
-                            href,
-                            onClick: navigate,
-                            "aria-current": isActive ? "page" : "false",
-                        },
-                        children
-                    );
-                };
+    function linkcomponentdefault(
+        { innerRef, target, href, navigate, isActive }: CustomVueLinkProps,
+        { slots: children }: SetupContext
+    ) {
+        return createElement(
+            //@ts-ignore
+            "a",
+            {
+                ref: innerRef,
+                target,
+                href,
+                onClick: navigate,
+                "aria-current": isActive ? "page" : "false",
             },
-        }
-    );
+            children
+        );
+    }
+
+    linkcomponentdefault.inheritAttrs = true;
+
+    linkcomponentdefault.props = [
+        "innerRef",
+        "target",
+        "href",
+        "isActive",
+        "navigate",
+    ];
+
     return defineComponent({
         inheritAttrs: true,
         props: ["component", "to", "target", "onClick", "innerRef"],
-        setup(props, { slots: children }) {
+        setup(props: DefaultVueLinkProps, { slots: children }) {
             const params = useParams();
             return () => {
                 const {

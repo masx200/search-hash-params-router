@@ -8,12 +8,23 @@ import type {
     useState as useStateType,
     useEffect as useEffectType,
     ComponentType,
+    PropsWithChildren,
 } from "react";
 import { RouteRecord } from "../../createrouter";
 import { isRecordRedirect } from "../../createrouter/isRecordRedirect";
 import { isRecordRoute } from "../../createrouter/isRecordRoute";
 import { createReactParamsHook } from "./createReactParamsHook";
 export { createReactView, createReactParamsHook };
+export type CustomReactViewProps = {
+    component: ComponentType<any>;
+    params: Record<string, string>;
+};
+
+export type DefaultReactViewProps = {
+    routes: RouteRecord[];
+    render?: ComponentType<CustomReactViewProps>;
+};
+
 function createReactView({
     router,
 
@@ -26,13 +37,20 @@ function createReactView({
     createElement: typeof createElementType;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
-}): FC<{ routes: RouteRecord[] }> {
+}): FC<DefaultReactViewProps> {
     const useParams = createReactParamsHook({
         router,
         useState,
         useEffect,
     });
-    return ({ routes }) => {
+    function viewrenderdefault({
+        component,
+        params,
+    }: PropsWithChildren<CustomReactViewProps>) {
+        //@ts-ignore
+        return createElement(component, { params });
+    }
+    return ({ routes, render = viewrenderdefault }) => {
         if (!Array.isArray(routes)) {
             throw new TypeError("array");
         }
@@ -50,17 +68,16 @@ function createReactView({
             const redirect = currentroute.redirect;
 
             navigate(router, redirect);
-            // }
-            // if (isRecordRedirect(currentroute)) {
+
             return null;
         }
         if (isRecordRoute(currentroute)) {
             const Component = currentroute.component as ComponentType<any>;
 
-            const props = {};
+            const props = { component: Component };
             let oprops = Object.assign({}, props, { params });
             //@ts-ignore
-            return createElement(Component, { ...oprops });
+            return createElement(render, { ...oprops });
         } else {
             return null;
         }

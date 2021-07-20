@@ -1068,23 +1068,30 @@ exports.createHashRouter = function() {
         useState: o,
         useEffect: a
     });
+    function u(t) {
+        var r = t.component, e = t.params;
+        return n(r, {
+            params: e
+        });
+    }
     return function(t) {
-        var o = t.routes;
+        var o = t.routes, a = t.render, c = void 0 === a ? u : a;
         if (!Array.isArray(o)) throw new TypeError("array");
         if (!o.every((function(t) {
             return Jn(t);
         }))) throw new TypeError('{params:"function"}');
-        var a = i(), u = Gn(o, a);
-        if (Xn(u)) {
-            var c = u.redirect;
-            Qn(e, c);
+        var f = i(), s = Gn(o, f);
+        if (Xn(s)) {
+            var l = s.redirect;
+            return Qn(e, l), null;
         }
-        if (Xn(u)) return null;
-        if (Yn(u)) {
-            var f = u.component, s = Object.assign({}, {}, {
-                params: a
+        if (Yn(s)) {
+            var p = {
+                component: s.component
+            }, v = Object.assign({}, p, {
+                params: f
             });
-            return n(f, r({}, s));
+            return n(c, r({}, v));
         }
         return null;
     };
@@ -1097,24 +1104,19 @@ exports.createHashRouter = function() {
         onMounted: u,
         onUnmounted: c,
         readonly: f
-    }), l = o({
-        inheritAttrs: !0,
-        props: [ "innerRef", "target", "href", "isActive", "navigate" ],
-        setup: function(t, r) {
-            var e = r.slots;
-            return function() {
-                var r = t.innerRef, n = t.target, o = t.href, i = t.navigate, u = t.isActive;
-                return a("a", {
-                    ref: r,
-                    target: n,
-                    href: o,
-                    onClick: i,
-                    "aria-current": u ? "page" : "false"
-                }, e);
-            };
-        }
     });
-    return o({
+    function l(t, r) {
+        var e = t.innerRef, n = t.target, o = t.href, i = t.navigate, u = t.isActive, c = r.slots;
+        return a("a", {
+            ref: e,
+            target: n,
+            href: o,
+            onClick: i,
+            "aria-current": u ? "page" : "false"
+        }, c);
+    }
+    return l.inheritAttrs = !0, l.props = [ "innerRef", "target", "href", "isActive", "navigate" ], 
+    o({
         inheritAttrs: !0,
         props: [ "component", "to", "target", "onClick", "innerRef" ],
         setup: function(t, o) {
@@ -1148,28 +1150,35 @@ exports.createHashRouter = function() {
         onUnmounted: o,
         readonly: e
     });
-    return u({
-        props: [ "routes" ],
+    function l(t) {
+        var r = t.component, e = t.params;
+        return c(r, {
+            params: e
+        });
+    }
+    return l.props = [ "params", "component" ], l.inheritAttrs = !1, u({
+        props: [ "routes", "render" ],
         inheritAttrs: !1,
         setup: function(t) {
             var e = s();
             return function() {
-                var n = t.routes;
+                var n = t.routes, o = t.render, u = void 0 === o ? l : o;
                 if (!Array.isArray(n)) throw new TypeError("array");
                 if (!n.every((function(t) {
                     return Jn(t);
                 }))) throw new TypeError('{params:"function"}');
-                var o = Gn(n, e.value);
-                if (Xn(o)) {
-                    var u = o.redirect;
-                    Qn(a, u);
+                var f = Gn(n, e.value);
+                if (Xn(f)) {
+                    var s = f.redirect;
+                    return Qn(a, s), null;
                 }
-                if (Xn(o)) return null;
-                if (Yn(o)) {
-                    var f = o.component, s = Object.assign({}, {}, {
+                if (Yn(f)) {
+                    var p = f.component, v = {
+                        component: "string" == typeof p ? i(p) : p
+                    }, h = Object.assign({}, v, {
                         params: e.value
-                    }), l = "string" == typeof f ? i(f) : f;
-                    return c(l, r({}, s));
+                    }), y = "string" == typeof u ? i(u) : u;
+                    return c(y, r({}, h));
                 }
                 return null;
             };

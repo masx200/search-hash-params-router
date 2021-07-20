@@ -18,6 +18,18 @@ export type CustomReactLinkProps = Record<string, any> & {
     isActive: boolean;
     navigate: (event?: MouseEvent) => void;
 };
+export type DefaultReactLinkProps = Record<string, any> & {
+    component?: ComponentType<CustomReactLinkProps>;
+    target?: string;
+    onClick?: (event: MouseEvent) => void;
+    to: Record<string, string>;
+    innerRef?:
+        | {
+              current: any;
+          }
+        | ((current: any) => void);
+};
+
 export function createReactLink({
     router,
     useState,
@@ -28,15 +40,7 @@ export function createReactLink({
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
     createElement: typeof createElementType;
-}): FC<
-    Record<string, any> & {
-        component?: ComponentType<CustomReactLinkProps>;
-        target?: string;
-        onClick?: (event: MouseEvent) => void;
-        to: Record<string, string>;
-        innerRef?: { current: any } | ((current: any) => void);
-    }
-> {
+}): FC<DefaultReactLinkProps> {
     const useParams = createReactParamsHook({
         router,
         useState,

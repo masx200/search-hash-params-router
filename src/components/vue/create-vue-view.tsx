@@ -1,5 +1,4 @@
 import type {
-    // watch as watchType,
     Component,
     defineComponent as defineComponentType,
     h as hType,
@@ -15,6 +14,16 @@ import { isrouterecord } from "../isrouterecord";
 import { navigate } from "../navigate";
 import { createVueParamsHook } from "./createVueParamsHook";
 export { createVueView, createVueParamsHook };
+export type CustomVueViewProps = {
+    component: Component<any>;
+    params: Record<string, string>;
+};
+
+export type DefaultVueViewProps = {
+    routes: RouteRecord[];
+    render?: string | Component<CustomVueViewProps>;
+};
+
 function createVueView({
     readonly,
     onMounted,
@@ -24,9 +33,7 @@ function createVueView({
     defineComponent,
     h: createElement,
     ref,
-}: // watch,
-// Fragment,
-{
+}: {
     readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
@@ -35,9 +42,7 @@ function createVueView({
     defineComponent: typeof defineComponentType;
     h: typeof hType;
     ref: typeof refType;
-    // watch: typeof watchType;
-    // Fragment: typeof import("@vue/runtime-core").Fragment;
-}): Component<{ routes: RouteRecord[] }> {
+}): Component<DefaultVueViewProps> {
     const useParams = createVueParamsHook({
         router,
         ref,
@@ -45,15 +50,21 @@ function createVueView({
         onUnmounted,
         readonly,
     });
+    function viewrenderdefault({ component, params }: CustomVueViewProps) {
+        //@ts-ignore
+        return createElement(component, { params });
+    }
+    viewrenderdefault.props = ["params", "component"];
+    viewrenderdefault.inheritAttrs = false;
     return defineComponent({
-        props: ["routes"],
+        props: ["routes", "render"],
         inheritAttrs: false,
-        setup(props: { routes: RouteRecord[] }) {
+        setup(props: DefaultVueViewProps) {
             //attrs不是响应式对象
 
             const params = useParams();
             return () => {
-                const { routes } = props;
+                const { routes, render = viewrenderdefault } = props;
                 //attrs可能属性有变化
                 if (!Array.isArray(routes)) {
                     throw new TypeError("array");
@@ -71,25 +82,28 @@ function createVueView({
                     const redirect = currentroute.redirect;
 
                     navigate(router, redirect);
-                    // }
-                    // if (isRecordRedirect(currentroute)) {
+
                     return null;
                 }
                 if (isRecordRoute(currentroute)) {
                     const Component = currentroute.component as Component<any>;
-
-                    let props = {};
-                    let oprops = Object.assign({}, props, {
-                        params: params.value,
-                    });
                     let Resolvedcomponent =
                         "string" === typeof Component
                             ? resolveComponent(Component)
                             : Component;
+                    let props = { component: Resolvedcomponent };
+                    let oprops = Object.assign({}, props, {
+                        params: params.value,
+                    });
+
+                    let rendercomponent =
+                        "string" === typeof render
+                            ? resolveComponent(render)
+                            : render;
 
                     return createElement(
                         //@ts-ignore
-                        Resolvedcomponent,
+                        rendercomponent,
                         { ...oprops }
 
                         // )

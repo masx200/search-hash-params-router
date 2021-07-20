@@ -1058,23 +1058,30 @@ function eo(t) {
         useState: o,
         useEffect: a
     });
+    function u(t) {
+        var r = t.component, e = t.params;
+        return n(r, {
+            params: e
+        });
+    }
     return function(t) {
-        var o = t.routes;
+        var o = t.routes, a = t.render, c = void 0 === a ? u : a;
         if (!Array.isArray(o)) throw new TypeError("array");
         if (!o.every((function(t) {
             return Yn(t);
         }))) throw new TypeError('{params:"function"}');
-        var a = i(), u = Xn(o, a);
-        if (to(u)) {
-            var c = u.redirect;
-            Zn(e, c);
+        var f = i(), s = Xn(o, f);
+        if (to(s)) {
+            var l = s.redirect;
+            return Zn(e, l), null;
         }
-        if (to(u)) return null;
-        if (ro(u)) {
-            var f = u.component, s = Object.assign({}, {}, {
-                params: a
+        if (ro(s)) {
+            var p = {
+                component: s.component
+            }, v = Object.assign({}, p, {
+                params: f
             });
-            return n(f, r({}, s));
+            return n(c, r({}, v));
         }
         return null;
     };
@@ -1101,24 +1108,19 @@ function oo(t) {
         onMounted: u,
         onUnmounted: c,
         readonly: f
-    }), l = o({
-        inheritAttrs: !0,
-        props: [ "innerRef", "target", "href", "isActive", "navigate" ],
-        setup: function(t, r) {
-            var e = r.slots;
-            return function() {
-                var r = t.innerRef, n = t.target, o = t.href, i = t.navigate, u = t.isActive;
-                return a("a", {
-                    ref: r,
-                    target: n,
-                    href: o,
-                    onClick: i,
-                    "aria-current": u ? "page" : "false"
-                }, e);
-            };
-        }
     });
-    return o({
+    function l(t, r) {
+        var e = t.innerRef, n = t.target, o = t.href, i = t.navigate, u = t.isActive, c = r.slots;
+        return a("a", {
+            ref: e,
+            target: n,
+            href: o,
+            onClick: i,
+            "aria-current": u ? "page" : "false"
+        }, c);
+    }
+    return l.inheritAttrs = !0, l.props = [ "innerRef", "target", "href", "isActive", "navigate" ], 
+    o({
         inheritAttrs: !0,
         props: [ "component", "to", "target", "onClick", "innerRef" ],
         setup: function(t, o) {
@@ -1154,28 +1156,35 @@ function ao(t) {
         onUnmounted: o,
         readonly: e
     });
-    return u({
-        props: [ "routes" ],
+    function l(t) {
+        var r = t.component, e = t.params;
+        return c(r, {
+            params: e
+        });
+    }
+    return l.props = [ "params", "component" ], l.inheritAttrs = !1, u({
+        props: [ "routes", "render" ],
         inheritAttrs: !1,
         setup: function(t) {
             var e = s();
             return function() {
-                var n = t.routes;
+                var n = t.routes, o = t.render, u = void 0 === o ? l : o;
                 if (!Array.isArray(n)) throw new TypeError("array");
                 if (!n.every((function(t) {
                     return Yn(t);
                 }))) throw new TypeError('{params:"function"}');
-                var o = Xn(n, e.value);
-                if (to(o)) {
-                    var u = o.redirect;
-                    Zn(a, u);
+                var f = Xn(n, e.value);
+                if (to(f)) {
+                    var s = f.redirect;
+                    return Zn(a, s), null;
                 }
-                if (to(o)) return null;
-                if (ro(o)) {
-                    var f = o.component, s = Object.assign({}, {}, {
+                if (ro(f)) {
+                    var p = f.component, v = {
+                        component: "string" == typeof p ? i(p) : p
+                    }, h = Object.assign({}, v, {
                         params: e.value
-                    }), l = "string" == typeof f ? i(f) : f;
-                    return c(l, r({}, s));
+                    }), y = "string" == typeof u ? i(u) : u;
+                    return c(y, r({}, h));
                 }
                 return null;
             };

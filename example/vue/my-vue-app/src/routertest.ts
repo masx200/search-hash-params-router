@@ -6,6 +6,9 @@ import Programmaticnavigation from "./Programmaticnavigation.vue";
 import { routes } from "./routes";
 import { View } from "./View";
 export default defineComponent({
+    mounted() {
+        console.log(this);
+    },
     setup() {
         function refelement1(r: any) {
             console.log(r);
