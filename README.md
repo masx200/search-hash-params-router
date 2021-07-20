@@ -484,17 +484,19 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 #### `component`
 
-自定义路由链接组件.
+可选参数,可以自定义路由链接组件.
 
-##### 自定义组件的`Props`
+##### 自定义链接组件的`Props`
 
 -   `href`：解析后的 URL。将会作为一个 `<a></a>` 元素的 href 属性。
 
--   `navigate`：触发导航的函数。会在必要时自动阻止事件
+-   `navigate`：触发导航的函数。会在必要时自动阻止事件.
 
 -   `innerRef`:用于获取内部的`<a></a>`标签的元素的`Ref`.
 
--   `isActive`：链接是否激活状态
+-   `isActive`：链接是否激活状态.
+-
+-   其他参数:您也可以传递您希望在`<a></a>`标签上使用的参数.
 
 #### `innerRef`
 
@@ -503,3 +505,19 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 #### 其他参数
 
 您也可以传递您希望在`<a></a>`标签上使用的参数.
+
+### 组件`View` 的`Props`
+
+#### `routes`
+
+表示路由条目的数组.
+
+#### `render`
+
+可选参数,可以自定义路由视图组件.
+
+##### 自定义视图组件的`Props`
+
+-   `component`：根据路由条目匹配到的组件.
+
+-   `params`：当前的路由参数对象.
