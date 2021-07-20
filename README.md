@@ -494,8 +494,8 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 -   `innerRef`:用于获取内部的`<a></a>`标签的元素的`Ref`.
 
--   `isActive`：链接是否激活状态.
--
+-   `isActive`：链接是否激活状态
+  
 -   其他参数:您也可以传递您希望在`<a></a>`标签上使用的参数.
 
 #### `innerRef`
