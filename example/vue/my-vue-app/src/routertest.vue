@@ -30,5 +30,11 @@
             </suspense>
         </div>
     </div>
+    <hr />
+    <footer>
+        <a href="https://gitee.com/masx200/search-hash-params-router"
+            >https://gitee.com/masx200/search-hash-params-router</a
+        >
+    </footer>
 </template>
 <script lang="ts" src="./routertest.ts"></script>
