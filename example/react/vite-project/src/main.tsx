@@ -5,3 +5,6 @@ import "./myfontandtextalign.css";
 import { RouterTest } from "./routertest";
 
 ReactDOM.render(<RouterTest />, document.getElementById("root"));
+import { registerSW } from "virtual:pwa-register";
+
+registerSW({});
