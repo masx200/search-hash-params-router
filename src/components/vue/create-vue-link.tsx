@@ -86,7 +86,8 @@ function createVueLink({
         "navigate",
     ];
 
-    return defineComponent({
+    //@ts-ignore
+    const Link: Component<DefaultVueLinkProps> = defineComponent({
         inheritAttrs: true,
         props: ["component", "to", "target", "onClick", "innerRef"],
         setup(props: DefaultVueLinkProps, { slots: children }) {
@@ -136,5 +137,6 @@ function createVueLink({
                 );
             };
         },
-    });
+    }) as Component<DefaultVueLinkProps>;
+    return Link;
 }

@@ -32,6 +32,12 @@ https://nodejs.org/en/?foo=bar&baz=123
 https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
 ```
 
+# 在线演示
+
+https://search-hash-params-router-vue.vercel.app/
+
+https://search-hash-params-router-react.vercel.app/
+
 ## 安装
 
 ```shell

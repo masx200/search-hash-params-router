@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import "./index.css";
+import "./myfontandtextalign.css";
 import routertest from "./routertest.vue";
 
 const app = createApp(routertest);

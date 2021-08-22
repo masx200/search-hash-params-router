@@ -1,9 +1,10 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import ts from "rollup-plugin-ts";
 import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 import { defineConfig } from "rollup";
+import externals from "rollup-plugin-node-externals";
+import { terser } from "rollup-plugin-terser";
+import ts from "rollup-plugin-ts";
 const terserplugin = terser({
     compress: {
         ecma: 2015,
@@ -22,9 +23,16 @@ export default defineConfig([
         input: "./src/index.ts",
         output: [
             { sourcemap: true, file: "./dist/index.js", format: "esm" },
-            { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
+            // { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
         ],
         plugins: [
+            externals({
+                builtins: true,
+                deps: false,
+                devDeps: true,
+                peerDeps: true,
+                optDeps: true,
+            }),
             ts(),
             resolve(),
             commonjs(),
