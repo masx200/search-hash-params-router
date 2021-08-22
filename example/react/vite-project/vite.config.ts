@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
-
+import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
@@ -11,5 +11,5 @@ export default defineConfig({
             compress: { drop_console: true, drop_debugger: true },
         },
     },
-    plugins: [reactRefresh()],
+    plugins: [reactRefresh(), VitePWA({})],
 });

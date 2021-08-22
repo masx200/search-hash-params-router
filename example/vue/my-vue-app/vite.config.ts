@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
+import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
@@ -11,5 +11,5 @@ export default defineConfig({
             compress: { drop_console: true, drop_debugger: true },
         },
     },
-    plugins: [vue()],
+    plugins: [vue(), VitePWA({})],
 });
