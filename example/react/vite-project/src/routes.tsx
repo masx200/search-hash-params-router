@@ -6,7 +6,7 @@ const Bar = lazy(() => import("./Bar"));
 const Foo = lazy(() => import("./Foo"));
 const routes = [
     {
-        component: Home,
+        redirect: { p: "app" },
 
         params(o: any) {
             return Object.keys(o).length === 0;
