@@ -11,5 +11,11 @@ export default defineConfig({
             compress: { drop_console: true, drop_debugger: true },
         },
     },
-    plugins: [vue(), VitePWA({ registerType: "autoUpdate" })],
+    plugins: [
+        vue(),
+        VitePWA({
+            registerType: "autoUpdate",
+            workbox: { globPatterns: ["*\/*"] },
+        }),
+    ],
 });

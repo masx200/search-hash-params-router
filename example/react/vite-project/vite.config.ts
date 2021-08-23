@@ -11,5 +11,11 @@ export default defineConfig({
             compress: { drop_console: true, drop_debugger: true },
         },
     },
-    plugins: [reactRefresh(), VitePWA({ registerType: "autoUpdate" })],
+    plugins: [
+        reactRefresh(),
+        VitePWA({
+            registerType: "autoUpdate",
+            workbox: { globPatterns: ["*\/*"] },
+        }),
+    ],
 });
