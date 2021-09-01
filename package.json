@@ -4,7 +4,7 @@
         "access": "public"
     },
     "name": "@masx200/search-hash-params-router",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "main": "./dist/index.js",
@@ -48,6 +48,7 @@
         "@vue/runtime-core": "^3.2.4",
         "@vue/runtime-dom": "^3.2.4",
         "builtin-modules": "^3.2.0",
+        "husky": "^7.0.2",
         "lodash": "^4.17.21",
         "prettier": "^2.3.2",
         "react": "^17.0.2",
@@ -60,7 +61,6 @@
         "typescript": "^4.3.5",
         "vite": "^2.4.1",
         "vite-plugin-pwa": "^0.11.0",
-        "husky": "^7.0.2",
         "vue": "^3.2.4"
     },
     "files": [
