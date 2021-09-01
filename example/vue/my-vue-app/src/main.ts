@@ -6,6 +6,10 @@ import routertest from "./routertest.vue";
 const app = createApp(routertest);
 
 app.mount(document.querySelector("#app") || "#app");
-import { registerSW } from "virtual:pwa-register";
 
-registerSW({});
+if (process.env.NODE_ENV === "production") {
+    //@ts-ignore
+    const { registerSW } = await import("virtual:pwa-register");
+
+    registerSW({});
+}
