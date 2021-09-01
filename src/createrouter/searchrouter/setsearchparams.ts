@@ -1,9 +1,9 @@
+import { createurl } from "./createurl";
+
 export function setsearchparams(opt: Record<string, string>) {
     const oldsearch = location.search;
-    let url = new URL(location.href);
 
-    url.search = String(new URLSearchParams({ ...opt }));
-
+    let url = createurl(opt);
     if (oldsearch === url.search) {
         return;
     }

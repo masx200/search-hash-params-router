@@ -8,6 +8,8 @@
 
 为路由器添加查询参数模式。基于历史记录模式。使用查询参数匹配而不是动态路由匹配。
 
+使用 `URLSearchParams`进行序列化和反序列化
+
 ### 此功能解决了什么问题？
 
 使用查询参数模式不需要服务器设置路由回退。
@@ -26,18 +28,31 @@
 
 例如:
 
-search-router:
+### search-router:
+
+```json
+{ "foo": "bar", "baz": "12321" }
+```
 
 ```txt
 https://nodejs.org/en/?foo=bar&baz=12321
 ```
 
-hash-router
+### hash-router
+
+```json
+{ "view": "home", "op": "translate" }
+```
 
 ```
-https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
+https://translate.google.cn/#view=home&op=translate
 ```
-path-router:
+
+### path-router:
+
+```json
+{ "foo": "bar", "baz": "12345" }
+```
 
 ```txt
 https://nodejs.org/en/foo=bar&baz=12345
@@ -72,9 +87,11 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 ```js
 const hashrouter = createHashRouter();
 ```
+
 ```js
 const searchrouter = createSearchRouter();
 ```
+
 ```js
 const pathrouter = createPathRouter();
 ```
@@ -122,9 +139,14 @@ searchrouter.on("params", (p) => {
 #### 根据参数获取新链接路径
 
 ```js
-let newhref = searchrouter.paramshref((o) => {
+let newhref = searchrouter.gethref((o) => {
     return { ...o, qqqqq: Math.random().toString() };
 });
+```
+
+```js
+let newhref = searchrouter.gethref(( {qqqqq: Math.random().toString() })
+
 ```
 
 #### 创建路由条目：

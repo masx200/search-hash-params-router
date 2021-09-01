@@ -15,7 +15,7 @@ export default defineConfig({
         reactRefresh(),
         VitePWA({
             registerType: "autoUpdate",
-            workbox: { globPatterns: ["*\/*"] },
+            workbox: { globPatterns: ["*/*"] },
         }),
     ],
 });

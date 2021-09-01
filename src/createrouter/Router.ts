@@ -4,7 +4,7 @@ export type Router = EventEmitterTarget & RawRouter;
 export type RawRouter = {
     mount: () => void;
     unmount: () => void;
-    paramshref: (
+    gethref: (
         to:
             | Record<string, string>
             | ((old: Record<string, string>) => Record<string, string>)

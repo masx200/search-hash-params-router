@@ -1,5 +1,6 @@
 //@ts-ignore
 import { getsearchparams } from "./getsearchparams.ts";
+import { createurl } from "./createurl";
 
 export function getsearchhref(
     to:
@@ -9,19 +10,18 @@ export function getsearchhref(
     if (!to) {
         throw new TypeError("object,function");
     }
-    let params: {
-        [k: string]: string;
-    } = getsearchparams();
-    let url = new URL(location.href);
 
     if ("function" === typeof to) {
+        let params: {
+            [k: string]: string;
+        } = getsearchparams();
+
         params = to(params);
-        url.search = String(new URLSearchParams({ ...params }));
+        let url = createurl(params);
         return url.href;
     }
     if ("object" === typeof to) {
-        params = to;
-        url.search = String(new URLSearchParams({ ...params }));
+        let url = createurl(to);
         return url.href;
     }
     throw new TypeError("object,function");

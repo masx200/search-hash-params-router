@@ -59,7 +59,7 @@ export function createReactLink({
         if (!to || !("object" === typeof to)) {
             throw new TypeError("object");
         }
-        const href: string = router.paramshref(to);
+        const href: string = router.gethref(to);
 
         const isActive = isEqual(params, to);
         const navigate = createclickhandler({

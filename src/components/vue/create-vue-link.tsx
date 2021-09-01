@@ -104,7 +104,7 @@ function createVueLink({
                 if (!to || !("object" === typeof to)) {
                     throw new TypeError("object");
                 }
-                const href: string = router.paramshref(to);
+                const href: string = router.gethref(to);
                 const navigate = createclickhandler({
                     //@ts-ignore
                     onClick,
