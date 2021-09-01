@@ -1,6 +1,6 @@
 # search-hash-params-router
 
-使用 `location.search` 和 `location.hash` 中查询参数的前端路由器,
+使用 `location.search` 和 `location.hash` 和`location.pathname`中查询参数的前端路由器,
 
 支持在 `react`17 和 `vue`3 中使用.
 
@@ -26,10 +26,21 @@
 
 例如:
 
-```txt
-https://nodejs.org/en/?foo=bar&baz=123
+search-router:
 
+```txt
+https://nodejs.org/en/?foo=bar&baz=12321
+```
+
+hash-router
+
+```
 https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
+```
+path-router:
+
+```txt
+https://nodejs.org/en/foo=bar&baz=12345
 ```
 
 # 在线演示
@@ -50,7 +61,7 @@ Typescript 类型声明文件:
 
 https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
-查询参数可以从`location.search` 或`location.hash` 中获取。
+查询参数可以从`location.search` 或`location.hash` 和`location.pathname`中获取。
 
 可以通过以下方式修改查询参数。
 
@@ -60,8 +71,12 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
 ```js
 const hashrouter = createHashRouter();
-
+```
+```js
 const searchrouter = createSearchRouter();
+```
+```js
+const pathrouter = createPathRouter();
 ```
 
 #### 编程式导航:
