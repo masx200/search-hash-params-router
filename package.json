@@ -26,8 +26,9 @@
         "build-vue": "vite build example/vue/my-vue-app",
         "build-react": "vite build example/react/vite-project",
         "build": "tsc --noEmit &&rollup -c rollup.config.js ",
-        "format": "prettier  */*.cjs */*.mjs --write *.js */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
-        "prepare": "husky install"
+        "format": "prettier  */*.html */*.cjs */*.mjs --write *.js */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
+        "prepare": "husky install",
+        "test":"vite test"
     },
     "keywords": [],
     "devDependencies": {
