@@ -5,6 +5,11 @@ import "./myfontandtextalign.css";
 import { RouterTest } from "./routertest";
 
 ReactDOM.render(<RouterTest />, document.getElementById("root"));
-import { registerSW } from "virtual:pwa-register";
+!(async () => {
+    if (process.env.NODE_ENV === "production") {
+        //@ts-ignore
+        const { registerSW } = await import("virtual:pwa-register");
 
-registerSW({});
+        registerSW({});
+    }
+})();
