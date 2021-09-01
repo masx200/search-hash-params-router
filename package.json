@@ -28,7 +28,7 @@
         "build": "tsc --noEmit &&rollup -c rollup.config.js ",
         "format": "prettier  */*.html */*.cjs */*.mjs --write *.js */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
         "prepare": "husky install",
-        "test":"vite test"
+        "test": "vite test"
     },
     "keywords": [],
     "devDependencies": {
