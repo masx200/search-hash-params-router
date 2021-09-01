@@ -12,3 +12,5 @@ console.log(pathrouter.getparams());
 setTimeout(() => {
     pathrouter.unmount();
 }, 1000);
+pathrouter.setparams({  });
+console.log(pathrouter.getparams());

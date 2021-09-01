@@ -163,7 +163,7 @@ function b() {
 }
 
 function d(r) {
-    return new URL(m(o({}, r)), location.href);
+    return 0 === Object.keys(r).length ? new URL("../", location.href) : new URL(m(o({}, r)), location.href);
 }
 
 function w() {
