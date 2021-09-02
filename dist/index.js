@@ -1,75 +1,75 @@
-import r from "@masx200/event-emitter-target";
+import t from "@masx200/event-emitter-target";
 
-import t from "lodash/debounce.js";
+import r from "lodash/debounce.js";
 
 import e from "lodash/isEqual.js";
 
-function n(r, t) {
-    var e = Object.keys(r);
+function n(t, r) {
+    var e = Object.keys(t);
     if (Object.getOwnPropertySymbols) {
-        var n = Object.getOwnPropertySymbols(r);
-        t && (n = n.filter((function(t) {
-            return Object.getOwnPropertyDescriptor(r, t).enumerable;
+        var n = Object.getOwnPropertySymbols(t);
+        r && (n = n.filter((function(r) {
+            return Object.getOwnPropertyDescriptor(t, r).enumerable;
         }))), e.push.apply(e, n);
     }
     return e;
 }
 
-function o(r) {
-    for (var t = 1; t < arguments.length; t++) {
-        var e = null != arguments[t] ? arguments[t] : {};
-        t % 2 ? n(Object(e), !0).forEach((function(t) {
-            i(r, t, e[t]);
-        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(e)) : n(Object(e)).forEach((function(t) {
-            Object.defineProperty(r, t, Object.getOwnPropertyDescriptor(e, t));
+function o(t) {
+    for (var r = 1; r < arguments.length; r++) {
+        var e = null != arguments[r] ? arguments[r] : {};
+        r % 2 ? n(Object(e), !0).forEach((function(r) {
+            i(t, r, e[r]);
+        })) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(e)) : n(Object(e)).forEach((function(r) {
+            Object.defineProperty(t, r, Object.getOwnPropertyDescriptor(e, r));
         }));
     }
-    return r;
+    return t;
 }
 
-function a(r) {
-    return (a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(r) {
-        return typeof r;
-    } : function(r) {
-        return r && "function" == typeof Symbol && r.constructor === Symbol && r !== Symbol.prototype ? "symbol" : typeof r;
-    })(r);
+function a(t) {
+    return (a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+        return typeof t;
+    } : function(t) {
+        return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
+    })(t);
 }
 
-function i(r, t, e) {
-    return t in r ? Object.defineProperty(r, t, {
+function i(t, r, e) {
+    return r in t ? Object.defineProperty(t, r, {
         value: e,
         enumerable: !0,
         configurable: !0,
         writable: !0
-    }) : r[t] = e, r;
+    }) : t[r] = e, t;
 }
 
-function u(r, t) {
-    if (null == r) return {};
-    var e, n, o = function(r, t) {
-        if (null == r) return {};
-        var e, n, o = {}, a = Object.keys(r);
-        for (n = 0; n < a.length; n++) e = a[n], t.indexOf(e) >= 0 || (o[e] = r[e]);
+function u(t, r) {
+    if (null == t) return {};
+    var e, n, o = function(t, r) {
+        if (null == t) return {};
+        var e, n, o = {}, a = Object.keys(t);
+        for (n = 0; n < a.length; n++) e = a[n], r.indexOf(e) >= 0 || (o[e] = t[e]);
         return o;
-    }(r, t);
+    }(t, r);
     if (Object.getOwnPropertySymbols) {
-        var a = Object.getOwnPropertySymbols(r);
-        for (n = 0; n < a.length; n++) e = a[n], t.indexOf(e) >= 0 || Object.prototype.propertyIsEnumerable.call(r, e) && (o[e] = r[e]);
+        var a = Object.getOwnPropertySymbols(t);
+        for (n = 0; n < a.length; n++) e = a[n], r.indexOf(e) >= 0 || Object.prototype.propertyIsEnumerable.call(t, e) && (o[e] = t[e]);
     }
     return o;
 }
 
-function f(r, t) {
-    return function(r) {
-        if (Array.isArray(r)) return r;
-    }(r) || function(r, t) {
-        var e = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+function f(t, r) {
+    return function(t) {
+        if (Array.isArray(t)) return t;
+    }(t) || function(t, r) {
+        var e = null == t ? null : "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
         if (null == e) return;
         var n, o, a = [], i = !0, u = !1;
         try {
-            for (e = e.call(r); !(i = (n = e.next()).done) && (a.push(n.value), !t || a.length !== t); i = !0) ;
-        } catch (r) {
-            u = !0, o = r;
+            for (e = e.call(t); !(i = (n = e.next()).done) && (a.push(n.value), !r || a.length !== r); i = !0) ;
+        } catch (t) {
+            u = !0, o = t;
         } finally {
             try {
                 i || null == e.return || e.return();
@@ -78,58 +78,58 @@ function f(r, t) {
             }
         }
         return a;
-    }(r, t) || c(r, t) || function() {
+    }(t, r) || c(t, r) || function() {
         throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }();
 }
 
-function c(r, t) {
-    if (r) {
-        if ("string" == typeof r) return s(r, t);
-        var e = Object.prototype.toString.call(r).slice(8, -1);
-        return "Object" === e && r.constructor && (e = r.constructor.name), "Map" === e || "Set" === e ? Array.from(r) : "Arguments" === e || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e) ? s(r, t) : void 0;
+function c(t, r) {
+    if (t) {
+        if ("string" == typeof t) return s(t, r);
+        var e = Object.prototype.toString.call(t).slice(8, -1);
+        return "Object" === e && t.constructor && (e = t.constructor.name), "Map" === e || "Set" === e ? Array.from(t) : "Arguments" === e || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(e) ? s(t, r) : void 0;
     }
 }
 
-function s(r, t) {
-    (null == t || t > r.length) && (t = r.length);
-    for (var e = 0, n = new Array(t); e < t; e++) n[e] = r[e];
+function s(t, r) {
+    (null == r || r > t.length) && (r = t.length);
+    for (var e = 0, n = new Array(r); e < r; e++) n[e] = t[e];
     return n;
 }
 
-function p(r) {
-    return btoa(String(new URLSearchParams(Object.entries(r).sort((function(r, t) {
-        return f(r, 1)[0] > f(t, 1)[0] ? 1 : -1;
+function l(t) {
+    return btoa(String(new URLSearchParams(Object.entries(t).sort((function(t, r) {
+        return f(t, 1)[0] > f(r, 1)[0] ? 1 : -1;
     })))));
 }
 
-var l = p;
+var p = l;
 
-function m(r) {
+function m(t) {
     try {
-        return Object.fromEntries(Array.from(new URLSearchParams(atob(r))));
-    } catch (r) {
+        return Object.fromEntries(Array.from(new URLSearchParams(atob(t))));
+    } catch (t) {
         return {};
     }
 }
 
 function h(e) {
-    var n = e.toStringTag, a = e.eventname, u = e.gethref, f = e.setparams, c = e.getparams, s = e.transformparams, p = 0, l = r(), m = t((function() {
-        var r = c();
-        v.emit("params", r);
+    var n = e.toStringTag, a = e.eventname, u = e.gethref, f = e.setparams, c = e.getparams, s = e.transformparams, l = 0, p = t(), m = r((function() {
+        var t = c();
+        v.emit("params", t);
     }));
     var h = i({
         mount: function() {
-            window.addEventListener(a, m), m(), p++;
+            window.addEventListener(a, m), m(), l++;
         },
         unmount: function() {
-            --p <= 0 && (window.removeEventListener(a, m), m.cancel(), v.removeAllListeners("params"));
+            --l <= 0 && (window.removeEventListener(a, m), m.cancel(), v.removeAllListeners("params"));
         },
         gethref: u,
         setparams: f,
         getparams: c,
         transformparams: s
-    }, Symbol.toStringTag, n), v = o(o(o({}, l), h), {}, {
+    }, Symbol.toStringTag, n), v = o(o(o({}, p), h), {}, {
         toStringTag: n,
         eventname: a,
         gethref: u,
@@ -144,28 +144,28 @@ function v() {
     return location.hash && m(location.hash.slice(1)) || {};
 }
 
-function y(r) {
-    var t = new URL(location.href);
-    return t.hash = p(o({}, r)), t;
+function y(t) {
+    var r = new URL(location.href);
+    return r.hash = l(o({}, t)), r;
 }
 
-function g(r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" == typeof r) {
-        var t = v();
-        return y(t = r(t)).href;
+function g(t) {
+    if (!t) throw new TypeError("object,function");
+    if ("function" == typeof t) {
+        var r = v();
+        return y(r = t(r)).href;
     }
-    if ("object" === a(r)) return y(r).href;
+    if ("object" === a(t)) return y(t).href;
     throw new TypeError("object,function");
 }
 
-function b(r) {
-    var t = location.hash, e = y(r);
-    t !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
+function b(t) {
+    var r = location.hash, e = y(t);
+    r !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
 }
 
-function d(r) {
-    b(r(v()));
+function d(t) {
+    b(t(v()));
 }
 
 function w() {
@@ -179,71 +179,73 @@ function w() {
     });
 }
 
-function j(r) {
-    return 0 === Object.keys(r).length ? new URL("./", location.href) : new URL(p(o({}, r)), location.href);
-}
-
-function E() {
-    var r = location.pathname, t = r.split("/"), e = r.endsWith("/") ? t[t.length - 2] : t[t.length - 1];
+function j() {
+    var t = location.pathname, r = t.split("/"), e = t.endsWith("/") ? r[r.length - 2] : r[r.length - 1];
     return e && m(e) || {};
 }
 
-function S() {
+function E(t) {
+    if (0 === Object.keys(t).length) return new URL("./", location.href);
+    var r = location.pathname, e = j();
+    return r.endsWith("/") && Object.keys(e).length > 0 ? new URL("../" + l(o({}, t)), location.href) : new URL(l(o({}, t)), location.href);
+}
+
+function S(t) {
+    var r = location.pathname, e = E(t);
+    r !== e.pathname && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
+}
+
+function O() {
     return h({
         toStringTag: "PathRouter",
         eventname: "popstate",
-        gethref: O,
-        setparams: A,
-        getparams: E,
+        gethref: A,
+        setparams: S,
+        getparams: j,
         transformparams: T
     });
 }
 
-function O(r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" == typeof r) {
-        var t = E();
-        return j(t = r(t)).href;
+function A(t) {
+    if (!t) throw new TypeError("object,function");
+    if ("function" == typeof t) {
+        var r = j();
+        return E(r = t(r)).href;
     }
-    if ("object" === a(r)) return j(r).href;
+    if ("object" === a(t)) return E(t).href;
     throw new TypeError("object,function");
 }
 
-function A(r) {
-    var t = location.pathname, e = j(r);
-    t !== e.pathname && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
-}
-
-function T(r) {
-    A(r(E()));
+function T(t) {
+    S(t(j()));
 }
 
 function R() {
     return location.search && m(location.search.slice(1)) || {};
 }
 
-function P(r) {
-    var t = new URL(location.href);
-    return t.search = p(o({}, r)), t;
+function P(t) {
+    var r = new URL(location.href);
+    return r.search = l(o({}, t)), r;
 }
 
-function C(r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" == typeof r) {
-        var t = R();
-        return P(t = r(t)).href;
+function C(t) {
+    if (!t) throw new TypeError("object,function");
+    if ("function" == typeof t) {
+        var r = R();
+        return P(r = t(r)).href;
     }
-    if ("object" === a(r)) return P(r).href;
+    if ("object" === a(t)) return P(t).href;
     throw new TypeError("object,function");
 }
 
-function k(r) {
-    var t = location.search, e = P(r);
-    t !== e.search && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
+function k(t) {
+    var r = location.search, e = P(t);
+    r !== e.search && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function U(r) {
-    k(r(R()));
+function U(t) {
+    k(t(R()));
 }
 
 function L() {
@@ -257,32 +259,32 @@ function L() {
     });
 }
 
-function x(r) {
-    var t = r.onClick, e = r.target, n = r.router, o = r.to;
-    return function(r) {
-        if (r) {
+function x(t) {
+    var r = t.onClick, e = t.target, n = t.router, o = t.to;
+    return function(t) {
+        if (t) {
             try {
-                "function" == typeof t && t(r);
-            } catch (t) {
-                throw r.preventDefault(), t;
+                "function" == typeof r && r(t);
+            } catch (r) {
+                throw t.preventDefault(), r;
             }
-            r.defaultPrevented || 0 !== r.button || e && "_self" !== e || function(r) {
-                return !!(r.metaKey || r.altKey || r.ctrlKey || r.shiftKey);
-            }(r) || (r.preventDefault(), n.setparams(o));
+            t.defaultPrevented || 0 !== t.button || e && "_self" !== e || function(t) {
+                return !!(t.metaKey || t.altKey || t.ctrlKey || t.shiftKey);
+            }(t) || (t.preventDefault(), n.setparams(o));
         } else n.setparams(o);
     };
 }
 
-function D(r) {
-    var e = r.router, n = r.useState, o = r.useEffect;
+function D(t) {
+    var e = t.router, n = t.useState, o = t.useEffect;
     return function() {
-        var r = f(n(e.getparams()), 2), a = r[0], i = r[1];
+        var t = f(n(e.getparams()), 2), a = t[0], i = t[1];
         return o((function() {
-            var r = t((function(r) {
-                i(r);
+            var t = r((function(t) {
+                i(t);
             }));
-            return e.mount(), e.on("params", r), function() {
-                e.unmount(), e.off("params", r), r.cancel();
+            return e.mount(), e.on("params", t), function() {
+                e.unmount(), e.off("params", t), t.cancel();
             };
         }), []), a;
     };
@@ -290,33 +292,33 @@ function D(r) {
 
 var I = [ "component", "target", "to", "onClick", "innerRef", "children" ], M = [ "innerRef", "target", "children", "href", "isActive", "navigate" ];
 
-function K(r) {
-    var t = r.router, n = r.useState, i = r.useEffect, f = r.createElement, c = D({
-        router: t,
+function K(t) {
+    var r = t.router, n = t.useState, i = t.useEffect, f = t.createElement, c = D({
+        router: r,
         useState: n,
         useEffect: i
     });
-    return function(r) {
-        var n = r.component, i = void 0 === n ? s : n, p = r.target, l = r.to, m = r.onClick, h = r.innerRef, v = r.children, y = u(r, I), g = c();
-        if (!l || "object" !== a(l)) throw new TypeError("object");
-        var b = t.gethref(l), d = e(g, l), w = x({
+    return function(t) {
+        var n = t.component, i = void 0 === n ? s : n, l = t.target, p = t.to, m = t.onClick, h = t.innerRef, v = t.children, y = u(t, I), g = c();
+        if (!p || "object" !== a(p)) throw new TypeError("object");
+        var b = r.gethref(p), d = e(g, p), w = x({
             onClick: m,
-            target: p,
-            router: t,
-            to: l
+            target: l,
+            router: r,
+            to: p
         });
         return f(i, o({
             innerRef: h,
-            target: p,
+            target: l,
             href: b,
             isActive: d,
             navigate: w
         }, y), v);
     };
-    function s(r) {
-        var t = r.innerRef, e = r.target, n = r.children, a = r.href, i = r.isActive, c = r.navigate, s = u(r, M);
+    function s(t) {
+        var r = t.innerRef, e = t.target, n = t.children, a = t.href, i = t.isActive, c = t.navigate, s = u(t, M);
         return f("a", o({
-            ref: t,
+            ref: r,
             target: e,
             href: a,
             onClick: c,
@@ -325,25 +327,25 @@ function K(r) {
     }
 }
 
-function q(r, t) {
-    var e, n = function(r, t) {
-        var e = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+function W(t, r) {
+    var e, n = function(t, r) {
+        var e = "undefined" != typeof Symbol && t[Symbol.iterator] || t["@@iterator"];
         if (!e) {
-            if (Array.isArray(r) || (e = c(r)) || t && r && "number" == typeof r.length) {
-                e && (r = e);
+            if (Array.isArray(t) || (e = c(t)) || r && t && "number" == typeof t.length) {
+                e && (t = e);
                 var n = 0, o = function() {};
                 return {
                     s: o,
                     n: function() {
-                        return n >= r.length ? {
+                        return n >= t.length ? {
                             done: !0
                         } : {
                             done: !1,
-                            value: r[n++]
+                            value: t[n++]
                         };
                     },
-                    e: function(r) {
-                        throw r;
+                    e: function(t) {
+                        throw t;
                     },
                     f: o
                 };
@@ -353,14 +355,14 @@ function q(r, t) {
         var a, i = !0, u = !1;
         return {
             s: function() {
-                e = e.call(r);
+                e = e.call(t);
             },
             n: function() {
-                var r = e.next();
-                return i = r.done, r;
+                var t = e.next();
+                return i = t.done, t;
             },
-            e: function(r) {
-                u = !0, a = r;
+            e: function(t) {
+                u = !0, a = t;
             },
             f: function() {
                 try {
@@ -370,66 +372,66 @@ function q(r, t) {
                 }
             }
         };
-    }(r);
+    }(t);
     try {
         for (n.s(); !(e = n.n()).done; ) {
             var o = e.value;
-            if (o.params(t)) return o;
+            if (o.params(r)) return o;
         }
-    } catch (r) {
-        n.e(r);
+    } catch (t) {
+        n.e(t);
     } finally {
         n.f();
     }
 }
 
-function H(r) {
-    return !(!r || "object" !== a(r) || "function" != typeof r.params);
+function q(t) {
+    return !(!t || "object" !== a(t) || "function" != typeof t.params);
 }
 
-function W(r, t) {
-    if (!t) throw new TypeError("object,function");
-    if ("function" != typeof t) {
-        if ("object" !== a(t)) throw new TypeError("object,function");
-        r.setparams(t);
-    } else r.transformparams(t);
+function H(t, r) {
+    if (!r) throw new TypeError("object,function");
+    if ("function" != typeof r) {
+        if ("object" !== a(r)) throw new TypeError("object,function");
+        t.setparams(r);
+    } else t.transformparams(r);
 }
 
-function $(r) {
-    return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.redirect);
+function $(t) {
+    return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.redirect);
 }
 
-function _(r) {
-    return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.component);
+function _(t) {
+    return !("function" != typeof (null == t ? void 0 : t.params) || null == t || !t.component);
 }
 
-function z(r) {
-    var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = D({
-        router: t,
+function z(t) {
+    var r = t.router, e = t.createElement, n = t.useState, a = t.useEffect, i = D({
+        router: r,
         useState: n,
         useEffect: a
     });
-    function u(r) {
-        var t = r.component, n = r.params;
-        return e(t, {
+    function u(t) {
+        var r = t.component, n = t.params;
+        return e(r, {
             params: n
         });
     }
-    return function(r) {
-        var n = r.routes, a = r.render, f = void 0 === a ? u : a;
+    return function(t) {
+        var n = t.routes, a = t.render, f = void 0 === a ? u : a;
         if (!Array.isArray(n)) throw new TypeError("array");
-        if (!n.every((function(r) {
-            return H(r);
+        if (!n.every((function(t) {
+            return q(t);
         }))) throw new TypeError('{params:"function"}');
-        var c = i(), s = q(n, c);
+        var c = i(), s = W(n, c);
         if ($(s)) {
-            var p = s.redirect;
-            return W(t, p), null;
+            var l = s.redirect;
+            return H(r, l), null;
         }
         if (_(s)) {
-            var l = {
+            var p = {
                 component: s.component
-            }, m = Object.assign({}, l, {
+            }, m = Object.assign({}, p, {
                 params: c
             });
             return e(f, o({}, m));
@@ -438,30 +440,30 @@ function z(r) {
     };
 }
 
-function B(r) {
-    var e = r.router, n = r.ref, o = r.onMounted, a = r.onUnmounted, i = r.readonly;
+function B(t) {
+    var e = t.router, n = t.ref, o = t.onMounted, a = t.onUnmounted, i = t.readonly;
     return function() {
-        var r = n(e.getparams()), u = t((function(t) {
-            r.value = t;
+        var t = n(e.getparams()), u = r((function(r) {
+            t.value = r;
         }));
         return o((function() {
             e.mount(), e.on("params", u);
         })), a((function() {
             e.unmount(), e.off("params", u), u.cancel();
-        })), i(r);
+        })), i(t);
     };
 }
 
-function F(r) {
-    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = B({
-        router: t,
+function F(t) {
+    var r = t.router, n = t.resolveComponent, o = t.defineComponent, i = t.h, u = t.ref, f = t.onMounted, c = t.onUnmounted, s = t.readonly, l = B({
+        router: r,
         ref: u,
         onMounted: f,
         onUnmounted: c,
         readonly: s
     });
-    function l(r, t) {
-        var e = r.innerRef, n = r.target, o = r.href, a = r.navigate, u = r.isActive, f = t.slots;
+    function p(t, r) {
+        var e = t.innerRef, n = t.target, o = t.href, a = t.navigate, u = t.isActive, f = r.slots;
         return i("a", {
             ref: e,
             target: n,
@@ -470,22 +472,22 @@ function F(r) {
             "aria-current": u ? "page" : "false"
         }, f);
     }
-    return l.inheritAttrs = !0, l.props = [ "innerRef", "target", "href", "isActive", "navigate" ], 
+    return p.inheritAttrs = !0, p.props = [ "innerRef", "target", "href", "isActive", "navigate" ], 
     o({
         inheritAttrs: !0,
         props: [ "component", "to", "target", "onClick", "innerRef" ],
-        setup: function(r, o) {
-            var u = o.slots, f = p();
+        setup: function(t, o) {
+            var u = o.slots, f = l();
             return function() {
-                var o = r.component, c = void 0 === o ? l : o, s = r.to, p = r.onClick, m = r.target, h = r.innerRef;
+                var o = t.component, c = void 0 === o ? p : o, s = t.to, l = t.onClick, m = t.target, h = t.innerRef;
                 if (!s || "object" !== a(s)) throw new TypeError("object");
-                var v = t.gethref(s), y = x({
-                    onClick: p,
+                var v = r.gethref(s), y = x({
+                    onClick: l,
                     target: m,
-                    router: t,
+                    router: r,
                     to: s
-                }), g = e(f.value, s), b = "function" == typeof h ? h : h && "object" === a(h) ? function(r) {
-                    Reflect.set(h, "value", r);
+                }), g = e(f.value, s), b = "function" == typeof h ? h : h && "object" === a(h) ? function(t) {
+                    Reflect.set(h, "value", t);
                 } : void 0, d = "string" == typeof c ? n(c) : c;
                 return i(d, {
                     isActive: g,
@@ -499,41 +501,41 @@ function F(r) {
     });
 }
 
-function G(r) {
-    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = B({
+function G(t) {
+    var r = t.readonly, e = t.onMounted, n = t.onUnmounted, a = t.router, i = t.resolveComponent, u = t.defineComponent, f = t.h, c = t.ref, s = B({
         router: a,
         ref: c,
         onMounted: e,
         onUnmounted: n,
-        readonly: t
+        readonly: r
     });
-    function p(r) {
-        var t = r.component, e = r.params;
-        return f(t, {
+    function l(t) {
+        var r = t.component, e = t.params;
+        return f(r, {
             params: e
         });
     }
-    return p.props = [ "params", "component" ], p.inheritAttrs = !1, u({
+    return l.props = [ "params", "component" ], l.inheritAttrs = !1, u({
         props: [ "routes", "render" ],
         inheritAttrs: !1,
-        setup: function(r) {
-            var t = s();
+        setup: function(t) {
+            var r = s();
             return function() {
-                var e = r.routes, n = r.render, u = void 0 === n ? p : n;
+                var e = t.routes, n = t.render, u = void 0 === n ? l : n;
                 if (!Array.isArray(e)) throw new TypeError("array");
-                if (!e.every((function(r) {
-                    return H(r);
+                if (!e.every((function(t) {
+                    return q(t);
                 }))) throw new TypeError('{params:"function"}');
-                var c = q(e, t.value);
+                var c = W(e, r.value);
                 if ($(c)) {
                     var s = c.redirect;
-                    return W(a, s), null;
+                    return H(a, s), null;
                 }
                 if (_(c)) {
-                    var l = c.component, m = {
-                        component: "string" == typeof l ? i(l) : l
+                    var p = c.component, m = {
+                        component: "string" == typeof p ? i(p) : p
                     }, h = Object.assign({}, m, {
-                        params: t.value
+                        params: r.value
                     }), v = "string" == typeof u ? i(u) : u;
                     return f(v, o({}, h));
                 }
@@ -543,5 +545,5 @@ function G(r) {
     });
 }
 
-export { h as createBaseRouter, w as createHashRouter, S as createPathRouter, K as createReactLink, D as createReactParamsHook, z as createReactView, L as createSearchRouter, F as createVueLink, B as createVueParamsHook, G as createVueView, m as deserializeParams, l as serializeParams };
+export { h as createBaseRouter, w as createHashRouter, O as createPathRouter, K as createReactLink, D as createReactParamsHook, z as createReactView, L as createSearchRouter, F as createVueLink, B as createVueParamsHook, G as createVueView, m as deserializeParams, p as serializeParams };
 //# sourceMappingURL=index.js.map
