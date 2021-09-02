@@ -8,7 +8,7 @@
 
 为路由器添加查询参数模式。基于历史记录模式。使用查询参数匹配而不是动态路由匹配。
 
-使用 `URLSearchParams`进行序列化和反序列化
+使用 `URLSearchParams`和`btoa`和`atob`进行序列化和反序列化
 
 ### 此功能解决了什么问题？
 
@@ -35,7 +35,7 @@
 ```
 
 ```txt
-https://nodejs.org/en/?foo=bar&baz=12321
+https://nodejs.org/en/?YmF6PTEyMzIxJmZvbz1iYXI=
 ```
 
 ### hash-router
@@ -45,7 +45,7 @@ https://nodejs.org/en/?foo=bar&baz=12321
 ```
 
 ```
-https://translate.google.cn/#view=home&op=translate
+https://translate.google.cn/#b3A9dHJhbnNsYXRlJnZpZXc9aG9tZQ==
 ```
 
 ### path-router:
@@ -55,7 +55,7 @@ https://translate.google.cn/#view=home&op=translate
 ```
 
 ```txt
-https://nodejs.org/en/foo=bar&baz=12345
+https://nodejs.org/en/YmF6PTEyMzQ1JmZvbz1iYXI=
 ```
 
 # 在线演示
@@ -81,6 +81,30 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 可以通过以下方式修改查询参数。
 
 ## 通用例子:
+
+### 导入模块
+
+```js
+import {
+    createHashRouter,
+    createSearchRouter,
+    createPathRouter,
+    serilizeparams,
+    deserilizeparams,
+} from "@masx200/search-hash-params-router";
+```
+
+#### 序列化参数对象
+
+```js
+let string = serilizeparams({ foo: "bar", baz: "12321" });
+```
+
+#### 反序列化参数字符串
+
+```js
+let object = deserilizeparams("YmF6PTEyMzIxJmZvbz1iYXI=");
+```
 
 #### 创建路由器：
 

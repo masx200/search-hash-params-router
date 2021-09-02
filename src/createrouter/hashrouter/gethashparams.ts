@@ -1,7 +1,9 @@
+import { deserilizeparams } from "../deserilizeparams";
+
 export function gethashparams() {
     return (
         (location.hash &&
-            Object.fromEntries(new URLSearchParams(location.hash.slice(1)))) ||
+            deserilizeparams ((location.hash.slice(1)))) ||
         {}
     );
 }

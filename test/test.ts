@@ -1,4 +1,8 @@
-import { createPathRouter } from "../dist/index";
+import {
+    createPathRouter,
+    deserilizeparams,
+    serilizeparams,
+} from "../dist/index";
 const pathrouter = createPathRouter();
 pathrouter.mount();
 console.log(pathrouter);
@@ -14,3 +18,7 @@ setTimeout(() => {
 }, 1000);
 pathrouter.setparams({});
 console.log(pathrouter.getparams());
+let string = serilizeparams({ foo: "bar", baz: "12321" });
+console.log(string);
+let object = deserilizeparams("YmF6PTEyMzIxJmZvbz1iYXI=");
+console.log(object);

@@ -98,15 +98,19 @@ function s(r, t) {
 }
 
 function p(r) {
-    return String(new URLSearchParams(Object.entries(r).sort((function(r, t) {
+    return btoa(String(new URLSearchParams(Object.entries(r).sort((function(r, t) {
         return f(r, 1)[0] > f(t, 1)[0] ? 1 : -1;
-    }))));
+    })))));
 }
 
 var l = p;
 
 function m(r) {
-    return Object.fromEntries(new URLSearchParams(r));
+    try {
+        return Object.fromEntries(Array.from(new URLSearchParams(atob(r))));
+    } catch (r) {
+        return {};
+    }
 }
 
 function h(e) {
@@ -137,7 +141,7 @@ function h(e) {
 }
 
 function v() {
-    return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
+    return location.hash && m(location.hash.slice(1)) || {};
 }
 
 function y(r) {
@@ -180,29 +184,29 @@ function j(r) {
 }
 
 function E() {
+    var r = location.pathname.split("/"), t = r[r.length - 1];
+    return t && m(t) || {};
+}
+
+function S() {
     return h({
         toStringTag: "PathRouter",
         eventname: "popstate",
-        gethref: S,
+        gethref: O,
         setparams: A,
-        getparams: O,
-        transformparams: R
+        getparams: E,
+        transformparams: T
     });
 }
 
-function S(r) {
+function O(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = O();
+        var t = E();
         return j(t = r(t)).href;
     }
     if ("object" === a(r)) return j(r).href;
     throw new TypeError("object,function");
-}
-
-function O() {
-    var r = location.pathname.split("/"), t = r[r.length - 1];
-    return t && Object.fromEntries(new URLSearchParams(t)) || {};
 }
 
 function A(r) {
@@ -210,12 +214,12 @@ function A(r) {
     t !== e.pathname && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function R(r) {
-    A(r(O()));
+function T(r) {
+    A(r(E()));
 }
 
-function T() {
-    return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
+function R() {
+    return location.search && m(location.search.slice(1)) || {};
 }
 
 function P(r) {
@@ -223,33 +227,33 @@ function P(r) {
     return t.search = p(o({}, r)), t;
 }
 
-function U(r) {
+function C(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = T();
+        var t = R();
         return P(t = r(t)).href;
     }
     if ("object" === a(r)) return P(r).href;
     throw new TypeError("object,function");
 }
 
-function C(r) {
+function k(r) {
     var t = location.search, e = P(r);
     t !== e.search && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function k(r) {
-    C(r(T()));
+function U(r) {
+    k(r(R()));
 }
 
 function L() {
     return h({
         toStringTag: "SearchRouter",
         eventname: "popstate",
-        gethref: U,
-        setparams: C,
-        getparams: T,
-        transformparams: k
+        gethref: C,
+        setparams: k,
+        getparams: R,
+        transformparams: U
     });
 }
 
@@ -539,5 +543,5 @@ function J(r) {
     });
 }
 
-export { h as createBaseRouter, w as createHashRouter, E as createPathRouter, K as createReactLink, D as createReactParamsHook, B as createReactView, L as createSearchRouter, G as createVueLink, F as createVueParamsHook, J as createVueView, m as deserilizeparams, l as serilizeparams };
+export { h as createBaseRouter, w as createHashRouter, S as createPathRouter, K as createReactLink, D as createReactParamsHook, B as createReactView, L as createSearchRouter, G as createVueLink, F as createVueParamsHook, J as createVueView, m as deserilizeparams, l as serilizeparams };
 //# sourceMappingURL=index.js.map

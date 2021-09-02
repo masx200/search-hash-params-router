@@ -1,6 +1,7 @@
 import { createBaseRouter } from "../createbaserouter";
 import { Router } from "../Router";
 import { createurl } from "./createurl";
+import { getparams } from "./getparams";
 
 export function createPathRouter(): Router {
     const opts = {
@@ -38,13 +39,6 @@ function gethref(
         return url.href;
     }
     throw new TypeError("object,function");
-}
-function getparams(): {
-    [k: string]: string;
-} {
-    var a = location.pathname.split("/");
-    var b = a[a.length - 1];
-    return (b && Object.fromEntries(new URLSearchParams(b))) || {};
 }
 function setparams(opt: Record<string, string>) {
     const oldpathname = location.pathname;

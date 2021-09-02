@@ -1,7 +1,9 @@
+import { deserilizeparams } from "../deserilizeparams";
+
 export function getsearchparams() {
     return (
         (location.search &&
-            Object.fromEntries(new URL(location.href).searchParams)) ||
+            deserilizeparams ((location.search.slice(1)))) ||
         {}
     );
 }

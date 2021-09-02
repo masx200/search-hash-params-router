@@ -1,5 +1,6 @@
 import { Routeroptions } from "./createrouter/createbaserouter";
-import { deserilizeparams, serilizeparams } from "./createrouter/sortobjectkey";
+import { serilizeparams } from "./createrouter/sortobjectkey";
+import { deserilizeparams } from "./createrouter/deserilizeparams";
 
 //@ts-ignore
 export * from "./createrouter/index";
