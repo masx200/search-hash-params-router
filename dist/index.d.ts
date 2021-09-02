@@ -31,6 +31,8 @@ type Routeroptions = {
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
 };
 declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, getparams, transformparams }: Routeroptions): Router;
+declare function serilizesortobjectkey(o: Record<string, string>): string;
+declare const serilizeparams: typeof serilizesortobjectkey;
 declare function deserilizeparams(a: string): {
     [k: string]: string;
 };

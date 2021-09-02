@@ -7,7 +7,7 @@ export function serilizesortobjectkey(o: Record<string, string>): string {
         )
     );
 }
-const serilizeparams=serilizesortobjectkey
+const serilizeparams = serilizesortobjectkey;
 export { serilizeparams };
 
 export function deserilizeparams(a: string) {

@@ -103,11 +103,13 @@ function p(r) {
     }))));
 }
 
-function l(r) {
+var l = p;
+
+function m(r) {
     return Object.fromEntries(new URLSearchParams(r));
 }
 
-function m(e) {
+function h(e) {
     var n = e.toStringTag, a = e.eventname, u = e.gethref, f = e.setparams, c = e.getparams, s = e.transformparams, p = 0, l = r(), m = t((function() {
         var r = c();
         v.emit("params", r);
@@ -134,124 +136,124 @@ function m(e) {
     return v;
 }
 
-function h() {
+function v() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function v(r) {
+function y(r) {
     var t = new URL(location.href);
     return t.hash = p(o({}, r)), t;
 }
 
-function y(r) {
+function g(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = h();
-        return v(t = r(t)).href;
+        var t = v();
+        return y(t = r(t)).href;
     }
-    if ("object" === a(r)) return v(r).href;
+    if ("object" === a(r)) return y(r).href;
     throw new TypeError("object,function");
-}
-
-function g(r) {
-    var t = location.hash, e = v(r);
-    t !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
 }
 
 function b(r) {
-    g(r(h()));
+    var t = location.hash, e = y(r);
+    t !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
 }
 
-function d() {
-    return m({
+function d(r) {
+    b(r(v()));
+}
+
+function w() {
+    return h({
         toStringTag: "HashRouter",
         eventname: "hashchange",
-        gethref: y,
-        setparams: g,
-        getparams: h,
-        transformparams: b
+        gethref: g,
+        setparams: b,
+        getparams: v,
+        transformparams: d
     });
 }
 
-function w(r) {
+function j(r) {
     return 0 === Object.keys(r).length ? new URL("./", location.href) : new URL(p(o({}, r)), location.href);
 }
 
-function j() {
-    return m({
+function E() {
+    return h({
         toStringTag: "PathRouter",
         eventname: "popstate",
-        gethref: E,
-        setparams: O,
-        getparams: S,
-        transformparams: A
+        gethref: S,
+        setparams: A,
+        getparams: O,
+        transformparams: R
     });
 }
 
-function E(r) {
+function S(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = S();
-        return w(t = r(t)).href;
+        var t = O();
+        return j(t = r(t)).href;
     }
-    if ("object" === a(r)) return w(r).href;
+    if ("object" === a(r)) return j(r).href;
     throw new TypeError("object,function");
 }
 
-function S() {
+function O() {
     var r = location.pathname.split("/"), t = r[r.length - 1];
     return t && Object.fromEntries(new URLSearchParams(t)) || {};
 }
 
-function O(r) {
-    var t = location.pathname, e = w(r);
+function A(r) {
+    var t = location.pathname, e = j(r);
     t !== e.pathname && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function A(r) {
-    O(r(S()));
+function R(r) {
+    A(r(O()));
 }
 
-function R() {
+function T() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function T(r) {
+function P(r) {
     var t = new URL(location.href);
     return t.search = p(o({}, r)), t;
 }
 
-function P(r) {
+function U(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = R();
-        return T(t = r(t)).href;
+        var t = T();
+        return P(t = r(t)).href;
     }
-    if ("object" === a(r)) return T(r).href;
+    if ("object" === a(r)) return P(r).href;
     throw new TypeError("object,function");
 }
 
-function U(r) {
-    var t = location.search, e = T(r);
+function C(r) {
+    var t = location.search, e = P(r);
     t !== e.search && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function C(r) {
-    U(r(R()));
+function k(r) {
+    C(r(T()));
 }
 
-function k() {
-    return m({
+function L() {
+    return h({
         toStringTag: "SearchRouter",
         eventname: "popstate",
-        gethref: P,
-        setparams: U,
-        getparams: R,
-        transformparams: C
+        gethref: U,
+        setparams: C,
+        getparams: T,
+        transformparams: k
     });
 }
 
-function L(r) {
+function x(r) {
     var t = r.onClick, e = r.target, n = r.router, o = r.to;
     return function(r) {
         if (r) {
@@ -267,7 +269,7 @@ function L(r) {
     };
 }
 
-function x(r) {
+function D(r) {
     var e = r.router, n = r.useState, o = r.useEffect;
     return function() {
         var r = f(n(e.getparams()), 2), a = r[0], i = r[1];
@@ -282,18 +284,18 @@ function x(r) {
     };
 }
 
-var D = [ "component", "target", "to", "onClick", "innerRef", "children" ], I = [ "innerRef", "target", "children", "href", "isActive", "navigate" ];
+var I = [ "component", "target", "to", "onClick", "innerRef", "children" ], M = [ "innerRef", "target", "children", "href", "isActive", "navigate" ];
 
-function M(r) {
-    var t = r.router, n = r.useState, i = r.useEffect, f = r.createElement, c = x({
+function K(r) {
+    var t = r.router, n = r.useState, i = r.useEffect, f = r.createElement, c = D({
         router: t,
         useState: n,
         useEffect: i
     });
     return function(r) {
-        var n = r.component, i = void 0 === n ? s : n, p = r.target, l = r.to, m = r.onClick, h = r.innerRef, v = r.children, y = u(r, D), g = c();
+        var n = r.component, i = void 0 === n ? s : n, p = r.target, l = r.to, m = r.onClick, h = r.innerRef, v = r.children, y = u(r, I), g = c();
         if (!l || "object" !== a(l)) throw new TypeError("object");
-        var b = t.gethref(l), d = e(g, l), w = L({
+        var b = t.gethref(l), d = e(g, l), w = x({
             onClick: m,
             target: p,
             router: t,
@@ -308,7 +310,7 @@ function M(r) {
         }, y), v);
     };
     function s(r) {
-        var t = r.innerRef, e = r.target, n = r.children, a = r.href, i = r.isActive, c = r.navigate, s = u(r, I);
+        var t = r.innerRef, e = r.target, n = r.children, a = r.href, i = r.isActive, c = r.navigate, s = u(r, M);
         return f("a", o({
             ref: t,
             target: e,
@@ -319,7 +321,7 @@ function M(r) {
     }
 }
 
-function K(r, t) {
+function q(r, t) {
     var e, n = function(r, t) {
         var e = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
         if (!e) {
@@ -377,11 +379,11 @@ function K(r, t) {
     }
 }
 
-function q(r) {
+function H(r) {
     return !(!r || "object" !== a(r) || "function" != typeof r.params);
 }
 
-function z(r, t) {
+function $(r, t) {
     if (!t) throw new TypeError("object,function");
     if ("function" != typeof t) {
         if ("object" !== a(t)) throw new TypeError("object,function");
@@ -389,16 +391,16 @@ function z(r, t) {
     } else r.transformparams(t);
 }
 
-function H(r) {
+function _(r) {
     return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.redirect);
 }
 
-function $(r) {
+function z(r) {
     return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.component);
 }
 
-function _(r) {
-    var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = x({
+function B(r) {
+    var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = D({
         router: t,
         useState: n,
         useEffect: a
@@ -413,14 +415,14 @@ function _(r) {
         var n = r.routes, a = r.render, f = void 0 === a ? u : a;
         if (!Array.isArray(n)) throw new TypeError("array");
         if (!n.every((function(r) {
-            return q(r);
+            return H(r);
         }))) throw new TypeError('{params:"function"}');
-        var c = i(), s = K(n, c);
-        if (H(s)) {
+        var c = i(), s = q(n, c);
+        if (_(s)) {
             var p = s.redirect;
-            return z(t, p), null;
+            return $(t, p), null;
         }
-        if ($(s)) {
+        if (z(s)) {
             var l = {
                 component: s.component
             }, m = Object.assign({}, l, {
@@ -432,7 +434,7 @@ function _(r) {
     };
 }
 
-function B(r) {
+function F(r) {
     var e = r.router, n = r.ref, o = r.onMounted, a = r.onUnmounted, i = r.readonly;
     return function() {
         var r = n(e.getparams()), u = t((function(t) {
@@ -446,8 +448,8 @@ function B(r) {
     };
 }
 
-function F(r) {
-    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = B({
+function G(r) {
+    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = F({
         router: t,
         ref: u,
         onMounted: f,
@@ -473,7 +475,7 @@ function F(r) {
             return function() {
                 var o = r.component, c = void 0 === o ? l : o, s = r.to, p = r.onClick, m = r.target, h = r.innerRef;
                 if (!s || "object" !== a(s)) throw new TypeError("object");
-                var v = t.gethref(s), y = L({
+                var v = t.gethref(s), y = x({
                     onClick: p,
                     target: m,
                     router: t,
@@ -493,8 +495,8 @@ function F(r) {
     });
 }
 
-function G(r) {
-    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = B({
+function J(r) {
+    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = F({
         router: a,
         ref: c,
         onMounted: e,
@@ -516,14 +518,14 @@ function G(r) {
                 var e = r.routes, n = r.render, u = void 0 === n ? p : n;
                 if (!Array.isArray(e)) throw new TypeError("array");
                 if (!e.every((function(r) {
-                    return q(r);
+                    return H(r);
                 }))) throw new TypeError('{params:"function"}');
-                var c = K(e, t.value);
-                if (H(c)) {
+                var c = q(e, t.value);
+                if (_(c)) {
                     var s = c.redirect;
-                    return z(a, s), null;
+                    return $(a, s), null;
                 }
-                if ($(c)) {
+                if (z(c)) {
                     var l = c.component, m = {
                         component: "string" == typeof l ? i(l) : l
                     }, h = Object.assign({}, m, {
@@ -537,5 +539,5 @@ function G(r) {
     });
 }
 
-export { m as createBaseRouter, d as createHashRouter, j as createPathRouter, M as createReactLink, x as createReactParamsHook, _ as createReactView, k as createSearchRouter, F as createVueLink, B as createVueParamsHook, G as createVueView, l as deserilizeparams, p as serilizeparams };
+export { h as createBaseRouter, w as createHashRouter, E as createPathRouter, K as createReactLink, D as createReactParamsHook, B as createReactView, L as createSearchRouter, G as createVueLink, F as createVueParamsHook, J as createVueView, m as deserilizeparams, l as serilizeparams };
 //# sourceMappingURL=index.js.map
