@@ -2,6 +2,7 @@ import { createBaseRouter } from "../createbaserouter";
 import { Router } from "../Router";
 import { createurl } from "./createurl";
 import { getparams } from "./getparams";
+import { setparams } from "./setparams";
 
 export function createPathRouter(): Router {
     const opts = {
@@ -39,17 +40,6 @@ function gethref(
         return url.href;
     }
     throw new TypeError("object,function");
-}
-function setparams(opt: Record<string, string>) {
-    const oldpathname = location.pathname;
-
-    let url = createurl(opt);
-    if (oldpathname === url.pathname) {
-        return;
-    }
-    history.pushState({}, "", url.href);
-
-    window.dispatchEvent(new Event("popstate"));
 }
 function transformparams(
     opt: (old: Record<string, string>) => Record<string, string>
