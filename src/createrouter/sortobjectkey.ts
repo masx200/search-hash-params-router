@@ -7,3 +7,8 @@ export function serilizesortobjectkey(o: Record<string, string>): string {
         )
     );
 }
+export { serilizesortobjectkey as serilizeparams };
+
+export function deserilizeparams(a: string) {
+    return Object.fromEntries(new URLSearchParams(a));
+}

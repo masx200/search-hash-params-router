@@ -5,15 +5,9 @@ import EventEmitterTargetClass, {
 } from "@masx200/event-emitter-target";
 //@ts-ignore
 import debounce from "lodash/debounce";
+import { Router } from "./Router";
 import { RawRouter } from "./Router";
-export function createBaseRouter({
-    toStringTag,
-    eventname,
-    gethref,
-    setparams,
-    getparams,
-    transformparams,
-}: {
+export type Routeroptions = {
     toStringTag: string;
     eventname: string;
     gethref: (
@@ -28,7 +22,16 @@ export function createBaseRouter({
     transformparams: (
         opt: (old: Record<string, string>) => Record<string, string>
     ) => void;
-}): EventEmitterTarget & RawRouter {
+};
+
+export function createBaseRouter({
+    toStringTag,
+    eventname,
+    gethref,
+    setparams,
+    getparams,
+    transformparams,
+}: Routeroptions): Router {
     let mountcount = 0;
     // const eventname = "search" === type ? "popstate" : "hashchange";
 
@@ -71,10 +74,16 @@ export function createBaseRouter({
         // [Symbol.toStringTag]: "search" === type ? "SearchRouter" : "HashRouter",
     };
 
-    const instance: EventEmitterTarget & typeof router = {
+    const instance: Router = {
         ...emitter,
         ...router,
-    } as EventEmitterTarget & typeof router;
+        toStringTag,
+        eventname,
+        gethref,
+        setparams,
+        getparams,
+        transformparams,
+    } as Router;
 
-    return instance as EventEmitterTarget & typeof router;
+    return instance as Router;
 }

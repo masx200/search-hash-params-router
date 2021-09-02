@@ -8,7 +8,7 @@ import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
 import { ref as refType } from "@vue/runtime-dom";
 import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
-type Router = EventEmitterTarget & RawRouter;
+type Router = EventEmitterTarget & RawRouter & Routeroptions;
 type RawRouter = {
     mount: () => void;
     unmount: () => void;
@@ -20,7 +20,7 @@ type RawRouter = {
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
 };
-declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, getparams, transformparams }: {
+type Routeroptions = {
     toStringTag: string;
     eventname: string;
     gethref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
@@ -29,7 +29,11 @@ declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, 
         [k: string]: string;
     };
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
-}): EventEmitterTarget & RawRouter;
+};
+declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, getparams, transformparams }: Routeroptions): Router;
+declare function deserilizeparams(a: string): {
+    [k: string]: string;
+};
 declare function createHashRouter(): Router;
 declare function createPathRouter(): Router;
 declare function createSearchRouter(): Router;
@@ -145,4 +149,4 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     h: typeof hType;
     ref: typeof refType;
 }): Component<DefaultVueViewProps>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createBaseRouter, createPathRouter, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createBaseRouter, createPathRouter, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps, serilizeparams, deserilizeparams, Routeroptions };

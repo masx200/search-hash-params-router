@@ -1,6 +1,7 @@
 import { EventEmitterTarget } from "@masx200/event-emitter-target";
+import { Routeroptions } from "./createbaserouter";
 
-export type Router = EventEmitterTarget & RawRouter;
+export type Router = EventEmitterTarget & RawRouter & Routeroptions;
 export type RawRouter = {
     mount: () => void;
     unmount: () => void;

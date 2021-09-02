@@ -97,7 +97,17 @@ function s(r, t) {
     return n;
 }
 
-function p(e) {
+function p(r) {
+    return String(new URLSearchParams(Object.entries(r).sort((function(r, t) {
+        return f(r, 1)[0] > f(t, 1)[0] ? 1 : -1;
+    }))));
+}
+
+function l(r) {
+    return Object.fromEntries(new URLSearchParams(r));
+}
+
+function m(e) {
     var n = e.toStringTag, a = e.eventname, u = e.gethref, f = e.setparams, c = e.getparams, s = e.transformparams, p = 0, l = r(), m = t((function() {
         var r = c();
         v.emit("params", r);
@@ -113,134 +123,135 @@ function p(e) {
         setparams: f,
         getparams: c,
         transformparams: s
-    }, Symbol.toStringTag, n), v = o(o({}, l), h);
+    }, Symbol.toStringTag, n), v = o(o(o({}, l), h), {}, {
+        toStringTag: n,
+        eventname: a,
+        gethref: u,
+        setparams: f,
+        getparams: c,
+        transformparams: s
+    });
     return v;
 }
 
-function l() {
+function h() {
     return location.hash && Object.fromEntries(new URLSearchParams(location.hash.slice(1))) || {};
 }
 
-function m(r) {
-    return String(new URLSearchParams(Object.entries(r).sort((function(r, t) {
-        return f(r, 1)[0] > f(t, 1)[0] ? 1 : -1;
-    }))));
-}
-
-function h(r) {
-    var t = new URL(location.href);
-    return t.hash = m(o({}, r)), t;
-}
-
 function v(r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" == typeof r) {
-        var t = l();
-        return h(t = r(t)).href;
-    }
-    if ("object" === a(r)) return h(r).href;
-    throw new TypeError("object,function");
+    var t = new URL(location.href);
+    return t.hash = p(o({}, r)), t;
 }
 
 function y(r) {
-    var t = location.hash, e = h(r);
-    t !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
-}
-
-function g(r) {
-    y(r(l()));
-}
-
-function b() {
-    return p({
-        toStringTag: "HashRouter",
-        eventname: "hashchange",
-        gethref: v,
-        setparams: y,
-        getparams: l,
-        transformparams: g
-    });
-}
-
-function d(r) {
-    return 0 === Object.keys(r).length ? new URL("./", location.href) : new URL(m(o({}, r)), location.href);
-}
-
-function w() {
-    return p({
-        toStringTag: "PathRouter",
-        eventname: "popstate",
-        gethref: j,
-        setparams: S,
-        getparams: E,
-        transformparams: O
-    });
-}
-
-function j(r) {
     if (!r) throw new TypeError("object,function");
     if ("function" == typeof r) {
-        var t = E();
-        return d(t = r(t)).href;
+        var t = h();
+        return v(t = r(t)).href;
     }
-    if ("object" === a(r)) return d(r).href;
+    if ("object" === a(r)) return v(r).href;
     throw new TypeError("object,function");
 }
 
-function E() {
+function g(r) {
+    var t = location.hash, e = v(r);
+    t !== e.hash && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("hashchange")));
+}
+
+function b(r) {
+    g(r(h()));
+}
+
+function d() {
+    return m({
+        toStringTag: "HashRouter",
+        eventname: "hashchange",
+        gethref: y,
+        setparams: g,
+        getparams: h,
+        transformparams: b
+    });
+}
+
+function w(r) {
+    return 0 === Object.keys(r).length ? new URL("./", location.href) : new URL(p(o({}, r)), location.href);
+}
+
+function j() {
+    return m({
+        toStringTag: "PathRouter",
+        eventname: "popstate",
+        gethref: E,
+        setparams: O,
+        getparams: S,
+        transformparams: A
+    });
+}
+
+function E(r) {
+    if (!r) throw new TypeError("object,function");
+    if ("function" == typeof r) {
+        var t = S();
+        return w(t = r(t)).href;
+    }
+    if ("object" === a(r)) return w(r).href;
+    throw new TypeError("object,function");
+}
+
+function S() {
     var r = location.pathname.split("/"), t = r[r.length - 1];
     return t && Object.fromEntries(new URLSearchParams(t)) || {};
 }
 
-function S(r) {
-    var t = location.pathname, e = d(r);
+function O(r) {
+    var t = location.pathname, e = w(r);
     t !== e.pathname && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
-function O(r) {
-    S(r(E()));
+function A(r) {
+    O(r(S()));
 }
 
-function A() {
+function R() {
     return location.search && Object.fromEntries(new URL(location.href).searchParams) || {};
 }
 
-function R(r) {
-    var t = new URL(location.href);
-    return t.search = m(o({}, r)), t;
-}
-
 function T(r) {
-    if (!r) throw new TypeError("object,function");
-    if ("function" == typeof r) {
-        var t = A();
-        return R(t = r(t)).href;
-    }
-    if ("object" === a(r)) return R(r).href;
-    throw new TypeError("object,function");
+    var t = new URL(location.href);
+    return t.search = p(o({}, r)), t;
 }
 
 function P(r) {
-    var t = location.search, e = R(r);
+    if (!r) throw new TypeError("object,function");
+    if ("function" == typeof r) {
+        var t = R();
+        return T(t = r(t)).href;
+    }
+    if ("object" === a(r)) return T(r).href;
+    throw new TypeError("object,function");
+}
+
+function U(r) {
+    var t = location.search, e = T(r);
     t !== e.search && (history.pushState({}, "", e.href), window.dispatchEvent(new Event("popstate")));
 }
 
 function C(r) {
-    P(r(A()));
+    U(r(R()));
 }
 
-function U() {
-    return p({
+function k() {
+    return m({
         toStringTag: "SearchRouter",
         eventname: "popstate",
-        gethref: T,
-        setparams: P,
-        getparams: A,
+        gethref: P,
+        setparams: U,
+        getparams: R,
         transformparams: C
     });
 }
 
-function k(r) {
+function L(r) {
     var t = r.onClick, e = r.target, n = r.router, o = r.to;
     return function(r) {
         if (r) {
@@ -256,7 +267,7 @@ function k(r) {
     };
 }
 
-function L(r) {
+function x(r) {
     var e = r.router, n = r.useState, o = r.useEffect;
     return function() {
         var r = f(n(e.getparams()), 2), a = r[0], i = r[1];
@@ -271,18 +282,18 @@ function L(r) {
     };
 }
 
-var x = [ "component", "target", "to", "onClick", "innerRef", "children" ], D = [ "innerRef", "target", "children", "href", "isActive", "navigate" ];
+var D = [ "component", "target", "to", "onClick", "innerRef", "children" ], I = [ "innerRef", "target", "children", "href", "isActive", "navigate" ];
 
-function I(r) {
-    var t = r.router, n = r.useState, i = r.useEffect, f = r.createElement, c = L({
+function M(r) {
+    var t = r.router, n = r.useState, i = r.useEffect, f = r.createElement, c = x({
         router: t,
         useState: n,
         useEffect: i
     });
     return function(r) {
-        var n = r.component, i = void 0 === n ? s : n, p = r.target, l = r.to, m = r.onClick, h = r.innerRef, v = r.children, y = u(r, x), g = c();
+        var n = r.component, i = void 0 === n ? s : n, p = r.target, l = r.to, m = r.onClick, h = r.innerRef, v = r.children, y = u(r, D), g = c();
         if (!l || "object" !== a(l)) throw new TypeError("object");
-        var b = t.gethref(l), d = e(g, l), w = k({
+        var b = t.gethref(l), d = e(g, l), w = L({
             onClick: m,
             target: p,
             router: t,
@@ -297,7 +308,7 @@ function I(r) {
         }, y), v);
     };
     function s(r) {
-        var t = r.innerRef, e = r.target, n = r.children, a = r.href, i = r.isActive, c = r.navigate, s = u(r, D);
+        var t = r.innerRef, e = r.target, n = r.children, a = r.href, i = r.isActive, c = r.navigate, s = u(r, I);
         return f("a", o({
             ref: t,
             target: e,
@@ -308,7 +319,7 @@ function I(r) {
     }
 }
 
-function M(r, t) {
+function K(r, t) {
     var e, n = function(r, t) {
         var e = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
         if (!e) {
@@ -366,11 +377,11 @@ function M(r, t) {
     }
 }
 
-function K(r) {
+function q(r) {
     return !(!r || "object" !== a(r) || "function" != typeof r.params);
 }
 
-function q(r, t) {
+function z(r, t) {
     if (!t) throw new TypeError("object,function");
     if ("function" != typeof t) {
         if ("object" !== a(t)) throw new TypeError("object,function");
@@ -387,7 +398,7 @@ function $(r) {
 }
 
 function _(r) {
-    var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = L({
+    var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = x({
         router: t,
         useState: n,
         useEffect: a
@@ -402,12 +413,12 @@ function _(r) {
         var n = r.routes, a = r.render, f = void 0 === a ? u : a;
         if (!Array.isArray(n)) throw new TypeError("array");
         if (!n.every((function(r) {
-            return K(r);
+            return q(r);
         }))) throw new TypeError('{params:"function"}');
-        var c = i(), s = M(n, c);
+        var c = i(), s = K(n, c);
         if (H(s)) {
             var p = s.redirect;
-            return q(t, p), null;
+            return z(t, p), null;
         }
         if ($(s)) {
             var l = {
@@ -421,7 +432,7 @@ function _(r) {
     };
 }
 
-function z(r) {
+function B(r) {
     var e = r.router, n = r.ref, o = r.onMounted, a = r.onUnmounted, i = r.readonly;
     return function() {
         var r = n(e.getparams()), u = t((function(t) {
@@ -435,8 +446,8 @@ function z(r) {
     };
 }
 
-function B(r) {
-    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = z({
+function F(r) {
+    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = B({
         router: t,
         ref: u,
         onMounted: f,
@@ -462,7 +473,7 @@ function B(r) {
             return function() {
                 var o = r.component, c = void 0 === o ? l : o, s = r.to, p = r.onClick, m = r.target, h = r.innerRef;
                 if (!s || "object" !== a(s)) throw new TypeError("object");
-                var v = t.gethref(s), y = k({
+                var v = t.gethref(s), y = L({
                     onClick: p,
                     target: m,
                     router: t,
@@ -482,8 +493,8 @@ function B(r) {
     });
 }
 
-function F(r) {
-    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = z({
+function G(r) {
+    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = B({
         router: a,
         ref: c,
         onMounted: e,
@@ -505,12 +516,12 @@ function F(r) {
                 var e = r.routes, n = r.render, u = void 0 === n ? p : n;
                 if (!Array.isArray(e)) throw new TypeError("array");
                 if (!e.every((function(r) {
-                    return K(r);
+                    return q(r);
                 }))) throw new TypeError('{params:"function"}');
-                var c = M(e, t.value);
+                var c = K(e, t.value);
                 if (H(c)) {
                     var s = c.redirect;
-                    return q(a, s), null;
+                    return z(a, s), null;
                 }
                 if ($(c)) {
                     var l = c.component, m = {
@@ -526,5 +537,5 @@ function F(r) {
     });
 }
 
-export { p as createBaseRouter, b as createHashRouter, w as createPathRouter, I as createReactLink, L as createReactParamsHook, _ as createReactView, U as createSearchRouter, B as createVueLink, z as createVueParamsHook, F as createVueView };
+export { m as createBaseRouter, d as createHashRouter, j as createPathRouter, M as createReactLink, x as createReactParamsHook, _ as createReactView, k as createSearchRouter, F as createVueLink, B as createVueParamsHook, G as createVueView, l as deserilizeparams, p as serilizeparams };
 //# sourceMappingURL=index.js.map
