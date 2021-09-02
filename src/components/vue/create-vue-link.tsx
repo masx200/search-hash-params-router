@@ -6,7 +6,7 @@ import type {
     resolveComponent as resolveComponentType,
     SetupContext,
 } from "@vue/runtime-dom";
-import isEqual from "lodash/isEqual";
+import isEqual from "lodash/isEqual.js";
 import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
 import { createVueParamsHook } from "./createVueParamsHook";

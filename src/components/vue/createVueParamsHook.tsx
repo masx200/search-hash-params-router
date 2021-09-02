@@ -1,5 +1,5 @@
 import { ref as refType } from "@vue/runtime-dom";
-import debounce from "lodash/debounce";
+import debounce from "lodash/debounce.js";
 import { Router } from "../../createrouter/Router";
 
 export function createVueParamsHook({

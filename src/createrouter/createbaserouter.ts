@@ -4,7 +4,7 @@ import EventEmitterTargetClass, {
     EventEmitterTarget,
 } from "@masx200/event-emitter-target";
 //@ts-ignore
-import debounce from "lodash/debounce";
+import debounce from "lodash/debounce.js";
 import { Router } from "./Router";
 import { RawRouter } from "./Router";
 export type Routeroptions = {

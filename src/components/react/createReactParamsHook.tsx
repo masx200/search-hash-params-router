@@ -1,4 +1,4 @@
-import debounce from "lodash/debounce";
+import debounce from "lodash/debounce.js";
 import { Router } from "../../createrouter/Router";
 import { useState as useStateType, useEffect as useEffectType } from "react";
 

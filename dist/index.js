@@ -1,8 +1,8 @@
 import r from "@masx200/event-emitter-target";
 
-import t from "lodash/debounce";
+import t from "lodash/debounce.js";
 
-import e from "lodash/isEqual";
+import e from "lodash/isEqual.js";
 
 function n(r, t) {
     var e = Object.keys(r);
