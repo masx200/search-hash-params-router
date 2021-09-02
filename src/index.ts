@@ -1,11 +1,11 @@
 import { Routeroptions } from "./createrouter/createbaserouter";
-import { serilizeparams } from "./createrouter/sortobjectkey";
-import { deserilizeparams } from "./createrouter/deserilizeparams";
+import { serializeParams } from "./createrouter/sortobjectkey";
+import { deserializeParams } from "./createrouter/deserializeParams";
 
 //@ts-ignore
 export * from "./createrouter/index";
 //@ts-ignore
 export * from "./components/index";
 export * from "./types";
-export { serilizeparams, deserilizeparams };
+export { serializeParams, deserializeParams };
 export { Routeroptions };

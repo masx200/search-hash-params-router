@@ -184,8 +184,8 @@ function j(r) {
 }
 
 function E() {
-    var r = location.pathname.split("/"), t = r[r.length - 1];
-    return t && m(t) || {};
+    var r = location.pathname, t = r.split("/"), e = r.endsWith("/") ? t[t.length - 2] : t[t.length - 1];
+    return e && m(e) || {};
 }
 
 function S() {
@@ -387,7 +387,7 @@ function H(r) {
     return !(!r || "object" !== a(r) || "function" != typeof r.params);
 }
 
-function $(r, t) {
+function W(r, t) {
     if (!t) throw new TypeError("object,function");
     if ("function" != typeof t) {
         if ("object" !== a(t)) throw new TypeError("object,function");
@@ -395,15 +395,15 @@ function $(r, t) {
     } else r.transformparams(t);
 }
 
-function _(r) {
+function $(r) {
     return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.redirect);
 }
 
-function z(r) {
+function _(r) {
     return !("function" != typeof (null == r ? void 0 : r.params) || null == r || !r.component);
 }
 
-function B(r) {
+function z(r) {
     var t = r.router, e = r.createElement, n = r.useState, a = r.useEffect, i = D({
         router: t,
         useState: n,
@@ -422,11 +422,11 @@ function B(r) {
             return H(r);
         }))) throw new TypeError('{params:"function"}');
         var c = i(), s = q(n, c);
-        if (_(s)) {
+        if ($(s)) {
             var p = s.redirect;
-            return $(t, p), null;
+            return W(t, p), null;
         }
-        if (z(s)) {
+        if (_(s)) {
             var l = {
                 component: s.component
             }, m = Object.assign({}, l, {
@@ -438,7 +438,7 @@ function B(r) {
     };
 }
 
-function F(r) {
+function B(r) {
     var e = r.router, n = r.ref, o = r.onMounted, a = r.onUnmounted, i = r.readonly;
     return function() {
         var r = n(e.getparams()), u = t((function(t) {
@@ -452,8 +452,8 @@ function F(r) {
     };
 }
 
-function G(r) {
-    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = F({
+function F(r) {
+    var t = r.router, n = r.resolveComponent, o = r.defineComponent, i = r.h, u = r.ref, f = r.onMounted, c = r.onUnmounted, s = r.readonly, p = B({
         router: t,
         ref: u,
         onMounted: f,
@@ -499,8 +499,8 @@ function G(r) {
     });
 }
 
-function J(r) {
-    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = F({
+function G(r) {
+    var t = r.readonly, e = r.onMounted, n = r.onUnmounted, a = r.router, i = r.resolveComponent, u = r.defineComponent, f = r.h, c = r.ref, s = B({
         router: a,
         ref: c,
         onMounted: e,
@@ -525,11 +525,11 @@ function J(r) {
                     return H(r);
                 }))) throw new TypeError('{params:"function"}');
                 var c = q(e, t.value);
-                if (_(c)) {
+                if ($(c)) {
                     var s = c.redirect;
-                    return $(a, s), null;
+                    return W(a, s), null;
                 }
-                if (z(c)) {
+                if (_(c)) {
                     var l = c.component, m = {
                         component: "string" == typeof l ? i(l) : l
                     }, h = Object.assign({}, m, {
@@ -543,5 +543,5 @@ function J(r) {
     });
 }
 
-export { h as createBaseRouter, w as createHashRouter, S as createPathRouter, K as createReactLink, D as createReactParamsHook, B as createReactView, L as createSearchRouter, G as createVueLink, F as createVueParamsHook, J as createVueView, m as deserilizeparams, l as serilizeparams };
+export { h as createBaseRouter, w as createHashRouter, S as createPathRouter, K as createReactLink, D as createReactParamsHook, z as createReactView, L as createSearchRouter, F as createVueLink, B as createVueParamsHook, G as createVueView, m as deserializeParams, l as serializeParams };
 //# sourceMappingURL=index.js.map

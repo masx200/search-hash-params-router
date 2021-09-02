@@ -10,5 +10,5 @@ export function serilizesortobjectkey(o: Record<string, string>): string {
         )
     );
 }
-const serilizeparams = serilizesortobjectkey;
-export { serilizeparams };
+const serializeParams = serilizesortobjectkey;
+export { serializeParams };

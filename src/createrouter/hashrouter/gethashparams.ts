@@ -1,5 +1,5 @@
-import { deserilizeparams } from "../deserilizeparams";
+import { deserializeParams } from "../deserializeParams";
 
 export function gethashparams() {
-    return (location.hash && deserilizeparams(location.hash.slice(1))) || {};
+    return (location.hash && deserializeParams(location.hash.slice(1))) || {};
 }

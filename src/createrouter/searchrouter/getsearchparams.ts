@@ -1,7 +1,7 @@
-import { deserilizeparams } from "../deserilizeparams";
+import { deserializeParams } from "../deserializeParams";
 
 export function getsearchparams() {
     return (
-        (location.search && deserilizeparams(location.search.slice(1))) || {}
+        (location.search && deserializeParams(location.search.slice(1))) || {}
     );
 }

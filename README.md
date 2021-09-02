@@ -89,21 +89,21 @@ import {
     createHashRouter,
     createSearchRouter,
     createPathRouter,
-    serilizeparams,
-    deserilizeparams,
+    serializeParams,
+    deserializeParams,
 } from "@masx200/search-hash-params-router";
 ```
 
 #### 序列化参数对象
 
 ```js
-let string = serilizeparams({ foo: "bar", baz: "12321" });
+let string = serializeParams({ foo: "bar", baz: "12321" });
 ```
 
 #### 反序列化参数字符串
 
 ```js
-let object = deserilizeparams("YmF6PTEyMzIxJmZvbz1iYXI=");
+let object = deserializeParams("YmF6PTEyMzIxJmZvbz1iYXI=");
 ```
 
 #### 创建路由器：

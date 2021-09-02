@@ -32,8 +32,8 @@ type Routeroptions = {
 };
 declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, getparams, transformparams }: Routeroptions): Router;
 declare function serilizesortobjectkey(o: Record<string, string>): string;
-declare const serilizeparams: typeof serilizesortobjectkey;
-declare function deserilizeparams(a: string): {
+declare const serializeParams: typeof serilizesortobjectkey;
+declare function deserializeParams(a: string): {
     [k: string]: string;
 };
 declare function createHashRouter(): Router;
@@ -151,4 +151,4 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     h: typeof hType;
     ref: typeof refType;
 }): Component<DefaultVueViewProps>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createBaseRouter, createPathRouter, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps, serilizeparams, deserilizeparams, Routeroptions };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createBaseRouter, createPathRouter, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps, serializeParams, deserializeParams, Routeroptions };
