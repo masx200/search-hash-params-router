@@ -7,7 +7,7 @@ export function setparams(opt: Record<string, string>) {
     if (oldpathname === url.pathname) {
         return;
     }
-    history.pushState({ }, "", url.href);
+    history.pushState({}, "", url.href);
 
     window.dispatchEvent(new Event("popstate"));
 }
