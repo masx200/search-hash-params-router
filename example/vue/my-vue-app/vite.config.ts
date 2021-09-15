@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { minifyHtml } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
         },
     },
     plugins: [
+        minifyHtml({ removeAttributeQuotes: false }),
         vue(),
         VitePWA({
             registerType: "autoUpdate",
