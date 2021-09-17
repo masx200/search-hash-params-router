@@ -39,16 +39,7 @@ export default defineConfig([
 
             babel({
                 sourceMaps: true,
-                plugins: [
-                    [
-                        "@babel/plugin-transform-react-jsx",
-                        {
-                            pragma: "createElement",
-                            pragmaFrag: "Fragment",
-                            useBuiltIns: true,
-                        },
-                    ],
-                ],
+                plugins: [],
                 extensions: [".js", ".tsx", ".ts"],
                 babelHelpers: "bundled",
                 presets: [["@babel/preset-env", {}]],

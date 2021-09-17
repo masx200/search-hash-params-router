@@ -690,6 +690,27 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.14.5"
 
+"@babel/plugin-transform-react-constant-elements@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.nlark.com/@babel/plugin-transform-react-constant-elements/download/@babel/plugin-transform-react-constant-elements-7.14.5.tgz#41790d856f7c5cec82d2bcf5d0e5064d682522ed"
+  integrity sha1-QXkNhW98XOyC0rz10OUGTWglIu0=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-react-display-name@^7.14.5":
+  version "7.15.1"
+  resolved "https://registry.nlark.com/@babel/plugin-transform-react-display-name/download/@babel/plugin-transform-react-display-name-7.15.1.tgz#6aaac6099f1fcf6589d35ae6be1b6e10c8c602b9"
+  integrity sha1-aqrGCZ8fz2WJ01rmvhtuEMjGArk=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-react-jsx-development@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.nlark.com/@babel/plugin-transform-react-jsx-development/download/@babel/plugin-transform-react-jsx-development-7.14.5.tgz#1a6c73e2f7ed2c42eebc3d2ad60b0c7494fcb9af"
+  integrity sha1-Gmxz4vftLELuvD0q1gsMdJT8ua8=
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.14.5"
+
 "@babel/plugin-transform-react-jsx-self@^7.14.5":
   version "7.14.9"
   resolved "https://registry.nlark.com/@babel/plugin-transform-react-jsx-self/download/@babel/plugin-transform-react-jsx-self-7.14.9.tgz#33041e665453391eb6ee54a2ecf3ba1d46bd30f4"
@@ -714,6 +735,14 @@
     "@babel/helper-plugin-utils" "^7.14.5"
     "@babel/plugin-syntax-jsx" "^7.14.5"
     "@babel/types" "^7.14.9"
+
+"@babel/plugin-transform-react-pure-annotations@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.nlark.com/@babel/plugin-transform-react-pure-annotations/download/@babel/plugin-transform-react-pure-annotations-7.14.5.tgz#18de612b84021e3a9802cbc212c9d9f46d0d11fc"
+  integrity sha1-GN5hK4QCHjqYAsvCEsnZ9G0NEfw=
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.14.5"
+    "@babel/helper-plugin-utils" "^7.14.5"
 
 "@babel/plugin-transform-regenerator@^7.14.5":
   version "7.14.5"
@@ -881,6 +910,18 @@
     "@babel/plugin-transform-dotall-regex" "^7.4.4"
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
+
+"@babel/preset-react@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.nlark.com/@babel/preset-react/download/@babel/preset-react-7.14.5.tgz#0fbb769513f899c2c56f3a882fa79673c2d4ab3c"
+  integrity sha1-D7t2lRP4mcLFbzqIL6eWc8LUqzw=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.14.5"
+    "@babel/helper-validator-option" "^7.14.5"
+    "@babel/plugin-transform-react-display-name" "^7.14.5"
+    "@babel/plugin-transform-react-jsx" "^7.14.5"
+    "@babel/plugin-transform-react-jsx-development" "^7.14.5"
+    "@babel/plugin-transform-react-pure-annotations" "^7.14.5"
 
 "@babel/runtime@^7.11.2", "@babel/runtime@^7.14.0", "@babel/runtime@^7.8.4":
   version "7.15.3"
@@ -1092,6 +1133,11 @@
   version "15.14.9"
   resolved "https://registry.nlark.com/@types/node/download/@types/node-15.14.9.tgz?cache=0&sync_timestamp=1629504340402&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-15.14.9.tgz#bc43c990c3c9be7281868bbc7b8fdd6e2b57adfa"
   integrity sha1-vEPJkMPJvnKBhou8e4/dbitXrfo=
+
+"@types/node@^16.9.2":
+  version "16.9.2"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-16.9.2.tgz?cache=0&sync_timestamp=1631828244883&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-16.9.2.tgz#81f5a039d6ed1941f8cc57506c74e7c2b8fc64b9"
+  integrity sha1-gfWgOdbtGUH4zFdQbHTnwrj8ZLk=
 
 "@types/object-path@^0.11.0":
   version "0.11.1"
