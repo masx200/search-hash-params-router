@@ -1,5 +1,6 @@
 //@ts-ignore
 import { gethashparams } from "./gethashparams.ts";
+import { createurl } from "./createurl";
 
 export function gethashhref(
     to:
@@ -9,19 +10,18 @@ export function gethashhref(
     if (!to) {
         throw new TypeError("object,function");
     }
-    let params: {
-        [k: string]: string;
-    } = gethashparams();
-    let url = new URL(location.href);
 
     if ("function" === typeof to) {
+        let params: {
+            [k: string]: string;
+        } = gethashparams();
+
         params = to(params);
-        url.hash = String(new URLSearchParams({ ...params }));
+        let url = createurl(params);
         return url.href;
     }
     if ("object" === typeof to) {
-        params = to;
-        url.hash = String(new URLSearchParams({ ...params }));
+        let url = createurl(to);
         return url.href;
     }
     throw new TypeError("object,function");

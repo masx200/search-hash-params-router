@@ -1,12 +1,14 @@
 # search-hash-params-router
 
-使用 `location.search` 和 `location.hash` 中查询参数的前端路由器,
+使用 `location.search` 和 `location.hash` 和`location.pathname`中查询参数的前端路由器,
 
 支持在 `react`17 和 `vue`3 中使用.
 
 不需要"Path-to-RegExp"了
 
 为路由器添加查询参数模式。基于历史记录模式。使用查询参数匹配而不是动态路由匹配。
+
+使用 `URLSearchParams`和`btoa`和`atob`进行序列化和反序列化
 
 ### 此功能解决了什么问题？
 
@@ -26,11 +28,41 @@
 
 例如:
 
-```txt
-https://nodejs.org/en/?foo=bar&baz=123
+### search-router:
 
-https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en
+```json
+{ "foo": "bar", "baz": "12321" }
 ```
+
+```txt
+https://nodejs.org/en/?YmF6PTEyMzIxJmZvbz1iYXI=
+```
+
+### hash-router
+
+```json
+{ "view": "home", "op": "translate" }
+```
+
+```
+https://translate.google.cn/#b3A9dHJhbnNsYXRlJnZpZXc9aG9tZQ==
+```
+
+### path-router:
+
+```json
+{ "foo": "bar", "baz": "12345" }
+```
+
+```txt
+https://nodejs.org/en/YmF6PTEyMzQ1JmZvbz1iYXI=
+```
+
+# 在线演示
+
+https://search-hash-params-router-vue.vercel.app/
+
+https://search-hash-params-router-react.vercel.app/
 
 ## 安装
 
@@ -44,18 +76,48 @@ Typescript 类型声明文件:
 
 https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 
-查询参数可以从`location.search` 或`location.hash` 中获取。
+查询参数可以从`location.search` 或`location.hash` 和`location.pathname`中获取。
 
 可以通过以下方式修改查询参数。
 
 ## 通用例子:
 
+### 导入模块
+
+```js
+import {
+    createHashRouter,
+    createSearchRouter,
+    createPathRouter,
+    serializeParams,
+    deserializeParams,
+} from "@masx200/search-hash-params-router";
+```
+
+#### 序列化参数对象
+
+```js
+let string = serializeParams({ foo: "bar", baz: "12321" });
+```
+
+#### 反序列化参数字符串
+
+```js
+let object = deserializeParams("YmF6PTEyMzIxJmZvbz1iYXI=");
+```
+
 #### 创建路由器：
 
 ```js
 const hashrouter = createHashRouter();
+```
 
+```js
 const searchrouter = createSearchRouter();
+```
+
+```js
+const pathrouter = createPathRouter();
 ```
 
 #### 编程式导航:
@@ -101,9 +163,14 @@ searchrouter.on("params", (p) => {
 #### 根据参数获取新链接路径
 
 ```js
-let newhref = searchrouter.paramshref((o) => {
+let newhref = searchrouter.gethref((o) => {
     return { ...o, qqqqq: Math.random().toString() };
 });
+```
+
+```js
+let newhref = searchrouter.gethref(( {qqqqq: Math.random().toString() })
+
 ```
 
 #### 创建路由条目：
@@ -495,7 +562,7 @@ https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
 -   `innerRef`:用于获取内部的`<a></a>`标签的元素的`Ref`.
 
 -   `isActive`：链接是否激活状态
-  
+
 -   其他参数:您也可以传递您希望在`<a></a>`标签上使用的参数.
 
 #### `innerRef`

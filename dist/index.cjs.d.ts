@@ -12,12 +12,18 @@ type Router = EventEmitterTarget & RawRouter;
 type RawRouter = {
     mount: () => void;
     unmount: () => void;
-    paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
+    gethref: (
+        to:
+            | Record<string, string>
+            | ((old: Record<string, string>) => Record<string, string>)
+    ) => string;
     setparams: (opt: Record<string, string>) => void;
     getparams: () => {
         [k: string]: string;
     };
-    transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
+    transformparams: (
+        opt: (old: Record<string, string>) => Record<string, string>
+    ) => void;
     [Symbol.toStringTag]: string;
 };
 declare function createHashRouter(): Router;
@@ -30,14 +36,18 @@ interface RecordRoute extends RecordBase {
     component: ComponentReactOrVue | string;
 }
 interface RecordRedirect extends RecordBase {
-    redirect: Record<string, string> | ((opt: Record<string, string>) => Record<string, string>);
+    redirect:
+        | Record<string, string>
+        | ((opt: Record<string, string>) => Record<string, string>);
 }
 type RouteRecord = RecordRoute | RecordRedirect;
 type ComponentReactOrVue = ComponentType<any> | Component<any>;
 type CustomReactLinkProps = Record<string, any> & {
-    innerRef?: {
-        current: any;
-    } | ((current: any) => void);
+    innerRef?:
+        | {
+              current: any;
+          }
+        | ((current: any) => void);
     target?: string;
     href: string;
     isActive: boolean;
@@ -48,17 +58,28 @@ type DefaultReactLinkProps = Record<string, any> & {
     target?: string;
     onClick?: (event: MouseEvent) => void;
     to: Record<string, string>;
-    innerRef?: {
-        current: any;
-    } | ((current: any) => void);
+    innerRef?:
+        | {
+              current: any;
+          }
+        | ((current: any) => void);
 };
-declare function createReactLink({ router, useState, useEffect, createElement }: {
+declare function createReactLink({
+    router,
+    useState,
+    useEffect,
+    createElement,
+}: {
     router: Router;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
     createElement: typeof createElementType;
 }): FC<DefaultReactLinkProps>;
-declare function createReactParamsHook({ router, useState, useEffect }: {
+declare function createReactParamsHook({
+    router,
+    useState,
+    useEffect,
+}: {
     router: Router;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
@@ -71,16 +92,23 @@ type DefaultReactViewProps = {
     routes: RouteRecord[];
     render?: ComponentType<CustomReactViewProps>;
 };
-declare function createReactView({ router, createElement, useState, useEffect }: {
+declare function createReactView({
+    router,
+    createElement,
+    useState,
+    useEffect,
+}: {
     router: Router;
     createElement: typeof createElementType;
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
 }): FC<DefaultReactViewProps>;
 type CustomVueLinkProps = Record<string, any> & {
-    innerRef?: {
-        value: any;
-    } | ((value: any) => void);
+    innerRef?:
+        | {
+              value: any;
+          }
+        | ((value: any) => void);
     target?: string;
     href: string;
     isActive: boolean;
@@ -91,11 +119,22 @@ type DefaultVueLinkProps = Record<string, any> & {
     to: Record<string, string>;
     onClick?: (event: MouseEvent) => void;
     target?: string;
-    innerRef?: ((r: any) => void) | {
-        value: any;
-    };
+    innerRef?:
+        | ((r: any) => void)
+        | {
+              value: any;
+          };
 };
-declare function createVueLink({ router, resolveComponent, defineComponent, h: createElement, ref, onMounted, onUnmounted, readonly }: {
+declare function createVueLink({
+    router,
+    resolveComponent,
+    defineComponent,
+    h: createElement,
+    ref,
+    onMounted,
+    onUnmounted,
+    readonly,
+}: {
     ref: typeof refType;
     readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
@@ -105,7 +144,13 @@ declare function createVueLink({ router, resolveComponent, defineComponent, h: c
     defineComponent: typeof defineComponentType;
     h: typeof hType;
 }): Component<DefaultVueLinkProps>;
-declare function createVueParamsHook({ router, ref, onMounted, onUnmounted, readonly }: {
+declare function createVueParamsHook({
+    router,
+    ref,
+    onMounted,
+    onUnmounted,
+    readonly,
+}: {
     readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     router: Router;
@@ -124,7 +169,16 @@ type DefaultVueViewProps = {
     routes: RouteRecord[];
     render?: string | Component<CustomVueViewProps>;
 };
-declare function createVueView({ readonly, onMounted, onUnmounted, router, resolveComponent, defineComponent, h: createElement, ref }: {
+declare function createVueView({
+    readonly,
+    onMounted,
+    onUnmounted,
+    router,
+    resolveComponent,
+    defineComponent,
+    h: createElement,
+    ref,
+}: {
     readonly: typeof import("@vue/runtime-dom").readonly;
     onMounted: typeof import("@vue/runtime-dom").onMounted;
     onUnmounted: typeof import("@vue/runtime-dom").onUnmounted;
@@ -134,4 +188,28 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     h: typeof hType;
     ref: typeof refType;
 }): Component<DefaultVueViewProps>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps };
+export {
+    createHashRouter,
+    createSearchRouter,
+    Router,
+    RawRouter,
+    RecordBase,
+    RecordRoute,
+    RecordRedirect,
+    RouteRecord,
+    ComponentReactOrVue,
+    CustomReactLinkProps,
+    DefaultReactLinkProps,
+    createReactLink,
+    createReactView,
+    createReactParamsHook,
+    CustomReactViewProps,
+    DefaultReactViewProps,
+    createVueLink,
+    CustomVueLinkProps,
+    DefaultVueLinkProps,
+    createVueView,
+    createVueParamsHook,
+    CustomVueViewProps,
+    DefaultVueViewProps,
+};

@@ -6,7 +6,7 @@ import type {
     resolveComponent as resolveComponentType,
     SetupContext,
 } from "@vue/runtime-dom";
-import isEqual from "lodash/isEqual";
+import isEqual from "lodash/isEqual.js";
 import { Router } from "../../createrouter/Router";
 import { createclickhandler } from "../createclickhandler";
 import { createVueParamsHook } from "./createVueParamsHook";
@@ -86,7 +86,8 @@ function createVueLink({
         "navigate",
     ];
 
-    return defineComponent({
+    //@ts-ignore
+    const Link: Component<DefaultVueLinkProps> = defineComponent({
         inheritAttrs: true,
         props: ["component", "to", "target", "onClick", "innerRef"],
         setup(props: DefaultVueLinkProps, { slots: children }) {
@@ -103,7 +104,7 @@ function createVueLink({
                 if (!to || !("object" === typeof to)) {
                     throw new TypeError("object");
                 }
-                const href: string = router.paramshref(to);
+                const href: string = router.gethref(to);
                 const navigate = createclickhandler({
                     //@ts-ignore
                     onClick,
@@ -136,5 +137,6 @@ function createVueLink({
                 );
             };
         },
-    });
+    }) as Component<DefaultVueLinkProps>;
+    return Link;
 }

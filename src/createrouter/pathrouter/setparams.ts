@@ -1,10 +1,10 @@
 import { createurl } from "./createurl";
 
-export function setsearchparams(opt: Record<string, string>) {
-    const oldsearch = location.search;
+export function setparams(opt: Record<string, string>) {
+    const oldpathname = location.pathname;
 
     let url = createurl(opt);
-    if (oldsearch === url.search) {
+    if (oldpathname === url.pathname) {
         return;
     }
     history.pushState({}, "", url.href);

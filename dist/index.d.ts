@@ -8,11 +8,11 @@ import { defineComponent as defineComponentType } from "@vue/runtime-dom";
 import { h as hType } from "@vue/runtime-dom";
 import { ref as refType } from "@vue/runtime-dom";
 import { resolveComponent as resolveComponentType } from "@vue/runtime-dom";
-type Router = EventEmitterTarget & RawRouter;
+type Router = EventEmitterTarget & RawRouter & Routeroptions;
 type RawRouter = {
     mount: () => void;
     unmount: () => void;
-    paramshref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
+    gethref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
     setparams: (opt: Record<string, string>) => void;
     getparams: () => {
         [k: string]: string;
@@ -20,7 +20,24 @@ type RawRouter = {
     transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
     [Symbol.toStringTag]: string;
 };
+type Routeroptions = {
+    toStringTag: string;
+    eventname: string;
+    gethref: (to: Record<string, string> | ((old: Record<string, string>) => Record<string, string>)) => string;
+    setparams: (opt: Record<string, string>) => void;
+    getparams: () => {
+        [k: string]: string;
+    };
+    transformparams: (opt: (old: Record<string, string>) => Record<string, string>) => void;
+};
+declare function createBaseRouter({ toStringTag, eventname, gethref, setparams, getparams, transformparams }: Routeroptions): Router;
+declare function serilizesortobjectkey(o: Record<string, string>): string;
+declare const serializeParams: typeof serilizesortobjectkey;
+declare function deserializeParams(a: string): {
+    [k: string]: string;
+};
 declare function createHashRouter(): Router;
+declare function createPathRouter(): Router;
 declare function createSearchRouter(): Router;
 interface RecordBase {
     name?: string | symbol | undefined;
@@ -134,4 +151,4 @@ declare function createVueView({ readonly, onMounted, onUnmounted, router, resol
     h: typeof hType;
     ref: typeof refType;
 }): Component<DefaultVueViewProps>;
-export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps };
+export { createHashRouter, createSearchRouter, Router, RawRouter, RecordBase, RecordRoute, RecordRedirect, RouteRecord, ComponentReactOrVue, createBaseRouter, createPathRouter, CustomReactLinkProps, DefaultReactLinkProps, createReactLink, createReactView, createReactParamsHook, CustomReactViewProps, DefaultReactViewProps, createVueLink, CustomVueLinkProps, DefaultVueLinkProps, createVueView, createVueParamsHook, CustomVueViewProps, DefaultVueViewProps, serializeParams, deserializeParams, Routeroptions };

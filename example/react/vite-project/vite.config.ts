@@ -3,7 +3,9 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    esbuild: { drop: ["console", "debugger"] },
     build: {
+        minify: "esbuild",
         cssCodeSplit: false,
         polyfillDynamicImport: true,
         target: "es2015",

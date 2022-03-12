@@ -4,33 +4,42 @@ import EventEmitterTargetClass, {
     EventEmitterTarget,
 } from "@masx200/event-emitter-target";
 //@ts-ignore
-import debounce from "lodash/debounce";
-//@ts-ignore
-import { gethashhref } from "./hashrouter/gethashhref";
-//@ts-ignore
-import { gethashparams } from "./hashrouter/gethashparams";
-//@ts-ignore
-import { sethashparams } from "./hashrouter/sethashparams";
-//@ts-ignore
-import { transformhashparams } from "./hashrouter/transformhashparams";
+import debounce from "lodash/debounce.js";
+import { Router } from "./Router";
 import { RawRouter } from "./Router";
-//@ts-ignore
-import { getsearchhref } from "./searchrouter/getsearchhref";
-//@ts-ignore
-import { getsearchparams } from "./searchrouter/getsearchparams"; //
-//@ts-ignore
-import { setsearchparams } from "./searchrouter/setsearchparams"; //@ts-ignore
-import { transformsearchparams } from "./searchrouter/transformsearchparams";
-export function createBaseRouter(
-    type: "search" | "hash"
-): EventEmitterTarget & RawRouter {
+export type Routeroptions = {
+    toStringTag: string;
+    eventname: string;
+    gethref: (
+        to:
+            | Record<string, string>
+            | ((old: Record<string, string>) => Record<string, string>)
+    ) => string;
+    setparams: (opt: Record<string, string>) => void;
+    getparams: () => {
+        [k: string]: string;
+    };
+    transformparams: (
+        opt: (old: Record<string, string>) => Record<string, string>
+    ) => void;
+};
+
+export function createBaseRouter({
+    toStringTag,
+    eventname,
+    gethref,
+    setparams,
+    getparams,
+    transformparams,
+}: Routeroptions): Router {
     let mountcount = 0;
-    const eventname = "search" === type ? "popstate" : "hashchange";
+    // const eventname = "search" === type ? "popstate" : "hashchange";
 
     const emitter: EventEmitterTarget = EventEmitterTargetClass();
 
     const changelistener = debounce(() => {
-        const params = "hash" === type ? gethashparams() : getsearchparams();
+        const params = getparams();
+        // const params = "hash" === type ? gethashparams() : getsearchparams();
         instance.emit("params", params);
     });
     function mount() {
@@ -51,17 +60,30 @@ export function createBaseRouter(
     const router: RawRouter = {
         mount,
         unmount,
-        paramshref: "hash" === type ? gethashhref : getsearchhref,
+        gethref: gethref,
+        // gethref: "hash" === type ? gethashhref : getsearchhref,
 
-        setparams: "hash" === type ? sethashparams : setsearchparams,
-        getparams: "hash" === type ? gethashparams : getsearchparams,
-        transformparams:
-            "hash" === type ? transformhashparams : transformsearchparams,
-        [Symbol.toStringTag]: "search" === type ? "SearchRouter" : "HashRouter",
+        setparams: setparams,
+        // setparams: "hash" === type ? sethashparams : setsearchparams,
+        getparams: getparams,
+        transformparams,
+        // getparams: "hash" === type ? gethashparams : getsearchparams,
+        // transformparams:
+        //     "hash" === type ? transformhashparams : transformsearchparams,
+        [Symbol.toStringTag]: toStringTag,
+        // [Symbol.toStringTag]: "search" === type ? "SearchRouter" : "HashRouter",
     };
 
-    const instance = { ...emitter, ...router } as EventEmitterTarget &
-        typeof router;
+    const instance: Router = {
+        ...emitter,
+        ...router,
+        toStringTag,
+        eventname,
+        gethref,
+        setparams,
+        getparams,
+        transformparams,
+    } as Router;
 
-    return instance as EventEmitterTarget & typeof router;
+    return instance as Router;
 }

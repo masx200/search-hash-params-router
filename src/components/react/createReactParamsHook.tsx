@@ -1,4 +1,4 @@
-import debounce from "lodash/debounce";
+import debounce from "lodash/debounce.js";
 import { Router } from "../../createrouter/Router";
 import { useState as useStateType, useEffect as useEffectType } from "react";
 
@@ -11,7 +11,7 @@ export function createReactParamsHook({
     useState: typeof useStateType;
     useEffect: typeof useEffectType;
 }): () => Readonly<Record<string, string>> {
-    return function () {
+    return function (): Readonly<Record<string, string>> {
         const [params, setparams] = useState<Record<string, string>>(
             router.getparams()
         );
@@ -34,6 +34,6 @@ export function createReactParamsHook({
 
             return onunmount;
         }, []);
-        return params;
+        return params as Readonly<Record<string, string>>;
     };
 }

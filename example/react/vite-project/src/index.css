@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css");
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
@@ -12,9 +13,13 @@ code {
         monospace;
 }
 
-
-[aria-current="page"]{
+[aria-current="page"] {
     border-color: green;
     border-width: medium;
-    border-style:solid
+    border-style: solid;
+    background-color: #1e90ff !important;
+    border: solid #646cff;
+    color: #fff !important;
+    color: #646cff;
+    font-weight: 600;
 }
