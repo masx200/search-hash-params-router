@@ -4,7 +4,7 @@
         "access": "public"
     },
     "name": "@masx200/search-hash-params-router",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "main": "./dist/index.cjs",
@@ -70,9 +70,9 @@
         "vue": "^3.2.11"
     },
     "files": [
-        "./dist/index.cjs",
-        "./dist/index.d.ts",
-        "./dist/index.js"
+        "dist/index.cjs",
+        "dist/index.d.ts",
+        "dist/index.js"
     ],
     "peerDependencies": {
         "@masx200/event-emitter-target": "^1.1.9",
