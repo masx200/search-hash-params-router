@@ -114,3 +114,5 @@ types/*/*/*.jsx
 types/
 package-lock.json
 example/react/vite-project/.vscode/settings.json
+*.zip
+.yarn/install-state.gz
