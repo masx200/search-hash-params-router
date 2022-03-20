@@ -74,7 +74,7 @@ pnpm  add @masx200/search-hash-params-router
 
 Typescript 类型声明文件:
 
-https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
+https://gitee.com/masx200/search-hash-params-router/blob/master/src/index.ts
 
 查询参数可以从`location.search` 或`location.hash` 和`location.pathname`中获取。
 
