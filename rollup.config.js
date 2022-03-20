@@ -23,7 +23,7 @@ export default defineConfig([
         input: "./src/index.ts",
         output: [
             { sourcemap: true, file: "./dist/index.js", format: "esm" },
-            // { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
+            { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
         ],
         plugins: [
             externals({
@@ -33,7 +33,7 @@ export default defineConfig([
                 peerDeps: true,
                 optDeps: true,
             }),
-            ts(),
+            ts({ transpiler: "typescript" }),
             resolve(),
             commonjs(),
 

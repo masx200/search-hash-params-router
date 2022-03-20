@@ -4,10 +4,10 @@
         "access": "public"
     },
     "name": "@masx200/search-hash-params-router",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "main": "./dist/index.js",
+    "main": "./dist/index.cjs",
     "type": "module",
     "repository": {
         "type": "git",
@@ -52,23 +52,27 @@
         "@vue/runtime-core": "^3.2.11",
         "@vue/runtime-dom": "^3.2.11",
         "builtin-modules": "^3.2.0",
+        "caniuse-lite": "^1.0.30001319",
         "husky": "^7.0.2",
         "lodash": "^4.17.21",
         "prettier": "^2.3.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "rollup": "^2.53.1",
+        "rollup": "^2.70.1",
         "rollup-plugin-node-externals": "^2.2.0",
         "rollup-plugin-terser": "^7.0.2",
-        "rollup-plugin-ts": "^1.4.0",
-        "tslib": "^2.3.0",
-        "typescript": "^4.3.5",
+        "rollup-plugin-ts": "^2.0.5",
+        "tslib": "^2.3.1",
+        "typescript": "^4.6.2",
+        "vite": "^2.8.6",
         "vite-plugin-html": "^2.1.0",
         "vite-plugin-pwa": "^0.11.0",
         "vue": "^3.2.11"
     },
     "files": [
-        "dist"
+        "./dist/index.cjs",
+        "./dist/index.d.ts",
+        "./dist/index.js"
     ],
     "peerDependencies": {
         "@masx200/event-emitter-target": "^1.1.9",
@@ -79,8 +83,7 @@
     },
     "dependencies": {
         "@masx200/event-emitter-target": "^1.1.9",
-        "lodash": "^4.17.21",
-        "vite": "^2.8.6"
+        "lodash": "^4.17.21"
     },
     "resolutions": {
         "object-path": "0.11.8"

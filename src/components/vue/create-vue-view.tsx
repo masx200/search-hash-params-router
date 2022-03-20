@@ -56,6 +56,7 @@ function createVueView({
     }
     viewrenderdefault.props = ["params", "component"];
     viewrenderdefault.inheritAttrs = false;
+    //@ts-ignore
     return defineComponent({
         props: ["routes", "render"],
         inheritAttrs: false,
@@ -113,5 +114,5 @@ function createVueView({
                 }
             };
         },
-    });
+    }) as Component<DefaultVueViewProps>;
 }
