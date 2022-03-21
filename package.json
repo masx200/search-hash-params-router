@@ -22,8 +22,8 @@
     "homepage": "https://github.com/masx200/search-hash-params-router#readme",
     "scripts": {
         "precommit": "npm run format ||node -v",
-        "dev-vue": "vite example/vue/my-vue-app",
-        "dev-react": "vite example/react/vite-project",
+        "dev-vue": "npm run build && vite example/vue/my-vue-app",
+        "dev-react": "npm run build && vite example/react/vite-project",
         "build-vue": "npm run build && vite build example/vue/my-vue-app",
         "build-react": "npm run build &&  vite build example/react/vite-project",
         "build": "rollup -c rollup.config.js ",
