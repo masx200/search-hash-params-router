@@ -20,7 +20,8 @@ export default defineConfig({
         },
     },
     plugins: [
-        babel({exclude:[/node_modules/],
+        babel({
+            exclude: [/node_modules/],
             sourceMaps: true,
             plugins: ["@babel/plugin-transform-react-constant-elements"],
             extensions: [".js", ".tsx", ".ts"],
