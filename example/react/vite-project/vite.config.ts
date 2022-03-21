@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import { VitePWA } from "vite-plugin-pwa";
-import { minifyHtml } from "vite-plugin-html";
+import { createHtmlPlugin } from "vite-plugin-html";
 import babel from "@rollup/plugin-babel";
 // import ts from "rollup-plugin-ts";
 // https://vitejs.dev/config/
@@ -20,7 +20,7 @@ export default defineConfig({
         },
     },
     plugins: [
-        babel({
+        babel({exclude:[/node_modules/],
             sourceMaps: true,
             plugins: ["@babel/plugin-transform-react-constant-elements"],
             extensions: [".js", ".tsx", ".ts"],
@@ -28,7 +28,8 @@ export default defineConfig({
             presets: [["@babel/preset-react", { runtime: "automatic" }]],
         }),
         // ts(),
-        minifyHtml({ removeAttributeQuotes: false }),
+        createHtmlPlugin({ minify: { removeAttributeQuotes: false } }),
+
         reactRefresh(),
         VitePWA({
             registerType: "autoUpdate",
