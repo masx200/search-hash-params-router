@@ -2,7 +2,7 @@ import { createReactParamsHook } from "../../../../dist";
 import { searchrouter } from "./searchrouter";
 import { useEffect, useState } from "react";
 import React from "react";
-const useParams = createReactParamsHook({
+export const useParams = createReactParamsHook({
     router: searchrouter,
     useEffect,
     useState,
