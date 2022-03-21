@@ -6,11 +6,13 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
     esbuild: { drop: ["console", "debugger"] },
     build: {
-        minify: "esbuild",
+        minify: "terser",
         cssCodeSplit: false,
         polyfillDynamicImport: true,
         target: "es2015",
         terserOptions: {
+            ecma: 2015,
+            output: { comments: false },
             compress: { drop_console: true, drop_debugger: true },
         },
     },
