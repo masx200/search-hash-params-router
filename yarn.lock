@@ -1393,10 +1393,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@masx200/event-emitter-target@npm:^1.1.9":
-  version: 1.1.9
-  resolution: "@masx200/event-emitter-target@npm:1.1.9"
-  checksum: 7c6b6806a5dfa437abc76fac007c4fa664a214cba25ed6954d56b895ed2522da0d9647846c154c9c292a56ae1c34d2610a8311e0819c8e1c30d2626237dba98a
+"@masx200/event-emitter-target@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@masx200/event-emitter-target@npm:2.0.0"
+  checksum: 2c48f60f8ff6926cc9c19cf307eecfba4945de50bba294c0a8af438c1eaba3e8bca332616fed255d7abb2d6f8a69c96be88439bd22407be5ccaba2715cb777a9
   languageName: node
   linkType: hard
 
@@ -1409,10 +1409,10 @@ __metadata:
     "@babel/plugin-transform-react-jsx": ^7.14.5
     "@babel/preset-env": ^7.14.7
     "@babel/preset-react": ^7.14.5
-    "@masx200/event-emitter-target": ^1.1.9
+    "@masx200/event-emitter-target": ^2.0.0
     "@rollup/plugin-babel": ^5.3.1
-    "@rollup/plugin-commonjs": ^19.0.0
-    "@rollup/plugin-node-resolve": ^13.0.0
+    "@rollup/plugin-commonjs": ^21.0.2
+    "@rollup/plugin-node-resolve": ^13.1.3
     "@types/lodash": ^4.14.170
     "@types/node": ^16.9.2
     "@types/react": ^17.0.13
@@ -1431,7 +1431,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     rollup: ^2.70.1
-    rollup-plugin-node-externals: ^2.2.0
+    rollup-plugin-node-externals: ^4.0.0
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-ts: ^2.0.5
     tslib: ^2.3.1
@@ -1441,7 +1441,6 @@ __metadata:
     vite-plugin-pwa: ^0.11.13
     vue: ^3.2.31
   peerDependencies:
-    "@masx200/event-emitter-target": ^1.1.9
     "@types/react": ^17.0.13
     "@types/react-dom": ^17.0.9
     "@vue/runtime-core": ^3.1.4
@@ -1520,9 +1519,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^19.0.0":
-  version: 19.0.2
-  resolution: "@rollup/plugin-commonjs@npm:19.0.2"
+"@rollup/plugin-commonjs@npm:^21.0.2":
+  version: 21.0.2
+  resolution: "@rollup/plugin-commonjs@npm:21.0.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -1533,7 +1532,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.38.3
-  checksum: bf60da71b12c1c52fc2ca223272a1b5a4c27e47f707077024338f841b97f5656c352a3c2c11dd6a5fec0d63ae53407b9ceab72b87dda5701ddffdc09bba34513
+  checksum: 5fd4c7b75d7881070f4395d7ba5f9035934f53b25e92d136583cc794461a456efc1e2a2204f946ec567dfea58073c38cb48f24d27155b89af0df0447c2cd0758
   languageName: node
   linkType: hard
 
@@ -1553,7 +1552,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^13.0.0":
+"@rollup/plugin-node-resolve@npm:^13.1.3":
   version: 13.1.3
   resolution: "@rollup/plugin-node-resolve@npm:13.1.3"
   dependencies:
@@ -2936,13 +2935,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-up@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "find-up@npm:4.1.0"
+"find-up@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "find-up@npm:5.0.0"
   dependencies:
-    locate-path: ^5.0.0
+    locate-path: ^6.0.0
     path-exists: ^4.0.0
-  checksum: 4c172680e8f8c1f78839486e14a43ef82e9decd0e74145f40707cc42e7420506d5ec92d9a11c22bd2c48fb0c384ea05dd30e10dd152fefeec6f2f75282a8b844
+  checksum: 07955e357348f34660bde7920783204ff5a26ac2cafcaa28bace494027158a97b9f56faaf2d89a6106211a8174db650dd9f503f9c0d526b1202d5554a00b9095
   languageName: node
   linkType: hard
 
@@ -3634,12 +3633,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"locate-path@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "locate-path@npm:5.0.0"
+"locate-path@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "locate-path@npm:6.0.0"
   dependencies:
-    p-locate: ^4.1.0
-  checksum: 83e51725e67517287d73e1ded92b28602e3ae5580b301fe54bfb76c0c723e3f285b19252e375712316774cf52006cb236aed5704692c32db0d5d089b69696e30
+    p-locate: ^5.0.0
+  checksum: 72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
   languageName: node
   linkType: hard
 
@@ -4010,21 +4009,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^2.2.0":
-  version: 2.3.0
-  resolution: "p-limit@npm:2.3.0"
+"p-limit@npm:^3.0.2":
+  version: 3.1.0
+  resolution: "p-limit@npm:3.1.0"
   dependencies:
-    p-try: ^2.0.0
-  checksum: 84ff17f1a38126c3314e91ecfe56aecbf36430940e2873dadaa773ffe072dc23b7af8e46d4b6485d302a11673fe94c6b67ca2cfbb60c989848b02100d0594ac1
+    yocto-queue: ^0.1.0
+  checksum: 7c3690c4dbf62ef625671e20b7bdf1cbc9534e83352a2780f165b0d3ceba21907e77ad63401708145ca4e25bfc51636588d89a8c0aeb715e6c37d1c066430360
   languageName: node
   linkType: hard
 
-"p-locate@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "p-locate@npm:4.1.0"
+"p-locate@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "p-locate@npm:5.0.0"
   dependencies:
-    p-limit: ^2.2.0
-  checksum: 513bd14a455f5da4ebfcb819ef706c54adb09097703de6aeaa5d26fe5ea16df92b48d1ac45e01e3944ce1e6aa2a66f7f8894742b8c9d6e276e16cd2049a2b870
+    p-limit: ^3.0.2
+  checksum: 1623088f36cf1cbca58e9b61c4e62bf0c60a07af5ae1ca99a720837356b5b6c5ba3eb1b2127e47a06865fee59dd0453cad7cc844cda9d5a62ac1a5a51b7c86d3
   languageName: node
   linkType: hard
 
@@ -4034,13 +4033,6 @@ __metadata:
   dependencies:
     aggregate-error: ^3.0.0
   checksum: cb0ab21ec0f32ddffd31dfc250e3afa61e103ef43d957cc45497afe37513634589316de4eb88abdfd969fe6410c22c0b93ab24328833b8eb1ccc087fc0442a1c
-  languageName: node
-  linkType: hard
-
-"p-try@npm:^2.0.0":
-  version: 2.2.0
-  resolution: "p-try@npm:2.2.0"
-  checksum: f8a8e9a7693659383f06aec604ad5ead237c7a261c18048a6e1b5b85a5f8a067e469aa24f5bc009b991ea3b058a87f5065ef4176793a200d4917349881216cae
   languageName: node
   linkType: hard
 
@@ -4384,14 +4376,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "rollup-plugin-node-externals@npm:2.2.0"
+"rollup-plugin-node-externals@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "rollup-plugin-node-externals@npm:4.0.0"
   dependencies:
-    find-up: ^4.1.0
+    find-up: ^5.0.0
   peerDependencies:
-    builtin-modules: ^3.1.0
-  checksum: 63cdc0eb51da6820bbae9156dc32ffb096254b85384beb7229053a4494f2a667d9421eda7bdf661c8a01f78916001bb21d7f81cdb3cce8a2ff654c8e11ff3a26
+    rollup: ^2.60.0
+  checksum: 8f4e7faed64332f69f3751b0eb2e4786c05653275c141536e62a69d1c1335d6c9e1b82cf53d24d4511b22c50e9acece65d9217669321c0a87bed4c44ae81789e
   languageName: node
   linkType: hard
 
@@ -5381,5 +5373,12 @@ __metadata:
   version: 4.0.0
   resolution: "yallist@npm:4.0.0"
   checksum: 343617202af32df2a15a3be36a5a8c0c8545208f3d3dfbc6bb7c3e3b7e8c6f8e7485432e4f3b88da3031a6e20afa7c711eded32ddfb122896ac5d914e75848d5
+  languageName: node
+  linkType: hard
+
+"yocto-queue@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "yocto-queue@npm:0.1.0"
+  checksum: f77b3d8d00310def622123df93d4ee654fc6a0096182af8bd60679ddcdfb3474c56c6c7190817c84a2785648cdee9d721c0154eb45698c62176c322fb46fc700
   languageName: node
   linkType: hard
