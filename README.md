@@ -541,7 +541,7 @@ declare const Customlinkcomponent: ComponentType<
 
 Typescript 类型声明文件:
 
-https://github.com/masx200/search-hash-params-router/blob/master/dist/index.d.ts
+https://github.com/masx200/search-hash-params-router/blob/master/src/index.ts
 
 ### 组件`Link` 的`Props`
 

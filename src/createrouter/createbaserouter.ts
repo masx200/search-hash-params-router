@@ -35,7 +35,8 @@ export function createBaseRouter({
     let mountcount = 0;
     // const eventname = "search" === type ? "popstate" : "hashchange";
 
-    const emitter: EventEmitterTarget = EventEmitterTargetClass();
+    const emitter: EventEmitterTarget<{ params: Record<string, string> }> =
+        EventEmitterTargetClass<{ params: Record<string, string> }>();
 
     const changelistener = debounce(() => {
         const params = getparams();

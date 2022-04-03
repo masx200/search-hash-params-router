@@ -29,7 +29,9 @@ export default defineConfig({
             presets: [["@babel/preset-react", { runtime: "automatic" }]],
         }),
         // ts(),
-        createHtmlPlugin({ minify: { removeAttributeQuotes: false } }),
+        createHtmlPlugin({
+            minify: { removeAttributeQuotes: false, collapseWhitespace: true },
+        }),
 
         reactRefresh(),
         VitePWA({

@@ -17,7 +17,9 @@ export default defineConfig({
         },
     },
     plugins: [
-        createHtmlPlugin({ minify: { removeAttributeQuotes: false } }),
+        createHtmlPlugin({
+            minify: { removeAttributeQuotes: false, collapseWhitespace: true },
+        }),
         vue(),
         VitePWA({
             registerType: "autoUpdate",
