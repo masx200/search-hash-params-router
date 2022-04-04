@@ -1,5 +1,5 @@
 {
-    "version": "3.0.1",
+    "version": "3.0.2",
     "exports": {
         ".": {
             "import": "./dist/index.js",
@@ -79,6 +79,8 @@
     },
     "files": [
         "dist/index.cjs",
+        "dist/index.cjs.map",
+        "dist/index.js.map",
         "dist/index.d.ts",
         "dist/index.js"
     ],
