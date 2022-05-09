@@ -95,6 +95,8 @@
         "lodash": "^4.17.21"
     },
     "resolutions": {
+        "async": "3.2.3",
+        "ejs": "3.1.7",
         "object-path": "0.11.8",
         "nanoid": "3.1.31",
         "minimist": "1.2.6"
