@@ -58,7 +58,7 @@
         "@vue/compiler-sfc": "^3.2.31",
         "@vue/runtime-core": "^3.2.31",
         "@vue/runtime-dom": "^3.2.31",
-        "@vue/server-renderer": "^3.2.31",
+        "@vue/server-renderer": "^3.2.33",
         "builtin-modules": "^3.2.0",
         "caniuse-lite": "^1.0.30001319",
         "husky": "^7.0.2",
