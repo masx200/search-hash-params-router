@@ -33,7 +33,7 @@
         "build-vue": "npm run build && vite build example/vue/my-vue-app",
         "build-react": "npm run build &&  vite build example/react/vite-project",
         "build": "rollup -c rollup.config.mjs ",
-        "format": "prettier *.ts  */*/*/*.html */*.cjs --write *.mjs */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
+        "format": "prettier *.ts  */*/*/*.html */*.cjs --write *.mjs */*.ts */*.js  */*/*/*/*.tsx   */*/*.ts  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
         "prepare": "husky install",
         "test": "vitest run"
     },
@@ -61,6 +61,7 @@
         "@vue/server-renderer": "^3.2.33",
         "builtin-modules": "^3.3.0",
         "caniuse-lite": "^1.0.30001319",
+        "happy-dom": "^3.2.0",
         "husky": "^7.0.2",
         "lodash": "^4.17.21",
         "prettier": "^2.6.2",
@@ -75,8 +76,8 @@
         "vite": "^2.8.6",
         "vite-plugin-html": "^3.2.0",
         "vite-plugin-pwa": "^0.11.13",
-        "vue": "^3.2.33",
-        "vitest": "^0.12.6"
+        "vitest": "^0.12.6",
+        "vue": "^3.2.33"
     },
     "files": [
         "dist/index.cjs",
