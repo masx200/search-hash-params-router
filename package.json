@@ -33,7 +33,7 @@
         "build-vue": "npm run build && vite build example/vue/my-vue-app",
         "build-react": "npm run build &&  vite build example/react/vite-project",
         "build": "rollup -c rollup.config.mjs ",
-        "format": "prettier  */*/*/*.html */*.cjs --write *.mjs */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
+        "format": "prettier *.ts  */*/*/*.html */*.cjs --write *.mjs */*.ts */*.js  */*/*/*/*.tsx   */*/*.js  *.json *.md  */*/*.ts */*/*.tsx */*/*/*.ts */*/*/*.tsx */*/*/*/*.vue */*/*/*/*/*.vue */*/*/*/*.ts */*/*/*/*.css",
         "prepare": "husky install",
         "test": "vitest run"
     },
