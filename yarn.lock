@@ -2533,7 +2533,7 @@ __metadata:
     "@vue/server-renderer": ^3.2.33
     builtin-modules: ^3.3.0
     caniuse-lite: ^1.0.30001319
-    happy-dom: ^3.2.0
+    happy-dom: ^6.0.4
     html-minifier-terser: ^7.0.0-beta.0
     lodash: ^4.17.21
     prettier: ^2.7.1
@@ -4680,9 +4680,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"happy-dom@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "happy-dom@npm:3.2.0"
+"happy-dom@npm:^6.0.4":
+  version: 6.0.4
+  resolution: "happy-dom@npm:6.0.4"
   dependencies:
     css.escape: ^1.5.1
     he: ^1.2.0
@@ -4691,7 +4691,7 @@ __metadata:
     webidl-conversions: ^7.0.0
     whatwg-encoding: ^2.0.0
     whatwg-mimetype: ^3.0.0
-  checksum: 760c5c630924060ccb1575fb8c6f9cf5c39f7aca5cf710cfc9a35ba5fe105c0a76d7169ba7cf1eb4b4cc00353b27c16d579dee6c461f367bdbe7305ce0c22f24
+  checksum: 4bfd97f07ab459fd48fe93f597deb903527f0ffffbc98f2ab1cacc1362ae09d11dfc21d8b166d8e0d19fc49d7c1dcc4b250c1da131d6f70e3cf2e82b39d60657
   languageName: node
   linkType: hard
 
