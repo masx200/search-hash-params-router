@@ -8,11 +8,11 @@ export default defineConfig({
     build: {
         minify: "terser",
         cssCodeSplit: false,
-        polyfillDynamicImport: true,
+        // polyfillDynamicImport: true,
         target: "es2015",
         terserOptions: {
             ecma: 2015,
-            output: { comments: false },
+            format: { comments: false },
             compress: { drop_console: true, drop_debugger: true },
         },
     },
