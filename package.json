@@ -39,7 +39,7 @@
     "keywords": [],
     "devDependencies": {
         "@babel/core": "^7.17.10",
-        "@babel/plugin-transform-react-constant-elements": "^7.17.6",
+        "@babel/plugin-transform-react-constant-elements": "^7.18.9",
         "@babel/plugin-transform-react-jsx": "^7.17.3",
         "@babel/preset-env": "^7.17.10",
         "@babel/preset-react": "^7.18.6",
