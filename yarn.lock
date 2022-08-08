@@ -1849,14 +1849,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-constant-elements@npm:^7.18.9":
-  version: 7.18.9
-  resolution: "@babel/plugin-transform-react-constant-elements@npm:7.18.9"
+"@babel/plugin-transform-react-constant-elements@npm:^7.18.12":
+  version: 7.18.12
+  resolution: "@babel/plugin-transform-react-constant-elements@npm:7.18.12"
   dependencies:
     "@babel/helper-plugin-utils": ^7.18.9
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: bbdc4bc38317e62bb729d6d2b48bfac4cca52cb476a1a537a6fe693610852a6f2c3b3f616e1c73f17fb4b0dae551b1c96f898b7867a02ff2fbe3e858a346c767
+  checksum: d83fbc65e8eb32b64fc83c64436d85dba44e2c358b906e5eb3709d22b05bdeada2f92af1e85e26fda88bb8d688b06546b9a98fee17c82563ae00f19827ba0c79
   languageName: node
   linkType: hard
 
@@ -2512,14 +2512,14 @@ __metadata:
   resolution: "@masx200/search-hash-params-router@workspace:."
   dependencies:
     "@babel/core": ^7.18.10
-    "@babel/plugin-transform-react-constant-elements": ^7.18.9
+    "@babel/plugin-transform-react-constant-elements": ^7.18.12
     "@babel/plugin-transform-react-jsx": ^7.18.10
     "@babel/preset-env": ^7.18.10
     "@babel/preset-react": ^7.18.6
     "@masx200/event-emitter-target": ^2.0.5
     "@rollup/plugin-babel": ^5.3.1
-    "@rollup/plugin-commonjs": ^22.0.0
-    "@rollup/plugin-node-resolve": ^13.1.3
+    "@rollup/plugin-commonjs": ^22.0.2
+    "@rollup/plugin-node-resolve": ^13.3.0
     "@types/html-minifier-terser": ^6.1.0
     "@types/lodash": ^4.14.182
     "@types/node": ^18.6.3
@@ -2540,7 +2540,7 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     rollup: ^2.77.2
-    rollup-plugin-node-externals: ^4.0.0
+    rollup-plugin-node-externals: ^4.1.1
     rollup-plugin-terser: ^7.0.2
     rollup-plugin-ts: ^3.0.2
     terser: ^5.14.2
@@ -2549,7 +2549,7 @@ __metadata:
     vite: ^3.0.4
     vite-plugin-html: ^3.2.0
     vite-plugin-pwa: ^0.12.3
-    vitest: ^0.20.3
+    vitest: ^0.21.0
     vue: ^3.2.37
   peerDependencies:
     "@types/react": ^17.0.13
@@ -2630,9 +2630,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-commonjs@npm:^22.0.0":
-  version: 22.0.0
-  resolution: "@rollup/plugin-commonjs@npm:22.0.0"
+"@rollup/plugin-commonjs@npm:^22.0.2":
+  version: 22.0.2
+  resolution: "@rollup/plugin-commonjs@npm:22.0.2"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     commondir: ^1.0.1
@@ -2643,7 +2643,7 @@ __metadata:
     resolve: ^1.17.0
   peerDependencies:
     rollup: ^2.68.0
-  checksum: fdcce2bf58875fde0e06f001544c0d9a0509a12929393862f72dcef8fcbf4d5d0ba0d5db6cf10ba4351335caf67a3dbdb95000678c468585e3972994f92e2ce9
+  checksum: 70098a4b91afe3f164f5d27cba65edf148c5ed146ee0e07a964b66940681553ac77391083114cdcf9427e7f2706bf0d61eab310b3a2caeab83b7452c0292fcae
   languageName: node
   linkType: hard
 
@@ -2663,19 +2663,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-node-resolve@npm:^13.1.3":
-  version: 13.1.3
-  resolution: "@rollup/plugin-node-resolve@npm:13.1.3"
+"@rollup/plugin-node-resolve@npm:^13.3.0":
+  version: 13.3.0
+  resolution: "@rollup/plugin-node-resolve@npm:13.3.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     "@types/resolve": 1.17.1
-    builtin-modules: ^3.1.0
     deepmerge: ^4.2.2
+    is-builtin-module: ^3.1.0
     is-module: ^1.0.0
     resolve: ^1.19.0
   peerDependencies:
     rollup: ^2.42.0
-  checksum: c275843aef884ff15ed7edb8a3b8fd072a72d517632098f6e9c25ef2c00f7842559565cc77e16c59eb119b8c4e2d858a8b5a94701ca6f85ae6a4f60a6e31f0ab
+  checksum: ec5418e6b3c23a9e30683056b3010e9d325316dcfae93fbc673ae64dad8e56a2ce761c15c48f5e2dcfe0c822fdc4a4905ee6346e3dcf90603ba2260afef5a5e6
   languageName: node
   linkType: hard
 
@@ -4954,6 +4954,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-builtin-module@npm:^3.1.0":
+  version: 3.2.0
+  resolution: "is-builtin-module@npm:3.2.0"
+  dependencies:
+    builtin-modules: ^3.3.0
+  checksum: 0315751b898feff0646511c896e88b608a755c5025d0ce9a3ad25783de50be870e47dafb838cebbb06fbb2a948b209ea55348eee267836c9dd40d3a11ec717d3
+  languageName: node
+  linkType: hard
+
 "is-callable@npm:^1.1.4, is-callable@npm:^1.2.4":
   version: 1.2.4
   resolution: "is-callable@npm:1.2.4"
@@ -6141,14 +6150,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-node-externals@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "rollup-plugin-node-externals@npm:4.0.0"
+"rollup-plugin-node-externals@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "rollup-plugin-node-externals@npm:4.1.1"
   dependencies:
     find-up: ^5.0.0
   peerDependencies:
     rollup: ^2.60.0
-  checksum: 8f4e7faed64332f69f3751b0eb2e4786c05653275c141536e62a69d1c1335d6c9e1b82cf53d24d4511b22c50e9acece65d9217669321c0a87bed4c44ae81789e
+  checksum: ded89826458b99e6481eae421a5b806ab74e50cd118135d975e260c706f3de1b2d1a91ff32953d29a9caa3890db7f5e73d87c95d37b192f7e6b772ad80cb7158
   languageName: node
   linkType: hard
 
@@ -6949,9 +6958,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^0.20.3":
-  version: 0.20.3
-  resolution: "vitest@npm:0.20.3"
+"vitest@npm:^0.21.0":
+  version: 0.21.0
+  resolution: "vitest@npm:0.21.0"
   dependencies:
     "@types/chai": ^4.3.1
     "@types/chai-subset": ^1.3.3
@@ -6984,7 +6993,7 @@ __metadata:
       optional: true
   bin:
     vitest: vitest.mjs
-  checksum: 1478030f2e34ee91274a544b7d2e2d447969ce37d6452bfbc8e21fe42ec6fb94c496a09b822d7c8d667cee243b6630c871640d4a8b4434e1a25b858dad3548ed
+  checksum: c7aed226d7e67aa9409e7177c7dc6cacebc743212f22773b79d0d4795de83aff5c1c8559999b93c405afdef4f115cd527a84ecec4e2a25620be688ed3bd64695
   languageName: node
   linkType: hard
 
