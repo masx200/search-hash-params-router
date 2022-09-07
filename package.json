@@ -27,7 +27,6 @@
     },
     "homepage": "https://github.com/masx200/search-hash-params-router#readme",
     "scripts": {
-        "precommit": "npm run format ||node -v",
         "dev-vue": "npm run build && vite example/vue/my-vue-app",
         "dev-react": "npm run build && vite example/react/vite-project",
         "build-vue": "npm run build && vite build example/vue/my-vue-app",
@@ -66,8 +65,8 @@
         "prettier": "^2.7.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "rollup": "^2.77.2",
-        "rollup-plugin-node-externals": "^5.0.0",
+        "rollup": "^2.79.0",
+        "rollup-external-modules": "^2.0.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-ts": "^3.0.2",
         "terser": "^5.14.2",

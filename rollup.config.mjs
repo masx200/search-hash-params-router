@@ -2,7 +2,7 @@ import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import { defineConfig } from "rollup";
-import externals from "rollup-plugin-node-externals";
+import rollupExternalModules from "rollup-external-modules";
 import { terser } from "rollup-plugin-terser";
 import ts from "rollup-plugin-ts";
 const terserplugin = terser({
@@ -20,19 +20,13 @@ const terserplugin = terser({
 });
 export default defineConfig([
     {
+        external: rollupExternalModules,
         input: "./src/index.ts",
         output: [
             { sourcemap: true, file: "./dist/index.js", format: "esm" },
             { sourcemap: true, file: "./dist/index.cjs", format: "cjs" },
         ],
         plugins: [
-            externals({
-                builtins: true,
-                deps: false,
-                devDeps: true,
-                peerDeps: true,
-                optDeps: true,
-            }),
             ts({ transpiler: "typescript" }),
             resolve(),
             commonjs(),
